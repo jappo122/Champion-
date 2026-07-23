@@ -9,6 +9,7 @@ import { I18nProvider, LanguageSwitcher } from "~/i18n/index";
 import { MobileNav } from "~/components/mobile-nav";
 import { logError } from "~/lib/support";
 import { Component } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // ── Error Boundary ──────────────────────────────────────────────────────────
 class ErrorBoundary extends Component<
@@ -190,6 +191,7 @@ function RootDocument({ children }: { children: ReactNode }) {
           </ErrorBoundary>
         </I18nProvider>
         <Scripts />
+        <SpeedInsights />
         {/* Auth detection — runs AFTER React hydration, uses CSS so React can't undo it */}
         <script>{`
           (function(){
