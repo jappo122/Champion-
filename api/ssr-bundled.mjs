@@ -190,11 +190,7 @@ var init_url = __esm({
 });
 
 // node_modules/srvx/dist/adapters/node.mjs
-import nodeHTTP, { IncomingMessage, ServerResponse } from "node:http";
 import { Duplex, PassThrough, Readable, addAbortSignal } from "node:stream";
-import { pipeline } from "node:stream/promises";
-import nodeHTTPS from "node:https";
-import nodeHTTP2 from "node:http2";
 var NodeResponse;
 var init_node = __esm({
   "node_modules/srvx/dist/adapters/node.mjs"() {
@@ -44737,7 +44733,6 @@ var email_cxXaOx6X_exports = {};
 __export(email_cxXaOx6X_exports, {
   sendEmail: () => sendEmail
 });
-import "node:async_hooks";
 var import_react10, import_jsx_runtime16, sendEmail;
 var init_email_cxXaOx6X = __esm({
   "dist/server/assets/email-cxXaOx6X.js"() {
@@ -44763,7 +44758,6 @@ __export(billing_CFMw7M3s_exports, {
   getUserSubscription_createServerFn_handler: () => getUserSubscription_createServerFn_handler
 });
 import { createHash } from "node:crypto";
-import "node:async_hooks";
 function verifyToken(token) {
   try {
     const parts = token.split(".");
@@ -45195,7 +45189,6 @@ __export(manager_DeMiHCcD_exports, {
   sendMessage_createServerFn_handler: () => sendMessage_createServerFn_handler
 });
 import { randomBytes as randomBytes2, createHash as createHash3 } from "node:crypto";
-import "node:async_hooks";
 function verifyToken2(token) {
   try {
     const parts = token.split(".");
@@ -46435,7 +46428,6 @@ __export(inbox_BQUiapIT_exports, {
   markInboxRead_createServerFn_handler: () => markInboxRead_createServerFn_handler,
   syncInboxEmails_createServerFn_handler: () => syncInboxEmails_createServerFn_handler
 });
-import "node:async_hooks";
 async function ensureTable() {
   const db = sql();
   await db`
@@ -46597,7 +46589,6 @@ __export(planner_DfiO0OSW_exports, {
   getAppointments_createServerFn_handler: () => getAppointments_createServerFn_handler
 });
 import { createHash as createHash4 } from "node:crypto";
-import "node:async_hooks";
 function verifyToken3(token) {
   try {
     const parts = token.split(".");
@@ -46726,7 +46717,6 @@ __export(complete_Dy_AN7ed_exports, {
   completeSignupAfterPayment_createServerFn_handler: () => completeSignupAfterPayment_createServerFn_handler
 });
 import { randomBytes as randomBytes3, createHash as createHash5 } from "node:crypto";
-import "node:async_hooks";
 var import_react15, import_jsx_runtime21, completeSignupAfterPayment_createServerFn_handler, completeSignupAfterPayment;
 var init_complete_Dy_AN7ed = __esm({
   "dist/server/assets/complete-Dy_AN7ed.js"() {
@@ -46846,7 +46836,6 @@ __export(support_OuNbzw_v_exports, {
   logError_createServerFn_handler: () => logError_createServerFn_handler,
   submitTicket_createServerFn_handler: () => submitTicket_createServerFn_handler
 });
-import "node:async_hooks";
 var import_react16, import_jsx_runtime22, submitTicket_createServerFn_handler, submitTicket, logError_createServerFn_handler, logError;
 var init_support_OuNbzw_v = __esm({
   "dist/server/assets/support-OuNbzw_v.js"() {
@@ -46919,7 +46908,6 @@ __export(auth_D_HKW_x5_exports, {
   updateProfile_createServerFn_handler: () => updateProfile_createServerFn_handler
 });
 import { randomBytes as randomBytes4, createHash as createHash6, timingSafeEqual } from "node:crypto";
-import "node:async_hooks";
 function hashPassword(password) {
   const salt = randomBytes4(16).toString("hex");
   let key = password + salt;
@@ -47168,7 +47156,6 @@ __export(auth_guard_GE2T435D_exports, {
   getAuthInfo_createServerFn_handler: () => getAuthInfo_createServerFn_handler
 });
 import { createHash as createHash7 } from "node:crypto";
-import "node:async_hooks";
 function verifyToken5(token) {
   try {
     const parts = token.split(".");
@@ -47247,7 +47234,6 @@ var email_D5dPe5SV_exports = {};
 __export(email_D5dPe5SV_exports, {
   sendEmail_createServerFn_handler: () => sendEmail_createServerFn_handler
 });
-import "node:async_hooks";
 var import_react19, import_jsx_runtime25, FROM_EMAIL, sendEmail_createServerFn_handler, sendEmail2;
 var init_email_D5dPe5SV = __esm({
   "dist/server/assets/email-D5dPe5SV.js"() {
@@ -47307,7 +47293,6 @@ __export(admin_wjDiqk57_exports, {
   upgradeDemoAccounts_createServerFn_handler: () => upgradeDemoAccounts_createServerFn_handler
 });
 import { createHash as createHash8 } from "node:crypto";
-import "node:async_hooks";
 function verifyToken6(token) {
   try {
     const parts = token.split(".");
@@ -47391,7 +47376,6 @@ var contact_cN0awlyL_exports = {};
 __export(contact_cN0awlyL_exports, {
   submitContactForm_createServerFn_handler: () => submitContactForm_createServerFn_handler
 });
-import "node:async_hooks";
 var import_react21, import_jsx_runtime27, submitContactForm_createServerFn_handler, submitContactForm;
 var init_contact_cN0awlyL = __esm({
   "dist/server/assets/contact-cN0awlyL.js"() {
@@ -47464,7 +47448,6 @@ var support_BwZgVmbK_exports = {};
 __export(support_BwZgVmbK_exports, {
   submitTicket_createServerFn_handler: () => submitTicket_createServerFn_handler2
 });
-import "node:async_hooks";
 var import_react22, import_jsx_runtime28, submitTicket_createServerFn_handler2, submitTicket2;
 var init_support_BwZgVmbK = __esm({
   "dist/server/assets/support-BwZgVmbK.js"() {
@@ -47511,7 +47494,6 @@ __export(ar_DYUP0zsq_exports, {
   default: () => translations2,
   translations: () => translations2
 });
-import "node:async_hooks";
 var import_jsx_runtime29, import_react23, translations2;
 var init_ar_DYUP0zsq = __esm({
   "dist/server/assets/ar-DYUP0zsq.js"() {
@@ -47533,7 +47515,6 @@ __export(bn_DYUP0zsq_exports, {
   default: () => translations3,
   translations: () => translations3
 });
-import "node:async_hooks";
 var import_jsx_runtime30, import_react24, translations3;
 var init_bn_DYUP0zsq = __esm({
   "dist/server/assets/bn-DYUP0zsq.js"() {
@@ -47555,7 +47536,6 @@ __export(de_DYUP0zsq_exports, {
   default: () => translations4,
   translations: () => translations4
 });
-import "node:async_hooks";
 var import_jsx_runtime31, import_react25, translations4;
 var init_de_DYUP0zsq = __esm({
   "dist/server/assets/de-DYUP0zsq.js"() {
@@ -47577,7 +47557,6 @@ __export(es_DYUP0zsq_exports, {
   default: () => translations5,
   translations: () => translations5
 });
-import "node:async_hooks";
 var import_jsx_runtime32, import_react26, translations5;
 var init_es_DYUP0zsq = __esm({
   "dist/server/assets/es-DYUP0zsq.js"() {
@@ -47599,7 +47578,6 @@ __export(fr_DYUP0zsq_exports, {
   default: () => translations6,
   translations: () => translations6
 });
-import "node:async_hooks";
 var import_jsx_runtime33, import_react27, translations6;
 var init_fr_DYUP0zsq = __esm({
   "dist/server/assets/fr-DYUP0zsq.js"() {
@@ -47621,7 +47599,6 @@ __export(hi_DYUP0zsq_exports, {
   default: () => translations7,
   translations: () => translations7
 });
-import "node:async_hooks";
 var import_jsx_runtime34, import_react28, translations7;
 var init_hi_DYUP0zsq = __esm({
   "dist/server/assets/hi-DYUP0zsq.js"() {
@@ -47643,7 +47620,6 @@ __export(it_DYUP0zsq_exports, {
   default: () => translations8,
   translations: () => translations8
 });
-import "node:async_hooks";
 var import_jsx_runtime35, import_react29, translations8;
 var init_it_DYUP0zsq = __esm({
   "dist/server/assets/it-DYUP0zsq.js"() {
@@ -47665,7 +47641,6 @@ __export(ja_DYUP0zsq_exports, {
   default: () => translations9,
   translations: () => translations9
 });
-import "node:async_hooks";
 var import_jsx_runtime36, import_react30, translations9;
 var init_ja_DYUP0zsq = __esm({
   "dist/server/assets/ja-DYUP0zsq.js"() {
@@ -47687,7 +47662,6 @@ __export(jv_DYUP0zsq_exports, {
   default: () => translations10,
   translations: () => translations10
 });
-import "node:async_hooks";
 var import_jsx_runtime37, import_react31, translations10;
 var init_jv_DYUP0zsq = __esm({
   "dist/server/assets/jv-DYUP0zsq.js"() {
@@ -47709,7 +47683,6 @@ __export(ko_DYUP0zsq_exports, {
   default: () => translations11,
   translations: () => translations11
 });
-import "node:async_hooks";
 var import_jsx_runtime38, import_react32, translations11;
 var init_ko_DYUP0zsq = __esm({
   "dist/server/assets/ko-DYUP0zsq.js"() {
@@ -47731,7 +47704,6 @@ __export(mr_DYUP0zsq_exports, {
   default: () => translations12,
   translations: () => translations12
 });
-import "node:async_hooks";
 var import_jsx_runtime39, import_react33, translations12;
 var init_mr_DYUP0zsq = __esm({
   "dist/server/assets/mr-DYUP0zsq.js"() {
@@ -47753,7 +47725,6 @@ __export(ms_DYUP0zsq_exports, {
   default: () => translations13,
   translations: () => translations13
 });
-import "node:async_hooks";
 var import_jsx_runtime40, import_react34, translations13;
 var init_ms_DYUP0zsq = __esm({
   "dist/server/assets/ms-DYUP0zsq.js"() {
@@ -47775,7 +47746,6 @@ __export(pa_DYUP0zsq_exports, {
   default: () => translations14,
   translations: () => translations14
 });
-import "node:async_hooks";
 var import_jsx_runtime41, import_react35, translations14;
 var init_pa_DYUP0zsq = __esm({
   "dist/server/assets/pa-DYUP0zsq.js"() {
@@ -47797,7 +47767,6 @@ __export(pt_DYUP0zsq_exports, {
   default: () => translations15,
   translations: () => translations15
 });
-import "node:async_hooks";
 var import_jsx_runtime42, import_react36, translations15;
 var init_pt_DYUP0zsq = __esm({
   "dist/server/assets/pt-DYUP0zsq.js"() {
@@ -47819,7 +47788,6 @@ __export(ru_DYUP0zsq_exports, {
   default: () => translations16,
   translations: () => translations16
 });
-import "node:async_hooks";
 var import_jsx_runtime43, import_react37, translations16;
 var init_ru_DYUP0zsq = __esm({
   "dist/server/assets/ru-DYUP0zsq.js"() {
@@ -47841,7 +47809,6 @@ __export(ta_DYUP0zsq_exports, {
   default: () => translations17,
   translations: () => translations17
 });
-import "node:async_hooks";
 var import_jsx_runtime44, import_react38, translations17;
 var init_ta_DYUP0zsq = __esm({
   "dist/server/assets/ta-DYUP0zsq.js"() {
@@ -47863,7 +47830,6 @@ __export(te_DYUP0zsq_exports, {
   default: () => translations18,
   translations: () => translations18
 });
-import "node:async_hooks";
 var import_jsx_runtime45, import_react39, translations18;
 var init_te_DYUP0zsq = __esm({
   "dist/server/assets/te-DYUP0zsq.js"() {
@@ -47885,7 +47851,6 @@ __export(vi_DYUP0zsq_exports, {
   default: () => translations19,
   translations: () => translations19
 });
-import "node:async_hooks";
 var import_jsx_runtime46, import_react40, translations19;
 var init_vi_DYUP0zsq = __esm({
   "dist/server/assets/vi-DYUP0zsq.js"() {
@@ -47907,7 +47872,6 @@ __export(zh_DYUP0zsq_exports, {
   default: () => translations20,
   translations: () => translations20
 });
-import "node:async_hooks";
 var import_jsx_runtime47, import_react41, translations20;
 var init_zh_DYUP0zsq = __esm({
   "dist/server/assets/zh-DYUP0zsq.js"() {
@@ -47928,7 +47892,6 @@ var index_Nl71Y8hr_exports = {};
 __export(index_Nl71Y8hr_exports, {
   component: () => Home
 });
-import "node:async_hooks";
 function Home() {
   const {
     t
@@ -48318,7 +48281,6 @@ var account_CI8R_i83_exports = {};
 __export(account_CI8R_i83_exports, {
   component: () => AccountPage
 });
-import "node:async_hooks";
 function AccountPage() {
   const {
     t
@@ -48475,7 +48437,6 @@ var admin_C_IeYcpL_exports = {};
 __export(admin_C_IeYcpL_exports, {
   component: () => AdminPage
 });
-import "node:async_hooks";
 function AdminPage() {
   const [token, setToken] = (0, import_react44.useState)(null);
   const [isAdmin, setIsAdmin] = (0, import_react44.useState)(false);
@@ -48585,7 +48546,6 @@ var checkout_CccZyfYe_exports = {};
 __export(checkout_CccZyfYe_exports, {
   component: () => CheckoutPage
 });
-import "node:async_hooks";
 function CheckoutPage() {
   const {
     t
@@ -48767,7 +48727,6 @@ var contact_CRUWI_dA_exports = {};
 __export(contact_CRUWI_dA_exports, {
   component: () => ContactPage
 });
-import "node:async_hooks";
 function ContactPage() {
   const [name, setName] = (0, import_react46.useState)("");
   const [email, setEmail] = (0, import_react46.useState)("");
@@ -48919,7 +48878,6 @@ var inbox_P8KOWeFy_exports = {};
 __export(inbox_P8KOWeFy_exports, {
   component: () => InboxPage
 });
-import "node:async_hooks";
 function InboxPage() {
   const [token, setToken] = (0, import_react47.useState)(null);
   const [isDemo, setIsDemo] = (0, import_react47.useState)(false);
@@ -49122,7 +49080,6 @@ var login_C1b7bHQv_exports = {};
 __export(login_C1b7bHQv_exports, {
   component: () => LoginPage
 });
-import "node:async_hooks";
 function LoginPage() {
   const {
     t
@@ -49237,7 +49194,6 @@ __export(manager_CzgJH0An_exports, {
   resetUserProgress: () => resetUserProgress2,
   sendMessage: () => sendMessage2
 });
-import "node:async_hooks";
 var import_react49, import_jsx_runtime55, getMyProgress2, markMyLessonComplete2, removeMyLessonComplete2, getTeamProgress2, getUserProgress2, sendMessage2, markMessageRead2, markLessonComplete2, removeLessonComplete2, addSalesperson2, removeSalesperson2, changeSalespersonTier2, getTeamCost2, getSalesLog2, addSalesEntry2, deleteSalesEntry2, createAssignment2, assignAllSalespeople2, getAssignments2, completeAssignment2, deleteAssignment2, getTeamMembers2, getMyAssignments2, getMyAppointments2, getMyMessages2, getMyNotificationCounts2, checkDailyLimit2, getSkillGaps2, resetMyProgress2, resetUserProgress2;
 var init_manager_CzgJH0An = __esm({
   "dist/server/assets/manager-CzgJH0An.js"() {
@@ -53483,7 +53439,6 @@ var planner_B2p3_dti_exports = {};
 __export(planner_B2p3_dti_exports, {
   component: () => PlannerPage
 });
-import "node:async_hooks";
 function PlannerPage() {
   const [token, setToken] = (0, import_react50.useState)(null);
   const [assignments, setAssignments] = (0, import_react50.useState)([]);
@@ -54020,7 +53975,6 @@ __export(billing_BNqBtHkD_exports, {
   getPaymentLink: () => getPaymentLink2,
   getUserSubscription: () => getUserSubscription2
 });
-import "node:async_hooks";
 var import_react52, import_jsx_runtime58, getUserSubscription2, cancelSubscription2, changeTier2, checkBillingDueSoon2, getPaymentLink2;
 var init_billing_BNqBtHkD = __esm({
   "dist/server/assets/billing-BNqBtHkD.js"() {
@@ -54053,7 +54007,6 @@ var profile_Dtut2xQ9_exports = {};
 __export(profile_Dtut2xQ9_exports, {
   component: () => ProfileDashboard
 });
-import "node:async_hooks";
 function ProfileDashboard() {
   const {
     t
@@ -54997,7 +54950,6 @@ var sales_log_BzXbDgVT_exports = {};
 __export(sales_log_BzXbDgVT_exports, {
   component: () => SalesLogPage
 });
-import "node:async_hooks";
 function SalesLogPage() {
   return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
     /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
@@ -55038,7 +54990,6 @@ var steps_GV2FU_Mr_exports = {};
 __export(steps_GV2FU_Mr_exports, {
   component: () => StepsPage
 });
-import "node:async_hooks";
 function StepsPage() {
   const {
     t
@@ -56047,7 +55998,6 @@ var support_Bnc4F6Sg_exports = {};
 __export(support_Bnc4F6Sg_exports, {
   component: () => SupportPage
 });
-import "node:async_hooks";
 function SupportPage() {
   const {
     t
@@ -57586,7 +57536,6 @@ var index_BwwVZm6r_exports = {};
 __export(index_BwwVZm6r_exports, {
   component: () => BlogListing
 });
-import "node:async_hooks";
 function BlogListing() {
   const [posts, setPosts] = (0, import_react57.useState)([]);
   (0, import_react57.useEffect)(() => {
@@ -57664,7 +57613,6 @@ var slug_iHvoSxo_exports = {};
 __export(slug_iHvoSxo_exports, {
   component: () => BlogPostPage
 });
-import "node:async_hooks";
 function BlogPostPage() {
   const params = Route$7.useParams();
   const [post, setPost] = (0, import_react58.useState)(null);
@@ -57786,7 +57734,6 @@ var index_N_r3bUyv_exports = {};
 __export(index_N_r3bUyv_exports, {
   component: () => ManagerDashboard
 });
-import "node:async_hooks";
 function ManagerDashboard() {
   const {
     t
@@ -58676,7 +58623,6 @@ var success_DLsreOEv_exports = {};
 __export(success_DLsreOEv_exports, {
   component: () => PurchaseSuccess
 });
-import "node:async_hooks";
 function PurchaseSuccess() {
   const {
     t
@@ -58708,7 +58654,6 @@ var index_CPm6EJ5G_exports = {};
 __export(index_CPm6EJ5G_exports, {
   component: () => SignupPage
 });
-import "node:async_hooks";
 function SignupPage() {
   const {
     t
@@ -58873,7 +58818,6 @@ var complete_CefDkTNy_exports = {};
 __export(complete_CefDkTNy_exports, {
   component: () => SignupCompletePage
 });
-import "node:async_hooks";
 function SignupCompletePage() {
   const [status, setStatus] = (0, import_react62.useState)("loading");
   const [message, setMessage] = (0, import_react62.useState)("");
@@ -58986,7 +58930,6 @@ var index_ISg_w_BO_exports = {};
 __export(index_ISg_w_BO_exports, {
   component: () => TrainingCatalog
 });
-import "node:async_hooks";
 function TrainingCatalog() {
   const {
     t
@@ -59727,7 +59670,6 @@ var courseId_lXw7ITKX_exports = {};
 __export(courseId_lXw7ITKX_exports, {
   component: () => CourseDetail
 });
-import "node:async_hooks";
 function renderMarkdown(md, lessonId) {
   const lines = md.split("\n");
   const nodes = [];
@@ -60090,7 +60032,6 @@ var preview_DAoZmXby_exports = {};
 __export(preview_DAoZmXby_exports, {
   component: () => TrainingPreview
 });
-import "node:async_hooks";
 function TrainingPreview() {
   const {
     t
