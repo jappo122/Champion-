@@ -1,6 +1,6 @@
 {
-  "buildCommand": "npm run build && npx esbuild dist/server/server.js --bundle --platform=node --format=esm --outfile=api/ssr-bundled.mjs --external:node:*",
-  "installCommand": "npm install",
+  "buildCommand": "echo 'Using pre-built bundle'",
+  "installCommand": "echo 'Skipping install'",
   "outputDirectory": "dist/client",
   "framework": null,
   "rewrites": [
