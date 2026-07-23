@@ -1,0 +1,1 @@
+function o(e){for(e=e.replace(/-/g,"+").replace(/_/g,"/");e.length%4;)e+="=";return atob(e)}function t(e){try{const n=e.split(".");return n.length!==3?null:JSON.parse(o(n[1]))}catch{return null}}function r(e){const n=t(e);return n?n.exp>Date.now():!1}function l(e){const n=t(e);return!n||n.exp<=Date.now()?null:n}export{l as g,r as i};
