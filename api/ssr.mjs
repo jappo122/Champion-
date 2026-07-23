@@ -1,8 +1,10 @@
 // Vercel ESM runtime fix: provide `require` for CJS modules bundled by esbuild
+// Must use dynamic import — static imports are hoisted and evaluate BEFORE this code runs
 import { createRequire } from "module";
 globalThis.require = createRequire(import.meta.url);
 
-import handler from "./ssr-bundled.mjs";
+const handler = (await import("./ssr-bundled.mjs")).default;
+
 export default async function(req, res) {
   try {
     var u = new URL(req.url, "https://"+req.headers.host);
