@@ -215,18 +215,6 @@ function CourseDetail() {
                   </div>
                   <h1 className="text-2xl font-bold text-white sm:text-3xl">{currentLesson.title}</h1>
                   <p className="mt-3 leading-relaxed text-gray-400">{currentLesson.description}</p>
-                  {/* Video embed */}
-                  {currentLesson.videoUrl && (
-                    <div className="mt-6 aspect-video rounded-lg bg-[#0a1628] overflow-hidden">
-                      <iframe
-                        src={currentLesson.videoUrl}
-                        title={currentLesson.title}
-                        className="h-full w-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  )}
                   {/* Content sections */}
                   {renderMarkdown(currentLesson.content, currentLesson.id)}
                   {/* Mark Complete button */}

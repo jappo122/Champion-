@@ -3,7 +3,6 @@ export interface Lesson {
   title: string;
   description: string;
   duration: string;
-  videoUrl?: string;
   content: string;
 }
 
