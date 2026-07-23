@@ -1,0 +1,10 @@
+{
+  "buildCommand": "bun run build && npx esbuild dist/server/server.js --bundle --platform=node --format=esm --outfile=api/ssr-bundled.mjs --external:node:*",
+  "installCommand": "bun install",
+  "outputDirectory": "dist/client",
+  "framework": null,
+  "rewrites": [
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/(.*)", "destination": "/api/ssr" }
+  ]
+}
