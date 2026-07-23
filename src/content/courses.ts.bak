@@ -1,0 +1,2271 @@
+export interface Lesson {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  videoUrl?: string;
+  content: string;
+}
+
+export interface Course {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  levels: "Beginner" | "Intermediate" | "Advanced";
+  duration: string;
+  lessons: number;
+  image: string;
+  icon: string;
+  lessonsList: Lesson[];
+}
+
+export const courses: Course[] = [
+  // ===== Course 1: 10 Steps to the Sale (Part 1 - Descriptions) =====
+  {
+    id: "10-steps-part-1",
+    title: "10 Steps to the Sale",
+    subtitle: "Master every step of the automotive sales process",
+    description:
+      "An in-depth exploration of the complete 10-step automotive sales process. Each lesson includes detailed explanations, key principles, common mistakes, and pro tips. Perfect for new and experienced salespeople alike. Read through each step and mark it complete as you go.",
+    levels: "Beginner",
+    duration: "3 hours",
+    lessons: 10,
+    image: "foundations",
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
+    lessonsList: [
+      {
+        id: "step-1-greeting",
+        title: "Step 1: Greeting & Building Rapport",
+        description: "Master the art of the first impression and build trust from the moment the customer arrives.",
+        duration: "15 min",
+        content: `## Step 1: Greeting & Building Rapport
+
+**Goal:** Make a warm, professional first impression and build trust within the first 10 seconds.
+
+### The 10-Second Rule
+
+Customers form their first impression within 10 seconds. A rushed, transactional greeting triggers defensive walls that are difficult to break down. The goal is not to sell — it's to connect. Customers buy from people they like and trust, and that trust begins with how you make them feel in the first moment of contact.
+
+### Why It Matters
+
+Research shows that customers decide within 30 seconds whether they trust a salesperson. A poor first impression is nearly impossible to reverse. The greeting is your only chance to make a positive first impression, and it directly impacts every subsequent step of the process.
+
+### How to Execute
+
+Approach the customer warmly but not aggressively. Smile genuinely, make eye contact, and use their name as soon as you learn it. Start with an open-ended question like "What brings you in today?" rather than a closed question like "Can I help you?" Find common ground — notice something about their vehicle, their clothing, or their family. Make them feel welcomed, not hunted.
+
+### Key Principles
+
+- Be warm, not pushy — a genuine smile creates trust
+- Use open-ended questions to start conversations
+- Find common ground within the first 30 seconds
+- Listen more than you talk — let them speak 80% of the time
+- Make the customer feel welcomed, not hunted
+- Use their name once you've learned it
+
+### Common Mistakes
+
+- Rushing to qualify the customer before building rapport — this signals that you care more about the sale than the person
+- Using closed questions like "Can I help you?" which invites a "no" and ends the conversation before it starts
+
+### Pro Tips
+
+- Keep a bottle of water in your hand — it makes you appear approachable and gives you a natural prop
+- If the customer is on their phone, wait 30 seconds before approaching. It shows respect for their time`,
+      },
+      {
+        id: "step-2-needs-assessment",
+        title: "Step 2: Needs Assessment",
+        description: "Ask targeted questions to uncover the customer's needs, budget, and lifestyle requirements.",
+        duration: "15 min",
+        content: `## Step 2: Needs Assessment
+
+**Goal:** Ask targeted questions to uncover the customer's needs, budget, and lifestyle.
+
+### The NEED System
+
+- **N**eeds — What problems are they solving?
+- **E**xpectations — What does their ideal experience look like?
+- **E**xperience — What's their buying history?
+- **D**ecision — Who's involved?
+
+### The BANT Framework
+
+- **B**udget — What range are they comfortable with?
+- **A**uthority — Are they the decision maker?
+- **N**eed — What's the primary need?
+- **T**imeline — When do they need it?
+
+### Why It Matters
+
+80% of sales are lost because the salesperson didn't understand the customer's needs. Without a thorough needs assessment, you're guessing. With one, you're solving problems. Customers can tell when you genuinely understand them, and that understanding builds trust and makes the rest of the sales process smoother.
+
+### How to Execute
+
+Use the NEED system and BANT framework. Ask open-ended questions and take detailed notes. Let them talk 80% of the time. After they answer, summarize what you heard: "So if I understand correctly, you're looking for a reliable SUV with good fuel economy under $40,000. Did I get that right?"
+
+### Key Principles
+
+- Listen more than you talk — let them speak 80% of the time
+- Identify budget range and monthly payment targets
+- Understand primary use — commute, family, work, pleasure
+- Determine who else is involved in the decision
+- Take detailed notes — it shows you value their words
+- Summarize what you heard to confirm understanding
+
+### Common Mistakes
+
+- Jumping straight to vehicle features before understanding needs — this makes the customer feel unheard
+- Asking only yes/no questions that don't reveal the real motivations behind the purchase
+
+### Pro Tips
+
+- Use a physical notebook for notes — it's more personal than a tablet and signals that you're paying attention
+- Ask "What do you love about your current vehicle?" before asking what they want to change — it reveals their priorities`,
+      },
+      {
+        id: "step-3-vehicle-presentation",
+        title: "Step 3: Vehicle Presentation",
+        description: "Present the vehicle features that match the customer's needs using the FAB method.",
+        duration: "15 min",
+        content: `## Step 3: Vehicle Presentation
+
+**Goal:** Present the vehicle that fits their needs and highlight key features using the FAB method.
+
+### The FAB Method
+
+- **Feature** — What the vehicle has
+- **Advantage** — What that feature does
+- **Benefit** — How it helps the customer
+
+### The 3-Feature Rule
+
+Present only 3 key features that directly address their stated needs. Every feature you highlight should connect back to something they told you during the needs assessment.
+
+### Walk-Around Sequence
+
+1. **Front** — Grille, headlights, stance
+2. **Side** — Lines, wheels, profile
+3. **Interior** — Seats, technology, space
+4. **Back** — Cargo, trunk, accessibility
+5. **Under the hood** — Engine, performance
+
+### Why It Matters
+
+Customers who see 3+ vehicles experience decision fatigue and are less likely to buy. Presenting the right vehicle — not everything you have — positions you as a trusted advisor who has their best interests at heart.
+
+### Key Principles
+
+- Present only 2-3 vehicles max to avoid decision paralysis
+- Use the Feature-Advantage-Benefit (FAB) method for every feature
+- Connect every feature back to something they told you
+- Let them touch, sit in, and explore the vehicle
+- Limit information to 3 key features at a time
+- Ask engagement questions throughout the presentation
+
+### Common Mistakes
+
+- Showing too many vehicles — this overwhelms the customer and leads to indecision
+- Talking about features without connecting them to benefits — features alone don't sell, benefits do
+
+### Pro Tips
+
+- Pre-load the vehicle with their preferred radio station and temperature setting before the walk-around
+- Use the "3-Feature Rule" — present only 3 features that directly address their stated needs, then stop`,
+      },
+      {
+        id: "step-4-test-drive",
+        title: "Step 4: Test Drive",
+        description: "Guide the customer through an effective test drive experience.",
+        duration: "15 min",
+        content: `## Step 4: Test Drive
+
+**Goal:** Let the customer experience the vehicle's performance and comfort firsthand.
+
+### Before the Test Drive
+
+- Pre-set the seat, mirrors, and radio
+- Plan your route (highway, hills, smooth roads)
+- Have the customer drive first when possible
+
+### During the Test Drive
+
+- **Stay quiet at first** — Let them experience the vehicle
+- **Highlight benefits** — "Notice how smooth the ride is"
+- **Reinforce their needs** — Connect features to what they want
+
+### Why It Matters
+
+Customers who take a test drive are 70% more likely to buy. The test drive isn't about the car's specifications — it's about how the car makes them feel. When customers start saying "I'd park it in the garage," they've already bought emotionally.
+
+### Key Principles
+
+- Pre-set seat, mirrors, and radio before the drive
+- Plan a route that highlights different driving conditions
+- Let the customer drive first — you drive back
+- Stay quiet during the first few minutes of the drive
+- Highlight benefits that connect to their stated needs
+- Ask "How did that feel?" after the drive, not "What do you think?"
+
+### Common Mistakes
+
+- Talking too much during the test drive — this prevents the customer from forming their own emotional connection
+- Taking a boring route that doesn't showcase the vehicle's strengths
+
+### Pro Tips
+
+- Point out a specific landmark or feature on the route that they'll remember — it creates a lasting positive association
+- If they smile or laugh during the drive, note what caused it and reinforce it later during the numbers presentation`,
+      },
+      {
+        id: "step-5-trade-in",
+        title: "Step 5: Trade-In Appraisal",
+        description: "Assess the value of the customer's current vehicle transparently and fairly.",
+        duration: "15 min",
+        content: `## Step 5: Trade-In Appraisal
+
+**Goal:** Assess the value of the customer's current vehicle transparently.
+
+### The Trade-In Process
+
+1. **Ask early** — "Do you have a vehicle to trade in?"
+2. **Inspect thoroughly** — Walk around, note condition, mileage
+3. **Be transparent** — Explain how you determine value
+4. **Present the offer** — Give a fair number and explain reasoning
+
+### Why It Matters
+
+An unfair trade-in offer can destroy all the trust you've built. Customers talk to friends and family, and they'll quickly learn if they got a fair deal. A transparent trade-in process that's backed by data creates trust and reduces friction later in the deal.
+
+### Key Principles
+
+- Ask about trade-in early in the process, not at the end
+- Inspect thoroughly — walk around, note condition, mileage
+- Use third-party data to justify your offer
+- Be transparent about how you determined the value
+- Separate the trade-in from the new car deal
+- Offer a fair value — trust builds deals
+
+### Common Mistakes
+
+- Waiting until the end of the deal to bring up the trade-in — this feels like a bait-and-switch
+- Lowballing the trade-in to make up profit — this destroys trust and can kill the entire deal
+
+### Pro Tips
+
+- If the trade-in has noticeable issues, take photos during the walk-around and show the customer — it makes the justification more transparent
+- Offer to let them get a competing offer — the confidence that you'll match or beat it builds trust`,
+      },
+      {
+        id: "step-6-price-negotiation",
+        title: "Step 6: Price Negotiation",
+        description: "Navigate pricing discussions while maintaining value and protecting gross profit.",
+        duration: "15 min",
+        content: `## Step 6: Price Negotiation
+
+**Goal:** Navigate pricing discussions while maintaining value.
+
+### The Value Stack
+
+Before you discuss numbers, remind the customer of everything they loved about the vehicle. List all the features, benefits, warranty, and service that are included. When you present the price, do it with confidence.
+
+### Key Script
+
+"Here's the picture. The vehicle is [price], trade-in [value], and your monthly payment would be [amount]."
+
+### Why It Matters
+
+Every dollar you give away in negotiation comes directly from your commission and the dealership's profit. But more importantly, customers who pay full price for a fair value are happier than customers who get a discount but feel the process was adversarial.
+
+### Key Principles
+
+- Know your walk-away number before you start negotiating
+- Focus on value, not just price
+- Use silence as your most powerful negotiation tool
+- Trade concessions, don't give them away
+- Use the "If I... will you..." technique
+- Be willing to walk away — and mean it
+
+### Common Mistakes
+
+- Dropping price immediately without understanding the objection — this devalues the vehicle and trains the customer to push harder
+- Talking too much after presenting the number — silence is uncomfortable, but the person who breaks it first typically concedes
+
+### Pro Tips
+
+- Write the numbers on paper — it makes them feel more real and harder to dispute than numbers on a screen
+- Use the "Feel, Felt, Found" pattern: "I understand how you feel. Many customers have felt the same way. But what they found was..."`,
+      },
+      {
+        id: "step-7-closing",
+        title: "Step 7: Closing the Sale",
+        description: "Use proven closing techniques to finalize the deal with confidence.",
+        duration: "15 min",
+        content: `## Step 7: Closing the Sale
+
+**Goal:** Ask for the commitment naturally and with confidence.
+
+### The 4 Best Closes
+
+1. **Assumptive Close** — "Let's start the paperwork"
+2. **Summary Close** — Recap what they loved
+3. **Question Close** — "Is there any reason we can't move forward?"
+4. **Benefit Close** — Remind them of the key benefit
+
+### Why It Matters
+
+60% of sales are lost because the salesperson never asked for the commitment. Customers expect you to guide them through the decision. If you don't ask, they'll leave and buy from someone who will.
+
+### Key Principles
+
+- Assume the sale — act as if the decision has already been made
+- Use trial closes throughout the process
+- Create legitimate urgency without being pushy
+- Ask for the commitment directly
+- Use the assumptive, alternative, and summary closes
+- Stay silent after asking for the close
+
+### Common Mistakes
+
+- Not asking for the sale — fear of rejection prevents more deals than any other factor
+- Talking after asking for the close — this gives the customer reasons to say no
+
+### Pro Tips
+
+- Use the "Benjamin Franklin" close: list pros and cons on paper. The pros will always outweigh the cons, and they'll see it visually
+- If they say "I need to think about it," isolate the objection: "What specifically do you need to think through?"`,
+      },
+      {
+        id: "step-8-fni",
+        title: "Step 8: Finance & Insurance (F&I)",
+        description: "Present finance and insurance options to maximize value for the customer.",
+        duration: "15 min",
+        content: `## Step 8: Finance & Insurance (F&I)
+
+**Goal:** Present protection products as solutions to real problems.
+
+### Protection Products
+
+- Extended warranty / service contract
+- Gap insurance
+- Tire & wheel protection
+- Paint & fabric protection
+
+### Why It Matters
+
+F&I products protect the customer from unexpected expenses and generate significant profit for the dealership. A well-presented F&I menu can add $1,000-$2,000 per deal. But more importantly, customers who buy protection products are more satisfied because they feel protected.
+
+### Key Principles
+
+- Present F&I products as solutions, not add-ons
+- Explain benefits clearly and simply
+- Use third-party data to demonstrate value
+- Present products one at a time, starting with the most valuable
+- Address objections by reframing the value
+- Complete paperwork accurately and efficiently
+
+### Common Mistakes
+
+- Rushing through the F&I presentation — this signals that the products aren't valuable
+- Using jargon that confuses the customer — if they don't understand it, they won't buy it
+
+### Pro Tips
+
+- Use the "If you buy one thing, buy this" approach — it creates urgency and prioritization
+- Share a real customer story where a protection product saved them money — stories are more persuasive than statistics`,
+      },
+      {
+        id: "step-9-delivery",
+        title: "Step 9: Delivery & Handover",
+        description: "Ensure a smooth vehicle delivery that delights the customer.",
+        duration: "15 min",
+        content: `## Step 9: Delivery & Handover
+
+**Goal:** Deliver the vehicle and create a memorable experience.
+
+### The Delivery Checklist
+
+- [ ] Vehicle is detailed and clean
+- [ ] Full tank of gas
+- [ ] Floor mats installed
+- [ ] Keys and owner's manual ready
+- [ ] License plates / temporary tags installed
+
+### The Delivery Walkthrough
+
+1. **Key features tour** — Show them how to use features
+2. **Safety features** — Point out safety systems
+3. **Maintenance schedule** — When to come back for service
+
+### Why It Matters
+
+The delivery experience determines whether the customer becomes a repeat buyer and referral source. A poor delivery can undo all the goodwill you've built. A great delivery creates a customer for life. Studies show that customers who have a positive delivery experience are 3x more likely to refer others.
+
+### Key Principles
+
+- Vehicle must be spotless and full of gas
+- Walk through key features one at a time
+- Set up phone and technology integration
+- Take a photo together for a shareable moment
+- Send a thank-you note within 24 hours
+- Set expectations for follow-up and service
+
+### Common Mistakes
+
+- Rushing the delivery because the customer is eager to leave — this leads to confusion and frustration later
+- Not setting up the phone integration — this is the #1 cause of post-delivery calls to the salesperson
+
+### Pro Tips
+
+- Have a small gift (keychain, hat, or branded item) waiting in the vehicle — it's a small touch that creates a big impression
+- Record a short video walkthrough of the key features and text it to them — they'll refer back to it later`,
+      },
+      {
+        id: "step-10-follow-up",
+        title: "Step 10: Follow-Up & Referrals",
+        description: "Maintain the relationship and generate repeat business.",
+        duration: "15 min",
+        content: `## Step 10: Follow-Up & Referrals
+
+**Goal:** Maintain the relationship and generate repeat business.
+
+### Post-Delivery Follow-Up Sequence
+
+1. **Day 1** — Thank you call
+2. **Week 1** — Check-in
+3. **Month 1** — Satisfaction survey
+4. **Month 3** — Service reminder
+5. **Month 6** — Referral request
+
+### Why It Matters
+
+80% of sales are made between the 5th and 12th contact. Yet most salespeople stop after one or two follow-ups. A single customer who refers 3 people is worth more than 10 cold leads. Repeat customers spend 67% more than new customers. The follow-up is the highest-ROI activity a salesperson can do.
+
+### Key Principles
+
+- Send a thank-you note within 24 hours of delivery
+- Make a follow-up call within the first week
+- Schedule a 30-day check-in with the customer
+- Ask for referrals at the right time — when they're happiest
+- Track every interaction in a CRM
+- Every contact must add value — never "just checking in"
+
+### Common Mistakes
+
+- Never following up after the sale — this leaves money on the table and loses future business
+- Only contacting customers when you want something — this feels transactional and damages the relationship
+
+### Pro Tips
+
+- Set a recurring reminder in your calendar to reach out to past customers — treat it as seriously as a customer appointment
+- Use a handwritten note for the first follow-up — it's rare and memorable in a digital world`,
+      },
+    ],
+  },
+
+  // ===== Course 2: 10 Steps of the Sale Part 2 (Quiz) =====
+  {
+    id: "10-steps-part-2",
+    title: "10 Steps of the Sale Part 2",
+    subtitle: "Test your knowledge with scenario-based quiz questions",
+    description:
+      "Put your knowledge to the test with 40 scenario-based quiz questions covering every step of the 10-step automotive sales process. Each lesson contains 4 multiple-choice questions with instant feedback and detailed explanations. No reading required — just jump in and test yourself.",
+    levels: "Beginner",
+    duration: "1.5 hours",
+    lessons: 10,
+    image: "drills",
+    icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+    lessonsList: [
+      {
+        id: "quiz-step-1",
+        title: "Step 1 Quiz: Greeting & Building Rapport",
+        description: "4 questions on building trust and making a great first impression.",
+        duration: "10 min",
+        content: `## Step 1: Greeting & Building Rapport — Quiz
+
+Test your knowledge of the greeting and rapport-building process.
+
+### Quick Quiz
+
+**Q1:** What is the most important goal of the greeting?
+A) To qualify the customer's budget immediately
+B) To build trust and make a positive first impression
+C) To show the customer every vehicle on the lot
+D) To get the customer's contact information
+*Answer: B — The greeting is about building trust and making a positive first impression. Qualifying, showing vehicles, and gathering contact info come later in the process.*
+
+**Q2:** What type of question should you open with?
+A) A closed question like "Can I help you?"
+B) An open-ended question like "What brings you in today?"
+C) A leading question about budget
+D) A direct question about their timeline
+*Answer: B — Open-ended questions invite conversation. "Can I help you?" is a closed question that invites a "no" response and ends the conversation.*
+
+**Q3:** How quickly do customers form their first impression?
+A) Within the first minute
+B) Within the first 10 seconds
+C) After the first 5 minutes of conversation
+D) After the test drive
+*Answer: B — Customers form their first impression within 10 seconds. This makes the opening moments of the greeting critical to the entire sales process.*
+
+**Q4:** What is the best way to make a customer feel welcomed?
+A) Immediately start asking qualifying questions
+B) Give them a tour of the dealership
+C) Smile genuinely, make eye contact, and find common ground
+D) Hand them a brochure and let them browse alone
+*Answer: C — A genuine smile, eye contact, and finding common ground makes customers feel welcomed. Rushing to qualify or leaving them alone both miss the opportunity to build rapport.*`,
+      },
+      {
+        id: "quiz-step-2",
+        title: "Step 2 Quiz: Needs Assessment",
+        description: "4 questions on qualifying customers and uncovering their needs.",
+        duration: "10 min",
+        content: `## Step 2: Needs Assessment — Quiz
+
+Test your knowledge of the needs assessment and qualification process.
+
+### Quick Quiz
+
+**Q1:** What does the BANT framework stand for?
+A) Budget, Authority, Need, Timeline
+B) Benefits, Approach, Negotiation, Terms
+C) Buyer, Action, Numbers, Test
+D) Budget, Ask, Negotiate, Trade
+*Answer: A — BANT stands for Budget, Authority, Need, Timeline. It's a framework for qualifying customers by understanding their financial range, decision-making power, requirements, and timing.*
+
+**Q2:** What percentage of the conversation should the customer speak during needs assessment?
+A) About 50%
+B) About 80%
+C) About 20%
+D) About 60%
+*Answer: B — The customer should speak about 80% of the time. Your job is to listen and ask targeted questions, not to talk about vehicles.*
+
+**Q3:** Why is it important to summarize what the customer told you?
+A) To fill silence in the conversation
+B) To confirm you understood their needs correctly
+C) To show off your listening skills
+D) To transition to the vehicle presentation
+*Answer: B — Summarizing confirms you understood their needs correctly and shows the customer you were listening. It's a trust-building technique that prevents miscommunication.*
+
+**Q4:** What should you do if a customer says "I'm just looking"?
+A) Walk away and let them browse
+B) Say "Great! What kind of vehicle interests you?"
+C) Follow them silently around the lot
+D) Hand them a business card and leave
+*Answer: B — Acknowledge their statement and keep the conversation going with a gentle, open-ended question. "I'm just looking" is often a defense mechanism, not a rejection.*`,
+      },
+      {
+        id: "quiz-step-3",
+        title: "Step 3 Quiz: Vehicle Presentation",
+        description: "4 questions on presenting vehicles using the FAB method.",
+        duration: "10 min",
+        content: `## Step 3: Vehicle Presentation — Quiz
+
+Test your knowledge of the vehicle presentation and walk-around process.
+
+### Quick Quiz
+
+**Q1:** What does the FAB method stand for?
+A) Feature, Advantage, Benefit
+B) Find, Assess, Buy
+C) Feature, Ask, Bargain
+D) Facts, Advantages, Benefits
+*Answer: A — FAB stands for Feature, Advantage, Benefit. It's a method for presenting vehicle features by connecting each one to a specific customer advantage and benefit.*
+
+**Q2:** How many vehicles should you present to a customer?
+A) As many as possible to show options
+B) 2-3 vehicles max
+C) Only 1 vehicle
+D) 4-5 vehicles to compare
+*Answer: B — Presenting 2-3 vehicles max prevents decision paralysis. Too many options overwhelm customers and make it harder for them to commit.*
+
+**Q3:** What is the correct walk-around sequence?
+A) Interior, trunk, hood, wheels
+B) Front, side, interior, back, under the hood
+C) Back, front, interior, tires, engine
+D) Driver side, passenger side, trunk, hood
+*Answer: B — The proper walk-around sequence is: Front (grille, headlights), Side (lines, wheels), Interior (seats, technology), Back (cargo, trunk), Under the hood (engine, performance).*
+
+**Q4:** What is the most important rule during vehicle presentation?
+A) Show every available feature
+B) Connect features to the customer's stated needs
+C) Let the customer drive the vehicle
+D) Mention the price early
+*Answer: B — Every feature you highlight should connect directly back to something the customer told you during the needs assessment. This shows you were listening and that the vehicle is the right fit.*`,
+      },
+      {
+        id: "quiz-step-4",
+        title: "Step 4 Quiz: Test Drive",
+        description: "4 questions on guiding customers through an effective test drive.",
+        duration: "10 min",
+        content: `## Step 4: Test Drive — Quiz
+
+Test your knowledge of the test drive process.
+
+### Quick Quiz
+
+**Q1:** What percentage of customers who take a test drive are more likely to buy?
+A) 50%
+B) 70%
+C) 90%
+D) 30%
+*Answer: B — Customers who take a test drive are 70% more likely to buy. The test drive creates an emotional connection that's essential for closing the deal.*
+
+**Q2:** Who should drive first during the test drive?
+A) The salesperson
+B) The customer
+C) Whoever is more comfortable driving
+D) It doesn't matter
+*Answer: B — Let the customer drive first. They need to experience the vehicle themselves to form an emotional connection. You drive back to the dealership.*
+
+**Q3:** What should you do during the first few minutes of the test drive?
+A) Point out every feature of the vehicle
+B) Stay quiet and let them experience the vehicle
+C) Discuss pricing and payment options
+D) Ask about their trade-in vehicle
+*Answer: B — Stay quiet during the first few minutes to let the customer experience the vehicle. Talking too much prevents them from forming their own emotional connection.*
+
+**Q4:** What is the best question to ask after the test drive?
+A) "What do you think?"
+B) "How did that feel?"
+C) "Are you ready to buy?"
+D) "Did you like the acceleration?"
+*Answer: B — Ask "How did that feel?" This focuses on the emotional experience rather than a logical evaluation. "What do you think?" invites criticism, while "How did that feel?" reinforces the positive experience.*`,
+      },
+      {
+        id: "quiz-step-5",
+        title: "Step 5 Quiz: Trade-In Appraisal",
+        description: "4 questions on handling trade-in appraisals transparently.",
+        duration: "10 min",
+        content: `## Step 5: Trade-In Appraisal — Quiz
+
+Test your knowledge of the trade-in appraisal process.
+
+### Quick Quiz
+
+**Q1:** When should you ask about a trade-in?
+A) At the very end of the process
+B) Early in the process
+C) After the test drive
+D) During the F&I presentation
+*Answer: B — Ask about the trade-in early in the process. Waiting until the end can feel like a bait-and-switch and makes the customer suspicious.*
+
+**Q2:** What should you use to justify your trade-in offer?
+A) Your gut feeling about the vehicle's condition
+B) Third-party data like Kelley Blue Book or NADA
+C) What other customers have been offered
+D) The dealership's standard trade-in formula
+*Answer: B — Use third-party data sources like Kelley Blue Book or NADA to justify your offer. This provides an objective, trustworthy basis for the valuation.*
+
+**Q3:** How should you handle the trade-in appraisal?
+A) Quickly and without much discussion
+B) Transparently, explaining how you determined the value
+C) As a separate negotiation from the new car deal
+D) Both B and C
+*Answer: D — Be transparent about how you determined the value AND separate the trade-in from the new car deal. Both practices build trust and keep the numbers clear.*
+
+**Q4:** What should you do if the customer disagrees with your trade-in offer?
+A) Refuse to negotiate on the trade-in value
+B) Immediately increase the offer to keep them happy
+C) Offer to let them get a competing offer from another dealer
+D) Reduce the price of the new vehicle instead
+*Answer: C — Offering to let them get a competing offer shows confidence in your valuation and builds trust. If they find a better offer, you can match or beat it.*`,
+      },
+      {
+        id: "quiz-step-6",
+        title: "Step 6 Quiz: Price Negotiation",
+        description: "4 questions on navigating pricing discussions effectively.",
+        duration: "10 min",
+        content: `## Step 6: Price Negotiation — Quiz
+
+Test your knowledge of the price negotiation process.
+
+### Quick Quiz
+
+**Q1:** What should you do before presenting the price?
+A) Remind the customer of the value they're getting
+B) Ask for their ideal price first
+C) Check with your manager for approval
+D) Mention any current promotions
+*Answer: A — Before presenting the price, recap the value. Remind them of everything they loved about the vehicle. This shifts the conversation from price to value.*
+
+**Q2:** What is your most powerful negotiation tool?
+A) A lower price
+B) Silence
+C) Product knowledge
+D) A strong personality
+*Answer: B — Silence is your most powerful negotiation tool. After presenting the number, stay silent. The person who speaks first typically concedes something.*
+
+**Q3:** What is the "If I... will you..." technique?
+A) Asking for permission before showing a vehicle
+B) Trading a concession for a commitment
+C) Asking if they're ready to buy
+D) Offering a discount without conditions
+*Answer: B — The "If I... will you..." technique trades a concession for a commitment. For example: "If I can get the payment to $X, will you take it home today?" This ensures you don't give away concessions for free.*
+
+**Q4:** What is the #1 mistake in price negotiation?
+A) Not knowing your walk-away number
+B) Dropping price immediately without understanding the objection
+C) Being too aggressive with the customer
+D) Not having manager approval
+*Answer: B — Dropping price immediately without understanding the objection devalues the vehicle and trains the customer to push harder. Always understand the objection first, then respond.*`,
+      },
+      {
+        id: "quiz-step-7",
+        title: "Step 7 Quiz: Closing the Sale",
+        description: "4 questions on proven closing techniques.",
+        duration: "10 min",
+        content: `## Step 7: Closing the Sale — Quiz
+
+Test your knowledge of closing techniques.
+
+### Quick Quiz
+
+**Q1:** What percentage of sales are lost because the salesperson never asked for the commitment?
+A) 30%
+B) 60%
+C) 80%
+D) 45%
+*Answer: B — 60% of sales are lost because the salesperson never asked for the commitment. Fear of rejection is the #1 reason salespeople fail to close.*
+
+**Q2:** What is the assumptive close?
+A) Asking if they want to buy the vehicle
+B) Acting as if the decision has already been made
+C) Assuming they'll need time to think about it
+D) Assuming they want a lower price
+*Answer: B — The assumptive close means acting as if the decision has already been made. Instead of asking "Do you want to buy?" you say "Let's get the paperwork started."*
+
+**Q3:** What should you do after asking for the commitment?
+A) Immediately start explaining the benefits again
+B) Stay silent and wait for their response
+C) Ask if they have any questions
+D) Offer a discount to sweeten the deal
+*Answer: B — After asking for the commitment, stay silent. Count to 10 if you have to. The first person to speak after the ask typically concedes something.*
+
+**Q4:** What does the "alternative close" do?
+A) Gives the customer a choice between two positive options
+B) Offers a third option when they're stuck
+C) Presents the pros and cons of buying
+D) Asks if they need to think about it
+*Answer: A — The alternative close gives the customer a choice between two positive options: "Would you like the red or the blue?" Either choice leads to a sale.*`,
+      },
+      {
+        id: "quiz-step-8",
+        title: "Step 8 Quiz: Finance & Insurance (F&I)",
+        description: "4 questions on presenting F&I products effectively.",
+        duration: "10 min",
+        content: `## Step 8: Finance & Insurance (F&I) — Quiz
+
+Test your knowledge of the F&I presentation process.
+
+### Quick Quiz
+
+**Q1:** When is the best time to present F&I products?
+A) Before the test drive
+B) After the customer has agreed to purchase
+C) During the vehicle presentation
+D) During the price negotiation
+*Answer: B — The best time to present F&I products is after the customer has agreed to purchase. They're in a positive emotional state and more receptive to additional value.*
+
+**Q2:** How should F&I products be presented?
+A) As a bundle with a single price
+B) As solutions to real problems, one at a time
+C) As optional add-ons at the end of paperwork
+D) As required for financing approval
+*Answer: B — Present F&I products as solutions to real problems, one at a time. Explain the problem each product solves, then present the solution. This creates perceived value.*
+
+**Q3:** Why is it important to use third-party data in F&I?
+A) It makes the presentation longer
+B) It shows the real cost of not having protection
+C) It's required by law
+D) It impresses the customer with your knowledge
+*Answer: B — Third-party data shows the real-world cost of not having protection. For example: "The average transmission repair costs $3,500. This warranty covers that for 7 years."*
+
+**Q4:** What is the best way to handle an F&I objection?
+A) Immediately lower the price of the product
+B) Reframe the value and share a customer story
+C) Tell the customer it's mandatory
+D) Skip to the next product
+*Answer: B — Reframe the value and share a customer story. Real stories about how protection products saved customers money are more persuasive than feature lists.*`,
+      },
+      {
+        id: "quiz-step-9",
+        title: "Step 9 Quiz: Delivery & Handover",
+        description: "4 questions on delivering a memorable handover experience.",
+        duration: "10 min",
+        content: `## Step 9: Delivery & Handover — Quiz
+
+Test your knowledge of the delivery and handover process.
+
+### Quick Quiz
+
+**Q1:** What is the most important part of the delivery experience?
+A) Getting the customer to leave quickly
+B) Making the customer feel celebrated and confident
+C) Completing all the paperwork
+D) Installing the license plates
+*Answer: B — The delivery should make the customer feel celebrated and confident in their purchase. This creates a lasting positive impression that leads to referrals and repeat business.*
+
+**Q2:** What is the #1 cause of post-delivery calls to the salesperson?
+A) The vehicle has mechanical issues
+B) The customer can't set up their phone integration
+C) The customer lost their keys
+D) The customer forgot how to use features
+*Answer: B — Not setting up phone integration is the #1 cause of post-delivery calls. Always set up Bluetooth and phone connectivity before the customer leaves.*
+
+**Q3:** How soon should you send a thank-you note after delivery?
+A) Within 24 hours
+B) Within a week
+C) Within a month
+D) At the first service appointment
+*Answer: A — Send a thank-you note within 24 hours of delivery. This is when the customer is most excited about their purchase and most likely to remember you positively.*
+
+**Q4:** What should you do during the delivery walkthrough?
+A) Show them every feature at once
+B) Walk through key features one at a time
+C) Let them figure it out on their own
+D) Give them the owner's manual and let them read it
+*Answer: B — Walk through key features one at a time. Too much information at once is overwhelming. Focus on the features they'll use most often.*`,
+      },
+      {
+        id: "quiz-step-10",
+        title: "Step 10 Quiz: Follow-Up & Referrals",
+        description: "4 questions on maintaining relationships and generating referrals.",
+        duration: "10 min",
+        content: `## Step 10: Follow-Up & Referrals — Quiz
+
+Test your knowledge of the follow-up and referral process.
+
+### Quick Quiz
+
+**Q1:** What percentage of sales are made between the 5th and 12th contact?
+A) 50%
+B) 80%
+C) 60%
+D) 90%
+*Answer: B — 80% of sales are made between the 5th and 12th contact. Yet most salespeople stop after one or two follow-ups. Persistence pays off.*
+
+**Q2:** What is the most important follow-up activity?
+A) A sales pitch a week after delivery
+B) A thank-you call within 24 hours of delivery
+C) A monthly newsletter
+D) A referral request on the first call
+*Answer: B — A thank-you call within 24 hours is the most important follow-up. It shows you care about the customer beyond the sale and sets the tone for the ongoing relationship.*
+
+**Q3:** When is the best time to ask for a referral?
+A) On the first follow-up call
+B) When the customer is happiest with their purchase
+C) At the one-year anniversary of the purchase
+D) During the price negotiation
+*Answer: B — Ask for referrals when the customer is happiest — typically right after delivery or after a positive service experience. This is when they're most likely to say yes.*
+
+**Q4:** What is the golden rule of follow-up?
+A) Contact them as often as possible
+B) Every contact must add value — never "just checking in"
+C) Only contact them when you have a special offer
+D) Let the customer initiate all follow-up
+*Answer: B — Every contact must add value. Never "just checking in" — that's a waste of their time and yours. Share useful information, a maintenance tip, or a new inventory alert.*`,
+      },
+    ],
+  },
+
+  // ===== Course 3: Advanced Closing (existing, kept as-is) =====
+  {
+    id: "advanced-closing",
+    title: "Advanced Closing Strategies",
+    subtitle: "Take your closing rate to the next level",
+    description:
+      "Advanced techniques for experienced sales professionals. 5-minute modules with multiple choice questions to test your knowledge. Master negotiation, handle multiple decision makers, and build a referral network that drives consistent sales.",
+    levels: "Advanced",
+    duration: "3 hours",
+    lessons: 5,
+    image: "closing",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    lessonsList: [
+      {
+        id: "negotiation",
+        title: "Negotiation Mastery",
+        description: "Learn advanced negotiation tactics to maximize deal value.",
+        duration: "5 min",
+        content: `## Negotiation Mastery
+Advanced negotiation is about creating win-win outcomes.
+### Key Principles
+- Know your walk-away point before you start
+- Focus on value, not just price
+- Use silence as a powerful tool
+- Trade concessions, don't give them away
+
+### Quick Quiz
+
+**Question 1:** What should you know before starting any negotiation?
+
+A) The customer's credit score
+B) Your walk-away point
+C) The competitor's lowest price
+D) The manager's availability
+
+**(Correct: B)** — Knowing your walk-away point prevents you from making a deal that hurts the dealership.
+
+**Question 2:** In win-win negotiation, you should focus on:
+
+A) Price only
+B) Value, not just price
+C) Beating the customer
+D) Getting the highest commission
+
+**(Correct: B)** — Focusing on value keeps the conversation productive and relationship-oriented.
+
+**Question 3:** What is one of the most powerful tools in negotiation?
+
+A) Talking faster
+B) Silence
+C) Walking away immediately
+D) Offering discounts upfront
+
+**(Correct: B)** — Silence creates space for the customer to fill, often revealing their true position.
+
+**Question 4:** When trading concessions, you should:
+
+A) Give them away freely
+B) Never make any concessions
+C) Trade them — never give them away
+D) Only make concessions after the sale
+
+**(Correct: C)** — Every concession should cost the customer something in return, maintaining balance.
+
+**Question 5:** Which negotiation tactic builds the most trust?
+A) Starting with an unrealistically high price
+B) Being transparent about pricing while emphasizing vehicle value
+C) Refusing to negotiate at all
+D) Matching any competitor's price sight unseen
+**(Correct: B)** — Transparency coupled with value emphasis creates trust while protecting margins.`,
+      },
+      {
+        id: "multiple-decision",
+        title: "Multiple Decision Makers",
+        description: "Navigate complex sales with multiple stakeholders.",
+        duration: "5 min",
+        content: `## Multiple Decision Makers
+When more than one person is involved, adapt your approach.
+### Strategies
+- Identify the primary decision maker
+- Address each person's concerns individually
+- Create a unified vision of value
+
+### Quick Quiz
+
+**Question 1:** When selling to multiple decision makers, your first priority should be:
+
+A) Ignoring everyone except the loudest person
+B) Identifying the primary decision maker
+C) Making the sale as fast as possible
+D) Offering a group discount
+
+**(Correct: B)** — Knowing who makes the final call shapes your entire approach.
+
+**Question 2:** How should you handle each person's concerns?
+
+A) Ignore them and focus on the buyer
+B) Address each person's concerns individually
+C) Tell them their concerns don't matter
+D) Only address the primary decision maker
+
+**(Correct: B)** — Each stakeholder needs to feel heard for the group to reach consensus.
+
+**Question 3:** What should you create for the group?
+
+A) Conflict between members
+B) A unified vision of value
+C) Separate sales pitches for each person
+D) An adversarial negotiation
+
+**(Correct: B)** — A shared understanding of the vehicle's value helps the group move forward together.
+
+**Question 4:** If a spouse disagrees with the primary decision maker, you should:
+
+A) Take the primary decision maker's side
+B) Ask clarifying questions to understand both perspectives
+C) Ignore the disagreement
+D) End the interaction
+
+**(Correct: B)** — Understanding both perspectives helps you bridge the gap and find common ground.
+
+**Question 5:** When presenting to a group that includes a silent decision maker, you should:
+A) Ignore the quiet person and focus on the talkative ones
+B) Directly invite the quiet person to share their thoughts
+C) Assume they agree since they are not objecting
+D) Ask the group to have the quiet person leave
+**(Correct: B)** — Silent stakeholders often hold the real decision power; inviting their input prevents surprises later.`,
+      },
+      {
+        id: "tough-objections",
+        title: "Tough Objections Deep Dive",
+        description: "Handle the hardest objections with confidence and skill.",
+        duration: "5 min",
+        content: `## Tough Objections Deep Dive
+Master the art of handling the most challenging objections.
+### Common Tough Objections
+- "I can get it cheaper online"
+- "I'm not sure about this dealership"
+- "I've had bad experiences before"
+### The Deep Dive Approach
+Listen fully, acknowledge their concern, then explore the root cause.
+
+### Quick Quiz
+
+**Question 1:** What is the first step in the Deep Dive Approach?
+
+A) Argue with the customer
+B) Listen fully
+C) Offer a discount immediately
+D) Change the subject
+
+**(Correct: B)** — Listening fully validates the customer and gives you the information needed to respond effectively.
+
+**Question 2:** When a customer says "I can get it cheaper online," you should:
+
+A) Match the online price immediately
+B) Acknowledge the concern and explore what else matters to them besides price
+C) Tell them online dealers are scams
+D) Walk away
+
+**(Correct: B)** — Acknowledging the concern while redirecting to value keeps the conversation productive.
+
+**Question 3:** A customer says "I've had bad experiences before." Your best response is:
+
+A) "That wasn't with us."
+B) "I understand. Can you tell me what happened so I can make sure we do better?"
+C) "That's not my problem."
+D) Ignore it and continue
+
+**(Correct: B)** — Empathy and a commitment to doing better builds trust that can overcome past bad experiences.
+
+**Question 4:** The Deep Dive Approach is effective because it:
+
+A) Forces the customer to admit they're wrong
+B) Addresses the root cause of the objection, not just the surface complaint
+C) Makes the customer uncomfortable
+D) Speeds up the sales process
+
+**(Correct: B)** — Surface objections often mask deeper concerns; addressing the root is more effective than debating the surface.
+
+**Question 5:** A customer says "I had a bad experience at this dealership before." Your BEST response is:
+A) "That was under previous management"
+B) "I understand, and I'd like to hear what happened so I can make this experience completely different for you"
+C) "All dealerships have problems sometimes"
+D) Redirect to the vehicle features immediately
+**(Correct: B)** — Owning the past and committing to a better present experience rebuilds trust authentically.`,
+      },
+      {
+        id: "referral-systems",
+        title: "Referral & Repeat Business Systems",
+        description: "Build a system that generates consistent referrals.",
+        duration: "5 min",
+        content: `## Referral & Repeat Business Systems
+Turn every sale into a source of future business.
+### The Referral System
+- Ask at the right time (when they're happiest)
+- Make it easy for them to refer
+- Track and follow up on every referral
+
+### Quick Quiz
+
+**Question 1:** When is the best time to ask for a referral?
+
+A) Right after they've signed, when they're happiest
+B) When they first walk in
+C) After a complaint
+D) During price negotiation
+
+**(Correct: A)** — The emotional peak right after purchase is when customers are most likely to enthusiastically refer others.
+
+**Question 2:** How can you make it easy for customers to refer others?
+
+A) Ask them to write a long letter
+B) Provide pre-written messages or simple referral cards they can share
+C) Require them to bring referrals in person
+D) Charge them for the referral program
+
+**(Correct: B)** — Reducing friction increases the likelihood they'll actually follow through.
+
+**Question 3:** What should you do with every referral you receive?
+
+A) Nothing — referrals aren't valuable
+B) Track them and follow up consistently
+C) Call once and give up
+D) Pass them to another salesperson
+
+**(Correct: B)** — Consistent tracking and follow-up turns referrals into a predictable source of repeat business.
+
+**Question 4:** A repeat customer is typically:
+
+A) Harder to sell to than a new customer
+B) Easier to sell to and more profitable than a new customer
+C) Not worth your time
+D) Only interested in discounts
+
+**(Correct: B)** — Repeat customers already trust you, making the sales process faster and more profitable.
+
+**Question 5:** What is the most effective referral incentive to offer a recent buyer?
+A) A cash payment
+B) A personalized follow-up with genuine appreciation and a simple way to share their experience
+C) An aggressive multi-call campaign
+D) A mandatory referral quota
+**(Correct: B)** — Authentic appreciation and ease of sharing outperform transactional incentives for generating quality referrals.`,
+      },
+    ],
+  },
+
+  // ===== Course 3b: Advanced Closing Part 2 (Plus-gated) =====
+  {
+    id: "advanced-closing-part2",
+    title: "Advanced Closing Strategies Part 2",
+    subtitle: "Consultative closing techniques that close more deals",
+    description:
+      "Master modern consultative closing techniques for today's informed buyers. 4 lessons covering Alternative Choice Close, Assumptive Trial Close, Either/Or Objection Handling, and Micro-Agreements. 7 MCQs per lesson.",
+    levels: "Advanced",
+    duration: "2 hours",
+    lessons: 4,
+    image: "closing",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    lessonsList: [
+      {
+        id: "alternative-choice",
+        title: "The Alternative Choice Close",
+        description: "Replace yes/no questions with choice-based closes that assume the sale.",
+        duration: "5 min",
+        content: "## The Alternative Choice Close\n\nInstead of asking if they are ready to buy, offer two options: Does 60-month or 72-month financing work better? Assume the purchase and focus on logistics.\n\n### Quick Quiz\n\n**Q1:** The Alternative Choice shifts thinking from ____ to ____.\nA) price to value\nB) should I buy to how should I buy\nC) now to later\nD) car to truck\n**(Correct: B)**\n\n**Q2:** When to deploy?\nA) Immediately on greeting\nB) After value is established\nC) Only after they say yes\nD) Never\n**(Correct: B)**\n\n**Q3:** Best Alternative Choice question?\nA) Are you buying this car?\nB) Would you prefer the red or blue?\nC) What color?\nD) Should I call my manager?\n**(Correct: B)**\n\n**Q4:** Why avoid offering one bad option?\nA) It is illegal\nB) Customers see through manipulation\nC) Takes too long\nD) Both are equally good\n**(Correct: B)**\n\n**Q5:** What follows after asking the choice question?\nA) Answer objections immediately\nB) Pause and let them process\nC) Repeat the question\nD) Move to paperwork\n**(Correct: B)**\n\n**Q6:** Which is NOT effective?\nA) 60-month or 72-month?\nB) Friday or Saturday delivery?\nC) Are you SURE you do not want it?\nD) Red exterior or blue?\n**(Correct: C)**\n\n**Q7:** This close works best with:\nA) High pressure\nB) A thorough needs assessment confirming fit\nC) Multiple calls\nD) Immediate discount\n**(Correct: B)**",
+      },
+      {
+        id: "assumptive-trial",
+        title: "The Assumptive Trial Close",
+        description: "Test commitment right after the test drive before final negotiations.",
+        duration: "5 min",
+        content: "## The Assumptive Trial Close\n\nRight after the test drive, ask: If we can get the payments where you need them, is this the exact car you want to drive home today? This establishes mental ownership before numbers.\n\n### Quick Quiz\n\n**Q1:** Ideal timing for Assumptive Trial Close?\nA) During greeting\nB) Right after the test drive\nC) After they leave\nD) During paperwork\n**(Correct: B)**\n\n**Q2:** What does this close achieve?\nA) Forces immediate signature\nB) Isolates price as the only remaining variable\nC) Replaces the test drive\nD) Guarantees sale\n**(Correct: B)**\n\n**Q3:** Which phrase plants mental ownership?\nA) If we can get the payments\nB) Is this the exact car\nC) Drive home today\nD) Where you need them\n**(Correct: C)**\n\n**Q4:** If they say not sure, respond with:\nA) Offer a discount\nB) End interaction\nC) What would need to be different?\nD) Repeat the question\n**(Correct: C)**\n\n**Q5:** This close is best described as:\nA) High-pressure tactic\nB) Temperature check before negotiations\nC) Confusion tactic\nD) Replacement for sales process\n**(Correct: B)**\n\n**Q6:** Only use with buyers who already agreed?\nA) True\nB) False\n**(Correct: B)**\n\n**Q7:** After successful trial close, next step:\nA) More trial closes\nB) Send them home\nC) Confidently move to numbers\nD) Start over\n**(Correct: C)**",
+      },
+      {
+        id: "either-or-objections",
+        title: "Either/Or Objection Handling",
+        description: "Isolate the real objection by framing it as an either/or choice.",
+        duration: "5 min",
+        content: "## Either/Or Objection Handling\n\nWhen customer says I need to think about it, ask: Is it the trade-in value or the monthly payment? Isolate the real issue and provide a concrete solution.\n\n### Quick Quiz\n\n**Q1:** Primary purpose of Either/Or?\nA) Pressure to buy\nB) Transform vague objection into solvable problem\nC) Confuse customer\nD) End conversation\n**(Correct: B)**\n\n**Q2:** Best Either/Or for I need to think?\nA) Why, what is wrong?\nB) Is it the trade-in or the payment?\nC) OK, call me later\nD) We have other cars\n**(Correct: B)**\n\n**Q3:** What tone to use?\nA) Aggressive\nB) Curious and helpful\nC) Sarcastic\nD) Indifferent\n**(Correct: B)**\n\n**Q4:** Why say I need to think?\nA) Wasting time\nB) Unspoken concern\nC) Already buying elsewhere\nD) Do not like you\n**(Correct: B)**\n\n**Q5:** After identifying real issue:\nA) Celebrate\nB) Provide concrete solution\nC) Ask another Either/Or\nD) Walk away\n**(Correct: B)**\n\n**Q6:** NOT a good Either/Or?\nA) Trade-in or payment?\nB) Color or features?\nC) Why do not you just buy it?\nD) Timing or financing?\n**(Correct: C)**\n\n**Q7:** Best combined with:\nA) Active listening and curiosity\nB) Aggressive negotiation\nC) Ignoring body language\nD) Multiple calls over weeks\n**(Correct: A)**",
+      },
+      {
+        id: "micro-agreements",
+        title: "Micro-Agreements",
+        description: "Build toward the close with layers of small agreements throughout the sale.",
+        duration: "5 min",
+        content: "## Micro-Agreements\n\nInstead of one big close, build commitment incrementally. Confirm small agreements: Does this cargo space solve your issue? By paperwork time, they have agreed multiple times.\n\n### Quick Quiz\n\n**Q1:** Core principle of Micro-Agreements?\nA) Repeat same question\nB) Build through layers of small incremental yeses\nC) Use legal jargon\nD) Small discounts throughout\n**(Correct: B)**\n\n**Q2:** What makes it psychologically effective?\nA) People enjoy pressure\nB) People want consistency with prior commitments\nC) People do not notice small questions\nD) People buy on impulse\n**(Correct: B)**\n\n**Q3:** Good micro-agreement during walkaround?\nA) You are buying this, right?\nB) Does this cargo config solve your space issue?\nC) This car is the best, is not it?\nD) Sign here now\n**(Correct: B)**\n\n**Q4:** When NOT to use a micro-agreement?\nA) During needs assessment\nB) During test drive\nC) When customer just raised a genuine concern\nD) During feature demo\n**(Correct: C)**\n\n**Q5:** How many micro-agreements per sale?\nA) One\nB) 4-6, spaced naturally\nC) At least 20\nD) None, just close at end\n**(Correct: B)**\n\n**Q6:** Best post-test-drive question?\nA) On a scale of 1-10, how well does this fit?\nB) You are buying, right?\nC) Did you like it?\nD) Are we done?\n**(Correct: A)**\n\n**Q7:** Micro-agreements eliminate need for final close?\nA) True\nB) False\n**(Correct: B)**",
+      },
+    ],
+  },
+  // ===== Course 4: Digital Marketing (existing, kept as-is) =====
+  {
+    id: "digital-marketing",
+    title: "Digital Marketing for Dealers",
+    subtitle: "Modern marketing strategies that drive traffic",
+    description:
+      "Learn how to use digital marketing to attract more customers to your dealership. 5-minute modules with multiple choice questions after each lesson. Covers social media, email campaigns, direct mail, and marketing analytics.",
+    levels: "Intermediate",
+    duration: "2.5 hours",
+    lessons: 4,
+    image: "marketing",
+    icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10",
+    lessonsList: [
+      {
+        id: "social-media",
+        title: "Social Media for Car Dealers",
+        description: "Use social platforms to attract and engage customers.",
+        duration: "5 min",
+        content: `## Social Media for Car Dealers
+Social media is essential for modern dealership marketing.
+### Key Platforms
+- Facebook/Instagram for visual inventory
+- YouTube for video walkarounds
+- TikTok for short-form content`,
+      },
+      {
+        id: "email-marketing",
+        title: "Email Marketing Campaigns",
+        description: "Build and nurture leads through email.",
+        duration: "5 min",
+        content: `## Email Marketing Campaigns
+Email remains one of the most effective marketing channels.
+### Campaign Types
+- New inventory alerts
+- Service specials
+- Seasonal promotions
+- Follow-up sequences`,
+      },
+      {
+        id: "direct-mail",
+        title: "Direct Mail That Works",
+        description: "Create effective direct mail campaigns that drive results.",
+        duration: "5 min",
+        content: `## Direct Mail That Works
+Direct mail is still highly effective for automotive.
+### Best Practices
+- Target the right audience
+- Use compelling offers
+- Track response rates
+- Test and optimize`,
+      },
+      {
+        id: "marketing-roi",
+        title: "Measuring Marketing ROI",
+        description: "Track and optimize your marketing spend.",
+        duration: "5 min",
+        content: `## Measuring Marketing ROI
+Know what's working and what's not.
+### Key Metrics
+- Cost per lead
+- Cost per sale
+- Return on ad spend
+- Customer acquisition cost`,
+      },
+    ],
+  },
+
+  // ===== Course 5: Customer Experience (existing, kept as-is) =====
+  {
+    id: "customer-experience",
+    title: "Customer Experience Excellence",
+    subtitle: "Turn every interaction into a 5-star experience",
+    description:
+      "Learn how to deliver exceptional customer experiences that drive satisfaction, positive reviews, and repeat business. 5-minute modules with multiple choice questions to reinforce learning.",
+    levels: "Intermediate",
+    duration: "2 hours",
+    lessons: 4,
+    image: "experience",
+    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z",
+    lessonsList: [
+      {
+        id: "first-contact",
+        title: "First Contact to First Visit",
+        description: "Convert online inquiries into showroom visits.",
+        duration: "5 min",
+        content: `## First Contact to First Visit
+The first interaction sets the tone for the entire relationship.
+### Key Principles
+- Respond quickly (within 5 minutes)
+- Personalize your response
+- Ask questions to qualify
+- Invite them to visit`,
+      },
+      {
+        id: "showroom-experience",
+        title: "The Showroom Experience",
+        description: "Create a welcoming environment that puts customers at ease.",
+        duration: "5 min",
+        content: `## The Showroom Experience
+A great showroom experience makes customers want to stay.
+### Elements
+- Clean, organized showroom
+- Welcoming staff
+- Refreshments available
+- Low-pressure atmosphere`,
+      },
+      {
+        id: "online-reviews",
+        title: "Managing Online Reviews",
+        description: "Build a positive online reputation that attracts customers.",
+        duration: "5 min",
+        content: `## Managing Online Reviews
+Online reviews make or break dealerships.
+### Best Practices
+- Ask every happy customer for a review
+- Respond to all reviews (positive and negative)
+- Address negative reviews professionally`,
+      },
+      {
+        id: "delivery-experience",
+        title: "The Delivery Experience",
+        description: "Make the final delivery memorable and exciting.",
+        duration: "5 min",
+        content: `## The Delivery Experience
+The delivery is the start of the customer relationship.
+### Key Elements
+- Vehicle spotless and full of gas
+- Walk through all features
+- Take a photo together
+- Set expectations for follow-up`,
+      },
+    ],
+  },
+
+  // ===== Course 6: Sales Drills (existing, kept as-is) =====
+  {
+    id: "sales-drills",
+    title: "5-Minute Sales Drills",
+    subtitle: "Quick, focused modules for every step of the sale",
+    description:
+      "Bite-sized 5-minute training modules covering each step of the automotive sales process. Includes scenario-based multiple-choice questions to sharpen your skills. Perfect for daily practice.",
+    levels: "Beginner",
+    duration: "2 hours",
+    lessons: 10,
+    image: "drills",
+    icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+    lessonsList: [
+      {
+        id: "drill-greeting",
+        title: "Step 1: Meet & Greet (2 min)",
+        description: "Master the 10-second first impression.",
+        duration: "5 min",
+        content: `## Step 1: Meet & Greet — 2 Minute Drill
+**Goal:** Make a warm, professional first impression in under 10 seconds.
+### Quick Quiz
+**Q1:** A customer walks in and heads straight to a vehicle. You should:
+A) Let them browse alone
+B) Walk up and ask "Can I help you?"
+C) Greet them warmly, then give them space
+*Answer: C — Acknowledge them, then give them space.*`,
+      },
+      {
+        id: "drill-qualification",
+        title: "Step 2: Qualification (2 min)",
+        description: "Identify what your customer truly needs.",
+        duration: "5 min",
+        content: `## Step 2: Qualification — 2 Minute Drill
+**Goal:** Learn 3 key facts about your customer.
+### Quick Quiz
+**Q1:** A customer says "I'm just looking." You should:
+A) Walk away
+B) Say "Great! What kind of vehicle interests you?"
+C) Follow them silently
+*Answer: B — Keep the conversation going.*`,
+      },
+      {
+        id: "drill-walkaround",
+        title: "Step 3: Walk-Around (2 min)",
+        description: "Present vehicles that match their needs.",
+        duration: "5 min",
+        content: `## Step 3: Walk-Around — 2 Minute Drill
+**Goal:** Match the right vehicle to the customer's needs.
+### Quick Quiz
+**Q1:** A customer wants a vehicle for a growing family. Focus on:
+A) Horsepower
+B) Safety features, cargo space, rear comfort
+C) Color options
+*Answer: B — Match features to their stated needs.*`,
+      },
+      {
+        id: "drill-testdrive",
+        title: "Step 4: Test Drive (2 min)",
+        description: "Turn the test drive into a sale.",
+        duration: "5 min",
+        content: `## Step 4: Test Drive — 2 Minute Drill
+**Goal:** Let them experience the vehicle.
+### Quick Quiz
+**Q1:** During a test drive, you should:
+A) Let them drive in silence
+B) Point out features matching their needs
+C) Talk about payment
+*Answer: B — Connect features to their needs.*`,
+      },
+      {
+        id: "drill-tradein",
+        title: "Step 5: Trade-In Appraisal (2 min)",
+        description: "Handle trade-ins smoothly.",
+        duration: "5 min",
+        content: `## Step 5: Trade-In — 2 Minute Drill
+**Goal:** Assess trade-in value transparently.
+### Quick Quiz
+**Q1:** When should you ask about a trade-in?
+A) At the very end
+B) Early in the process
+C) After the test drive
+*Answer: B — Ask early to factor it into the deal.*`,
+      },
+      {
+        id: "drill-numbers",
+        title: "Step 6: The Numbers (2 min)",
+        description: "Present pricing clearly.",
+        duration: "5 min",
+        content: `## Step 6: The Numbers — 2 Minute Drill
+**Goal:** Present pricing and financing clearly.
+### Quick Quiz
+**Q1:** Most customers care most about:
+A) The total price
+B) The monthly payment
+C) The interest rate
+*Answer: B — Focus on monthly payment.*`,
+      },
+      {
+        id: "drill-objections",
+        title: "Step 7: Objections (2 min)",
+        description: "Turn objections into opportunities.",
+        duration: "5 min",
+        content: `## Step 7: Objections — 2 Minute Drill
+**Goal:** Handle "I need to think about it."
+### Quick Quiz
+**Q1:** Customer says "I need to think about it." Best response:
+A) "Okay, call me when you decide"
+B) "What specifically is holding you back?"
+C) "We have a sale ending today"
+*Answer: B — Isolate the objection.*`,
+      },
+      {
+        id: "drill-closing",
+        title: "Step 8: Closing (2 min)",
+        description: "Close with confidence.",
+        duration: "5 min",
+        content: `## Step 8: Closing — 2 Minute Drill
+**Goal:** Ask for the sale naturally.
+### Quick Quiz
+**Q1:** The assumptive close works best when:
+A) You've addressed all concerns
+B) The customer looks unsure
+C) At the beginning
+*Answer: A — Use it when they're showing buying signals.*`,
+      },
+      {
+        id: "drill-fni",
+        title: "Step 9: F&I Handoff (2 min)",
+        description: "Transition smoothly to finance.",
+        duration: "5 min",
+        content: `## Step 9: F&I — 2 Minute Drill
+**Goal:** Warm handoff to the finance team.
+### Quick Quiz
+**Q1:** The best way to introduce F&I is:
+A) "Go see Mark in finance"
+B) "This is [Name], who will take care of the paperwork and some protection options for you."
+C) Leave them at the desk
+*Answer: B — Warm handoff with context.*`,
+      },
+      {
+        id: "drill-delivery",
+        title: "Step 10: Delivery (2 min)",
+        description: "End the experience on a high note.",
+        duration: "5 min",
+        content: `## Step 10: Delivery — 2 Minute Drill
+**Goal:** Deliver the vehicle and set up future business.
+### Quick Quiz
+**Q1:** The most important follow-up is:
+A) A thank you call the next day
+B) A sales pitch a week later
+C) Never calling again
+*Answer: A — Thank them and check in.*`,
+      },
+    ],
+  },
+
+  // ===== Course 7: Senior Sales Training (Plus+ required) =====
+  {
+    id: "senior-sales",
+    title: "Senior Sales Training",
+    subtitle: "Advanced techniques for experienced sales professionals",
+    description:
+      "Take your sales skills to the next level with advanced negotiation tactics, enterprise deal strategies, team leadership principles, and complex deal structuring. Designed for experienced salespeople who want to become top performers and team leaders. PLUS subscription required.",
+    levels: "Advanced",
+    duration: "3 hours",
+    lessons: 5,
+    image: "advanced",
+    icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+    lessonsList: [
+      {
+        id: "senior-negotiation",
+        title: "Advanced Negotiation Tactics",
+        description: "Master psychological negotiation techniques used by top performers.",
+        duration: "35 min",
+        content: `## Advanced Negotiation Tactics
+
+**Goal:** Move beyond price negotiation to value-based deal structuring.
+
+### The Psychology of Negotiation
+
+Top negotiators understand that price is rarely the real objection. The real negotiation is about perceived value, trust, and timing. Advanced negotiation isn't about winning — it's about creating a solution where both parties feel they've won.
+
+### The Anchoring Effect
+
+The first number put on the table sets the anchor for the entire negotiation. Use this strategically: present the MSRP first, then present your discounted offer. The contrast makes your offer feel more valuable.
+
+### The Reciprocity Principle
+
+When you give something first (a concession, extra service, or time), the customer feels psychological pressure to reciprocate. Use this ethically — offer genuine value first.
+
+### Quick Quiz
+
+**Q1:** The "anchoring effect" in negotiation refers to:
+A) Keeping the customer anchored to one vehicle
+B) The first number mentioned setting the reference point for all subsequent offers
+C) Physically anchoring the customer in the showroom
+D) Using boat analogies to sell cars
+
+**Q2:** When a customer says "Your price is too high," the best advanced response is:
+A) Immediately lower the price
+B) Ask "Compared to what?" and explore the basis of their comparison
+C) Walk away from the deal
+D) Tell them they're wrong
+
+**Q3:** The reciprocity principle suggests you should:
+A) Never give anything for free
+B) Offer genuine value or a concession before asking for commitment
+C) Always ask for the sale first
+D) Reciprocate anger with anger
+
+**Q4:** A customer wants $2,000 off a vehicle. The best advanced response is:
+A) "Let me ask my manager"
+B) "If I could get you $1,000 off and include [valued add-on], would that work for you?"
+C) "That's impossible"
+D) "OK, done"`,
+      },
+      {
+        id: "senior-enterprise",
+        title: "Enterprise & Fleet Deals",
+        description: "Structure multi-vehicle deals for business and fleet customers.",
+        duration: "35 min",
+        content: `## Enterprise & Fleet Deals
+
+**Goal:** Understand how to identify, approach, and close multi-vehicle enterprise deals.
+
+### Identifying Fleet Opportunities
+
+Look for customers who mention business use, company vehicles, or multiple drivers. A single conversation about one vehicle can unlock a 5-10 vehicle opportunity if you ask the right follow-up questions.
+
+### The Decision-Making Unit
+
+Unlike individual buyers, enterprise deals involve multiple decision-makers: the owner/finance director, the fleet manager, and the end users/employees. You need to address each stakeholder's concerns.
+
+### Quick Quiz
+
+**Q1:** The first sign of a fleet opportunity is often:
+A) The customer wearing a suit
+B) The customer mentioning business use or multiple vehicles
+C) The customer paying cash
+D) The customer arriving in a luxury vehicle
+
+**Q2:** When presenting to a business decision-maker, focus on:
+A) Vehicle color and styling
+B) Total cost of ownership, tax benefits, and reliability metrics
+C) How fast the vehicle can go
+D) Entertainment features
+
+**Q3:** The biggest mistake in enterprise sales is:
+A) Bringing brochures
+B) Only talking to one decision-maker when multiple people influence the purchase
+C) Following up too often
+D) Offering fleet pricing
+
+**Q4:** A business customer asks about 3 identical trucks. You should:
+A) Quote three individually
+B) Ask about their business needs, usage patterns, and offer a fleet consultation
+C) Say you don't do fleet sales
+D) Give them the same price as a single vehicle`,
+      },
+      {
+        id: "senior-leadership",
+        title: "Sales Team Leadership",
+        description: "Lead, motivate, and develop other salespeople on your team.",
+        duration: "35 min",
+        content: `## Sales Team Leadership
+
+**Goal:** Transition from individual contributor to team leader who elevates everyone's performance.
+
+### The Leadership Mindset
+
+Great sales leaders don't just close their own deals — they multiply their impact by making every team member better. The best salespeople aren't always the best leaders because leadership requires a completely different skillset: patience, teaching ability, and emotional intelligence.
+
+### Coaching vs. Managing
+
+Managing is about metrics and accountability. Coaching is about development and growth. Top sales leaders spend 70% of their time coaching and 30% managing. Ask questions instead of giving answers. Let your team members discover solutions themselves.
+
+### Quick Quiz
+
+**Q1:** The key difference between a top salesperson and a great sales leader is:
+A) The leader makes more money
+B) The leader multiplies their impact by developing others
+C) The leader works fewer hours
+D) The leader is older
+
+**Q2:** When a struggling salesperson misses their target, a great leader first:
+A) Puts them on a performance improvement plan
+B) Asks questions to understand what's happening and listens
+C) Yells at them for motivation
+D) Ignores the problem
+
+**Q3:** The most effective coaching technique is:
+A) Telling people exactly what to do
+B) Asking guiding questions that help them discover the answer themselves
+C) Doing the deal for them
+D) Sending them to more training videos
+
+**Q4:** A team member consistently skips the needs assessment step. You should:
+A) Write them up
+B) Role-play with them, demonstrate the impact on closing rates, and have them practice
+C) Let them figure it out
+D) Assign them to another team`,
+      },
+      {
+        id: "senior-coaching",
+        title: "Coaching Other Salespeople",
+        description: "Effective one-on-one coaching techniques for automotive sales.",
+        duration: "35 min",
+        content: `## Coaching Other Salespeople
+
+**Goal:** Develop a repeatable coaching framework that improves individual and team performance.
+
+### The GROW Coaching Model
+
+- **G**oal — What does the salesperson want to achieve?
+- **R**eality — Where are they now? What's blocking them?
+- **O**ptions — What could they try differently?
+- **W**ill — What will they commit to doing?
+
+### Observation-Based Coaching
+
+Spend time on the lot observing before you coach. Watch how they greet, qualify, present, and close. Take notes. Then sit down and walk through what you observed. Focus on patterns, not one-off incidents.
+
+### Quick Quiz
+
+**Q1:** The GROW coaching model stands for:
+A) Greet, Respond, Observe, Win
+B) Goal, Reality, Options, Will
+C) Grow, Reach, Overcome, Win
+D) Guide, Review, Optimize, Work
+
+**Q2:** Before coaching a salesperson, you should first:
+A) Tell them everything they're doing wrong
+B) Observe them on the lot interacting with real customers
+C) Send them an email with feedback
+D) Talk to other salespeople about them
+
+**Q3:** The most effective coaching sessions end with:
+A) The coach talking for 80% of the time
+B) The salesperson committing to specific, measurable actions
+C) A vague promise to "do better"
+D) A threat of consequences
+
+**Q4:** A salesperson struggles with objections. The best coaching approach is:
+A) Give them a script to memorize
+B) Role-play common objections until responses become natural
+C) Tell them objections don't matter
+D) Take over when objections arise`,
+      },
+      {
+        id: "senior-complex-deals",
+        title: "Complex Deal Structuring",
+        description: "Navigate multi-party, high-value, and time-sensitive deals.",
+        duration: "35 min",
+        content: `## Complex Deal Structuring
+
+**Goal:** Master the art of structuring deals involving multiple parties, trade-ins, financing, and timing constraints.
+
+### The Deal Triangle
+
+Every complex deal has three elements: Price, Terms, and Timing. You can give on one if you hold on the other two. Understanding which element matters most to the customer gives you the leverage to create a win-win structure.
+
+### Multi-Party Dynamics
+
+When spouses, parents, or business partners are involved, identify the primary decision-maker AND the primary influencer. They're often different people. Address both of their concerns.
+
+### Quick Quiz
+
+**Q1:** In a complex deal, the three primary levers are:
+A) Price, vehicle, color
+B) Price, terms, timing
+C) Salesperson, manager, finance
+D) Morning, afternoon, evening
+
+**Q2:** When a couple disagrees on a vehicle, the best approach is:
+A) Side with the more vocal person
+B) Find the shared needs and present a vehicle that addresses both concerns
+C) Wait for them to figure it out
+D) Only talk to one person
+
+**Q3:** A customer has a trade-in with negative equity. You should:
+A) Hide the negative equity
+B) Be transparent, explain the situation clearly, and present options
+C) Refuse the trade-in
+D) Only show them cheap vehicles
+
+**Q4:** The customer wants a specific vehicle that won't arrive for 3 weeks. You should:
+A) Try to sell something on the lot
+B) Secure the incoming unit with a deposit, stay in weekly contact, and provide updates
+C) Tell them to come back in 3 weeks
+D) Say you can't help them`,
+      },
+    ],
+  },
+
+  // ===== Course 8: Closing & Overcoming Objections =====
+  {
+    id: "closing-objections",
+    title: "Closing & Overcoming Objections",
+    subtitle: "Turn every objection into an opportunity to close",
+    description:
+      "Master the art of handling objections and closing deals with confidence. Learn to overcome price objections, hesitation, spouse objections, competitor comparisons, and timing issues. 25 scenario-based questions to sharpen your skills.",
+    levels: "Intermediate",
+    duration: "4 hours",
+    lessons: 5,
+    image: "closing",
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+    lessonsList: [
+      {
+        id: "closing-price-objections",
+        title: "Overcoming Price Objections",
+        description: "Handle \"it's too expensive\" with proven techniques.",
+        duration: "35 min",
+        content: `## Overcoming Price Objections
+
+**Goal:** Turn price concerns into value conversations and close more deals at higher gross.
+
+### The Price-Value Equation
+
+Price is what they pay. Value is what they get. When a customer says "It's too expensive," they're really saying "I don't see enough value for that price." Your job is to bridge the gap.
+
+### Techniques That Work
+
+1. **Reframe**: "Let's talk about what you're getting for that price..."
+2. **Break it down**: "$X per month is only $Y per day — less than your daily coffee."
+3. **Compare value**: "The competitor's vehicle costs less upfront, but here's what you give up..."
+4. **The silence technique**: After stating your price, stay quiet. Let them process.
+
+### Quick Quiz
+
+**Q1:** A customer says "That's more than I wanted to spend." Best response:
+A) "What were you hoping to spend?" followed by listening
+B) Immediately offer a discount
+C) "That's our best price"
+D) Walk away
+
+**Q2:** The "break it down" technique involves:
+A) Breaking the vehicle into parts
+B) Converting the price difference into a small daily amount
+C) Breaking the deal
+D) Breaking eye contact
+
+**Q3:** When a customer compares your price to a competitor's lower price, you should:
+A) Badmouth the competitor
+B) Acknowledge the difference and highlight value advantages your vehicle offers
+C) Match the competitor's price immediately
+D) Ignore the comparison
+
+**Q4:** The silence technique after stating a price works because:
+A) It makes the customer uncomfortable
+B) It gives the customer time to process and often leads them to fill the silence with useful information
+C) It shows you don't care
+D) It wastes time
+
+**Q5:** A customer wants you to "sharpen your pencil." You respond:
+A) "How much sharper were you thinking?" to understand their target
+B) "No"
+C) "OK, here's $500 off"
+D) "Let me get my manager"`,
+      },
+      {
+        id: "closing-think-about-it",
+        title: 'Handling "I Need to Think About It"',
+        description: "Turn hesitation into commitment with the right questions.",
+        duration: "35 min",
+        content: `## Handling "I Need to Think About It"
+
+**Goal:** Uncover the real concern behind hesitation and close the deal.
+
+### What They Really Mean
+
+"I need to think about it" is almost never about thinking. It's a polite way of saying one of:
+- "I have a concern I'm not comfortable sharing"
+- "I need to check with someone else"
+- "I'm not convinced this is the right vehicle/price"
+- "I'm afraid of making the wrong decision"
+
+### The Clarify-Address-Close Method
+
+1. **Clarify**: "I understand. Help me understand — what specifically do you want to think about?"
+2. **Address**: Once they share the real concern, address it directly.
+3. **Close**: "If we can resolve that concern, are you ready to move forward?"
+
+### Quick Quiz
+
+**Q1:** "I need to think about it" usually means:
+A) The customer genuinely needs time to think
+B) There's an unspoken concern or objection
+C) The customer is going to buy somewhere else
+D) The customer hates the vehicle
+
+**Q2:** The best follow-up to "I need to think about it" is:
+A) "OK, take your time" and walk away
+B) "I completely understand. Help me understand — what specifically do you want to think through?"
+C) "You're making a mistake"
+D) "I'll call you tomorrow"
+
+**Q3:** After the customer shares their real concern, you should:
+A) Argue with them
+B) Address it directly, then ask "If we resolve this, are you ready to move forward?"
+C) Offer a bigger discount
+D) Change the subject
+
+**Q4:** The "fear of making the wrong decision" is best addressed by:
+A) Pressuring them to decide
+B) Providing social proof (other happy customers), warranty coverage, and reassurance
+C) Telling them they're overthinking
+D) Ignoring their fear
+
+**Q5:** A customer says they need to check with their spouse. You should:
+A) Tell them spouses don't matter
+B) Offer to set up a time when the spouse can come in, or do a video call
+C) Close the deal anyway
+D) Send them home with a brochure`,
+      },
+      {
+        id: "closing-spouse-objections",
+        title: "Spouse & Partner Objections",
+        description: "Navigate dual-decision scenarios with finesse.",
+        duration: "35 min",
+        content: `## Spouse & Partner Objections
+
+**Goal:** Handle situations where both partners are involved in the buying decision.
+
+### The Dual-Decision Dynamic
+
+When two people are making a decision together, they often have different priorities. One may care about price, the other about safety. One may want style, the other practicality. Your job is to address BOTH sets of needs.
+
+### Include Both Partners
+
+- Address questions to both people, not just the more vocal one
+- Ask each person what's most important to them
+- Find common ground where both priorities overlap
+- Never take sides or undermine one partner to the other
+
+### Quick Quiz
+
+**Q1:** When working with a couple, the biggest mistake is:
+A) Addressing only the more vocal partner
+B) Showing them too many vehicles
+C) Discussing price
+D) Being too friendly
+
+**Q2:** A wife is concerned about safety, the husband about performance. You should:
+A) Focus only on safety
+B) Focus only on performance
+C) Present vehicles that excel in both areas and highlight both benefits
+D) Tell them to compromise
+
+**Q3:** One partner clearly wants to buy but the other is resistant. Best approach:
+A) Push the enthusiastic partner to convince the other
+B) Ask the resistant partner "What would make you feel comfortable with this decision?"
+C) Ignore the resistant partner
+D) Tell them to come back when they agree
+
+**Q4:** The husband wants to negotiate price but the wife hasn't seen the vehicle yet. You should:
+A) Start negotiating immediately
+B) Politely suggest the wife see and drive the vehicle first, then discuss numbers
+C) Only talk to the husband
+D) Split them up
+
+**Q5:** A partner objects to the monthly payment. The best response:
+A) "That's what it costs"
+B) Explore alternative financing terms, down payment options, or different trim levels
+C) End the conversation
+D) Offer a lease instead`,
+      },
+      {
+        id: "closing-competitor",
+        title: "Competitor Comparisons",
+        description: "Win deals when customers are cross-shopping other brands.",
+        duration: "35 min",
+        content: `## Competitor Comparisons
+
+**Goal:** Position your vehicle as the clear winner when customers are comparing multiple brands.
+
+### The Comparison Framework
+
+Never badmouth competitors — it makes YOU look bad. Instead:
+1. **Acknowledge**: "The [Competitor] is a solid vehicle."
+2. **Differentiate**: "Here's where we're different..."
+3. **Advantage**: "And here's why that matters to you..."
+
+### Know Your Competition
+
+Study the top 3 competitors for every vehicle in your lineup. Know their pricing, features, warranty, and resale value. Being informed builds trust. Being uninformed costs deals.
+
+### Quick Quiz
+
+**Q1:** The best way to handle a competitor comparison is:
+A) Say the competitor makes terrible vehicles
+B) Acknowledge the competitor's strengths, then highlight your unique advantages
+C) Pretend the competitor doesn't exist
+D) Match their price
+
+**Q2:** A customer says they're also looking at a competitor with a lower price. You should:
+A) Immediately match the price
+B) Explore what features matter to them and show where your vehicle delivers more value
+C) Let them walk
+D) Claim the competitor is lying
+
+**Q3:** The most effective competitive research includes knowing:
+A) Only your own vehicle's specs
+B) The competitor's pricing, key features, warranty terms, and common customer complaints
+C) Nothing — it doesn't matter
+D) Only the competitor's weaknesses
+
+**Q4:** When a customer mentions a specific competitor feature you don't have, you should:
+A) Dismiss it as unimportant
+B) Acknowledge it, then pivot to a feature you DO have that addresses the same customer need
+C) Lie and say you have it
+D) Change the subject
+
+**Q5:** The customer test-drove a competitor's vehicle this morning. Best question to ask:
+A) "Why would you even consider them?"
+B) "What did you like about it, and what didn't feel quite right?"
+C) "They're terrible, aren't they?"
+D) "Did you buy it?"`,
+      },
+      {
+        id: "closing-timing",
+        title: "Timing & Urgency Objections",
+        description: "Create ethical urgency and handle timing-based stalls.",
+        duration: "35 min",
+        content: `## Timing & Urgency Objections
+
+**Goal:** Help customers overcome procrastination and make confident decisions today.
+
+### Why Customers Delay
+
+Customers delay for two reasons: genuine timing constraints (lease isn't up, waiting on financing) and fear (afraid of making the wrong choice, hoping for a better deal later). Learn to distinguish between them.
+
+### Creating Ethical Urgency
+
+Never manufacture fake urgency. Instead, highlight REAL reasons to act now:
+- Current incentives or rebates that expire
+- Limited availability of specific configurations
+- Rate locks and trade-in value guarantees
+- The cost of waiting (continued repair costs, missed savings)
+
+### Quick Quiz
+
+**Q1:** The most ethical way to create urgency is:
+A) Lie about another buyer being interested
+B) Highlight real, time-sensitive benefits like expiring incentives or limited availability
+C) Pressure the customer
+D) Threaten price increases
+
+**Q2:** A customer says they want to wait until "next month." You should ask:
+A) "Why are you being so difficult?"
+B) "Is there something specific happening next month, or is there a concern I can address now?"
+C) "OK, goodbye"
+D) Nothing — just wait
+
+**Q3:** The cost-of-waiting argument works best when:
+A) You make up numbers
+B) You quantify real costs: current repair bills, missed rebates, trade-in depreciation
+C) You're aggressive
+D) You ignore the customer's timeline
+
+**Q4:** A customer says "I want to sleep on it." Best response:
+A) "You can't sleep here!"
+B) "I understand. Let me ask — is there a specific question I can answer that might help you feel confident deciding today?"
+C) "Fine, leave"
+D) "The deal expires at midnight"
+
+**Q5:** The end of the month is approaching and the customer is on the fence. You should:
+A) Tell them prices go up on the 1st (if true)
+B) Mention any month-end incentives that apply and ask if that changes their timeline
+C) Make up fake deadlines
+D) Ignore the calendar entirely`,
+      },
+    ],
+  },
+
+  // ===== Course 9: Landing on the Right Vehicle - Needs Assessment Part 2 =====
+  {
+    id: "needs-assessment-2",
+    title: "Landing on the Right Vehicle — Needs Assessment Part 2",
+    subtitle: "Advanced qualification techniques to match customers with their perfect vehicle",
+    description:
+      "Go deeper than basic needs assessment. Learn to read buying signals, match lifestyle to vehicle, navigate family vs individual needs, qualify budgets with tact, and handle trade-in psychology. 25 in-depth scenario questions.",
+    levels: "Intermediate",
+    duration: "4 hours",
+    lessons: 5,
+    image: "needs",
+    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+    lessonsList: [
+      {
+        id: "needs2-buying-signals",
+        title: "Reading Buying Signals",
+        description: "Recognize verbal and non-verbal cues that indicate readiness to buy.",
+        duration: "35 min",
+        content: `## Reading Buying Signals
+
+**Goal:** Identify when a customer is ready to move forward so you can close at the right moment.
+
+### Verbal Buying Signals
+
+- "How soon can I take delivery?"
+- "What's the warranty like?"
+- "Can I get it in blue?"
+- "Would you take [amount] for my trade?"
+- "What are my financing options?"
+
+These questions indicate the customer has mentally moved from "if" to "how."
+
+### Non-Verbal Buying Signals
+
+- Nodding while you explain features
+- Touching or lingering near the vehicle
+- Looking at their spouse/partner and smiling
+- Relaxed, open body language
+- Taking photos of the vehicle
+
+### Quick Quiz
+
+**Q1:** A customer asks "How soon can I take delivery?" This signals:
+A) They're just curious
+B) They've mentally moved from "if I buy" to "how I buy"
+C) They're wasting time
+D) They're unhappy
+
+**Q2:** The most reliable non-verbal buying signal is:
+A) Arms crossed
+B) The customer touching the vehicle, smiling, and looking at their partner
+C) Looking at their phone
+D) Walking toward the exit
+
+**Q3:** A customer takes photos of the vehicle and texts someone. You should:
+A) Tell them photos aren't allowed
+B) Ask "Sending that to someone who needs to see it? Would it help to bring them in?"
+C) Ignore it
+D) Take the phone away
+
+**Q4:** The difference between a question and a buying signal is:
+A) There's no difference
+B) A buying signal implies movement toward purchase ("How soon can I get it?") vs. general curiosity
+C) Buying signals are always about price
+D) Only managers can spot buying signals
+
+**Q5:** A customer keeps returning to look at a specific vehicle feature. This indicates:
+A) They're bored
+B) That feature is important to them — highlight it during your presentation
+C) They don't like the vehicle
+D) They're comparing to competitors`,
+      },
+      {
+        id: "needs2-lifestyle-matching",
+        title: "Matching Lifestyle to Vehicle",
+        description: "Connect vehicle features to the customer's daily life and passions.",
+        duration: "35 min",
+        content: `## Matching Lifestyle to Vehicle
+
+**Goal:** Move beyond feature lists to connect vehicles to how customers actually live.
+
+### Lifestyle Discovery Questions
+
+- "What does a typical weekend look like for you?"
+- "How do you use your current vehicle?"
+- "What hobbies or activities are important to you?"
+- "Who usually rides with you?"
+- "What's your commute like?"
+
+### The Lifestyle-Connect Method
+
+1. **Discover** — Ask lifestyle questions
+2. **Connect** — Link their answers to specific vehicle features
+3. **Visualize** — "Imagine loading up the kayaks on this roof rack this Saturday..."
+
+### Quick Quiz
+
+**Q1:** The most powerful lifestyle question to ask is:
+A) "What's your budget?"
+B) "What does a typical weekend look like for you?"
+C) "Do you like the color?"
+D) "When are you buying?"
+
+**Q2:** A customer mentions they go camping every month. You should:
+A) Show them a sports car
+B) Focus on cargo space, roof rack capability, all-wheel drive, and ground clearance
+C) Tell them camping is irrelevant
+D) Show the cheapest vehicle
+
+**Q3:** The Lifestyle-Connect method works because:
+A) It pressures customers
+B) It helps customers mentally picture the vehicle as part of their real life
+C) It confuses them
+D) It speeds up the process artificially
+
+**Q4:** A customer has a 45-minute highway commute. Priority features are:
+A) Off-road capability
+B) Fuel economy, comfortable seats, adaptive cruise control, and cabin quietness
+C) Towing capacity
+D) Racing stripes
+
+**Q5:** The customer can't articulate what they want. Best approach:
+A) Show them everything
+B) Ask lifestyle questions to narrow down what matters, then present 2-3 matching vehicles
+C) Give up
+D) Pick a vehicle for them randomly`,
+      },
+      {
+        id: "needs2-family-needs",
+        title: "Family Needs vs. Individual Needs",
+        description: "Balance multiple priorities when a vehicle serves the whole family.",
+        duration: "35 min",
+        content: `## Family Needs vs. Individual Needs
+
+**Goal:** Find the sweet spot between what the primary driver wants and what the family needs.
+
+### The Family Vehicle Matrix
+
+Create a mental grid:
+- **Safety** — crash ratings, driver assistance features
+- **Space** — seating capacity, cargo room, legroom
+- **Convenience** — easy entry/exit, kid-friendly features
+- **Fun** — what the driver actually enjoys
+
+The best recommendation hits at least 3 of 4 boxes.
+
+### Handling Competing Priorities
+
+When the primary driver wants a sports car but the family needs an SUV, don't dismiss either desire. Find vehicles that bridge the gap: sporty SUVs, performance crossovers, or versatile sedans.
+
+### Quick Quiz
+
+**Q1:** The family vehicle matrix includes these four elements:
+A) Price, color, brand, speed
+B) Safety, space, convenience, fun
+C) Engine, transmission, tires, paint
+D) Radio, seats, mirrors, lights
+
+**Q2:** A dad wants a pickup truck but mom wants a minivan. Best approach:
+A) Sell them one of each
+B) Explore SUVs with third-row seating and cargo flexibility that bridge both needs
+C) Side with the dad
+D) Side with the mom
+
+**Q3:** When kids are present during the visit, you should:
+A) Ignore them
+B) Acknowledge them, ask about car seat needs, and show kid-friendly features
+C) Ask them to wait outside
+D) Only talk to the adults
+
+**Q4:** A family of five needs a new vehicle. The most important spec to discuss is:
+A) 0-60 time
+B) Seating capacity and ease of third-row access
+C) Premium audio system
+D) Sunroof
+
+**Q5:** The primary driver is disappointed they can't get the sports car they wanted. You should:
+A) Say "tough luck"
+B) Find vehicles with sporty driving dynamics that still meet family requirements
+C) Only show minivans
+D) Tell them to come back without the family`,
+      },
+      {
+        id: "needs2-budget-qualification",
+        title: "Budget Qualification Techniques",
+        description: "Discuss money comfortably and qualify budgets with tact.",
+        duration: "35 min",
+        content: `## Budget Qualification Techniques
+
+**Goal:** Understand the customer's true budget without making them uncomfortable.
+
+### The Comfortable Money Conversation
+
+Money doesn't have to be awkward. Frame budget discussions around monthly payment comfort, not "how much can you afford." Use ranges instead of exact numbers to help customers share more openly.
+
+### Budget Discovery Questions
+
+- "Most of our customers find payments in the $X-$Y range work well. Where do you see yourself?"
+- "Are you planning to finance, lease, or pay cash?"
+- "Is there a monthly payment you're trying to stay under?"
+- "What were you thinking for a down payment?"
+
+### Quick Quiz
+
+**Q1:** The most comfortable way to open a budget conversation is:
+A) "How much money do you make?"
+B) "Most of our customers find payments in the $400-$600 range comfortable. Does that sound about right for you?"
+C) "What's your credit score?"
+D) "Can you afford this?"
+
+**Q2:** A customer gives a vague budget answer. You should:
+A) Accept it and move on
+B) Use ranges to narrow it down: "Are we thinking closer to $400 or $600 per month?"
+C) Insist on an exact number
+D) Show them the most expensive vehicle
+
+**Q3:** When a customer's budget doesn't match their vehicle wishes, the best response is:
+A) "You can't afford this"
+B) Explore whether budget or vehicle preference is more flexible, and present options at both levels
+C) Only show vehicles in their budget
+D) Only show what they want
+
+**Q4:** A customer says they're paying cash. This usually means:
+A) They're rich
+B) They may or may not pay cash — keep financing options open as an alternative
+C) They definitely have the money
+D) The deal will be simple
+
+**Q5:** The customer avoids the budget question entirely. You should:
+A) Skip budget and show vehicles randomly
+B) Pivot to lifestyle questions first, then naturally return to budget: "Based on what you've described, most similar customers are in the $X range. How does that feel?"
+C) Refuse to help until they answer
+D) Guess their budget`,
+      },
+      {
+        id: "needs2-tradein-psychology",
+        title: "Trade-In Psychology",
+        description: "Understand the emotional attachment to trade-ins and use it to build trust.",
+        duration: "35 min",
+        content: `## Trade-In Psychology
+
+**Goal:** Navigate the emotional and practical aspects of trade-in discussions.
+
+### The Emotional Attachment
+
+Customers often have strong emotional connections to their current vehicle. It's taken them on road trips, carried their kids, been part of their lives. Never dismiss or insult their current vehicle — it's an extension of them.
+
+### The Validation Approach
+
+1. **Validate**: "That's been a great vehicle for you, hasn't it?"
+2. **Understand**: "What will you miss most about it?"
+3. **Transition**: "Let me show you how this new one builds on what you love..."
+
+### Quick Quiz
+
+**Q1:** The biggest mistake in trade-in discussions is:
+A) Offering too much
+B) Insulting or dismissing the customer's current vehicle
+C) Being too slow
+D) Not appraising the vehicle
+
+**Q2:** A customer is emotionally attached to their trade-in. Best approach:
+A) Tell them it's just a car
+B) Validate their feelings, acknowledge what the vehicle has meant to them, then help them get excited about the next chapter
+C) Rush through the appraisal
+D) Ignore the emotional aspect entirely
+
+**Q3:** The Validation-Understand-Transition approach works because:
+A) It's manipulative
+B) It respects the customer's emotional connection while guiding them forward
+C) It wastes time
+D) It guarantees a higher offer
+
+**Q4:** A customer overvalues their trade-in based on sentiment. You should:
+A) Agree with them
+B) Acknowledge the sentimental value while gently introducing market data to set realistic expectations
+C) Tell them their vehicle is worthless
+D) Refuse the trade
+
+**Q5:** The best time to discuss trade-in value is:
+A) At the very end of the deal
+B) Early in the process, before presenting numbers on the new vehicle
+C) Never
+D) After they've signed`,
+      },
+    ],
+
+  },
+];
+
+export function getCourse(id: string): Course | undefined {
+  return courses.find((c) => c.id === id);
+}
+
+export function getLesson(courseId: string, lessonId: string): { course: Course; lesson: Lesson } | undefined {
+  const course = getCourse(courseId);
+  if (!course) return undefined;
+  const lesson = course.lessonsList.find((l) => l.id === lessonId);
+  if (!lesson) return undefined;
+  return { course, lesson };
+}
