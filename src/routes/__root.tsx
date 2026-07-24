@@ -169,6 +169,10 @@ function RootDocument({ children }: { children: ReactNode }) {
                 Blog
               </a>
               <span className="text-gray-600">|</span>
+              <a href="/email" className="auth-logged-in text-sm text-gray-400 transition-colors hover:text-white">
+                Email
+              </a>
+              <span className="text-gray-600 auth-logged-in">|</span>
               {/* Show when logged out */}
               <a href="/login" className="auth-logged-out text-sm font-medium text-[#e63946] transition-colors hover:text-[#ff6b6b]">
                 Sign In

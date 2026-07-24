@@ -1,32 +1,34 @@
 import { createServerFn } from "@tanstack/react-start";
 
-const FROM_EMAIL = "champion-sales-training-events-f80d0630@ctomail.io";
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "re_ir27cjKY_EzETWNeXdVDAcbrSj7v3J6y4";
+const FROM_EMAIL = "Sales@championsalestrainingandevents.com";
 
 export const sendEmail = createServerFn({ method: "POST" }).handler(
-  async ({ data }: { data: { to: string[]; subject: string; body: string } }) => {
+  async ({ data }: { data: { to: string | string[]; subject: string; body: string } }) => {
     try {
-      // Use the team's inbox to send emails
-      const response = await fetch("https://api.ctomail.io/v1/send", {
+      const to = Array.isArray(data.to) ? data.to : [data.to];
+      const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.CTOMAIL_API_KEY || ""}`,
+          "Authorization": `Bearer ${RESEND_API_KEY}`,
         },
         body: JSON.stringify({
           from: FROM_EMAIL,
-          to: data.to,
+          to,
           subject: data.subject,
           text: data.body,
         }),
       });
       if (!response.ok) {
-        console.error("[Email] Failed to send:", await response.text());
-        return { success: false };
+        const errText = await response.text();
+        console.error("[Email] Resend failed:", errText);
+        return { success: false, error: errText };
       }
       return { success: true };
     } catch (err) {
       console.error("[Email] Error:", err);
-      return { success: false };
+      return { success: false, error: String(err) };
     }
   },
 );
