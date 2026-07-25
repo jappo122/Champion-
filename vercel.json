@@ -1,12 +1,7 @@
 {
-  "buildCommand": "ls dist/client/assets/*.js > /dev/null && echo 'Build ready'",
-  "installCommand": "echo 'Skipping install'",
-  "outputDirectory": "dist/client",
-  "framework": null,
   "rewrites": [
     { "source": "/api/mark-complete", "destination": "/api/mark-complete" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/(.*)", "destination": "/api/ssr" }
   ]
 }
-
