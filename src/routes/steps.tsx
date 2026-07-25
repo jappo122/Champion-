@@ -1,11 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
 import { useState } from "react";
+import { courses } from "~/content/courses";
+import { isTokenValid } from "~/lib/client-auth";
 import { detailedSteps, stepQuizzes } from "~/content/steps-content";
 import type { DetailedStep, StepQuestion } from "~/content/steps-content";
 
 export const Route = createFileRoute("/steps")({
   component: StepsPage,
+  beforeLoad: () => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("salesdrive_token");
+      if (!token || !isTokenValid(token)) {
+        throw redirect({ to: "/login" });
+      }
+    }
+  },
 });
 
 function StepsPage() {
