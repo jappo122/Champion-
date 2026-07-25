@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || "re_ir27cjKY_EzETWNeXdVDAcbrSj7v3J6y4";
+const RESEND_API_KEY = process.env.RESEND_API_KEY!;
 const FROM_EMAIL = "Sales@championsalestrainingandevents.com";
 
 export const sendEmail = createServerFn({ method: "POST" }).handler(
