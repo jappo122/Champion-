@@ -47258,7 +47258,7 @@ var init_email_Bk5ufhJu = __esm({
     init_production();
     import_react19 = __toESM(require_react(), 1);
     import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
-    RESEND_API_KEY = process.env.RESEND_API_KEY || "re_c2usm69A_7pyDpw3gVxeNsbMBhBGSsufS";
+    RESEND_API_KEY = process.env.RESEND_API_KEY || "RESEND_API_KEY_PLACEHOLDER";
     FROM_EMAIL = "Sales@championsalestrainingandevents.com";
     sendEmail_createServerFn_handler = createServerRpc({
       id: "4b25f436ce80645ccec0236688b03cba8c4693e2942328b43053eca42eb891d8",
