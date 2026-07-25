@@ -4,6 +4,7 @@
   "outputDirectory": "dist/client",
   "framework": null,
   "rewrites": [
+    { "source": "/api/mark-complete", "destination": "/api/mark-complete" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/(.*)", "destination": "/api/ssr" }
   ]
