@@ -174,10 +174,14 @@ function ProfileDashboard() {
 
   const fetchProgress = async (token: string): Promise<number> => {
     try {
-      const { getTeamProgress } = await import("~/lib/manager");
-      const res = await getTeamProgress({ data: { token } });
-      if (res.success && res.team.length > 0) {
-        return res.team[0].totalCompleted;
+      const res = await fetch("/api/my-progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
+      const data = await res.json();
+      if (data.success && data.completedLessons) {
+        return data.completedLessons.length;
       }
     } catch {}
     return 0;

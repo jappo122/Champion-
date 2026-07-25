@@ -4,7 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { courses } from "~/content/courses";
 import { getAuthInfo } from "~/lib/auth-guard";
-import { getMyAssignments } from "~/lib/manager";
+import { getMyAssignments, getMyProgress } from "~/lib/manager";
 import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
 
 export const Route = createFileRoute("/training/")({
@@ -22,6 +22,8 @@ function TrainingCatalog() {
   const [authState, setAuthState] = useState<"loading" | "authenticated" | "unauthenticated" | "no-subscription">("loading");
   const [userTier, setUserTier] = useState<string | null>(null);
   const [assignedCourseIds, setAssignedCourseIds] = useState<Set<string>>(new Set());
+  const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
+  const [completedPerCourse, setCompletedPerCourse] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     const token = localStorage.getItem("salesdrive_token");
@@ -37,7 +39,7 @@ function TrainingCatalog() {
     const payload = getTokenPayload(token)!;
     setAuthState("authenticated");
     setUserTier(payload.role === "management" ? "premium" : "basic");
-    // Background: fetch tier + assignments (non-blocking)
+    // Background: fetch tier + assignments + progress (non-blocking)
     getAuthInfo({ data: { token } }).then((result) => {
       if (result.authenticated && result.user) {
         setUserTier(result.user.tier);
@@ -47,6 +49,23 @@ function TrainingCatalog() {
       if (res.success) {
         const ids = new Set(res.assignments.filter((a: any) => !a.completed_at).map((a: any) => a.course_id));
         setAssignedCourseIds(ids);
+      }
+    }).catch(() => {});
+    // Fetch completed lessons for progress display
+    fetch("/api/my-progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    }).then(r => r.json()).then((data) => {
+      if (data.success && data.completedLessons) {
+        const ids = new Set<string>();
+        const perCourse = new Map<string, number>();
+        for (const item of data.completedLessons) {
+          ids.add(item.lesson_id);
+          perCourse.set(item.course_id, (perCourse.get(item.course_id) || 0) + 1);
+        }
+        setCompletedLessons(ids);
+        setCompletedPerCourse(perCourse);
       }
     }).catch(() => {});
   }, []);
@@ -291,6 +310,9 @@ function TrainingCatalog() {
                 {!isGated && (
                   <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400">All Plans</span>
                 )}
+                {completedPerCourse.has(course.id) && (completedPerCourse.get(course.id)! >= course.lessons) && (
+                  <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-bold text-green-400">✓ Complete</span>
+                )}
 
                 <h2 className="mt-3 text-xl font-bold text-white group-hover:text-[#e63946] transition-colors">
                   {course.title}
@@ -320,6 +342,22 @@ function TrainingCatalog() {
                     {course.lessons} {t('training.lessons')}
                   </span>
                 </div>
+
+                {/* Progress bar */}
+                {completedPerCourse.has(course.id) && (
+                  <div className="mt-4">
+                    <div className="flex justify-between text-xs text-gray-500 mb-1">
+                      <span>Progress</span>
+                      <span>{completedPerCourse.get(course.id)}/{course.lessons} lessons</span>
+                    </div>
+                    <div className="h-1.5 rounded-full bg-[#1a2d4a]">
+                      <div
+                        className="h-1.5 rounded-full bg-green-500 transition-all duration-300"
+                        style={{ width: `${Math.round(((completedPerCourse.get(course.id) || 0) / course.lessons) * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className="mt-5 flex items-center gap-2 text-sm font-medium text-[#e63946]">
                   {t('training.start')}

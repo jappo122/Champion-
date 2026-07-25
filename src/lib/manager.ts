@@ -72,13 +72,64 @@ export const markMyLessonComplete = createServerFn({ method: "POST" }).handler(
     const userId = payload.userId as number;
 
     const db = sql();
+
+    // 1. Persist to lesson_progress
     await db`
       INSERT INTO lesson_progress (user_id, course_id, lesson_id)
       VALUES (${userId}, ${data.courseId}, ${data.lessonId})
       ON CONFLICT (user_id, lesson_id) DO NOTHING
     `;
 
-    return { success: true };
+    // 2. Update module_assignments if this lesson/course was assigned
+    const assignments = await db`
+      UPDATE module_assignments 
+      SET completed_at = NOW() 
+      WHERE salesperson_id = ${userId} 
+        AND course_id = ${data.courseId}
+        AND (lesson_id = ${data.lessonId} OR lesson_id IS NULL)
+        AND completed_at IS NULL
+      RETURNING id, manager_id, course_id, lesson_id
+    ` as Array<{ id: number; manager_id: number; course_id: string; lesson_id: string | null }>;
+
+    // 3. Notify manager if assignment was completed
+    for (const assignment of assignments) {
+      const managers = await db`
+        SELECT email FROM users WHERE id = ${assignment.manager_id}
+      ` as Array<{ email: string | null }>;
+      const managerEmail = managers[0]?.email;
+      if (managerEmail) {
+        // Get salesperson name
+        const salesperson = await db`
+          SELECT name, email FROM users WHERE id = ${userId}
+        ` as Array<{ name: string | null; email: string }>;
+        const spName = salesperson[0]?.name || salesperson[0]?.email || "A salesperson";
+
+        try {
+          const RESEND_API_KEY = process.env.RESEND_API_KEY;
+          if (RESEND_API_KEY) {
+            await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${RESEND_API_KEY}`,
+              },
+              body: JSON.stringify({
+                from: "Sales@championsalestrainingandevents.com",
+                to: [managerEmail],
+                subject: `${spName} completed a training module`,
+                text: `${spName} has completed the module "${assignment.course_id}"${assignment.lesson_id ? ` / "${assignment.lesson_id}"` : ""}.\n\nView progress: https://championsalestrainingandevents.com/manager`,
+              }),
+            });
+          } else {
+            console.log(`[Email] Would notify ${managerEmail}: ${spName} completed ${assignment.course_id}`);
+          }
+        } catch (err) {
+          console.error("[Email] Failed to notify manager:", err);
+        }
+      }
+    }
+
+    return { success: true, assignmentsCompleted: assignments.length };
   },
 );
 
@@ -883,6 +934,8 @@ export const resetMyProgress = createServerFn({ method: "POST" }).handler(
     const db = sql();
     const userId = payload.userId as number;
     await db`DELETE FROM lesson_progress WHERE user_id = ${userId}`;
+    // Also clear any pending module assignments
+    await db`UPDATE module_assignments SET completed_at = NULL WHERE salesperson_id = ${userId}`;
     return { success: true };
   },
 );

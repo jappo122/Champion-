@@ -57,9 +57,13 @@ function CourseDetail() {
   const markComplete = async (lessonId: string) => {
     if (!authToken || !course) return;
     try {
-      const { markMyLessonComplete } = await import("~/lib/manager");
-      await markMyLessonComplete({ data: { token: authToken, courseId: course.id, lessonId } });
-      setCompletedLessons((prev) => new Set(prev).add(lessonId));
+      const res = await fetch("/api/mark-complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: authToken, courseId: course.id, lessonId })
+      });
+      const data = await res.json();
+      if (data.success) setCompletedLessons((prev) => new Set(prev).add(lessonId));
     } catch {}
   };
   const currentLesson = course?.lessonsList?.[currentLessonIdx];
