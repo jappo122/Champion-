@@ -111,6 +111,10 @@ async function handleApiRequest(req) {
     }
   }
 
+  // DEBUG catch-all for any /api/* POST
+  if (url.pathname.startsWith('/api/') && req.method === 'POST') {
+    return new Response(JSON.stringify({ debug: true, pathname: url.pathname, deployed: '2026-07-25T19:25:00Z' }), { headers: { 'Content-Type': 'application/json' } });
+  }
   // POST /api/my-progress — get completed lessons
   if (url.pathname === "/api/my-progress" && req.method === "POST") {
     try {
