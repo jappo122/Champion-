@@ -102,6 +102,7 @@ async function handleApiRequest(req) {
         }
       }
       await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
+      await sql`UPDATE module_assignments SET completed_at = NOW() WHERE salesperson_id = ${userId} AND course_id = ${courseId} AND (lesson_id = ${lessonId} OR lesson_id IS NULL) AND completed_at IS NULL`;
       return new Response(JSON.stringify({ success: true }), { headers: { "Content-Type": "application/json" } });
     } catch (err) {
       console.error("mark-complete error:", err.message);
