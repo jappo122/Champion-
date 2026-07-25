@@ -55,7 +55,6 @@ function CourseDetail() {
     }).catch(() => {});
   }, [course]);
   const [markError, setMarkError] = useState("");
-  const markComplete = async (lessonId: string) => {
     setMarkError("");
     if (!authToken || !course) return;
 
