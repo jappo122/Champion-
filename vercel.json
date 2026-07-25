@@ -1,7 +1,7 @@
 {
   "buildCommand": "echo 'Using pre-built bundle'",
   "installCommand": "echo 'Skipping install'",
-  "outputDirectory": ".vercel/output/static",
+  "outputDirectory": "dist/client",
   "framework": null,
   "rewrites": [
     { "source": "/api/mark-complete", "destination": "/api/mark-complete" },
