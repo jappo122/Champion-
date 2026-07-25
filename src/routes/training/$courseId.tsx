@@ -277,6 +277,21 @@ function CourseDetail() {
                         </button>
                       )}
                     </div>
+                    {/* Quiz requirement text */}
+                    {!completedLessons.has(currentLesson.id) && (() => {
+                      const quizScores = typeof window !== "undefined" ? (window as any).__quizScores || {} : {};
+                      const qr = quizScores[currentLesson.id];
+                      const hasQuiz = qr && qr.total > 0;
+                      if (!hasQuiz) return null;
+                      if (!qr.allAnswered) {
+                        return <p className="mt-3 text-xs text-gray-500">You must complete all quiz questions and score 80% or higher to mark this lesson complete.</p>;
+                      }
+                      const pct = Math.round((qr.correct / qr.total) * 100);
+                      if (pct < 80) {
+                        return <p className="mt-3 text-xs text-red-400">Score {pct}% — need 80% or higher to mark complete. Review and try again.</p>;
+                      }
+                      return <p className="mt-3 text-xs text-green-400">Score {pct}% — you're ready to mark this lesson complete!</p>;
+                    })()}
                     {currentLessonIdx < course.lessonsList.length - 1 && (
                       <button
                         onClick={() => setCurrentLessonIdx(currentLessonIdx + 1)}
