@@ -79,6 +79,51 @@ async function handleApiRequest(req) {
     }
   }
 
+  // POST /api/mark-complete — mark lesson complete
+  if (url.pathname === "/api/mark-complete" && req.method === "POST") {
+    try {
+      const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+      const { token, courseId, lessonId } = body || {};
+      const parts = token.split(".");
+      if (parts.length !== 3) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+      const [header, bodyPart, signature] = parts;
+      const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
+      const expected = createHash("sha256").update(`${header}.${bodyPart}.${secret}`).digest("hex");
+      if (signature !== expected) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+      const payload = JSON.parse(Buffer.from(bodyPart, "base64url").toString());
+      const userId = payload.userId;
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL);
+      await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
+      return new Response(JSON.stringify({ success: true }), { headers: { "Content-Type": "application/json" } });
+    } catch (err) {
+      console.error("mark-complete error:", err.message);
+      return new Response(JSON.stringify({ success: false, error: "Server error" }), { status: 500, headers: { "Content-Type": "application/json" } });
+    }
+  }
+
+  // POST /api/my-progress — get completed lessons
+  if (url.pathname === "/api/my-progress" && req.method === "POST") {
+    try {
+      const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+      const { token } = body || {};
+      const parts = token.split(".");
+      if (parts.length !== 3) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+      const [header, bodyPart, signature] = parts;
+      const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
+      const expected = createHash("sha256").update(`${header}.${bodyPart}.${secret}`).digest("hex");
+      if (signature !== expected) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+      const payload = JSON.parse(Buffer.from(bodyPart, "base64url").toString());
+      const userId = payload.userId;
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL);
+      const rows = await sql`SELECT course_id, lesson_id, completed_at FROM lesson_progress WHERE user_id = ${userId}`;
+      return new Response(JSON.stringify({ success: true, completedLessons: rows }), { headers: { "Content-Type": "application/json" } });
+    } catch (err) {
+      return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+    }
+  }
+
   return null; // Not an API route
 }
 
