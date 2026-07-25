@@ -240,7 +240,7 @@ function AccountTypes({ t }: { t: (k: string) => string }) {
               Access all courses, track your progress, and start closing more deals.
             </p>
             <ul className="mt-4 space-y-2">
-              {["Complete training library", "Track your own progress", "Interactive assessments", "Objection handling techniques"].map((item) => (
+              {["Complete training library", "Track your own progress", "Interactive quizzes with 80% mastery threshold", "Objection handling techniques"].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm text-gray-400">
                   <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

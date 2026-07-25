@@ -40,12 +40,12 @@ function PricingPage() {
       name: "Basic",
       price: 149,
       period: "/mo per student",
-      description: "Complete training: 5-min modules, objection handling, and assessments.",
+      description: "Complete training: 5-min modules, objection handling, interactive quizzes with 80% mastery threshold.",
       features: [
         "Complete training library",
         "5-minute micro-learning modules",
         "Objection handling techniques",
-        "Built-in skill assessments",
+        "Built-in assessments with 80% mastery threshold",
       ],
       cta: "Get Started",
       href: "/signup?tier=basic&type=individual",
@@ -258,7 +258,7 @@ function PricingPage() {
                   <tr className="border-b border-[#1a2d4a]/50">
                     <td className="py-3 pr-4">Basic</td>
                     <td className="py-3 pr-4 font-semibold text-white">$149/mo</td>
-                    <td className="py-3 text-gray-400">Complete training, 5-min modules, assessments</td>
+                    <td className="py-3 text-gray-400">Complete training, 5-min modules, quizzes with 80% mastery</td>
                   </tr>
                   <tr className="border-b border-[#1a2d4a]/50">
                     <td className="py-3 pr-4">Plus</td>

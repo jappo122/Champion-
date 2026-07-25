@@ -83,7 +83,7 @@ async function handleApiRequest(req) {
   if (url.pathname === "/api/mark-complete" && req.method === "POST") {
     try {
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-      const { token, courseId, lessonId } = body || {};
+      const { token, courseId, lessonId, quizResults } = body || {};
       const parts = token.split(".");
       if (parts.length !== 3) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
       const [header, bodyPart, signature] = parts;
@@ -94,6 +94,13 @@ async function handleApiRequest(req) {
       const userId = payload.userId;
       const { neon } = await import("@neondatabase/serverless");
       const sql = neon(process.env.DATABASE_URL);
+      // Quiz threshold check: if lesson has quiz content, require score >= 80%
+      if (quizResults && quizResults.total > 0) {
+        const percent = Math.round((quizResults.correct / quizResults.total) * 100);
+        if (percent < 80) {
+          return new Response(JSON.stringify({ success: false, error: `Score ${percent}% — need 80% or higher to mark complete`, scoreNeeded: 80 }), { headers: { "Content-Type": "application/json" } });
+        }
+      }
       await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
       return new Response(JSON.stringify({ success: true }), { headers: { "Content-Type": "application/json" } });
     } catch (err) {

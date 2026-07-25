@@ -110,7 +110,7 @@ function TrainingCatalog() {
               <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />Professional Sales Training
             </span>
             <h1 className="mt-4 text-4xl font-extrabold text-white sm:text-5xl">Automotive Sales <span className="text-[#e63946]">Training</span></h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">Master the complete 10-step automotive sales process — from the initial greeting to follow-up referrals. Six courses, 42 lessons, 40+ quiz questions.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">Master the complete 10-step automotive sales process — from the initial greeting to follow-up referrals. 11 courses, 68 lessons, 200+ quiz questions with 80% mastery threshold required to mark complete.</p>
             <div className="mt-8 flex justify-center gap-4">
               <a href="/signup" className="rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Start Free</a>
               <a href="/login" className="rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>

@@ -175,7 +175,7 @@ function CourseDetail() {
                     >
                       {/* Status icon */}
                       {isCompleted ? (
-                        <svg className="h-4 w-4 shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-4 w-4 shrink-0 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       ) : isActive ? (
@@ -225,7 +225,7 @@ function CourseDetail() {
                   <div className="mt-8 flex items-center justify-between border-t border-[#1a2d4a] pt-6">
                     <div>
                       {completedLessons.has(currentLesson.id) ? (
-                        <div className="flex items-center gap-2 text-sm text-green-500">
+                        <div className="flex items-center gap-2 text-sm text-[#e63946]">
                           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
