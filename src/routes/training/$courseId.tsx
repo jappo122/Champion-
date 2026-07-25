@@ -54,16 +54,49 @@ function CourseDetail() {
       }
     }).catch(() => {});
   }, [course]);
+  const [markError, setMarkError] = useState("");
   const markComplete = async (lessonId: string) => {
+    setMarkError("");
     if (!authToken || !course) return;
+
+    // Get quiz scores from window global (set by quiz component)
+    const quizScores = (window as any).__quizScores || {};
+    const quizResult = quizScores[lessonId];
+    const hasQuiz = quizResult && quizResult.total > 0;
+
+    // If lesson has quiz but not all answered
+    if (hasQuiz && !quizResult.allAnswered) {
+      setMarkError(`Answer all ${quizResult.total} questions before marking complete.`);
+      return;
+    }
+
+    // If lesson has quiz, check 80% threshold
+    if (hasQuiz) {
+      const percent = Math.round((quizResult.correct / quizResult.total) * 100);
+      if (percent < 80) {
+        setMarkError(`Score ${percent}% — need 80% or higher to mark this lesson complete.`);
+        return;
+      }
+    }
+
     try {
       const res = await fetch("/api/mark-complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: authToken, courseId: course.id, lessonId })
+        body: JSON.stringify({
+          token: authToken,
+          courseId: course.id,
+          lessonId,
+          quizResults: hasQuiz ? { correct: quizResult.correct, total: quizResult.total } : { correct: 0, total: 0 }
+        })
       });
       const data = await res.json();
-      if (data.success) setCompletedLessons((prev) => new Set(prev).add(lessonId));
+      if (data.success) {
+        setCompletedLessons((prev) => new Set(prev).add(lessonId));
+        setMarkError("");
+      } else if (data.error) {
+        setMarkError(data.error);
+      }
     } catch {}
   };
   const currentLesson = course?.lessonsList?.[currentLessonIdx];
@@ -223,6 +256,11 @@ function CourseDetail() {
                   {renderMarkdown(currentLesson.content, currentLesson.id)}
                   {/* Mark Complete button */}
                   <div className="mt-8 flex items-center justify-between border-t border-[#1a2d4a] pt-6">
+                    {markError && (
+                      <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3">
+                        <p className="text-sm text-red-400">{markError}</p>
+                      </div>
+                    )}
                     <div>
                       {completedLessons.has(currentLesson.id) ? (
                         <div className="flex items-center gap-2 text-sm text-[#e63946]">

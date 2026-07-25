@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CarIcon, SalespersonIcon, CustomerIcon, HandshakeIcon, ClipboardIcon, TrophyIcon, QuestionIcon, KeyIcon, MoneyIcon, DealershipIcon, ChartIcon, getIllustrationForLesson } from "./quiz-illustrations";
 
 interface QuizQuestionData {
@@ -166,6 +166,18 @@ export function QuizQuestion({ content, lessonId }: QuizQuestionProps) {
   const allAnswered = questions.every((_, idx) => selectedAnswers[idx]);
   const allChecked = questions.every((_, idx) => showResults[idx]);
   const correctCount = questions.filter((q, idx) => selectedAnswers[idx] === q.correctAnswer).length;
+
+  // Sync quiz scores to window so parent can read them for mark-complete
+  useEffect(() => {
+    if (typeof window !== "undefined" && lessonId) {
+      (window as any).__quizScores = (window as any).__quizScores || {};
+      (window as any).__quizScores[lessonId] = {
+        correct: correctCount,
+        total: questions.length,
+        allAnswered,
+      };
+    }
+  }, [correctCount, allAnswered, lessonId, questions.length]);
 
   return (
     <div className="mt-8 rounded-xl border border-[#1a2d4a] bg-[#0a1628] overflow-hidden">
