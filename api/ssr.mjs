@@ -30,6 +30,7 @@ function verifyPassword(password, stored) {
 
 // ── API route handler ──
 async function handleApiRequest(req) {
+  // DEPLOY_VERSION: 2026-07-25T19:25:00Z — mark-complete + my-progress + login + session
   const url = new URL(req.url, "https://" + (req.headers?.host || "localhost"));
 
   if (url.pathname === "/api/login" && req.method === "POST") {
@@ -169,3 +170,4 @@ export default async function(req, res) {
     res.end("Error");
   }
 }
+// deploy: 2026-07-25T19:54:45Z
