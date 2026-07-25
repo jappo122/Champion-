@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
-import { useState, useEffect } from "react";
-import { courses } from "~/content/courses";
-import { getAuthInfo } from "~/lib/auth-guard";
+import { useState } from "react";
 import { detailedSteps, stepQuizzes } from "~/content/steps-content";
 import type { DetailedStep, StepQuestion } from "~/content/steps-content";
 
@@ -12,26 +10,9 @@ export const Route = createFileRoute("/steps")({
 
 function StepsPage() {
   const { t } = useTranslation();
-  const [authState, setAuthState] = useState<"loading" | "authenticated" | "unauthenticated">("loading");
   const [mode, setMode] = useState<"guide" | "quiz">("guide");
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
   const [submittedAnswers, setSubmittedAnswers] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    const token = localStorage.getItem("salesdrive_token");
-    if (!token) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    getAuthInfo({ data: { token } }).then((result) => {
-      if (result.authenticated) {
-        setAuthState("authenticated");
-      } else {
-        // Token kept — transient failures should not log you out
-        setAuthState("unauthenticated");
-      }
-    });
-  }, []);
 
   const handleSelectAnswer = (questionKey: string, index: number) => {
     if (submittedAnswers[questionKey]) return;
@@ -64,34 +45,6 @@ function StepsPage() {
     return submittedAnswers[q.key] && answer === q.question.correctIndex;
   }).length;
   const allAnswered = answeredCount === totalQuestions;
-
-  if (authState === "loading") {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
-      </div>
-    );
-  }
-
-  if (authState === "unauthenticated") {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628] px-6">
-        <div className="w-full max-w-md text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20">
-            <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-          </div>
-          <h1 className="mt-6 text-2xl font-bold text-white">Sign in to access the Sales Process</h1>
-          <p className="mt-3 text-gray-400">Sign in to view the complete 10-step automotive sales process.</p>
-          <div className="mt-8 flex justify-center gap-4">
-            <a href="/login" className="btn-primary text-sm">Sign In</a>
-            <a href="/signup" className="btn-secondary text-sm">Create Account</a>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-dvh bg-[#0a1628]">
