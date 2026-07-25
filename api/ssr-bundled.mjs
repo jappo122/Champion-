@@ -190,7 +190,11 @@ var init_url = __esm({
 });
 
 // node_modules/srvx/dist/adapters/node.mjs
+import nodeHTTP, { IncomingMessage, ServerResponse } from "node:http";
 import { Duplex, PassThrough, Readable, addAbortSignal } from "node:stream";
+import { pipeline } from "node:stream/promises";
+import nodeHTTPS from "node:https";
+import nodeHTTP2 from "node:http2";
 var NodeResponse;
 var init_node = __esm({
   "node_modules/srvx/dist/adapters/node.mjs"() {
@@ -10783,12 +10787,12 @@ var require_use_sync_external_store_shim_production = __commonJS({
       return x3 === y3 && (0 !== x3 || 1 / x3 === 1 / y3) || x3 !== x3 && y3 !== y3;
     }
     var objectIs = "function" === typeof Object.is ? Object.is : is2;
-    var useState26 = React3.useState;
+    var useState27 = React3.useState;
     var useEffect20 = React3.useEffect;
     var useLayoutEffect3 = React3.useLayoutEffect;
     var useDebugValue = React3.useDebugValue;
     function useSyncExternalStore$2(subscribe2, getSnapshot) {
-      var value = getSnapshot(), _useState = useState26({ inst: { value, getSnapshot } }), inst = _useState[0].inst, forceUpdate = _useState[1];
+      var value = getSnapshot(), _useState = useState27({ inst: { value, getSnapshot } }), inst = _useState[0].inst, forceUpdate = _useState[1];
       useLayoutEffect3(
         function() {
           inst.value = value;
@@ -10846,7 +10850,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
             "The result of getSnapshot should be cached to avoid an infinite loop"
           ), didWarnUncachedGetSnapshot = true);
         }
-        cachedValue = useState26({
+        cachedValue = useState27({
           inst: { value, getSnapshot }
         });
         var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
@@ -10884,7 +10888,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
         return getSnapshot();
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is2, useState26 = React3.useState, useEffect20 = React3.useEffect, useLayoutEffect3 = React3.useLayoutEffect, useDebugValue = React3.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+      var React3 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is2, useState27 = React3.useState, useEffect20 = React3.useEffect, useLayoutEffect3 = React3.useLayoutEffect, useDebugValue = React3.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
       exports.useSyncExternalStore = void 0 !== React3.useSyncExternalStore ? React3.useSyncExternalStore : shim;
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
@@ -13486,6 +13490,7 @@ var init_esm5 = __esm({
     init_RouterProvider();
     init_HeadContent();
     init_Scripts();
+    init_esm2();
   }
 });
 
@@ -39439,16 +39444,16 @@ var init_server4 = __esm({
   }
 });
 
-// dist/server/assets/_tanstack-start-manifest_v-D5SGz9hY.js
-var tanstack_start_manifest_v_D5SGz9hY_exports = {};
-__export(tanstack_start_manifest_v_D5SGz9hY_exports, {
+// dist/server/assets/_tanstack-start-manifest_v-BXRMYaDj.js
+var tanstack_start_manifest_v_BXRMYaDj_exports = {};
+__export(tanstack_start_manifest_v_BXRMYaDj_exports, {
   tsrStartManifest: () => tsrStartManifest
 });
 var tsrStartManifest;
-var init_tanstack_start_manifest_v_D5SGz9hY = __esm({
-  "dist/server/assets/_tanstack-start-manifest_v-D5SGz9hY.js"() {
+var init_tanstack_start_manifest_v_BXRMYaDj = __esm({
+  "dist/server/assets/_tanstack-start-manifest_v-BXRMYaDj.js"() {
     "use strict";
-    tsrStartManifest = () => ({ routes: { __root__: { filePath: "/home/team/shared/site/src/routes/__root.tsx", children: ["/", "/account", "/admin", "/checkout", "/contact", "/inbox", "/login", "/planner", "/pricing", "/profile", "/sales-log", "/steps", "/support", "/blog/$slug", "/purchase/success", "/signup/complete", "/training/$courseId", "/training/preview", "/blog/", "/manager/", "/signup/", "/training/"], preloads: ["/assets/index-C7BIWUgZ.js"], scripts: [{ attrs: { type: "module", async: true, src: "/assets/index-C7BIWUgZ.js" } }] }, "/": { filePath: "/home/team/shared/site/src/routes/index.tsx", children: void 0, preloads: ["/assets/index-D1RvWGsB.js"] }, "/account": { filePath: "/home/team/shared/site/src/routes/account.tsx", children: void 0, preloads: ["/assets/account-DDYcmR2-.js", "/assets/auth-jP2uIHWM.js"] }, "/admin": { filePath: "/home/team/shared/site/src/routes/admin.tsx", children: void 0, preloads: ["/assets/admin-BUQIB5TU.js", "/assets/auth-guard-Bf3mSIhW.js"] }, "/checkout": { filePath: "/home/team/shared/site/src/routes/checkout.tsx", children: void 0, preloads: ["/assets/checkout-Ccqt3aKy.js"] }, "/contact": { filePath: "/home/team/shared/site/src/routes/contact.tsx", children: void 0, preloads: ["/assets/contact-CuyfTksq.js"] }, "/inbox": { filePath: "/home/team/shared/site/src/routes/inbox.tsx", children: void 0, preloads: ["/assets/inbox-CknqHjG9.js", "/assets/auth-guard-Bf3mSIhW.js"] }, "/login": { filePath: "/home/team/shared/site/src/routes/login.tsx", children: void 0, preloads: ["/assets/login-Bg3EMa4L.js"] }, "/planner": { filePath: "/home/team/shared/site/src/routes/planner.tsx", children: void 0, preloads: ["/assets/planner-gE7J8Y8o.js", "/assets/manager-DI_Cu6-c.js", "/assets/courses-nMTizr6K.js"] }, "/pricing": { filePath: "/home/team/shared/site/src/routes/pricing.tsx", children: void 0, preloads: ["/assets/pricing-BVYsPEXU.js"] }, "/profile": { filePath: "/home/team/shared/site/src/routes/profile.tsx", children: void 0, preloads: ["/assets/profile-DhIuRwP0.js", "/assets/courses-nMTizr6K.js", "/assets/manager-DI_Cu6-c.js"] }, "/sales-log": { filePath: "/home/team/shared/site/src/routes/sales-log.tsx", children: void 0, preloads: ["/assets/sales-log-C6IyPmJj.js"] }, "/steps": { filePath: "/home/team/shared/site/src/routes/steps.tsx", children: void 0, preloads: ["/assets/steps-D8ntZCDM.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-Bf3mSIhW.js"] }, "/support": { filePath: "/home/team/shared/site/src/routes/support.tsx", children: void 0, preloads: ["/assets/support-D-l9-qBS.js"] }, "/blog/$slug": { filePath: "/home/team/shared/site/src/routes/blog/$slug.tsx", children: void 0, preloads: ["/assets/_slug-Dxt6HKw9.js", "/assets/blog-DccJg0qx.js"] }, "/purchase/success": { filePath: "/home/team/shared/site/src/routes/purchase/success.tsx", children: void 0, preloads: ["/assets/success-CV5UncUl.js"] }, "/signup/complete": { filePath: "/home/team/shared/site/src/routes/signup/complete.tsx", children: void 0, preloads: ["/assets/complete-CP8wT25U.js"] }, "/training/$courseId": { filePath: "/home/team/shared/site/src/routes/training/$courseId.tsx", children: void 0, preloads: ["/assets/_courseId-BdA_g_7E.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-Bf3mSIhW.js", "/assets/client-auth-Bn1-t_p0.js", "/assets/quiz-question-BKyCpzMc.js"] }, "/training/preview": { filePath: "/home/team/shared/site/src/routes/training/preview.tsx", children: void 0, preloads: ["/assets/preview-Casv3Neo.js", "/assets/courses-nMTizr6K.js", "/assets/quiz-question-BKyCpzMc.js"] }, "/blog/": { filePath: "/home/team/shared/site/src/routes/blog/index.tsx", children: void 0, preloads: ["/assets/index-Btgn-Tjj.js", "/assets/blog-DccJg0qx.js"] }, "/manager/": { filePath: "/home/team/shared/site/src/routes/manager/index.tsx", children: void 0, preloads: ["/assets/index-CEnNrT0D.js", "/assets/manager-DI_Cu6-c.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-Bf3mSIhW.js"] }, "/signup/": { filePath: "/home/team/shared/site/src/routes/signup/index.tsx", children: void 0, preloads: ["/assets/index-2s6tyxec.js", "/assets/auth-jP2uIHWM.js"] }, "/training/": { filePath: "/home/team/shared/site/src/routes/training/index.tsx", children: void 0, preloads: ["/assets/index-Edc1tTMt.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-Bf3mSIhW.js", "/assets/manager-DI_Cu6-c.js", "/assets/client-auth-Bn1-t_p0.js"] } } });
+    tsrStartManifest = () => ({ routes: { __root__: { filePath: "/home/team/shared/site/src/routes/__root.tsx", children: ["/", "/account", "/admin", "/checkout", "/contact", "/email", "/inbox", "/login", "/planner", "/pricing", "/profile", "/sales-log", "/steps", "/support", "/blog/$slug", "/purchase/success", "/signup/complete", "/training/$courseId", "/training/preview", "/blog/", "/manager/", "/signup/", "/training/"], preloads: ["/assets/index-Bwx3ZXCD.js"], scripts: [{ attrs: { type: "module", async: true, src: "/assets/index-Bwx3ZXCD.js" } }] }, "/": { filePath: "/home/team/shared/site/src/routes/index.tsx", children: void 0, preloads: ["/assets/index-8KLXeLpA.js"] }, "/account": { filePath: "/home/team/shared/site/src/routes/account.tsx", children: void 0, preloads: ["/assets/account-CRj5hJJw.js", "/assets/auth-1Vr2fubE.js"] }, "/admin": { filePath: "/home/team/shared/site/src/routes/admin.tsx", children: void 0, preloads: ["/assets/admin-CWkHTWaO.js", "/assets/auth-guard-hU2HdWGc.js"] }, "/checkout": { filePath: "/home/team/shared/site/src/routes/checkout.tsx", children: void 0, preloads: ["/assets/checkout-z_C-dCA9.js"] }, "/contact": { filePath: "/home/team/shared/site/src/routes/contact.tsx", children: void 0, preloads: ["/assets/contact-DdJlKW1x.js"] }, "/email": { filePath: "/home/team/shared/site/src/routes/email.tsx", children: void 0, preloads: ["/assets/email-V9dSE1-z.js", "/assets/email-BXeoBqLd.js"] }, "/inbox": { filePath: "/home/team/shared/site/src/routes/inbox.tsx", children: void 0, preloads: ["/assets/inbox-CevEA8Cs.js", "/assets/auth-guard-hU2HdWGc.js"] }, "/login": { filePath: "/home/team/shared/site/src/routes/login.tsx", children: void 0, preloads: ["/assets/login-_-W6PgoV.js"] }, "/planner": { filePath: "/home/team/shared/site/src/routes/planner.tsx", children: void 0, preloads: ["/assets/planner-B2JWHhqv.js", "/assets/manager-C8-5mRSk.js", "/assets/courses-nMTizr6K.js"] }, "/pricing": { filePath: "/home/team/shared/site/src/routes/pricing.tsx", children: void 0, preloads: ["/assets/pricing-Bg9reL5p.js"] }, "/profile": { filePath: "/home/team/shared/site/src/routes/profile.tsx", children: void 0, preloads: ["/assets/profile-D7Z4P7AA.js", "/assets/courses-nMTizr6K.js", "/assets/manager-C8-5mRSk.js"] }, "/sales-log": { filePath: "/home/team/shared/site/src/routes/sales-log.tsx", children: void 0, preloads: ["/assets/sales-log-DGePaCSA.js"] }, "/steps": { filePath: "/home/team/shared/site/src/routes/steps.tsx", children: void 0, preloads: ["/assets/steps-CmiogNpe.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-hU2HdWGc.js"] }, "/support": { filePath: "/home/team/shared/site/src/routes/support.tsx", children: void 0, preloads: ["/assets/support-DmhBQ53J.js"] }, "/blog/$slug": { filePath: "/home/team/shared/site/src/routes/blog/$slug.tsx", children: void 0, preloads: ["/assets/_slug-SIJs6WU3.js", "/assets/blog-DccJg0qx.js"] }, "/purchase/success": { filePath: "/home/team/shared/site/src/routes/purchase/success.tsx", children: void 0, preloads: ["/assets/success-BXh5IWkY.js"] }, "/signup/complete": { filePath: "/home/team/shared/site/src/routes/signup/complete.tsx", children: void 0, preloads: ["/assets/complete-Cox76FyO.js"] }, "/training/$courseId": { filePath: "/home/team/shared/site/src/routes/training/$courseId.tsx", children: void 0, preloads: ["/assets/_courseId-LL3SBtqB.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-hU2HdWGc.js", "/assets/quiz-question-C7pV0G3D.js"] }, "/training/preview": { filePath: "/home/team/shared/site/src/routes/training/preview.tsx", children: void 0, preloads: ["/assets/preview-BdEE0bc4.js", "/assets/courses-nMTizr6K.js", "/assets/quiz-question-C7pV0G3D.js"] }, "/blog/": { filePath: "/home/team/shared/site/src/routes/blog/index.tsx", children: void 0, preloads: ["/assets/index-Clmc1QT9.js", "/assets/blog-DccJg0qx.js"] }, "/manager/": { filePath: "/home/team/shared/site/src/routes/manager/index.tsx", children: void 0, preloads: ["/assets/index-BGQ2uVKK.js", "/assets/manager-C8-5mRSk.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-hU2HdWGc.js"] }, "/signup/": { filePath: "/home/team/shared/site/src/routes/signup/index.tsx", children: void 0, preloads: ["/assets/index-B8zP3yb_.js", "/assets/auth-1Vr2fubE.js"] }, "/training/": { filePath: "/home/team/shared/site/src/routes/training/index.tsx", children: void 0, preloads: ["/assets/index-6kMOh2xi.js", "/assets/courses-nMTizr6K.js", "/assets/auth-guard-hU2HdWGc.js", "/assets/manager-C8-5mRSk.js"] } } });
   }
 });
 
@@ -44733,6 +44738,7 @@ var email_cxXaOx6X_exports = {};
 __export(email_cxXaOx6X_exports, {
   sendEmail: () => sendEmail
 });
+import "node:async_hooks";
 var import_react10, import_jsx_runtime16, sendEmail;
 var init_email_cxXaOx6X = __esm({
   "dist/server/assets/email-cxXaOx6X.js"() {
@@ -44758,6 +44764,7 @@ __export(billing_CFMw7M3s_exports, {
   getUserSubscription_createServerFn_handler: () => getUserSubscription_createServerFn_handler
 });
 import { createHash } from "node:crypto";
+import "node:async_hooks";
 function verifyToken(token) {
   try {
     const parts = token.split(".");
@@ -45189,6 +45196,7 @@ __export(manager_DeMiHCcD_exports, {
   sendMessage_createServerFn_handler: () => sendMessage_createServerFn_handler
 });
 import { randomBytes as randomBytes2, createHash as createHash3 } from "node:crypto";
+import "node:async_hooks";
 function verifyToken2(token) {
   try {
     const parts = token.split(".");
@@ -46428,6 +46436,7 @@ __export(inbox_BQUiapIT_exports, {
   markInboxRead_createServerFn_handler: () => markInboxRead_createServerFn_handler,
   syncInboxEmails_createServerFn_handler: () => syncInboxEmails_createServerFn_handler
 });
+import "node:async_hooks";
 async function ensureTable() {
   const db = sql();
   await db`
@@ -46589,6 +46598,7 @@ __export(planner_DfiO0OSW_exports, {
   getAppointments_createServerFn_handler: () => getAppointments_createServerFn_handler
 });
 import { createHash as createHash4 } from "node:crypto";
+import "node:async_hooks";
 function verifyToken3(token) {
   try {
     const parts = token.split(".");
@@ -46717,6 +46727,7 @@ __export(complete_Dy_AN7ed_exports, {
   completeSignupAfterPayment_createServerFn_handler: () => completeSignupAfterPayment_createServerFn_handler
 });
 import { randomBytes as randomBytes3, createHash as createHash5 } from "node:crypto";
+import "node:async_hooks";
 var import_react15, import_jsx_runtime21, completeSignupAfterPayment_createServerFn_handler, completeSignupAfterPayment;
 var init_complete_Dy_AN7ed = __esm({
   "dist/server/assets/complete-Dy_AN7ed.js"() {
@@ -46836,6 +46847,7 @@ __export(support_OuNbzw_v_exports, {
   logError_createServerFn_handler: () => logError_createServerFn_handler,
   submitTicket_createServerFn_handler: () => submitTicket_createServerFn_handler
 });
+import "node:async_hooks";
 var import_react16, import_jsx_runtime22, submitTicket_createServerFn_handler, submitTicket, logError_createServerFn_handler, logError;
 var init_support_OuNbzw_v = __esm({
   "dist/server/assets/support-OuNbzw_v.js"() {
@@ -46908,6 +46920,7 @@ __export(auth_D_HKW_x5_exports, {
   updateProfile_createServerFn_handler: () => updateProfile_createServerFn_handler
 });
 import { randomBytes as randomBytes4, createHash as createHash6, timingSafeEqual } from "node:crypto";
+import "node:async_hooks";
 function hashPassword(password) {
   const salt = randomBytes4(16).toString("hex");
   let key = password + salt;
@@ -47156,6 +47169,7 @@ __export(auth_guard_GE2T435D_exports, {
   getAuthInfo_createServerFn_handler: () => getAuthInfo_createServerFn_handler
 });
 import { createHash as createHash7 } from "node:crypto";
+import "node:async_hooks";
 function verifyToken5(token) {
   try {
     const parts = token.split(".");
@@ -47229,21 +47243,23 @@ var init_auth_guard_GE2T435D = __esm({
   }
 });
 
-// dist/server/assets/email-D5dPe5SV.js
-var email_D5dPe5SV_exports = {};
-__export(email_D5dPe5SV_exports, {
+// dist/server/assets/email-Bk5ufhJu.js
+var email_Bk5ufhJu_exports = {};
+__export(email_Bk5ufhJu_exports, {
   sendEmail_createServerFn_handler: () => sendEmail_createServerFn_handler
 });
-var import_react19, import_jsx_runtime25, FROM_EMAIL, sendEmail_createServerFn_handler, sendEmail2;
-var init_email_D5dPe5SV = __esm({
-  "dist/server/assets/email-D5dPe5SV.js"() {
+import "node:async_hooks";
+var import_react19, import_jsx_runtime25, RESEND_API_KEY, FROM_EMAIL, sendEmail_createServerFn_handler, sendEmail2;
+var init_email_Bk5ufhJu = __esm({
+  "dist/server/assets/email-Bk5ufhJu.js"() {
     "use strict";
     init_createServerRpc_D_6bKnO();
     init_server5();
     init_production();
     import_react19 = __toESM(require_react(), 1);
     import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
-    FROM_EMAIL = "champion-sales-training-events-f80d0630@ctomail.io";
+    RESEND_API_KEY = process.env.RESEND_API_KEY || "re_c2usm69A_7pyDpw3gVxeNsbMBhBGSsufS";
+    FROM_EMAIL = "Sales@championsalestrainingandevents.com";
     sendEmail_createServerFn_handler = createServerRpc({
       id: "4b25f436ce80645ccec0236688b03cba8c4693e2942328b43053eca42eb891d8",
       name: "sendEmail",
@@ -47255,23 +47271,26 @@ var init_email_D5dPe5SV = __esm({
       data
     }) => {
       try {
-        const response = await fetch("https://api.ctomail.io/v1/send", {
+        const to2 = Array.isArray(data.to) ? data.to : [data.to];
+        const response = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${process.env.CTOMAIL_API_KEY || ""}`
+            "Authorization": `Bearer ${RESEND_API_KEY}`
           },
           body: JSON.stringify({
             from: FROM_EMAIL,
-            to: data.to,
+            to: to2,
             subject: data.subject,
             text: data.body
           })
         });
         if (!response.ok) {
-          console.error("[Email] Failed to send:", await response.text());
+          const errText = await response.text();
+          console.error("[Email] Resend failed:", errText);
           return {
-            success: false
+            success: false,
+            error: errText
           };
         }
         return {
@@ -47280,7 +47299,8 @@ var init_email_D5dPe5SV = __esm({
       } catch (err) {
         console.error("[Email] Error:", err);
         return {
-          success: false
+          success: false,
+          error: String(err)
         };
       }
     });
@@ -47293,6 +47313,7 @@ __export(admin_wjDiqk57_exports, {
   upgradeDemoAccounts_createServerFn_handler: () => upgradeDemoAccounts_createServerFn_handler
 });
 import { createHash as createHash8 } from "node:crypto";
+import "node:async_hooks";
 function verifyToken6(token) {
   try {
     const parts = token.split(".");
@@ -47376,6 +47397,7 @@ var contact_cN0awlyL_exports = {};
 __export(contact_cN0awlyL_exports, {
   submitContactForm_createServerFn_handler: () => submitContactForm_createServerFn_handler
 });
+import "node:async_hooks";
 var import_react21, import_jsx_runtime27, submitContactForm_createServerFn_handler, submitContactForm;
 var init_contact_cN0awlyL = __esm({
   "dist/server/assets/contact-cN0awlyL.js"() {
@@ -47448,6 +47470,7 @@ var support_BwZgVmbK_exports = {};
 __export(support_BwZgVmbK_exports, {
   submitTicket_createServerFn_handler: () => submitTicket_createServerFn_handler2
 });
+import "node:async_hooks";
 var import_react22, import_jsx_runtime28, submitTicket_createServerFn_handler2, submitTicket2;
 var init_support_BwZgVmbK = __esm({
   "dist/server/assets/support-BwZgVmbK.js"() {
@@ -47488,17 +47511,18 @@ var init_support_BwZgVmbK = __esm({
   }
 });
 
-// dist/server/assets/ar-DYUP0zsq.js
-var ar_DYUP0zsq_exports = {};
-__export(ar_DYUP0zsq_exports, {
+// dist/server/assets/ar-QfRfLJ4k.js
+var ar_QfRfLJ4k_exports = {};
+__export(ar_QfRfLJ4k_exports, {
   default: () => translations2,
   translations: () => translations2
 });
+import "node:async_hooks";
 var import_jsx_runtime29, import_react23, translations2;
-var init_ar_DYUP0zsq = __esm({
-  "dist/server/assets/ar-DYUP0zsq.js"() {
+var init_ar_QfRfLJ4k = __esm({
+  "dist/server/assets/ar-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime29 = __toESM(require_jsx_runtime(), 1);
     import_react23 = __toESM(require_react(), 1);
     init_production();
@@ -47509,17 +47533,18 @@ var init_ar_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/bn-DYUP0zsq.js
-var bn_DYUP0zsq_exports = {};
-__export(bn_DYUP0zsq_exports, {
+// dist/server/assets/bn-QfRfLJ4k.js
+var bn_QfRfLJ4k_exports = {};
+__export(bn_QfRfLJ4k_exports, {
   default: () => translations3,
   translations: () => translations3
 });
+import "node:async_hooks";
 var import_jsx_runtime30, import_react24, translations3;
-var init_bn_DYUP0zsq = __esm({
-  "dist/server/assets/bn-DYUP0zsq.js"() {
+var init_bn_QfRfLJ4k = __esm({
+  "dist/server/assets/bn-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime30 = __toESM(require_jsx_runtime(), 1);
     import_react24 = __toESM(require_react(), 1);
     init_production();
@@ -47530,17 +47555,18 @@ var init_bn_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/de-DYUP0zsq.js
-var de_DYUP0zsq_exports = {};
-__export(de_DYUP0zsq_exports, {
+// dist/server/assets/de-QfRfLJ4k.js
+var de_QfRfLJ4k_exports = {};
+__export(de_QfRfLJ4k_exports, {
   default: () => translations4,
   translations: () => translations4
 });
+import "node:async_hooks";
 var import_jsx_runtime31, import_react25, translations4;
-var init_de_DYUP0zsq = __esm({
-  "dist/server/assets/de-DYUP0zsq.js"() {
+var init_de_QfRfLJ4k = __esm({
+  "dist/server/assets/de-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime31 = __toESM(require_jsx_runtime(), 1);
     import_react25 = __toESM(require_react(), 1);
     init_production();
@@ -47551,17 +47577,18 @@ var init_de_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/es-DYUP0zsq.js
-var es_DYUP0zsq_exports = {};
-__export(es_DYUP0zsq_exports, {
+// dist/server/assets/es-QfRfLJ4k.js
+var es_QfRfLJ4k_exports = {};
+__export(es_QfRfLJ4k_exports, {
   default: () => translations5,
   translations: () => translations5
 });
+import "node:async_hooks";
 var import_jsx_runtime32, import_react26, translations5;
-var init_es_DYUP0zsq = __esm({
-  "dist/server/assets/es-DYUP0zsq.js"() {
+var init_es_QfRfLJ4k = __esm({
+  "dist/server/assets/es-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime32 = __toESM(require_jsx_runtime(), 1);
     import_react26 = __toESM(require_react(), 1);
     init_production();
@@ -47572,17 +47599,18 @@ var init_es_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/fr-DYUP0zsq.js
-var fr_DYUP0zsq_exports = {};
-__export(fr_DYUP0zsq_exports, {
+// dist/server/assets/fr-QfRfLJ4k.js
+var fr_QfRfLJ4k_exports = {};
+__export(fr_QfRfLJ4k_exports, {
   default: () => translations6,
   translations: () => translations6
 });
+import "node:async_hooks";
 var import_jsx_runtime33, import_react27, translations6;
-var init_fr_DYUP0zsq = __esm({
-  "dist/server/assets/fr-DYUP0zsq.js"() {
+var init_fr_QfRfLJ4k = __esm({
+  "dist/server/assets/fr-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime33 = __toESM(require_jsx_runtime(), 1);
     import_react27 = __toESM(require_react(), 1);
     init_production();
@@ -47593,17 +47621,18 @@ var init_fr_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/hi-DYUP0zsq.js
-var hi_DYUP0zsq_exports = {};
-__export(hi_DYUP0zsq_exports, {
+// dist/server/assets/hi-QfRfLJ4k.js
+var hi_QfRfLJ4k_exports = {};
+__export(hi_QfRfLJ4k_exports, {
   default: () => translations7,
   translations: () => translations7
 });
+import "node:async_hooks";
 var import_jsx_runtime34, import_react28, translations7;
-var init_hi_DYUP0zsq = __esm({
-  "dist/server/assets/hi-DYUP0zsq.js"() {
+var init_hi_QfRfLJ4k = __esm({
+  "dist/server/assets/hi-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime34 = __toESM(require_jsx_runtime(), 1);
     import_react28 = __toESM(require_react(), 1);
     init_production();
@@ -47614,17 +47643,18 @@ var init_hi_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/it-DYUP0zsq.js
-var it_DYUP0zsq_exports = {};
-__export(it_DYUP0zsq_exports, {
+// dist/server/assets/it-QfRfLJ4k.js
+var it_QfRfLJ4k_exports = {};
+__export(it_QfRfLJ4k_exports, {
   default: () => translations8,
   translations: () => translations8
 });
+import "node:async_hooks";
 var import_jsx_runtime35, import_react29, translations8;
-var init_it_DYUP0zsq = __esm({
-  "dist/server/assets/it-DYUP0zsq.js"() {
+var init_it_QfRfLJ4k = __esm({
+  "dist/server/assets/it-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime35 = __toESM(require_jsx_runtime(), 1);
     import_react29 = __toESM(require_react(), 1);
     init_production();
@@ -47635,17 +47665,18 @@ var init_it_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/ja-DYUP0zsq.js
-var ja_DYUP0zsq_exports = {};
-__export(ja_DYUP0zsq_exports, {
+// dist/server/assets/ja-QfRfLJ4k.js
+var ja_QfRfLJ4k_exports = {};
+__export(ja_QfRfLJ4k_exports, {
   default: () => translations9,
   translations: () => translations9
 });
+import "node:async_hooks";
 var import_jsx_runtime36, import_react30, translations9;
-var init_ja_DYUP0zsq = __esm({
-  "dist/server/assets/ja-DYUP0zsq.js"() {
+var init_ja_QfRfLJ4k = __esm({
+  "dist/server/assets/ja-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime36 = __toESM(require_jsx_runtime(), 1);
     import_react30 = __toESM(require_react(), 1);
     init_production();
@@ -47656,17 +47687,18 @@ var init_ja_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/jv-DYUP0zsq.js
-var jv_DYUP0zsq_exports = {};
-__export(jv_DYUP0zsq_exports, {
+// dist/server/assets/jv-QfRfLJ4k.js
+var jv_QfRfLJ4k_exports = {};
+__export(jv_QfRfLJ4k_exports, {
   default: () => translations10,
   translations: () => translations10
 });
+import "node:async_hooks";
 var import_jsx_runtime37, import_react31, translations10;
-var init_jv_DYUP0zsq = __esm({
-  "dist/server/assets/jv-DYUP0zsq.js"() {
+var init_jv_QfRfLJ4k = __esm({
+  "dist/server/assets/jv-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime37 = __toESM(require_jsx_runtime(), 1);
     import_react31 = __toESM(require_react(), 1);
     init_production();
@@ -47677,17 +47709,18 @@ var init_jv_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/ko-DYUP0zsq.js
-var ko_DYUP0zsq_exports = {};
-__export(ko_DYUP0zsq_exports, {
+// dist/server/assets/ko-QfRfLJ4k.js
+var ko_QfRfLJ4k_exports = {};
+__export(ko_QfRfLJ4k_exports, {
   default: () => translations11,
   translations: () => translations11
 });
+import "node:async_hooks";
 var import_jsx_runtime38, import_react32, translations11;
-var init_ko_DYUP0zsq = __esm({
-  "dist/server/assets/ko-DYUP0zsq.js"() {
+var init_ko_QfRfLJ4k = __esm({
+  "dist/server/assets/ko-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime38 = __toESM(require_jsx_runtime(), 1);
     import_react32 = __toESM(require_react(), 1);
     init_production();
@@ -47698,17 +47731,18 @@ var init_ko_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/mr-DYUP0zsq.js
-var mr_DYUP0zsq_exports = {};
-__export(mr_DYUP0zsq_exports, {
+// dist/server/assets/mr-QfRfLJ4k.js
+var mr_QfRfLJ4k_exports = {};
+__export(mr_QfRfLJ4k_exports, {
   default: () => translations12,
   translations: () => translations12
 });
+import "node:async_hooks";
 var import_jsx_runtime39, import_react33, translations12;
-var init_mr_DYUP0zsq = __esm({
-  "dist/server/assets/mr-DYUP0zsq.js"() {
+var init_mr_QfRfLJ4k = __esm({
+  "dist/server/assets/mr-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime39 = __toESM(require_jsx_runtime(), 1);
     import_react33 = __toESM(require_react(), 1);
     init_production();
@@ -47719,17 +47753,18 @@ var init_mr_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/ms-DYUP0zsq.js
-var ms_DYUP0zsq_exports = {};
-__export(ms_DYUP0zsq_exports, {
+// dist/server/assets/ms-QfRfLJ4k.js
+var ms_QfRfLJ4k_exports = {};
+__export(ms_QfRfLJ4k_exports, {
   default: () => translations13,
   translations: () => translations13
 });
+import "node:async_hooks";
 var import_jsx_runtime40, import_react34, translations13;
-var init_ms_DYUP0zsq = __esm({
-  "dist/server/assets/ms-DYUP0zsq.js"() {
+var init_ms_QfRfLJ4k = __esm({
+  "dist/server/assets/ms-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime40 = __toESM(require_jsx_runtime(), 1);
     import_react34 = __toESM(require_react(), 1);
     init_production();
@@ -47740,17 +47775,18 @@ var init_ms_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/pa-DYUP0zsq.js
-var pa_DYUP0zsq_exports = {};
-__export(pa_DYUP0zsq_exports, {
+// dist/server/assets/pa-QfRfLJ4k.js
+var pa_QfRfLJ4k_exports = {};
+__export(pa_QfRfLJ4k_exports, {
   default: () => translations14,
   translations: () => translations14
 });
+import "node:async_hooks";
 var import_jsx_runtime41, import_react35, translations14;
-var init_pa_DYUP0zsq = __esm({
-  "dist/server/assets/pa-DYUP0zsq.js"() {
+var init_pa_QfRfLJ4k = __esm({
+  "dist/server/assets/pa-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime41 = __toESM(require_jsx_runtime(), 1);
     import_react35 = __toESM(require_react(), 1);
     init_production();
@@ -47761,17 +47797,18 @@ var init_pa_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/pt-DYUP0zsq.js
-var pt_DYUP0zsq_exports = {};
-__export(pt_DYUP0zsq_exports, {
+// dist/server/assets/pt-QfRfLJ4k.js
+var pt_QfRfLJ4k_exports = {};
+__export(pt_QfRfLJ4k_exports, {
   default: () => translations15,
   translations: () => translations15
 });
+import "node:async_hooks";
 var import_jsx_runtime42, import_react36, translations15;
-var init_pt_DYUP0zsq = __esm({
-  "dist/server/assets/pt-DYUP0zsq.js"() {
+var init_pt_QfRfLJ4k = __esm({
+  "dist/server/assets/pt-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime42 = __toESM(require_jsx_runtime(), 1);
     import_react36 = __toESM(require_react(), 1);
     init_production();
@@ -47782,17 +47819,18 @@ var init_pt_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/ru-DYUP0zsq.js
-var ru_DYUP0zsq_exports = {};
-__export(ru_DYUP0zsq_exports, {
+// dist/server/assets/ru-QfRfLJ4k.js
+var ru_QfRfLJ4k_exports = {};
+__export(ru_QfRfLJ4k_exports, {
   default: () => translations16,
   translations: () => translations16
 });
+import "node:async_hooks";
 var import_jsx_runtime43, import_react37, translations16;
-var init_ru_DYUP0zsq = __esm({
-  "dist/server/assets/ru-DYUP0zsq.js"() {
+var init_ru_QfRfLJ4k = __esm({
+  "dist/server/assets/ru-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime43 = __toESM(require_jsx_runtime(), 1);
     import_react37 = __toESM(require_react(), 1);
     init_production();
@@ -47803,17 +47841,18 @@ var init_ru_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/ta-DYUP0zsq.js
-var ta_DYUP0zsq_exports = {};
-__export(ta_DYUP0zsq_exports, {
+// dist/server/assets/ta-QfRfLJ4k.js
+var ta_QfRfLJ4k_exports = {};
+__export(ta_QfRfLJ4k_exports, {
   default: () => translations17,
   translations: () => translations17
 });
+import "node:async_hooks";
 var import_jsx_runtime44, import_react38, translations17;
-var init_ta_DYUP0zsq = __esm({
-  "dist/server/assets/ta-DYUP0zsq.js"() {
+var init_ta_QfRfLJ4k = __esm({
+  "dist/server/assets/ta-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime44 = __toESM(require_jsx_runtime(), 1);
     import_react38 = __toESM(require_react(), 1);
     init_production();
@@ -47824,17 +47863,18 @@ var init_ta_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/te-DYUP0zsq.js
-var te_DYUP0zsq_exports = {};
-__export(te_DYUP0zsq_exports, {
+// dist/server/assets/te-QfRfLJ4k.js
+var te_QfRfLJ4k_exports = {};
+__export(te_QfRfLJ4k_exports, {
   default: () => translations18,
   translations: () => translations18
 });
+import "node:async_hooks";
 var import_jsx_runtime45, import_react39, translations18;
-var init_te_DYUP0zsq = __esm({
-  "dist/server/assets/te-DYUP0zsq.js"() {
+var init_te_QfRfLJ4k = __esm({
+  "dist/server/assets/te-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime45 = __toESM(require_jsx_runtime(), 1);
     import_react39 = __toESM(require_react(), 1);
     init_production();
@@ -47845,17 +47885,18 @@ var init_te_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/vi-DYUP0zsq.js
-var vi_DYUP0zsq_exports = {};
-__export(vi_DYUP0zsq_exports, {
+// dist/server/assets/vi-QfRfLJ4k.js
+var vi_QfRfLJ4k_exports = {};
+__export(vi_QfRfLJ4k_exports, {
   default: () => translations19,
   translations: () => translations19
 });
+import "node:async_hooks";
 var import_jsx_runtime46, import_react40, translations19;
-var init_vi_DYUP0zsq = __esm({
-  "dist/server/assets/vi-DYUP0zsq.js"() {
+var init_vi_QfRfLJ4k = __esm({
+  "dist/server/assets/vi-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime46 = __toESM(require_jsx_runtime(), 1);
     import_react40 = __toESM(require_react(), 1);
     init_production();
@@ -47866,17 +47907,18 @@ var init_vi_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/zh-DYUP0zsq.js
-var zh_DYUP0zsq_exports = {};
-__export(zh_DYUP0zsq_exports, {
+// dist/server/assets/zh-QfRfLJ4k.js
+var zh_QfRfLJ4k_exports = {};
+__export(zh_QfRfLJ4k_exports, {
   default: () => translations20,
   translations: () => translations20
 });
+import "node:async_hooks";
 var import_jsx_runtime47, import_react41, translations20;
-var init_zh_DYUP0zsq = __esm({
-  "dist/server/assets/zh-DYUP0zsq.js"() {
+var init_zh_QfRfLJ4k = __esm({
+  "dist/server/assets/zh-QfRfLJ4k.js"() {
     "use strict";
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_jsx_runtime47 = __toESM(require_jsx_runtime(), 1);
     import_react41 = __toESM(require_react(), 1);
     init_production();
@@ -47887,11 +47929,12 @@ var init_zh_DYUP0zsq = __esm({
   }
 });
 
-// dist/server/assets/index-Nl71Y8hr.js
-var index_Nl71Y8hr_exports = {};
-__export(index_Nl71Y8hr_exports, {
+// dist/server/assets/index-Cjwcwp4Z.js
+var index_Cjwcwp4Z_exports = {};
+__export(index_Cjwcwp4Z_exports, {
   component: () => Home
 });
+import "node:async_hooks";
 function Home() {
   const {
     t
@@ -48244,12 +48287,12 @@ function Footer({
   ] }) });
 }
 var import_jsx_runtime48, import_react42;
-var init_index_Nl71Y8hr = __esm({
-  "dist/server/assets/index-Nl71Y8hr.js"() {
+var init_index_Cjwcwp4Z = __esm({
+  "dist/server/assets/index-Cjwcwp4Z.js"() {
     "use strict";
     import_jsx_runtime48 = __toESM(require_jsx_runtime(), 1);
     import_react42 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     init_production();
   }
 });
@@ -48276,11 +48319,12 @@ var init_auth_EYtabqPq = __esm({
   }
 });
 
-// dist/server/assets/account-CI8R_i83.js
-var account_CI8R_i83_exports = {};
-__export(account_CI8R_i83_exports, {
+// dist/server/assets/account-yqdicznf.js
+var account_yqdicznf_exports = {};
+__export(account_yqdicznf_exports, {
   component: () => AccountPage
 });
+import "node:async_hooks";
 function AccountPage() {
   const {
     t
@@ -48408,11 +48452,11 @@ function AccountPage() {
   ] });
 }
 var import_jsx_runtime49, import_react43;
-var init_account_CI8R_i83 = __esm({
-  "dist/server/assets/account-CI8R_i83.js"() {
+var init_account_yqdicznf = __esm({
+  "dist/server/assets/account-yqdicznf.js"() {
     "use strict";
     import_jsx_runtime49 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     import_react43 = __toESM(require_react(), 1);
     init_auth_EYtabqPq();
     init_production();
@@ -48437,6 +48481,7 @@ var admin_C_IeYcpL_exports = {};
 __export(admin_C_IeYcpL_exports, {
   component: () => AdminPage
 });
+import "node:async_hooks";
 function AdminPage() {
   const [token, setToken] = (0, import_react44.useState)(null);
   const [isAdmin, setIsAdmin] = (0, import_react44.useState)(false);
@@ -48541,17 +48586,18 @@ var init_admin_C_IeYcpL = __esm({
   }
 });
 
-// dist/server/assets/checkout-CccZyfYe.js
-var checkout_CccZyfYe_exports = {};
-__export(checkout_CccZyfYe_exports, {
+// dist/server/assets/checkout-WDFNiWds.js
+var checkout_WDFNiWds_exports = {};
+__export(checkout_WDFNiWds_exports, {
   component: () => CheckoutPage
 });
+import "node:async_hooks";
 function CheckoutPage() {
   const {
     t
   } = useTranslation();
   const search = useSearch({
-    from: Route$i.id
+    from: Route$j.id
   });
   const initialTier = search?.tier || "mgmt-plus";
   const [step, setStep] = (0, import_react45.useState)(1);
@@ -48689,13 +48735,13 @@ function CheckoutPage() {
   ] });
 }
 var import_jsx_runtime51, import_react45, STRIPE_LINKS, TIER_DETAILS;
-var init_checkout_CccZyfYe = __esm({
-  "dist/server/assets/checkout-CccZyfYe.js"() {
+var init_checkout_WDFNiWds = __esm({
+  "dist/server/assets/checkout-WDFNiWds.js"() {
     "use strict";
     import_jsx_runtime51 = __toESM(require_jsx_runtime(), 1);
     init_esm5();
     import_react45 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     init_production();
     STRIPE_LINKS = {
       "mgmt-basic": "https://buy.stripe.com/9B6fZhcP4eHqeXM43t8Vi0f",
@@ -48727,6 +48773,7 @@ var contact_CRUWI_dA_exports = {};
 __export(contact_CRUWI_dA_exports, {
   component: () => ContactPage
 });
+import "node:async_hooks";
 function ContactPage() {
   const [name, setName] = (0, import_react46.useState)("");
   const [email, setEmail] = (0, import_react46.useState)("");
@@ -48873,20 +48920,121 @@ var init_contact_CRUWI_dA = __esm({
   }
 });
 
+// dist/server/assets/email-oOyn1nPp.js
+var email_oOyn1nPp_exports = {};
+__export(email_oOyn1nPp_exports, {
+  component: () => EmailPage
+});
+import "node:async_hooks";
+function EmailPage() {
+  const [to2, setTo] = (0, import_react47.useState)("");
+  const [subject, setSubject] = (0, import_react47.useState)("");
+  const [body, setBody] = (0, import_react47.useState)("");
+  const [sending, setSending] = (0, import_react47.useState)(false);
+  const [sent, setSent] = (0, import_react47.useState)(false);
+  const [error, setError] = (0, import_react47.useState)("");
+  const handleSend = async (e) => {
+    e.preventDefault();
+    if (!to2.trim() || !subject.trim() || !body.trim()) return;
+    setSending(true);
+    setError("");
+    try {
+      const result = await sendEmail({
+        data: {
+          to: to2.trim(),
+          subject: subject.trim(),
+          body: body.trim()
+        }
+      });
+      if (result.success) {
+        setSent(true);
+        setTo("");
+        setSubject("");
+        setBody("");
+      } else {
+        setError("Failed to send email. Please try again.");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    }
+    setSending(false);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "min-h-screen bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("header", { className: "border-b border-[#1a2d4a] bg-[#0d1f35]/60 backdrop-blur-md", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("a", { href: "/", className: "text-xl font-bold text-white", children: [
+        "Champion",
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-[#e63946]", children: "Sales" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("nav", { className: "flex items-center gap-6 text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("a", { href: "/training", className: "text-gray-400 transition-colors hover:text-white", children: "Training" }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("a", { href: "/profile", className: "text-gray-400 transition-colors hover:text-white", children: "Profile" }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("a", { href: "/email", className: "font-medium text-[#e63946]", children: "Email" })
+      ] })
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("main", { className: "mx-auto max-w-3xl px-4 py-12 sm:px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "mb-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("h1", { className: "text-3xl font-bold text-white sm:text-4xl", children: "Send Email" }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "mt-2 text-gray-400", children: "Compose and send emails to your contacts." })
+      ] }),
+      sent ? /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "card p-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("svg", { className: "h-8 w-8 text-green-400", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("h2", { className: "text-xl font-semibold text-white", children: "Email Sent!" }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "mt-2 text-gray-400", children: "Your email has been sent successfully." }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("button", { onClick: () => setSent(false), className: "btn-primary mt-6", children: "Send Another" })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("form", { onSubmit: handleSend, className: "card space-y-6 p-6 sm:p-8", children: [
+        error && /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "rounded-lg border border-red-500/30 bg-red-500/10 p-4", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-sm text-red-400", children: error }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("label", { htmlFor: "to", className: "mb-2 block text-sm font-medium text-gray-300", children: [
+            "To ",
+            /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-[#e63946]", children: "*" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("input", { id: "to", type: "email", value: to2, onChange: (e) => setTo(e.target.value), placeholder: "recipient@example.com", required: true, className: "w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("label", { htmlFor: "subject", className: "mb-2 block text-sm font-medium text-gray-300", children: [
+            "Subject ",
+            /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-[#e63946]", children: "*" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("input", { id: "subject", type: "text", value: subject, onChange: (e) => setSubject(e.target.value), placeholder: "Email subject line", required: true, className: "w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("label", { htmlFor: "body", className: "mb-2 block text-sm font-medium text-gray-300", children: [
+            "Message ",
+            /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-[#e63946]", children: "*" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("textarea", { id: "body", rows: 8, value: body, onChange: (e) => setBody(e.target.value), placeholder: "Write your email message here...", required: true, className: "w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946] resize-y" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("button", { type: "submit", disabled: sending || !to2.trim() || !subject.trim() || !body.trim(), className: "btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed", children: sending ? "Sending..." : "Send Email" })
+      ] })
+    ] })
+  ] });
+}
+var import_jsx_runtime53, import_react47;
+var init_email_oOyn1nPp = __esm({
+  "dist/server/assets/email-oOyn1nPp.js"() {
+    "use strict";
+    import_jsx_runtime53 = __toESM(require_jsx_runtime(), 1);
+    import_react47 = __toESM(require_react(), 1);
+    init_email_cxXaOx6X();
+    init_production();
+  }
+});
+
 // dist/server/assets/inbox-P8KOWeFy.js
 var inbox_P8KOWeFy_exports = {};
 __export(inbox_P8KOWeFy_exports, {
   component: () => InboxPage
 });
+import "node:async_hooks";
 function InboxPage() {
-  const [token, setToken] = (0, import_react47.useState)(null);
-  const [isDemo, setIsDemo] = (0, import_react47.useState)(false);
-  const [initializing, setInitializing] = (0, import_react47.useState)(true);
-  const [emails, setEmails] = (0, import_react47.useState)([]);
-  const [selectedEmail, setSelectedEmail] = (0, import_react47.useState)(null);
-  const [loadingEmail, setLoadingEmail] = (0, import_react47.useState)(false);
-  const [mobileView, setMobileView] = (0, import_react47.useState)("list");
-  (0, import_react47.useEffect)(() => {
+  const [token, setToken] = (0, import_react48.useState)(null);
+  const [isDemo, setIsDemo] = (0, import_react48.useState)(false);
+  const [initializing, setInitializing] = (0, import_react48.useState)(true);
+  const [emails, setEmails] = (0, import_react48.useState)([]);
+  const [selectedEmail, setSelectedEmail] = (0, import_react48.useState)(null);
+  const [loadingEmail, setLoadingEmail] = (0, import_react48.useState)(false);
+  const [mobileView, setMobileView] = (0, import_react48.useState)("list");
+  (0, import_react48.useEffect)(() => {
     const stored = localStorage.getItem("auth-token");
     if (!stored) {
       setInitializing(false);
@@ -48961,75 +49109,75 @@ function InboxPage() {
     });
   }
   if (initializing) {
-    return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "min-h-screen bg-[#0a1628] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "animate-spin h-8 w-8 border-2 border-[#e63946] border-t-transparent rounded-full" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "min-h-screen bg-[#0a1628] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "animate-spin h-8 w-8 border-2 border-[#e63946] border-t-transparent rounded-full" }) });
   }
   if (!token) {
-    return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "min-h-screen bg-[#0a1628] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("h1", { className: "text-2xl font-bold text-white mb-4", children: "Inbox" }),
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-slate-400 mb-6", children: "Please sign in to access the inbox." }),
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("a", { href: "/login", className: "px-6 py-3 bg-[#e63946] text-white rounded-lg hover:bg-[#c1121f] transition font-semibold", children: "Sign In" })
+    return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "min-h-screen bg-[#0a1628] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("h1", { className: "text-2xl font-bold text-white mb-4", children: "Inbox" }),
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-slate-400 mb-6", children: "Please sign in to access the inbox." }),
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("a", { href: "/login", className: "px-6 py-3 bg-[#e63946] text-white rounded-lg hover:bg-[#c1121f] transition font-semibold", children: "Sign In" })
     ] }) });
   }
   if (!isDemo) {
-    return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "min-h-screen bg-[#0a1628] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20 mb-4", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("h1", { className: "text-2xl font-bold text-white mb-2", children: "Access Denied" }),
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-slate-400", children: "The inbox is only available to account owners." })
+    return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "min-h-screen bg-[#0a1628] flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20 mb-4", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("h1", { className: "text-2xl font-bold text-white mb-2", children: "Access Denied" }),
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-slate-400", children: "The inbox is only available to account owners." })
     ] }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "min-h-screen bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "bg-[#0f1d32] border-b border-[#1a2d4a] px-4 py-3 md:px-6", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "max-w-6xl mx-auto flex items-center justify-between", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("h1", { className: "text-xl font-bold text-white", children: "Inbox" }),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-xs text-slate-400 mt-0.5", children: BUSINESS_EMAIL })
+  return /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "min-h-screen bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "bg-[#0f1d32] border-b border-[#1a2d4a] px-4 py-3 md:px-6", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "max-w-6xl mx-auto flex items-center justify-between", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("h1", { className: "text-xl font-bold text-white", children: "Inbox" }),
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-xs text-slate-400 mt-0.5", children: BUSINESS_EMAIL })
       ] }),
-      unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("span", { className: "bg-[#e63946] text-white text-xs font-semibold px-2.5 py-1 rounded-full", children: [
+      unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("span", { className: "bg-[#e63946] text-white text-xs font-semibold px-2.5 py-1 rounded-full", children: [
         unreadCount,
         " unread"
       ] })
     ] }) }),
-    mobileView === "detail" && /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "md:hidden px-4 pt-3", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("button", { onClick: () => {
+    mobileView === "detail" && /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "md:hidden px-4 pt-3", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("button", { onClick: () => {
       setMobileView("list");
       setSelectedEmail(null);
     }, className: "flex items-center gap-2 text-sm text-slate-400 hover:text-white transition", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("svg", { className: "w-4 h-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 19l-7-7 7-7" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("svg", { className: "w-4 h-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 19l-7-7 7-7" }) }),
       "Back to inbox"
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "max-w-6xl mx-auto flex h-[calc(100vh-80px)]", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: `${mobileView === "detail" ? "hidden md:block" : "block"} w-full md:w-96 lg:w-[420px] border-r border-[#1a2d4a] overflow-y-auto`, children: emails.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "flex flex-col items-center justify-center h-full px-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("svg", { className: "w-12 h-12 text-slate-600 mb-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-slate-400 text-sm", children: "No emails" }),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-slate-600 text-xs mt-1", children: "Emails sent from your business inbox will appear here." })
-      ] }) : emails.map((email) => /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("button", { onClick: () => handleSelectEmail(email), className: `w-full text-left px-4 py-3 border-b border-[#1a2d4a] transition hover:bg-[#0f1d32] ${selectedEmail?.id === email.id ? "bg-[#0f1d32] border-l-2 border-l-[#e63946]" : ""} ${!email.is_read ? "bg-[#0d1f35]/60" : ""}`, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "flex items-start gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: `flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold ${email.direction === "outbound" ? "bg-blue-600/20 text-blue-400" : "bg-green-600/20 text-green-400"}`, children: (email.from_name || email.from_email).charAt(0).toUpperCase() }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "min-w-0 flex-1", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "flex items-center justify-between gap-2", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: `text-sm truncate ${!email.is_read ? "text-white font-semibold" : "text-slate-300"}`, children: email.from_name || email.from_email }),
-              /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-xs text-slate-500 flex-shrink-0", children: formatDate(email.received_at) })
+    /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "max-w-6xl mx-auto flex h-[calc(100vh-80px)]", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: `${mobileView === "detail" ? "hidden md:block" : "block"} w-full md:w-96 lg:w-[420px] border-r border-[#1a2d4a] overflow-y-auto`, children: emails.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "flex flex-col items-center justify-center h-full px-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("svg", { className: "w-12 h-12 text-slate-600 mb-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-slate-400 text-sm", children: "No emails" }),
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-slate-600 text-xs mt-1", children: "Emails sent from your business inbox will appear here." })
+      ] }) : emails.map((email) => /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("button", { onClick: () => handleSelectEmail(email), className: `w-full text-left px-4 py-3 border-b border-[#1a2d4a] transition hover:bg-[#0f1d32] ${selectedEmail?.id === email.id ? "bg-[#0f1d32] border-l-2 border-l-[#e63946]" : ""} ${!email.is_read ? "bg-[#0d1f35]/60" : ""}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "flex items-start gap-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: `flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold ${email.direction === "outbound" ? "bg-blue-600/20 text-blue-400" : "bg-green-600/20 text-green-400"}`, children: (email.from_name || email.from_email).charAt(0).toUpperCase() }),
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "min-w-0 flex-1", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "flex items-center justify-between gap-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: `text-sm truncate ${!email.is_read ? "text-white font-semibold" : "text-slate-300"}`, children: email.from_name || email.from_email }),
+              /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-xs text-slate-500 flex-shrink-0", children: formatDate(email.received_at) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: `text-sm truncate mt-0.5 ${!email.is_read ? "text-white font-medium" : "text-slate-400"}`, children: email.subject }),
-            /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-xs text-slate-500 truncate mt-0.5", children: email.preview })
+            /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: `text-sm truncate mt-0.5 ${!email.is_read ? "text-white font-medium" : "text-slate-400"}`, children: email.subject }),
+            /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-xs text-slate-500 truncate mt-0.5", children: email.preview })
           ] })
         ] }),
-        !email.is_read && /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "ml-12 mt-1", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "inline-block w-2 h-2 rounded-full bg-[#e63946]" }) })
+        !email.is_read && /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "ml-12 mt-1", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "inline-block w-2 h-2 rounded-full bg-[#e63946]" }) })
       ] }, email.id)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: `${mobileView === "list" ? "hidden md:flex" : "flex"} flex-1 flex-col overflow-y-auto`, children: loadingEmail ? /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "flex items-center justify-center h-full", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "animate-spin h-6 w-6 border-2 border-[#e63946] border-t-transparent rounded-full" }) }) : selectedEmail ? /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("h2", { className: "text-xl font-bold text-white mb-4", children: selectedEmail.subject }),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "bg-[#0f1d32] rounded-lg border border-[#1a2d4a] p-4 mb-6", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 text-sm", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-slate-500", children: "From:" }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("span", { className: "text-slate-300", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: `${mobileView === "list" ? "hidden md:flex" : "flex"} flex-1 flex-col overflow-y-auto`, children: loadingEmail ? /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "flex items-center justify-center h-full", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "animate-spin h-6 w-6 border-2 border-[#e63946] border-t-transparent rounded-full" }) }) : selectedEmail ? /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("h2", { className: "text-xl font-bold text-white mb-4", children: selectedEmail.subject }),
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "bg-[#0f1d32] rounded-lg border border-[#1a2d4a] p-4 mb-6", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 text-sm", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-slate-500", children: "From:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("span", { className: "text-slate-300", children: [
             selectedEmail.from_name ? `${selectedEmail.from_name} ` : "",
-            /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("span", { className: "text-slate-400", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("span", { className: "text-slate-400", children: [
               "<",
               selectedEmail.from_email,
               ">"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-slate-500", children: "To:" }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-slate-300", children: selectedEmail.to_emails.join(", ") }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-slate-500", children: "Date:" }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-slate-300", children: new Date(selectedEmail.received_at).toLocaleString("en-US", {
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-slate-500", children: "To:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-slate-300", children: selectedEmail.to_emails.join(", ") }),
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-slate-500", children: "Date:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-slate-300", children: new Date(selectedEmail.received_at).toLocaleString("en-US", {
             weekday: "short",
             month: "short",
             day: "numeric",
@@ -49037,23 +49185,23 @@ function InboxPage() {
             hour: "numeric",
             minute: "2-digit"
           }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: "text-slate-500", children: "Direction:" }),
-          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("span", { className: `text-sm font-medium ${selectedEmail.direction === "outbound" ? "text-blue-400" : "text-green-400"}`, children: selectedEmail.direction === "outbound" ? "Outbound" : "Inbound" })
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-slate-500", children: "Direction:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: `text-sm font-medium ${selectedEmail.direction === "outbound" ? "text-blue-400" : "text-green-400"}`, children: selectedEmail.direction === "outbound" ? "Outbound" : "Inbound" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("div", { className: "prose prose-invert max-w-none text-slate-300 whitespace-pre-wrap text-sm leading-relaxed", children: selectedEmail.body })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)("div", { className: "flex flex-col items-center justify-center h-full text-slate-500", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("svg", { className: "w-16 h-16 mb-4 text-slate-700", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1, d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)("p", { className: "text-sm", children: "Select an email to read" })
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "prose prose-invert max-w-none text-slate-300 whitespace-pre-wrap text-sm leading-relaxed", children: selectedEmail.body })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "flex flex-col items-center justify-center h-full text-slate-500", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("svg", { className: "w-16 h-16 mb-4 text-slate-700", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1, d: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "text-sm", children: "Select an email to read" })
       ] }) })
     ] })
   ] });
 }
-var import_jsx_runtime53, import_react47, getInboxEmails2, getInboxEmail2, markInboxRead2, DEMO_EMAILS, BUSINESS_EMAIL;
+var import_jsx_runtime54, import_react48, getInboxEmails2, getInboxEmail2, markInboxRead2, DEMO_EMAILS, BUSINESS_EMAIL;
 var init_inbox_P8KOWeFy = __esm({
   "dist/server/assets/inbox-P8KOWeFy.js"() {
     "use strict";
-    import_jsx_runtime53 = __toESM(require_jsx_runtime(), 1);
-    import_react47 = __toESM(require_react(), 1);
+    import_jsx_runtime54 = __toESM(require_jsx_runtime(), 1);
+    import_react48 = __toESM(require_react(), 1);
     init_auth_guard_DDzkafwD();
     init_createSsrRpc_l1y8KE69();
     init_server5();
@@ -49075,19 +49223,20 @@ var init_inbox_P8KOWeFy = __esm({
   }
 });
 
-// dist/server/assets/login-C1b7bHQv.js
-var login_C1b7bHQv_exports = {};
-__export(login_C1b7bHQv_exports, {
+// dist/server/assets/login-Dca_xeNm.js
+var login_Dca_xeNm_exports = {};
+__export(login_Dca_xeNm_exports, {
   component: () => LoginPage
 });
+import "node:async_hooks";
 function LoginPage() {
   const {
     t
   } = useTranslation();
-  const [email, setEmail] = (0, import_react48.useState)("");
-  const [password, setPassword] = (0, import_react48.useState)("");
-  const [error, setError] = (0, import_react48.useState)("");
-  const [loading, setLoading] = (0, import_react48.useState)(false);
+  const [email, setEmail] = (0, import_react49.useState)("");
+  const [password, setPassword] = (0, import_react49.useState)("");
+  const [error, setError] = (0, import_react49.useState)("");
+  const [loading, setLoading] = (0, import_react49.useState)(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -49115,47 +49264,47 @@ function LoginPage() {
     }
     setLoading(false);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "w-full max-w-md", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "mb-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("a", { href: "/", className: "inline-flex items-center gap-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("div", { className: "w-full max-w-md", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "mb-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("a", { href: "/", className: "inline-flex items-center gap-2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(LanguageSwitcher, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("h1", { className: "text-2xl font-bold text-white", children: t("auth.signIn") }),
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: "Sign in to your account to continue." }),
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("form", { onSubmit: handleSubmit, className: "mt-6 space-y-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.email") }),
-          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("input", { type: "email", required: true, value: email, onChange: (e) => setEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "you@dealership.com" })
+    /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(LanguageSwitcher, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("h1", { className: "text-2xl font-bold text-white", children: t("auth.signIn") }),
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: "Sign in to your account to continue." }),
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("form", { onSubmit: handleSubmit, className: "mt-6 space-y-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.email") }),
+          /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("input", { type: "email", required: true, value: email, onChange: (e) => setEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "you@dealership.com" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.password") }),
-          /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("input", { type: "password", required: true, value: password, onChange: (e) => setPassword(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "Your password" })
+        /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.password") }),
+          /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("input", { type: "password", required: true, value: password, onChange: (e) => setPassword(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "Your password" })
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: error }),
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("button", { type: "submit", disabled: loading, className: "btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50", children: loading ? t("auth.signingIn") : t("auth.signIn") })
+        error && /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: error }),
+        /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("button", { type: "submit", disabled: loading, className: "btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50", children: loading ? t("auth.signingIn") : t("auth.signIn") })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-400", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-400", children: [
         t("auth.noAccount"),
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("a", { href: "/signup", className: "text-[#e63946] hover:underline", children: t("auth.signUp") })
+        /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("a", { href: "/signup", className: "text-[#e63946] hover:underline", children: t("auth.signUp") })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)("p", { className: "mt-4 text-center text-xs text-gray-600", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("p", { className: "mt-4 text-center text-xs text-gray-600", children: [
         "After signing in, if you don't see our emails, check your spam folder. Add ",
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)("span", { className: "text-[#e63946]", children: "champion-sales-training-events-f80d0630@ctomail.io" }),
+        /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("span", { className: "text-[#e63946]", children: "champion-sales-training-events-f80d0630@ctomail.io" }),
         " to your contacts."
       ] })
     ] })
   ] }) });
 }
-var import_jsx_runtime54, import_react48;
-var init_login_C1b7bHQv = __esm({
-  "dist/server/assets/login-C1b7bHQv.js"() {
+var import_jsx_runtime55, import_react49;
+var init_login_Dca_xeNm = __esm({
+  "dist/server/assets/login-Dca_xeNm.js"() {
     "use strict";
-    import_jsx_runtime54 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react48 = __toESM(require_react(), 1);
+    import_jsx_runtime55 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react49 = __toESM(require_react(), 1);
     init_production();
   }
 });
@@ -49194,15 +49343,16 @@ __export(manager_CzgJH0An_exports, {
   resetUserProgress: () => resetUserProgress2,
   sendMessage: () => sendMessage2
 });
-var import_react49, import_jsx_runtime55, getMyProgress2, markMyLessonComplete2, removeMyLessonComplete2, getTeamProgress2, getUserProgress2, sendMessage2, markMessageRead2, markLessonComplete2, removeLessonComplete2, addSalesperson2, removeSalesperson2, changeSalespersonTier2, getTeamCost2, getSalesLog2, addSalesEntry2, deleteSalesEntry2, createAssignment2, assignAllSalespeople2, getAssignments2, completeAssignment2, deleteAssignment2, getTeamMembers2, getMyAssignments2, getMyAppointments2, getMyMessages2, getMyNotificationCounts2, checkDailyLimit2, getSkillGaps2, resetMyProgress2, resetUserProgress2;
+import "node:async_hooks";
+var import_react50, import_jsx_runtime56, getMyProgress2, markMyLessonComplete2, removeMyLessonComplete2, getTeamProgress2, getUserProgress2, sendMessage2, markMessageRead2, markLessonComplete2, removeLessonComplete2, addSalesperson2, removeSalesperson2, changeSalespersonTier2, getTeamCost2, getSalesLog2, addSalesEntry2, deleteSalesEntry2, createAssignment2, assignAllSalespeople2, getAssignments2, completeAssignment2, deleteAssignment2, getTeamMembers2, getMyAssignments2, getMyAppointments2, getMyMessages2, getMyNotificationCounts2, checkDailyLimit2, getSkillGaps2, resetMyProgress2, resetUserProgress2;
 var init_manager_CzgJH0An = __esm({
   "dist/server/assets/manager-CzgJH0An.js"() {
     "use strict";
     init_createSsrRpc_l1y8KE69();
     init_server5();
     init_production();
-    import_react49 = __toESM(require_react(), 1);
-    import_jsx_runtime55 = __toESM(require_jsx_runtime(), 1);
+    import_react50 = __toESM(require_react(), 1);
+    import_jsx_runtime56 = __toESM(require_jsx_runtime(), 1);
     getMyProgress2 = createServerFn({
       method: "POST"
     }).handler(createSsrRpc("3221f3a4204dd83bc28ed66fb5acdffa4d96a1e8f1db920b51a7367bfb38d607"));
@@ -53434,19 +53584,20 @@ D) Switching dealerships frequently
   }
 });
 
-// dist/server/assets/planner-B2p3_dti.js
-var planner_B2p3_dti_exports = {};
-__export(planner_B2p3_dti_exports, {
+// dist/server/assets/planner-C-nct659.js
+var planner_C_nct659_exports = {};
+__export(planner_C_nct659_exports, {
   component: () => PlannerPage
 });
+import "node:async_hooks";
 function PlannerPage() {
-  const [token, setToken] = (0, import_react50.useState)(null);
-  const [assignments, setAssignments] = (0, import_react50.useState)([]);
-  const [appointments, setAppointments] = (0, import_react50.useState)([]);
-  const [messages, setMessages] = (0, import_react50.useState)([]);
-  const [loading, setLoading] = (0, import_react50.useState)(true);
-  const [activeTab, setActiveTab] = (0, import_react50.useState)("timeline");
-  (0, import_react50.useEffect)(() => {
+  const [token, setToken] = (0, import_react51.useState)(null);
+  const [assignments, setAssignments] = (0, import_react51.useState)([]);
+  const [appointments, setAppointments] = (0, import_react51.useState)([]);
+  const [messages, setMessages] = (0, import_react51.useState)([]);
+  const [loading, setLoading] = (0, import_react51.useState)(true);
+  const [activeTab, setActiveTab] = (0, import_react51.useState)("timeline");
+  (0, import_react51.useEffect)(() => {
     const t = localStorage.getItem("salesdrive_token");
     if (!t) {
       window.location.href = "/login";
@@ -53477,48 +53628,48 @@ function PlannerPage() {
     return course?.title || courseId;
   };
   if (loading) {
-    return /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
   }
   const upcomingAppts = appointments.filter((a2) => new Date(a2.appointment_time) > /* @__PURE__ */ new Date());
   const pastAppts = appointments.filter((a2) => new Date(a2.appointment_time) <= /* @__PURE__ */ new Date());
   const pendingAssignments = assignments.filter((a2) => !a2.completed_at);
   assignments.filter((a2) => a2.completed_at);
   const unreadMessages = messages.filter((m4) => !m4.is_read);
-  return /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("nav", { className: "flex items-center gap-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: "Training" }),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 hover:text-white", children: "Profile" }),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("nav", { className: "flex items-center gap-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: "Training" }),
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 hover:text-white", children: "Profile" }),
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("button", { onClick: () => {
           localStorage.removeItem("salesdrive_token");
           window.location.href = "/";
         }, className: "text-sm text-gray-400 hover:text-[#e63946]", children: "Sign Out" }),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(LanguageSwitcher, {})
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between mb-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h1", { className: "text-2xl font-bold text-white", children: "My Planner" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-sm text-gray-400", children: "Your assigned tasks, appointments, and messages from your manager." })
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between mb-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h1", { className: "text-2xl font-bold text-white", children: "My Planner" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-sm text-gray-400", children: "Your assigned tasks, appointments, and messages from your manager." })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center gap-2 text-sm text-gray-500", children: [
-          unreadMessages.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("span", { className: "flex items-center gap-1 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs text-[#e63946]", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center gap-2 text-sm text-gray-500", children: [
+          unreadMessages.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "flex items-center gap-1 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs text-[#e63946]", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
             unreadMessages.length,
             " unread"
           ] }),
-          pendingAssignments.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("span", { className: "rounded-full bg-yellow-500/10 px-3 py-1 text-xs text-yellow-500", children: [
+          pendingAssignments.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "rounded-full bg-yellow-500/10 px-3 py-1 text-xs text-yellow-500", children: [
             pendingAssignments.length,
             " pending"
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "mb-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1 overflow-x-auto", children: [{
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "mb-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1 overflow-x-auto", children: [{
         id: "timeline",
         label: "Timeline"
       }, {
@@ -53530,23 +53681,23 @@ function PlannerPage() {
       }, {
         id: "messages",
         label: `Messages (${unreadMessages.length})`
-      }].map((tab) => /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("button", { onClick: () => setActiveTab(tab.id), className: `whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors ${activeTab === tab.id ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: tab.label }, tab.id)) }),
-      activeTab === "timeline" && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "space-y-6", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Today's Overview" }),
-        upcomingAppts.length === 0 && pendingAssignments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No upcoming tasks or appointments" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't assigned anything yet. Start training while you wait!" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("a", { href: "/training", className: "mt-4 inline-block rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f]", children: "Start Training" })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "relative", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "absolute left-4 top-0 h-full w-0.5 bg-[#1a2d4a]" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "space-y-6", children: [
-            upcomingAppts.slice(0, 5).map((a2) => /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "relative pl-10", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "absolute left-2.5 top-1 h-3 w-3 rounded-full border-2 border-[#e63946] bg-[#0d1f35]" }),
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-sm font-medium text-white", children: a2.customer_name }),
-                  /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("span", { className: "text-[10px] text-gray-500", children: [
+      }].map((tab) => /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("button", { onClick: () => setActiveTab(tab.id), className: `whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors ${activeTab === tab.id ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: tab.label }, tab.id)) }),
+      activeTab === "timeline" && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "space-y-6", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Today's Overview" }),
+        upcomingAppts.length === 0 && pendingAssignments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No upcoming tasks or appointments" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't assigned anything yet. Start training while you wait!" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: "/training", className: "mt-4 inline-block rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f]", children: "Start Training" })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "relative", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "absolute left-4 top-0 h-full w-0.5 bg-[#1a2d4a]" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "space-y-6", children: [
+            upcomingAppts.slice(0, 5).map((a2) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "relative pl-10", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "absolute left-2.5 top-1 h-3 w-3 rounded-full border-2 border-[#e63946] bg-[#0d1f35]" }),
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-sm font-medium text-white", children: a2.customer_name }),
+                  /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-[10px] text-gray-500", children: [
                     new Date(a2.appointment_time).toLocaleDateString(),
                     " ",
                     new Date(a2.appointment_time).toLocaleTimeString([], {
@@ -53555,83 +53706,83 @@ function PlannerPage() {
                     })
                   ] })
                 ] }),
-                a2.car_description && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-400 mt-1", children: a2.car_description }),
-                a2.task && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
+                a2.car_description && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-400 mt-1", children: a2.car_description }),
+                a2.task && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
                   "Task: ",
                   a2.task
                 ] })
               ] })
             ] }, a2.id)),
-            pendingAssignments.slice(0, 5).map((a2) => /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "relative pl-10", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "absolute left-2.5 top-1 h-3 w-3 rounded-full border-2 border-yellow-500 bg-[#0d1f35]" }),
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-sm font-medium text-white", children: getCourseName(a2.course_id) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-[10px] text-yellow-500", children: "Pending" })
+            pendingAssignments.slice(0, 5).map((a2) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "relative pl-10", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "absolute left-2.5 top-1 h-3 w-3 rounded-full border-2 border-yellow-500 bg-[#0d1f35]" }),
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-sm font-medium text-white", children: getCourseName(a2.course_id) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-[10px] text-yellow-500", children: "Pending" })
                 ] }),
-                a2.lesson_id && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-400 mt-1", children: [
+                a2.lesson_id && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-400 mt-1", children: [
                   "Lesson: ",
                   a2.lesson_id
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
                   "Assigned by ",
                   a2.manager_name || a2.manager_email
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("a", { href: `/training/${a2.course_id}`, className: "mt-2 inline-block text-xs text-[#e63946] hover:underline", children: "Start Module \u2192" })
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: `/training/${a2.course_id}`, className: "mt-2 inline-block text-xs text-[#e63946] hover:underline", children: "Start Module \u2192" })
               ] })
             ] }, `ass-${a2.id}`))
           ] })
         ] })
       ] }) }),
-      activeTab === "assignments" && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "My Assigned Modules" }),
-        assignments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No assigned modules" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't assigned any training modules yet." })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "space-y-3", children: assignments.map((a2) => {
+      activeTab === "assignments" && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "My Assigned Modules" }),
+        assignments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No assigned modules" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't assigned any training modules yet." })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "space-y-3", children: assignments.map((a2) => {
           const isCompleted = !!a2.completed_at;
-          return /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "min-w-0 flex-1", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center gap-2", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: `flex h-5 w-5 shrink-0 items-center justify-center rounded border ${isCompleted ? "border-green-500 bg-green-500" : "border-yellow-500"}`, children: isCompleted && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-sm font-medium text-white", children: getCourseName(a2.course_id) })
+          return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "min-w-0 flex-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: `flex h-5 w-5 shrink-0 items-center justify-center rounded border ${isCompleted ? "border-green-500 bg-green-500" : "border-yellow-500"}`, children: isCompleted && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-sm font-medium text-white", children: getCourseName(a2.course_id) })
               ] }),
-              a2.lesson_id && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-500 ml-7 mt-1", children: [
+              a2.lesson_id && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-500 ml-7 mt-1", children: [
                 "Lesson: ",
                 a2.lesson_id
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "ml-7 flex items-center gap-3 mt-1", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: `text-[10px] font-medium ${isCompleted ? "text-green-500" : "text-yellow-500"}`, children: isCompleted ? "Completed" : "In Progress" }),
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "ml-7 flex items-center gap-3 mt-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: `text-[10px] font-medium ${isCompleted ? "text-green-500" : "text-yellow-500"}`, children: isCompleted ? "Completed" : "In Progress" }),
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
                   "Assigned ",
                   new Date(a2.assigned_at).toLocaleDateString()
                 ] }),
-                isCompleted && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
+                isCompleted && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
                   "Completed ",
                   new Date(a2.completed_at).toLocaleDateString()
                 ] })
               ] })
             ] }),
-            !isCompleted && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("a", { href: `/training/${a2.course_id}`, className: "text-xs text-[#e63946] hover:underline shrink-0", children: "Start \u2192" })
+            !isCompleted && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: `/training/${a2.course_id}`, className: "text-xs text-[#e63946] hover:underline shrink-0", children: "Start \u2192" })
           ] }, a2.id);
         }) })
       ] }),
-      activeTab === "appointments" && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "My Appointments" }),
-        appointments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No appointments" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't set any appointments for you yet." })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "space-y-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h3", { className: "text-sm font-semibold text-gray-400", children: "Upcoming" }),
-          upcomingAppts.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-500", children: "No upcoming appointments" }) : upcomingAppts.map((a2) => /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center gap-3", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "flex h-8 w-8 items-center justify-center rounded-full bg-[#e63946]/20 text-sm font-bold text-[#e63946]", children: a2.customer_name?.[0] || "?" }),
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-sm font-medium text-white", children: a2.customer_name }),
-                  /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-500", children: [
+      activeTab === "appointments" && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "My Appointments" }),
+        appointments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No appointments" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't set any appointments for you yet." })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "space-y-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h3", { className: "text-sm font-semibold text-gray-400", children: "Upcoming" }),
+          upcomingAppts.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-500", children: "No upcoming appointments" }) : upcomingAppts.map((a2) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center gap-3", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "flex h-8 w-8 items-center justify-center rounded-full bg-[#e63946]/20 text-sm font-bold text-[#e63946]", children: a2.customer_name?.[0] || "?" }),
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-sm font-medium text-white", children: a2.customer_name }),
+                  /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-500", children: [
                     new Date(a2.appointment_time).toLocaleDateString(),
                     " ",
                     new Date(a2.appointment_time).toLocaleTimeString([], {
@@ -53641,43 +53792,43 @@ function PlannerPage() {
                   ] })
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-[10px] font-medium text-green-500", children: "Upcoming" })
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-[10px] font-medium text-green-500", children: "Upcoming" })
             ] }),
-            a2.car_description && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "mt-2 text-xs text-gray-400", children: [
+            a2.car_description && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "mt-2 text-xs text-gray-400", children: [
               "Vehicle: ",
               a2.car_description
             ] }),
-            a2.task && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-500", children: [
+            a2.task && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-500", children: [
               "Task: ",
               a2.task
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("p", { className: "text-xs text-gray-600 mt-1", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "text-xs text-gray-600 mt-1", children: [
               "Set by ",
               a2.manager_name || a2.manager_email
             ] })
           ] }, a2.id)),
-          pastAppts.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(import_jsx_runtime56.Fragment, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h3", { className: "text-sm font-semibold text-gray-400 mt-6", children: "Past" }),
-            pastAppts.map((a2) => /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3 opacity-60", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-sm text-gray-400", children: a2.customer_name }),
-                /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-[10px] text-gray-600", children: "Past" })
+          pastAppts.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(import_jsx_runtime57.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h3", { className: "text-sm font-semibold text-gray-400 mt-6", children: "Past" }),
+            pastAppts.map((a2) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3 opacity-60", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-sm text-gray-400", children: a2.customer_name }),
+                /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-[10px] text-gray-600", children: "Past" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-600", children: new Date(a2.appointment_time).toLocaleDateString() })
+              /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-600", children: new Date(a2.appointment_time).toLocaleDateString() })
             ] }, a2.id))
           ] })
         ] })
       ] }),
-      activeTab === "messages" && /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Messages from Manager" }),
-        messages.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No messages yet" }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't sent you any messages." })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "space-y-3", children: messages.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: `rounded-lg border p-4 ${m4.is_read ? "border-[#1a2d4a] bg-[#0a1628]/50" : "border-[#e63946]/20 bg-[#e63946]/5"}`, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "flex items-center justify-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "text-xs font-medium text-[#e63946]", children: m4.from_name || m4.from_email }),
-            /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
+      activeTab === "messages" && /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Messages from Manager" }),
+        messages.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "mx-auto h-10 w-10 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No messages yet" }),
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-xs text-gray-600", children: "Your manager hasn't sent you any messages." })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "space-y-3", children: messages.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: `rounded-lg border p-4 ${m4.is_read ? "border-[#1a2d4a] bg-[#0a1628]/50" : "border-[#e63946]/20 bg-[#e63946]/5"}`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex items-center justify-between", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-xs font-medium text-[#e63946]", children: m4.from_name || m4.from_email }),
+            /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
               new Date(m4.created_at).toLocaleDateString(),
               " ",
               new Date(m4.created_at).toLocaleTimeString([], {
@@ -53686,20 +53837,20 @@ function PlannerPage() {
               })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("p", { className: "mt-2 text-sm leading-relaxed text-gray-300 whitespace-pre-wrap", children: m4.message }),
-          !m4.is_read && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "mt-2 inline-flex items-center rounded-full bg-[#e63946]/10 px-2 py-0.5 text-[10px] font-medium text-[#e63946]", children: "New" })
+          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-2 text-sm leading-relaxed text-gray-300 whitespace-pre-wrap", children: m4.message }),
+          !m4.is_read && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "mt-2 inline-flex items-center rounded-full bg-[#e63946]/10 px-2 py-0.5 text-[10px] font-medium text-[#e63946]", children: "New" })
         ] }, m4.id)) })
       ] })
     ] })
   ] });
 }
-var import_jsx_runtime56, import_react50;
-var init_planner_B2p3_dti = __esm({
-  "dist/server/assets/planner-B2p3_dti.js"() {
+var import_jsx_runtime57, import_react51;
+var init_planner_C_nct659 = __esm({
+  "dist/server/assets/planner-C-nct659.js"() {
     "use strict";
-    import_jsx_runtime56 = __toESM(require_jsx_runtime(), 1);
-    import_react50 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
+    import_jsx_runtime57 = __toESM(require_jsx_runtime(), 1);
+    import_react51 = __toESM(require_react(), 1);
+    init_router_BIxaY9WS();
     init_manager_CzgJH0An();
     init_courses_CY9yjTRv();
     init_production();
@@ -53783,176 +53934,176 @@ function PricingPage() {
   function TierCard({
     tier
   }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: `relative flex flex-col rounded-xl border p-8 transition-all duration-200 ${tier.featured ? "border-[#e63946] bg-[#0d1f35] shadow-lg shadow-[#e63946]/10 md:scale-105" : "border-[#1a2d4a] bg-[#0d1f35] hover:border-[#2a4a6a]"}`, children: [
-      tier.badge && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#e63946] px-4 py-1 text-xs font-semibold text-white", children: tier.badge }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h3", { className: "text-lg font-semibold text-gray-300", children: tier.name }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mt-4 flex items-baseline gap-1", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-4xl font-extrabold text-white", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: `relative flex flex-col rounded-xl border p-8 transition-all duration-200 ${tier.featured ? "border-[#e63946] bg-[#0d1f35] shadow-lg shadow-[#e63946]/10 md:scale-105" : "border-[#1a2d4a] bg-[#0d1f35] hover:border-[#2a4a6a]"}`, children: [
+      tier.badge && /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#e63946] px-4 py-1 text-xs font-semibold text-white", children: tier.badge }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h3", { className: "text-lg font-semibold text-gray-300", children: tier.name }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mt-4 flex items-baseline gap-1", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("span", { className: "text-4xl font-extrabold text-white", children: [
           "$",
           tier.price
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-sm text-gray-500", children: tier.period })
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { className: "text-sm text-gray-500", children: tier.period })
       ] }),
-      tier.upgradeNote && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-1 text-xs text-[#e63946]/80 font-medium", children: tier.upgradeNote }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: tier.description }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("ul", { className: "mt-6 space-y-3 flex-1", children: tier.features.map((feature) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("li", { className: "flex items-start gap-3 text-sm text-gray-400", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("svg", { className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
+      tier.upgradeNote && /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "mt-1 text-xs text-[#e63946]/80 font-medium", children: tier.upgradeNote }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: tier.description }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("ul", { className: "mt-6 space-y-3 flex-1", children: tier.features.map((feature) => /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("li", { className: "flex items-start gap-3 text-sm text-gray-400", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("svg", { className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
         feature
       ] }, feature)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: tier.href, className: `mt-8 block rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all duration-200 ${tier.featured ? "bg-[#e63946] text-white hover:bg-[#c1121f] shadow-lg shadow-[#e63946]/20" : "border border-[#2a4a6a] text-gray-300 hover:border-[#e63946] hover:text-white"}`, children: tier.cta })
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("a", { href: tier.href, className: `mt-8 block rounded-lg px-6 py-3 text-center text-sm font-semibold transition-all duration-200 ${tier.featured ? "bg-[#e63946] text-white hover:bg-[#c1121f] shadow-lg shadow-[#e63946]/20" : "border border-[#2a4a6a] text-gray-300 hover:border-[#e63946] hover:text-white"}`, children: tier.cta })
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "min-h-screen bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("section", { className: "px-4 py-16 md:py-24", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mx-auto max-w-6xl text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h1", { className: "text-4xl font-extrabold tracking-tight text-white md:text-5xl", children: "Simple, Transparent Pricing" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Choose the plan that fits your dealership. Every plan includes full access to the Champion Sales Training platform. Works for both individual salespeople and management accounts." })
+  return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "min-h-screen bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("section", { className: "px-4 py-16 md:py-24", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mx-auto max-w-6xl text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h1", { className: "text-4xl font-extrabold tracking-tight text-white md:text-5xl", children: "Simple, Transparent Pricing" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Choose the plan that fits your dealership. Every plan includes full access to the Champion Sales Training platform. Works for both individual salespeople and management accounts." })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mx-auto max-w-6xl", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mb-8 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-2xl font-bold text-white", children: "Individual Plans" }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-2 text-sm text-gray-500", children: "For individual salespeople who want to master the automotive sales process." })
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mx-auto max-w-6xl", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mb-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h2", { className: "text-2xl font-bold text-white", children: "Individual Plans" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "mt-2 text-sm text-gray-500", children: "For individual salespeople who want to master the automotive sales process." })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "grid gap-6 md:grid-cols-3", children: individualTiers.map((tier) => /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(TierCard, { tier }, tier.id)) })
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "grid gap-6 md:grid-cols-3", children: individualTiers.map((tier) => /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(TierCard, { tier }, tier.id)) })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mx-auto max-w-6xl", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mb-8 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-2xl font-bold text-white", children: "Management Plans" }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-2 text-sm text-gray-500", children: "For dealership owners and managers who need to train and track their entire sales team." })
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mx-auto max-w-6xl", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mb-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h2", { className: "text-2xl font-bold text-white", children: "Management Plans" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "mt-2 text-sm text-gray-500", children: "For dealership owners and managers who need to train and track their entire sales team." })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "grid gap-6 md:grid-cols-3", children: managementTiers.map((tier) => /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(TierCard, { tier }, tier.id)) })
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "grid gap-6 md:grid-cols-3", children: managementTiers.map((tier) => /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(TierCard, { tier }, tier.id)) })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "mx-auto max-w-3xl", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-xl font-bold text-white text-center mb-2", children: "Per-Salesperson Add-On Rates" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-sm text-gray-400 text-center mb-6", children: "Management accounts can add salespeople at any tier. Each salesperson gets their own training access." }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("table", { className: "w-full text-left text-sm", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("tr", { className: "border-b border-[#1a2d4a]", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("th", { className: "py-3 pr-4 text-gray-400 font-medium", children: "Tier" }),
-          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("th", { className: "py-3 pr-4 text-gray-400 font-medium", children: "Rate per person" }),
-          /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("th", { className: "py-3 text-gray-400 font-medium", children: "Includes" })
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "mx-auto max-w-3xl", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h2", { className: "text-xl font-bold text-white text-center mb-2", children: "Per-Salesperson Add-On Rates" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "text-sm text-gray-400 text-center mb-6", children: "Management accounts can add salespeople at any tier. Each salesperson gets their own training access." }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("table", { className: "w-full text-left text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("tr", { className: "border-b border-[#1a2d4a]", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("th", { className: "py-3 pr-4 text-gray-400 font-medium", children: "Tier" }),
+          /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("th", { className: "py-3 pr-4 text-gray-400 font-medium", children: "Rate per person" }),
+          /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("th", { className: "py-3 text-gray-400 font-medium", children: "Includes" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("tbody", { className: "text-gray-300", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("tr", { className: "border-b border-[#1a2d4a]/50", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 pr-4", children: "Basic" }),
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 pr-4 font-semibold text-white", children: "$149/mo" }),
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 text-gray-400", children: "Complete training, 5-min modules, assessments" })
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("tbody", { className: "text-gray-300", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("tr", { className: "border-b border-[#1a2d4a]/50", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 pr-4", children: "Basic" }),
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 pr-4 font-semibold text-white", children: "$149/mo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 text-gray-400", children: "Complete training, 5-min modules, assessments" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("tr", { className: "border-b border-[#1a2d4a]/50", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 pr-4", children: "Plus" }),
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 pr-4 font-semibold text-white", children: "$169/mo" }),
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 text-gray-400", children: "Basic + manager modules, scenario questions, task assignment" })
+          /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("tr", { className: "border-b border-[#1a2d4a]/50", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 pr-4", children: "Plus" }),
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 pr-4 font-semibold text-white", children: "$169/mo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 text-gray-400", children: "Basic + manager modules, scenario questions, task assignment" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("tr", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 pr-4", children: "Premium" }),
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 pr-4 font-semibold text-white", children: "$189/mo" }),
-            /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("td", { className: "py-3 text-gray-400", children: "Plus + sales log, goal tracking, full analytics, mobile access" })
+          /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("tr", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 pr-4", children: "Premium" }),
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 pr-4 font-semibold text-white", children: "$189/mo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("td", { className: "py-3 text-gray-400", children: "Plus + sales log, goal tracking, full analytics, mobile access" })
           ] })
         ] })
       ] }) })
     ] }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "mx-auto max-w-3xl", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h2", { className: "text-xl font-bold text-white text-center mb-2", children: "Manager Cost Calculator" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "text-sm text-gray-400 text-center mb-6", children: "Estimate your monthly total based on your plan and team size." }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(ManagerCostCalculator, {})
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("section", { className: "px-4 pb-16", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "mx-auto max-w-3xl", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h2", { className: "text-xl font-bold text-white text-center mb-2", children: "Manager Cost Calculator" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "text-sm text-gray-400 text-center mb-6", children: "Estimate your monthly total based on your plan and team size." }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(ManagerCostCalculator, {})
     ] }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("section", { className: "border-t border-[#1a2d4a] px-4 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "mx-auto max-w-2xl text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("h3", { className: "text-lg font-semibold text-white", children: "Questions?" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("p", { className: "mt-2 text-sm text-gray-400", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("section", { className: "border-t border-[#1a2d4a] px-4 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "mx-auto max-w-2xl text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("h3", { className: "text-lg font-semibold text-white", children: "Questions?" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("p", { className: "mt-2 text-sm text-gray-400", children: [
         "Contact us at",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: "mailto:champion-sales-training-events-f80d0630@ctomail.io", className: "text-[#e63946] hover:underline", children: "champion-sales-training-events-f80d0630@ctomail.io" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("a", { href: "mailto:champion-sales-training-events-f80d0630@ctomail.io", className: "text-[#e63946] hover:underline", children: "champion-sales-training-events-f80d0630@ctomail.io" }),
         " ",
         "or visit our",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("a", { href: "/support", className: "text-[#e63946] hover:underline", children: "Support page" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("a", { href: "/support", className: "text-[#e63946] hover:underline", children: "Support page" }),
         "."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("p", { className: "mt-3 text-xs text-gray-600", children: "All plans auto-renew every 30 days. Cancel anytime from your profile dashboard. Works for any type of account \u2014 individual or management." })
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("p", { className: "mt-3 text-xs text-gray-600", children: "All plans auto-renew every 30 days. Cancel anytime from your profile dashboard. Works for any type of account \u2014 individual or management." })
     ] }) })
   ] });
 }
 function ManagerCostCalculator() {
-  const [planTier, setPlanTier] = (0, import_react51.useState)("basic");
-  const [salespersonTier, setSalespersonTier] = (0, import_react51.useState)("basic");
-  const [salespeople, setSalespeople] = (0, import_react51.useState)(3);
+  const [planTier, setPlanTier] = (0, import_react52.useState)("basic");
+  const [salespersonTier, setSalespersonTier] = (0, import_react52.useState)("basic");
+  const [salespeople, setSalespeople] = (0, import_react52.useState)(3);
   const baseFee = BASE_MGMT_RATES[planTier] || 149;
   const perPersonRate = PER_PERSON_RATES[salespersonTier] || 149;
   const totalPerPerson = perPersonRate * salespeople;
   const total = baseFee + totalPerPerson;
-  return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "space-y-6", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: "Management Plan" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "grid grid-cols-3 gap-2", children: ["basic", "plus", "premium"].map((t) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("button", { onClick: () => setPlanTier(t), className: `rounded-lg border px-3 py-2 text-sm font-medium transition ${planTier === t ? "border-[#e63946] bg-[#e63946]/10 text-[#e63946]" : "border-[#1a2d4a] text-gray-400 hover:border-[#2a4a6a]"}`, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: "Management Plan" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "grid grid-cols-3 gap-2", children: ["basic", "plus", "premium"].map((t) => /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("button", { onClick: () => setPlanTier(t), className: `rounded-lg border px-3 py-2 text-sm font-medium transition ${planTier === t ? "border-[#e63946] bg-[#e63946]/10 text-[#e63946]" : "border-[#1a2d4a] text-gray-400 hover:border-[#2a4a6a]"}`, children: [
         t.charAt(0).toUpperCase() + t.slice(1),
         " ($",
         BASE_MGMT_RATES[t],
         ")"
       ] }, t)) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: "Per-Salesperson Tier" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("div", { className: "grid grid-cols-3 gap-2", children: ["basic", "plus", "premium"].map((t) => /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("button", { onClick: () => setSalespersonTier(t), className: `rounded-lg border px-3 py-2 text-sm font-medium transition ${salespersonTier === t ? "border-[#e63946] bg-[#e63946]/10 text-[#e63946]" : "border-[#1a2d4a] text-gray-400 hover:border-[#2a4a6a]"}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: "Per-Salesperson Tier" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "grid grid-cols-3 gap-2", children: ["basic", "plus", "premium"].map((t) => /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("button", { onClick: () => setSalespersonTier(t), className: `rounded-lg border px-3 py-2 text-sm font-medium transition ${salespersonTier === t ? "border-[#e63946] bg-[#e63946]/10 text-[#e63946]" : "border-[#1a2d4a] text-gray-400 hover:border-[#2a4a6a]"}`, children: [
         t.charAt(0).toUpperCase() + t.slice(1),
         " ($",
         PER_PERSON_RATES[t],
         ")"
       ] }, t)) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: [
         "Number of Salespeople: ",
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-white font-bold", children: salespeople })
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { className: "text-white font-bold", children: salespeople })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("input", { type: "range", min: 1, max: 20, value: salespeople, onChange: (e) => setSalespeople(Number(e.target.value)), className: "w-full h-2 bg-[#1a2d4a] rounded-lg appearance-none cursor-pointer accent-[#e63946]" }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex justify-between text-xs text-gray-600 mt-1", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { children: "1" }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { children: "10" }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { children: "20" })
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("input", { type: "range", min: 1, max: 20, value: salespeople, onChange: (e) => setSalespeople(Number(e.target.value)), className: "w-full h-2 bg-[#1a2d4a] rounded-lg appearance-none cursor-pointer accent-[#e63946]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "flex justify-between text-xs text-gray-600 mt-1", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { children: "1" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { children: "10" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { children: "20" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "rounded-lg bg-[#0a1628] p-5 space-y-3", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex justify-between text-sm", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-gray-400", children: "Base management fee" }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-white font-medium", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "rounded-lg bg-[#0a1628] p-5 space-y-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "flex justify-between text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { className: "text-gray-400", children: "Base management fee" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("span", { className: "text-white font-medium", children: [
           "$",
           baseFee,
           "/mo"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "flex justify-between text-sm", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-gray-400", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "flex justify-between text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("span", { className: "text-gray-400", children: [
           salespeople,
           " salespeople \xD7 $",
           perPersonRate,
           "/mo"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-white font-medium", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("span", { className: "text-white font-medium", children: [
           "$",
           totalPerPerson,
           "/mo"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("div", { className: "border-t border-[#1a2d4a] pt-3 flex justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsx)("span", { className: "text-white font-semibold", children: "Estimated Monthly Total" }),
-        /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("span", { className: "text-[#e63946] text-xl font-extrabold", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "border-t border-[#1a2d4a] pt-3 flex justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { className: "text-white font-semibold", children: "Estimated Monthly Total" }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("span", { className: "text-[#e63946] text-xl font-extrabold", children: [
           "$",
           total,
           "/mo"
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)("a", { href: `/checkout?tier=mgmt-${planTier}`, className: "block w-full rounded-lg bg-[#e63946] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("a", { href: `/checkout?tier=mgmt-${planTier}`, className: "block w-full rounded-lg bg-[#e63946] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20", children: [
       "Get Started \u2014 $",
       total,
       "/mo Estimated"
     ] })
   ] });
 }
-var import_jsx_runtime57, import_react51, PER_PERSON_RATES, BASE_MGMT_RATES;
+var import_jsx_runtime58, import_react52, PER_PERSON_RATES, BASE_MGMT_RATES;
 var init_pricing_Dxd5jy4k = __esm({
   "dist/server/assets/pricing-Dxd5jy4k.js"() {
     "use strict";
-    import_jsx_runtime57 = __toESM(require_jsx_runtime(), 1);
-    import_react51 = __toESM(require_react(), 1);
+    import_jsx_runtime58 = __toESM(require_jsx_runtime(), 1);
+    import_react52 = __toESM(require_react(), 1);
     PER_PERSON_RATES = {
       basic: 149,
       plus: 169,
@@ -53975,15 +54126,16 @@ __export(billing_BNqBtHkD_exports, {
   getPaymentLink: () => getPaymentLink2,
   getUserSubscription: () => getUserSubscription2
 });
-var import_react52, import_jsx_runtime58, getUserSubscription2, cancelSubscription2, changeTier2, checkBillingDueSoon2, getPaymentLink2;
+import "node:async_hooks";
+var import_react53, import_jsx_runtime59, getUserSubscription2, cancelSubscription2, changeTier2, checkBillingDueSoon2, getPaymentLink2;
 var init_billing_BNqBtHkD = __esm({
   "dist/server/assets/billing-BNqBtHkD.js"() {
     "use strict";
     init_createSsrRpc_l1y8KE69();
     init_server5();
     init_production();
-    import_react52 = __toESM(require_react(), 1);
-    import_jsx_runtime58 = __toESM(require_jsx_runtime(), 1);
+    import_react53 = __toESM(require_react(), 1);
+    import_jsx_runtime59 = __toESM(require_jsx_runtime(), 1);
     getUserSubscription2 = createServerFn({
       method: "POST"
     }).handler(createSsrRpc("0180ec20f4f85db3db9b0e717dc6fec707ca24c83f7c469fc54fd667d52fdeeb"));
@@ -54002,54 +54154,55 @@ var init_billing_BNqBtHkD = __esm({
   }
 });
 
-// dist/server/assets/profile-Dtut2xQ9.js
-var profile_Dtut2xQ9_exports = {};
-__export(profile_Dtut2xQ9_exports, {
+// dist/server/assets/profile-XB9QEJoB.js
+var profile_XB9QEJoB_exports = {};
+__export(profile_XB9QEJoB_exports, {
   component: () => ProfileDashboard
 });
+import "node:async_hooks";
 function ProfileDashboard() {
   const {
     t
   } = useTranslation();
-  const [user, setUser] = (0, import_react53.useState)(null);
-  const [loading, setLoading] = (0, import_react53.useState)(true);
-  const [completedCount, setCompletedCount] = (0, import_react53.useState)(0);
-  const [subscription, setSubscription] = (0, import_react53.useState)(null);
-  const [tier, setTier] = (0, import_react53.useState)(null);
-  const [cancelling, setCancelling] = (0, import_react53.useState)(false);
-  const [changingTier, setChangingTier] = (0, import_react53.useState)(false);
-  const [message, setMessage] = (0, import_react53.useState)(null);
-  const [teamMembers, setTeamMembers] = (0, import_react53.useState)([]);
-  const [teamCost, setTeamCost] = (0, import_react53.useState)(null);
-  const [salesLog, setSalesLog] = (0, import_react53.useState)([]);
-  const [assignments, setAssignments] = (0, import_react53.useState)([]);
-  const [myAssignments, setMyAssignments] = (0, import_react53.useState)([]);
-  const [myAppointments, setMyAppointments] = (0, import_react53.useState)([]);
-  const [myMessages, setMyMessages] = (0, import_react53.useState)([]);
-  const [showAddForm, setShowAddForm] = (0, import_react53.useState)(false);
-  const [newEmail, setNewEmail] = (0, import_react53.useState)("");
-  const [newName, setNewName] = (0, import_react53.useState)("");
-  const [newTier, setNewTier] = (0, import_react53.useState)("plus");
-  const [adding, setAdding] = (0, import_react53.useState)(false);
-  const [addError, setAddError] = (0, import_react53.useState)("");
-  const [showSalesLogForm, setShowSalesLogForm] = (0, import_react53.useState)(false);
-  const [slSalesperson, setSlSalesperson] = (0, import_react53.useState)("");
-  const [slCustomer, setSlCustomer] = (0, import_react53.useState)("");
-  const [slVehicle, setSlVehicle] = (0, import_react53.useState)("");
-  const [slAmount, setSlAmount] = (0, import_react53.useState)("");
-  const [slStatus, setSlStatus] = (0, import_react53.useState)("won");
-  const [slNotes, setSlNotes] = (0, import_react53.useState)("");
-  const [slSaving, setSlSaving] = (0, import_react53.useState)(false);
-  const [showAssignForm, setShowAssignForm] = (0, import_react53.useState)(false);
-  const [assignPerson, setAssignPerson] = (0, import_react53.useState)("");
-  const [assignCourse, setAssignCourse] = (0, import_react53.useState)("");
-  const [assignLesson, setAssignLesson] = (0, import_react53.useState)("");
-  const [assignSaving, setAssignSaving] = (0, import_react53.useState)(false);
-  const [activeTab, setActiveTab] = (0, import_react53.useState)("overview");
+  const [user, setUser] = (0, import_react54.useState)(null);
+  const [loading, setLoading] = (0, import_react54.useState)(true);
+  const [completedCount, setCompletedCount] = (0, import_react54.useState)(0);
+  const [subscription, setSubscription] = (0, import_react54.useState)(null);
+  const [tier, setTier] = (0, import_react54.useState)(null);
+  const [cancelling, setCancelling] = (0, import_react54.useState)(false);
+  const [changingTier, setChangingTier] = (0, import_react54.useState)(false);
+  const [message, setMessage] = (0, import_react54.useState)(null);
+  const [teamMembers, setTeamMembers] = (0, import_react54.useState)([]);
+  const [teamCost, setTeamCost] = (0, import_react54.useState)(null);
+  const [salesLog, setSalesLog] = (0, import_react54.useState)([]);
+  const [assignments, setAssignments] = (0, import_react54.useState)([]);
+  const [myAssignments, setMyAssignments] = (0, import_react54.useState)([]);
+  const [myAppointments, setMyAppointments] = (0, import_react54.useState)([]);
+  const [myMessages, setMyMessages] = (0, import_react54.useState)([]);
+  const [showAddForm, setShowAddForm] = (0, import_react54.useState)(false);
+  const [newEmail, setNewEmail] = (0, import_react54.useState)("");
+  const [newName, setNewName] = (0, import_react54.useState)("");
+  const [newTier, setNewTier] = (0, import_react54.useState)("plus");
+  const [adding, setAdding] = (0, import_react54.useState)(false);
+  const [addError, setAddError] = (0, import_react54.useState)("");
+  const [showSalesLogForm, setShowSalesLogForm] = (0, import_react54.useState)(false);
+  const [slSalesperson, setSlSalesperson] = (0, import_react54.useState)("");
+  const [slCustomer, setSlCustomer] = (0, import_react54.useState)("");
+  const [slVehicle, setSlVehicle] = (0, import_react54.useState)("");
+  const [slAmount, setSlAmount] = (0, import_react54.useState)("");
+  const [slStatus, setSlStatus] = (0, import_react54.useState)("won");
+  const [slNotes, setSlNotes] = (0, import_react54.useState)("");
+  const [slSaving, setSlSaving] = (0, import_react54.useState)(false);
+  const [showAssignForm, setShowAssignForm] = (0, import_react54.useState)(false);
+  const [assignPerson, setAssignPerson] = (0, import_react54.useState)("");
+  const [assignCourse, setAssignCourse] = (0, import_react54.useState)("");
+  const [assignLesson, setAssignLesson] = (0, import_react54.useState)("");
+  const [assignSaving, setAssignSaving] = (0, import_react54.useState)(false);
+  const [activeTab, setActiveTab] = (0, import_react54.useState)("overview");
   const isManagement = user?.role === "management";
   const isDemo = tier === "premium-demo";
   const hasPremium = isDemo || tier === "premium";
-  (0, import_react53.useEffect)(() => {
+  (0, import_react54.useEffect)(() => {
     (async () => {
       const token = localStorage.getItem("salesdrive_token");
       if (!token) {
@@ -54386,266 +54539,266 @@ function ProfileDashboard() {
   const totalLessons = courses.reduce((s2, c3) => s2 + (c3.lessonsList?.length || 0), 0);
   const tierLabel = isDemo ? "Premium (Demo)" : subscription?.tierLabel || tier?.charAt(0).toUpperCase() + tier?.slice(1) || "Basic";
   if (loading) {
-    return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
   }
   if (!user) return null;
-  const Header = () => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  const Header = () => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: "Training" }),
-      isManagement && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: "/manager", className: "text-sm text-gray-400 hover:text-white", children: "Dashboard" }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => {
+    /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: "Training" }),
+      isManagement && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/manager", className: "text-sm text-gray-400 hover:text-white", children: "Dashboard" }),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => {
         localStorage.removeItem("salesdrive_token");
         window.location.href = "/";
       }, className: "text-sm text-gray-400 hover:text-[#e63946]", children: "Sign Out" }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(LanguageSwitcher, {})
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(LanguageSwitcher, {})
     ] })
   ] }) });
   const TierAbilities = () => {
     const currentTier = isDemo ? "premium" : tier || "plus";
     const tierInfo = TIER_FEATURES[currentTier] || TIER_FEATURES.plus;
     const allFeatures = isDemo ? TIER_FEATURES.premium.features : tierInfo.features;
-    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Plan Features" }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "mb-4 inline-flex items-center gap-2 rounded-full bg-[#e63946]/10 px-4 py-1.5 text-sm font-medium text-[#e63946]", children: isDemo ? "Premium (Demo \u2014 All Access)" : `${tierInfo.label} \u2014 $${tierInfo.price}/mo` }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("ul", { className: "mt-4 space-y-3", children: allFeatures.map((feat, i2) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("li", { className: "flex items-start gap-3 text-sm text-gray-300", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "mt-0.5 h-4 w-4 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Plan Features" }),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mb-4 inline-flex items-center gap-2 rounded-full bg-[#e63946]/10 px-4 py-1.5 text-sm font-medium text-[#e63946]", children: isDemo ? "Premium (Demo \u2014 All Access)" : `${tierInfo.label} \u2014 $${tierInfo.price}/mo` }),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("ul", { className: "mt-4 space-y-3", children: allFeatures.map((feat, i2) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("li", { className: "flex items-start gap-3 text-sm text-gray-300", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "mt-0.5 h-4 w-4 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
         feat
       ] }, i2)) }),
-      !isDemo && currentTier === "plus" && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "mt-4 rounded-lg border border-[#f77f00]/30 bg-[#f77f00]/5 p-3 text-xs text-[#f77f00]", children: "Upgrade to Premium ($189/mo) to unlock sales log, daily planner, goal tracking, and full team calendar." }),
-      !isDemo && currentTier === "premium" && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "mt-4 rounded-lg border border-green-500/30 bg-green-500/5 p-3 text-xs text-green-500", children: "You have access to all features. Your team is getting the full Champion experience." })
+      !isDemo && currentTier === "plus" && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mt-4 rounded-lg border border-[#f77f00]/30 bg-[#f77f00]/5 p-3 text-xs text-[#f77f00]", children: "Upgrade to Premium ($189/mo) to unlock sales log, daily planner, goal tracking, and full team calendar." }),
+      !isDemo && currentTier === "premium" && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mt-4 rounded-lg border border-green-500/30 bg-green-500/5 p-3 text-xs text-green-500", children: "You have access to all features. Your team is getting the full Champion experience." })
     ] });
   };
   const SalesLogSection = () => {
     const canAccess = isDemo || hasPremium;
     if (!canAccess) {
-      return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-2", children: "Sales Log" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm text-gray-500", children: "Upgrade to Premium to track your team's sales performance." })
+      return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-2", children: "Sales Log" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm text-gray-500", children: "Upgrade to Premium to track your team's sales performance." })
       ] });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white", children: "Sales Log" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => setShowSalesLogForm(!showSalesLogForm), className: "rounded-lg bg-[#e63946] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: showSalesLogForm ? "Cancel" : "+ Add Entry" })
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white", children: "Sales Log" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => setShowSalesLogForm(!showSalesLogForm), className: "rounded-lg bg-[#e63946] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: showSalesLogForm ? "Cancel" : "+ Add Entry" })
       ] }),
-      showSalesLogForm && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("form", { onSubmit: handleAddSalesEntry, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 space-y-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Customer Name" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("input", { type: "text", required: true, value: slCustomer, onChange: (e) => setSlCustomer(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "John Smith" })
+      showSalesLogForm && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("form", { onSubmit: handleAddSalesEntry, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 space-y-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Customer Name" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("input", { type: "text", required: true, value: slCustomer, onChange: (e) => setSlCustomer(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "John Smith" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Vehicle" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("input", { type: "text", required: true, value: slVehicle, onChange: (e) => setSlVehicle(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "2024 Toyota Camry" })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Vehicle" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("input", { type: "text", required: true, value: slVehicle, onChange: (e) => setSlVehicle(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "2024 Toyota Camry" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "grid gap-3 sm:grid-cols-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Amount ($)" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("input", { type: "number", step: "0.01", required: true, value: slAmount, onChange: (e) => setSlAmount(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "35000" })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "grid gap-3 sm:grid-cols-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Amount ($)" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("input", { type: "number", step: "0.01", required: true, value: slAmount, onChange: (e) => setSlAmount(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "35000" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Status" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("select", { value: slStatus, onChange: (e) => setSlStatus(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "won", children: "Won" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "lost", children: "Lost" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "pending", children: "Pending" })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Status" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("select", { value: slStatus, onChange: (e) => setSlStatus(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "won", children: "Won" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "lost", children: "Lost" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "pending", children: "Pending" })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Salesperson (optional)" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("select", { value: slSalesperson, onChange: (e) => setSlSalesperson(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "", children: "None" }),
-              teamMembers.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: m4.id, children: m4.name || m4.email }, m4.id))
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Salesperson (optional)" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("select", { value: slSalesperson, onChange: (e) => setSlSalesperson(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "", children: "None" }),
+              teamMembers.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: m4.id, children: m4.name || m4.email }, m4.id))
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Notes" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("textarea", { value: slNotes, onChange: (e) => setSlNotes(e.target.value), rows: 2, className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "Optional notes..." })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Notes" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("textarea", { value: slNotes, onChange: (e) => setSlNotes(e.target.value), rows: 2, className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "Optional notes..." })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { type: "submit", disabled: slSaving, className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] disabled:opacity-50", children: slSaving ? "Saving..." : "Save Entry" })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { type: "submit", disabled: slSaving, className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] disabled:opacity-50", children: slSaving ? "Saving..." : "Save Entry" })
       ] }),
-      salesLog.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "mx-auto h-8 w-8 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No sales entries yet" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-600", children: "Add your first sale to start tracking your team's performance." })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "space-y-2", children: salesLog.slice(0, 10).map((entry) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "min-w-0 flex-1", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "text-sm font-medium text-white truncate", children: entry.customer_name }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: `text-[10px] font-medium px-1.5 py-0.5 rounded ${entry.status === "won" ? "bg-green-500/10 text-green-500" : entry.status === "lost" ? "bg-red-500/10 text-red-500" : "bg-yellow-500/10 text-yellow-500"}`, children: entry.status })
+      salesLog.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "mx-auto h-8 w-8 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No sales entries yet" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-600", children: "Add your first sale to start tracking your team's performance." })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "space-y-2", children: salesLog.slice(0, 10).map((entry) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-w-0 flex-1", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-sm font-medium text-white truncate", children: entry.customer_name }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: `text-[10px] font-medium px-1.5 py-0.5 rounded ${entry.status === "won" ? "bg-green-500/10 text-green-500" : entry.status === "lost" ? "bg-red-500/10 text-red-500" : "bg-yellow-500/10 text-yellow-500"}`, children: entry.status })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500", children: [
             entry.vehicle,
             " ",
             entry.salesperson_name ? `\u2014 ${entry.salesperson_name}` : ""
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-3 shrink-0", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "text-sm font-bold text-white", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-3 shrink-0", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "text-sm font-bold text-white", children: [
             "$",
             Number(entry.amount).toLocaleString()
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => handleDeleteSalesEntry(entry.id), className: "text-xs text-gray-600 hover:text-[#e63946] transition-colors", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" }) }) })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => handleDeleteSalesEntry(entry.id), className: "text-xs text-gray-600 hover:text-[#e63946] transition-colors", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" }) }) })
         ] })
       ] }, entry.id)) })
     ] });
   };
   const SalespeopleSection = () => {
-    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white", children: "Your Sales Team" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => setShowAddForm(!showAddForm), className: "rounded-lg bg-[#e63946] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: showAddForm ? "Cancel" : "+ Add Salesperson" })
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white", children: "Your Sales Team" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => setShowAddForm(!showAddForm), className: "rounded-lg bg-[#e63946] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: showAddForm ? "Cancel" : "+ Add Salesperson" })
       ] }),
-      showAddForm && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("form", { onSubmit: handleAddSalesperson, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 space-y-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Email *" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("input", { type: "email", required: true, value: newEmail, onChange: (e) => setNewEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "salesperson@dealership.com" })
+      showAddForm && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("form", { onSubmit: handleAddSalesperson, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 space-y-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Email *" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("input", { type: "email", required: true, value: newEmail, onChange: (e) => setNewEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "salesperson@dealership.com" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Name" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("input", { type: "text", value: newName, onChange: (e) => setNewName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "John Doe" })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Name" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("input", { type: "text", value: newName, onChange: (e) => setNewName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", placeholder: "John Doe" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Tier" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("select", { value: newTier, onChange: (e) => setNewTier(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "basic", children: "Basic \u2014 $149/mo" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "plus", children: "Plus \u2014 $169/mo" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "premium", children: "Premium \u2014 $189/mo" })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Tier" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("select", { value: newTier, onChange: (e) => setNewTier(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "basic", children: "Basic \u2014 $149/mo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "plus", children: "Plus \u2014 $169/mo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "premium", children: "Premium \u2014 $189/mo" })
           ] })
         ] }),
-        addError && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-2 text-xs text-[#e63946]", children: addError }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex gap-3", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { type: "submit", disabled: adding, className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] disabled:opacity-50", children: adding ? "Redirecting..." : "Pay & Add Salesperson" }) })
+        addError && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-2 text-xs text-[#e63946]", children: addError }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex gap-3", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { type: "submit", disabled: adding, className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] disabled:opacity-50", children: adding ? "Redirecting..." : "Pay & Add Salesperson" }) })
       ] }),
-      teamMembers.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "mx-auto h-8 w-8 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No team members yet" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-600", children: "Add salespeople to start tracking their progress." })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "grid gap-3 sm:grid-cols-2", children: teamMembers.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-3 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-sm font-bold text-[#e63946]", children: (m4.name?.[0] || m4.email[0]).toUpperCase() }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "min-w-0 flex-1", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm font-medium text-white truncate", children: m4.name || m4.email }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-500 truncate", children: m4.email }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mt-1 flex items-center gap-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "text-[10px] font-medium text-gray-500 capitalize", children: m4.tier }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "text-[10px] text-gray-600", children: "\xB7" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "text-[10px] text-gray-500", children: [
+      teamMembers.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "mx-auto h-8 w-8 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No team members yet" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-600", children: "Add salespeople to start tracking their progress." })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "grid gap-3 sm:grid-cols-2", children: teamMembers.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-3 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-sm font-bold text-[#e63946]", children: (m4.name?.[0] || m4.email[0]).toUpperCase() }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-w-0 flex-1", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm font-medium text-white truncate", children: m4.name || m4.email }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-500 truncate", children: m4.email }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mt-1 flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-[10px] font-medium text-gray-500 capitalize", children: m4.tier }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-[10px] text-gray-600", children: "\xB7" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "text-[10px] text-gray-500", children: [
               m4.percent,
               "% complete"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "mt-1 h-1 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00]", style: {
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mt-1 h-1 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00]", style: {
             width: `${m4.percent}%`
           } }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => handleRemoveSalesperson(m4.id), className: "text-xs text-gray-600 hover:text-[#e63946] transition-colors shrink-0", title: "Remove", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" }) }) })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => handleRemoveSalesperson(m4.id), className: "text-xs text-gray-600 hover:text-[#e63946] transition-colors shrink-0", title: "Remove", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" }) }) })
       ] }, m4.id)) })
     ] });
   };
   const AssignmentsSection = () => {
-    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white", children: "Assign Tasks & Modules" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => setShowAssignForm(!showAssignForm), className: "rounded-lg bg-[#e63946] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: showAssignForm ? "Cancel" : "+ New Assignment" })
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white", children: "Assign Tasks & Modules" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => setShowAssignForm(!showAssignForm), className: "rounded-lg bg-[#e63946] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: showAssignForm ? "Cancel" : "+ New Assignment" })
       ] }),
-      showAssignForm && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("form", { onSubmit: handleCreateAssignment, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 space-y-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Salesperson *" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("select", { required: true, value: assignPerson, onChange: (e) => setAssignPerson(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "", children: "Select a salesperson..." }),
-              teamMembers.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: m4.id, children: m4.name || m4.email }, m4.id))
+      showAssignForm && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("form", { onSubmit: handleCreateAssignment, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 space-y-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Salesperson *" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("select", { required: true, value: assignPerson, onChange: (e) => setAssignPerson(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "", children: "Select a salesperson..." }),
+              teamMembers.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: m4.id, children: m4.name || m4.email }, m4.id))
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Course *" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("select", { required: true, value: assignCourse, onChange: (e) => setAssignCourse(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "", children: "Select a course..." }),
-              courses.map((c3) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: c3.id, children: c3.title }, c3.id))
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Course *" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("select", { required: true, value: assignCourse, onChange: (e) => setAssignCourse(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "", children: "Select a course..." }),
+              courses.map((c3) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: c3.id, children: c3.title }, c3.id))
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Specific Lesson (optional)" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("select", { value: assignLesson, onChange: (e) => setAssignLesson(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: "", children: "Entire course" }),
-            courses.find((c3) => c3.id === assignCourse)?.lessonsList.map((l2) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("option", { value: l2.id, children: l2.title }, l2.id))
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("label", { className: "block text-xs font-medium text-gray-400", children: "Specific Lesson (optional)" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("select", { value: assignLesson, onChange: (e) => setAssignLesson(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: "", children: "Entire course" }),
+            courses.find((c3) => c3.id === assignCourse)?.lessonsList.map((l2) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("option", { value: l2.id, children: l2.title }, l2.id))
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { type: "submit", disabled: assignSaving, className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] disabled:opacity-50", children: assignSaving ? "Assigning..." : "Create Assignment" })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { type: "submit", disabled: assignSaving, className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] disabled:opacity-50", children: assignSaving ? "Assigning..." : "Create Assignment" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h3", { className: "text-sm font-semibold text-gray-400 mb-3", children: "Recent Assignments" }),
-      assignments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "mx-auto h-8 w-8 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No assignments yet" }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-600", children: "Assign training modules to your team members." })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "space-y-2", children: assignments.slice(0, 10).map((a2) => {
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h3", { className: "text-sm font-semibold text-gray-400 mb-3", children: "Recent Assignments" }),
+      assignments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-dashed border-[#1a2d4a] p-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "mx-auto h-8 w-8 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "mt-3 text-sm text-gray-500", children: "No assignments yet" }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-600", children: "Assign training modules to your team members." })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "space-y-2", children: assignments.slice(0, 10).map((a2) => {
         const course = courses.find((c3) => c3.id === a2.course_id);
         const isCompleted = !!a2.completed_at;
-        return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "min-w-0 flex-1", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm font-medium text-white truncate", children: course?.title || a2.course_id }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500", children: [
+        return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-w-0 flex-1", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm font-medium text-white truncate", children: course?.title || a2.course_id }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500", children: [
               "Assigned to ",
               a2.salesperson_name || a2.salesperson_email
             ] }),
-            a2.lesson_id && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-600", children: [
+            a2.lesson_id && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-600", children: [
               "Lesson: ",
               a2.lesson_id
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-2 mt-1", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: `text-[10px] font-medium ${isCompleted ? "text-green-500" : "text-yellow-500"}`, children: isCompleted ? "\u2713 Completed" : "\u25CB Pending" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "text-[10px] text-gray-600", children: new Date(a2.assigned_at).toLocaleDateString() })
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-2 mt-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: `text-[10px] font-medium ${isCompleted ? "text-green-500" : "text-yellow-500"}`, children: isCompleted ? "\u2713 Completed" : "\u25CB Pending" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-[10px] text-gray-600", children: new Date(a2.assigned_at).toLocaleDateString() })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => handleDeleteAssignment(a2.id), className: "text-xs text-gray-600 hover:text-[#e63946] transition-colors shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }) })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => handleDeleteAssignment(a2.id), className: "text-xs text-gray-600 hover:text-[#e63946] transition-colors shrink-0", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }) })
         ] }, a2.id);
       }) })
     ] });
   };
   if (!isManagement) {
-    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Header, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
-        message && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: `mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`, children: message.text }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-2xl font-bold text-[#e63946]", children: (user.name?.[0] || user.email[0]).toUpperCase() }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h1", { className: "text-2xl font-bold text-white", children: user.name || "Welcome" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm text-gray-400", children: user.email })
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Header, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
+        message && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: `mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`, children: message.text }),
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-2xl font-bold text-[#e63946]", children: (user.name?.[0] || user.email[0]).toUpperCase() }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h1", { className: "text-2xl font-bold text-white", children: user.name || "Welcome" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm text-gray-400", children: user.email })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-4 py-2 text-xs font-medium text-gray-300 hover:bg-[#1a2d4a]/50 transition-colors", children: "\u2190 Back to Training" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-[#e63946]/10 px-4 py-2 text-sm font-medium text-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-4 py-2 text-xs font-medium text-gray-300 hover:bg-[#1a2d4a]/50 transition-colors", children: "\u2190 Back to Training" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "inline-flex items-center gap-1.5 rounded-full bg-[#e63946]/10 px-4 py-2 text-sm font-medium text-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
               tierLabel
             ] }),
-            isDemo && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "inline-flex items-center rounded-full bg-yellow-500/10 px-3 py-1.5 text-xs font-medium text-yellow-500", children: "Demo Account \u2014 All Access" })
+            isDemo && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "inline-flex items-center rounded-full bg-yellow-500/10 px-3 py-1.5 text-xs font-medium text-yellow-500", children: "Demo Account \u2014 All Access" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mb-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between mb-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white", children: "Training Progress" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "text-sm text-gray-400", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mb-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between mb-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white", children: "Training Progress" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "text-sm text-gray-400", children: [
               completedCount,
               "/",
               totalLessons,
               " lessons"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "h-3 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00] transition-all duration-500", style: {
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "h-3 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00] transition-all duration-500", style: {
             width: `${totalLessons > 0 ? Math.round(completedCount / totalLessons * 100) : 0}%`
           } }) }),
-          completedCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: async () => {
+          completedCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: async () => {
             if (!confirm("Reset all training progress? This cannot be undone.")) return;
             const token = localStorage.getItem("salesdrive_token");
             if (!token) return;
@@ -54660,89 +54813,89 @@ function ProfileDashboard() {
             }
           }, className: "mt-3 text-xs text-gray-500 hover:text-[#e63946] transition-colors", children: "Reset All Progress" })
         ] }),
-        subscription && !isDemo && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mb-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Subscription Details" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Current Plan" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-lg font-bold text-white", children: [
+        subscription && !isDemo && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mb-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Subscription Details" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Current Plan" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-lg font-bold text-white", children: [
                 subscription.tierLabel,
                 " ",
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "text-sm font-normal text-gray-400", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "text-sm font-normal text-gray-400", children: [
                   "($",
                   subscription.price,
                   "/mo)"
                 ] })
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Next Billing Date" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-lg font-bold text-white", children: subscription.nextBillingDate ? new Date(subscription.nextBillingDate).toLocaleDateString() : "N/A" })
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Next Billing Date" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-lg font-bold text-white", children: subscription.nextBillingDate ? new Date(subscription.nextBillingDate).toLocaleDateString() : "N/A" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Billing Day" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-lg font-bold text-white", children: subscription.billingDay ? `${subscription.billingDay}th of each month` : "N/A" })
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Billing Day" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-lg font-bold text-white", children: subscription.billingDay ? `${subscription.billingDay}th of each month` : "N/A" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Status" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-lg font-bold text-green-500 capitalize", children: subscription.status })
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-500 uppercase tracking-wider", children: "Status" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-lg font-bold text-green-500 capitalize", children: subscription.status })
             ] })
           ] }),
-          subscription.isIndividual && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mt-6 border-t border-[#1a2d4a] pt-6", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h3", { className: "text-sm font-bold text-white mb-4", children: "Change Plan" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex flex-wrap gap-3", children: [
-              subscription.availableDowngrades.map((downgrade) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("button", { onClick: () => handleTierChange(downgrade), disabled: changingTier, className: "rounded-lg border border-[#1a2d4a] px-4 py-2 text-sm text-white transition-colors hover:border-[#f77f00] hover:bg-[#f77f00]/10 disabled:opacity-50", children: [
+          subscription.isIndividual && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mt-6 border-t border-[#1a2d4a] pt-6", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h3", { className: "text-sm font-bold text-white mb-4", children: "Change Plan" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex flex-wrap gap-3", children: [
+              subscription.availableDowngrades.map((downgrade) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("button", { onClick: () => handleTierChange(downgrade), disabled: changingTier, className: "rounded-lg border border-[#1a2d4a] px-4 py-2 text-sm text-white transition-colors hover:border-[#f77f00] hover:bg-[#f77f00]/10 disabled:opacity-50", children: [
                 "Downgrade to ",
                 downgrade.charAt(0).toUpperCase() + downgrade.slice(1)
               ] }, downgrade)),
-              subscription.availableUpgrades.map((upgrade) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("button", { onClick: () => handleTierChange(upgrade), disabled: changingTier, className: "rounded-lg border border-[#e63946] bg-[#e63946]/10 px-4 py-2 text-sm font-medium text-[#e63946] transition-colors hover:bg-[#e63946] hover:text-white disabled:opacity-50", children: [
+              subscription.availableUpgrades.map((upgrade) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("button", { onClick: () => handleTierChange(upgrade), disabled: changingTier, className: "rounded-lg border border-[#e63946] bg-[#e63946]/10 px-4 py-2 text-sm font-medium text-[#e63946] transition-colors hover:bg-[#e63946] hover:text-white disabled:opacity-50", children: [
                 "Upgrade to ",
                 upgrade.charAt(0).toUpperCase() + upgrade.slice(1)
               ] }, upgrade))
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2 lg:grid-cols-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("a", { href: "/training", className: "flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-5 w-5 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "font-medium text-white group-hover:text-[#e63946] transition-colors", children: "Training Modules" })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2 lg:grid-cols-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("a", { href: "/training", className: "flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-5 w-5 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "font-medium text-white group-hover:text-[#e63946] transition-colors", children: "Training Modules" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("a", { href: "/steps", className: "flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-5 w-5 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "font-medium text-white group-hover:text-[#e63946] transition-colors", children: "Steps of the Sale" })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("a", { href: "/steps", className: "flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-5 w-5 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "font-medium text-white group-hover:text-[#e63946] transition-colors", children: "Steps of the Sale" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("a", { href: "/account", className: "flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-5 w-5 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "font-medium text-white group-hover:text-[#e63946] transition-colors", children: "Settings" })
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("a", { href: "/account", className: "flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-5 w-5 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "font-medium text-white group-hover:text-[#e63946] transition-colors", children: "Settings" })
           ] })
         ] }),
-        (myAssignments.length > 0 || myMessages.length > 0 || myAppointments.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mt-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white", children: "From Your Manager" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: "/planner", className: "text-xs text-[#e63946] hover:underline", children: "View Full Planner \u2192" })
+        (myAssignments.length > 0 || myMessages.length > 0 || myAppointments.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mt-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between mb-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white", children: "From Your Manager" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/planner", className: "text-xs text-[#e63946] hover:underline", children: "View Full Planner \u2192" })
           ] }),
-          myAssignments.filter((a2) => !a2.completed_at).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mb-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("h3", { className: "text-sm font-semibold text-gray-400 mb-2", children: [
+          myAssignments.filter((a2) => !a2.completed_at).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mb-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("h3", { className: "text-sm font-semibold text-gray-400 mb-2", children: [
               "Assigned Modules (",
               myAssignments.filter((a2) => !a2.completed_at).length,
               ")"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "space-y-2", children: myAssignments.filter((a2) => !a2.completed_at).slice(0, 3).map((a2) => {
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "space-y-2", children: myAssignments.filter((a2) => !a2.completed_at).slice(0, 3).map((a2) => {
               const course = courses.find((c3) => c3.id === a2.course_id);
-              return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "min-w-0 flex-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm font-medium text-white truncate", children: course?.title || a2.course_id }),
-                  /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs text-gray-500", children: a2.lesson_id ? `Lesson: ${a2.lesson_id}` : "Full course" })
+              return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-w-0 flex-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm font-medium text-white truncate", children: course?.title || a2.course_id }),
+                  /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs text-gray-500", children: a2.lesson_id ? `Lesson: ${a2.lesson_id}` : "Full course" })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: `/training/${a2.course_id}`, className: "text-xs text-[#e63946] hover:underline shrink-0 ml-3", children: "Start" })
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: `/training/${a2.course_id}`, className: "text-xs text-[#e63946] hover:underline shrink-0 ml-3", children: "Start" })
               ] }, a2.id);
             }) })
           ] }),
-          myAppointments.filter((a2) => new Date(a2.appointment_time) > /* @__PURE__ */ new Date()).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mb-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h3", { className: "text-sm font-semibold text-gray-400 mb-2", children: "Upcoming Appointments" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "space-y-2", children: myAppointments.filter((a2) => new Date(a2.appointment_time) > /* @__PURE__ */ new Date()).slice(0, 3).map((a2) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm font-medium text-white", children: a2.customer_name }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500", children: [
+          myAppointments.filter((a2) => new Date(a2.appointment_time) > /* @__PURE__ */ new Date()).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mb-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h3", { className: "text-sm font-semibold text-gray-400 mb-2", children: "Upcoming Appointments" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "space-y-2", children: myAppointments.filter((a2) => new Date(a2.appointment_time) > /* @__PURE__ */ new Date()).slice(0, 3).map((a2) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm font-medium text-white", children: a2.customer_name }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500", children: [
                 new Date(a2.appointment_time).toLocaleDateString(),
                 " ",
                 new Date(a2.appointment_time).toLocaleTimeString([], {
@@ -54752,49 +54905,49 @@ function ProfileDashboard() {
               ] })
             ] }) }, a2.id)) })
           ] }),
-          myMessages.filter((m4) => !m4.is_read).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("h3", { className: "text-sm font-semibold text-gray-400 mb-2", children: [
+          myMessages.filter((m4) => !m4.is_read).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("h3", { className: "text-sm font-semibold text-gray-400 mb-2", children: [
               "Unread Messages (",
               myMessages.filter((m4) => !m4.is_read).length,
               ")"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "space-y-2", children: myMessages.filter((m4) => !m4.is_read).slice(0, 3).map((m4) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-[#e63946]/20 bg-[#e63946]/5 p-3", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-xs font-medium text-[#e63946]", children: m4.from_name || "Manager" }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "mt-1 text-sm text-gray-300 line-clamp-2", children: m4.message })
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "space-y-2", children: myMessages.filter((m4) => !m4.is_read).slice(0, 3).map((m4) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-[#e63946]/20 bg-[#e63946]/5 p-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-xs font-medium text-[#e63946]", children: m4.from_name || "Manager" }),
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "mt-1 text-sm text-gray-300 line-clamp-2", children: m4.message })
             ] }, m4.id)) })
           ] })
         ] }),
-        !isDemo && subscription && subscription.isIndividual && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "mt-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Cancel Subscription" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm text-gray-400 mb-4", children: "Cancelling will stop future charges. You'll retain access until the end of your billing period." }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: handleCancel, disabled: cancelling, className: "rounded-lg border border-[#e63946] px-6 py-2.5 text-sm font-medium text-[#e63946] transition-colors hover:bg-[#e63946] hover:text-white disabled:opacity-50", children: cancelling ? "Cancelling..." : "Cancel Subscription" })
+        !isDemo && subscription && subscription.isIndividual && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mt-8 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Cancel Subscription" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm text-gray-400 mb-4", children: "Cancelling will stop future charges. You'll retain access until the end of your billing period." }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: handleCancel, disabled: cancelling, className: "rounded-lg border border-[#e63946] px-6 py-2.5 text-sm font-medium text-[#e63946] transition-colors hover:bg-[#e63946] hover:text-white disabled:opacity-50", children: cancelling ? "Cancelling..." : "Cancel Subscription" })
         ] })
       ] })
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Header, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
-      message && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: `mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`, children: message.text }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-2xl font-bold text-[#e63946]", children: (user.name?.[0] || user.email[0]).toUpperCase() }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h1", { className: "text-2xl font-bold text-white", children: user.name || "Manager Dashboard" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm text-gray-400", children: user.email }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "inline-flex items-center gap-1.5 mt-1 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+  return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Header, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
+      message && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: `mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`, children: message.text }),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-2xl font-bold text-[#e63946]", children: (user.name?.[0] || user.email[0]).toUpperCase() }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h1", { className: "text-2xl font-bold text-white", children: user.name || "Manager Dashboard" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm text-gray-400", children: user.email }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "inline-flex items-center gap-1.5 mt-1 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
               "Management Account"
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center gap-3", children: [
-          isDemo && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "inline-flex items-center rounded-full bg-yellow-500/10 px-3 py-1.5 text-xs font-medium text-yellow-500", children: "Demo Account \u2014 All Access" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-4 py-2 text-xs font-medium text-gray-300 hover:bg-[#1a2d4a]/50 transition-colors", children: "\u2190 Back to Training" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("a", { href: "/manager", className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: "Manager Dashboard \u2192" })
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center gap-3", children: [
+          isDemo && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "inline-flex items-center rounded-full bg-yellow-500/10 px-3 py-1.5 text-xs font-medium text-yellow-500", children: "Demo Account \u2014 All Access" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-4 py-2 text-xs font-medium text-gray-300 hover:bg-[#1a2d4a]/50 transition-colors", children: "\u2190 Back to Training" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/manager", className: "rounded-lg bg-[#e63946] px-4 py-2 text-xs font-medium text-white hover:bg-[#c1121f] transition-colors", children: "Manager Dashboard \u2192" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "mb-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1 overflow-x-auto", children: [{
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mb-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1 overflow-x-auto", children: [{
         id: "overview",
         label: "Overview"
       }, {
@@ -54809,16 +54962,16 @@ function ProfileDashboard() {
       }, {
         id: "settings",
         label: "Settings"
-      }].map((tab) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("button", { onClick: () => setActiveTab(tab.id), className: `whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors ${activeTab === tab.id ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: tab.label }, tab.id)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "space-y-6", children: [
-        activeTab === "overview" && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(import_jsx_runtime59.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(TierAbilities, {}),
-          teamCost && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Monthly Team Cost" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "space-y-3", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm font-medium text-white", children: "Base Plan" }),
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
+      }].map((tab) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("button", { onClick: () => setActiveTab(tab.id), className: `whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors ${activeTab === tab.id ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: tab.label }, tab.id)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "space-y-6", children: [
+        activeTab === "overview" && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(import_jsx_runtime60.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(TierAbilities, {}),
+          teamCost && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Monthly Team Cost" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "space-y-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm font-medium text-white", children: "Base Plan" }),
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
                   "$",
                   tier === "premium" ? "189" : "169",
                   "/mo \u2014 ",
@@ -54826,9 +54979,9 @@ function ProfileDashboard() {
                   " Management Account"
                 ] })
               ] }),
-              Object.entries(teamCost.breakdown).map(([tierKey, info]) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-sm font-medium text-white capitalize", children: [
+              Object.entries(teamCost.breakdown).map(([tierKey, info]) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-sm font-medium text-white capitalize", children: [
                     info.count,
                     " Salesperson",
                     info.count > 1 ? "s" : "",
@@ -54836,28 +54989,28 @@ function ProfileDashboard() {
                     tierKey.charAt(0).toUpperCase() + tierKey.slice(1),
                     " Tier"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
                     "$",
                     info.price,
                     "/mo each"
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-sm font-bold text-white", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-sm font-bold text-white", children: [
                   "$",
                   info.subtotal,
                   "/mo"
                 ] })
               ] }) }, tierKey)),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-[#e63946]/30 bg-[#e63946]/5 p-4", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm font-bold text-white", children: "Total Monthly Cost" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-lg font-bold text-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-[#e63946]/30 bg-[#e63946]/5 p-4", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm font-bold text-white", children: "Total Monthly Cost" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-lg font-bold text-[#e63946]", children: [
                     "$",
                     teamCost.total + (tier === "premium" ? 189 : 169),
                     "/mo"
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
                   teamCost.count,
                   " salesperson",
                   teamCost.count !== 1 ? "s" : "",
@@ -54866,51 +55019,51 @@ function ProfileDashboard() {
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Training Progress" }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-sm text-gray-400", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Training Progress" }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-sm text-gray-400", children: [
               "Your team has completed ",
               teamMembers.reduce((s2, m4) => s2 + m4.completedLessons, 0),
               " of ",
               teamMembers.reduce((s2, m4) => s2 + m4.totalLessons, 0),
               " lessons overall."
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "mt-4 grid gap-3 sm:grid-cols-2", children: teamMembers.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm text-gray-500 col-span-2", children: "Add salespeople to see their progress." }) : teamMembers.slice(0, 4).map((m4) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "flex items-center justify-between mb-1", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "text-sm font-medium text-white truncate", children: m4.name || m4.email }),
-                /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("span", { className: "text-xs text-gray-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mt-4 grid gap-3 sm:grid-cols-2", children: teamMembers.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm text-gray-500 col-span-2", children: "Add salespeople to see their progress." }) : teamMembers.slice(0, 4).map((m4) => /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "flex items-center justify-between mb-1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-sm font-medium text-white truncate", children: m4.name || m4.email }),
+                /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("span", { className: "text-xs text-gray-500", children: [
                   m4.percent,
                   "%"
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "h-1.5 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00]", style: {
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "h-1.5 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00]", style: {
                 width: `${m4.percent}%`
               } }) })
             ] }, m4.id)) })
           ] })
         ] }),
-        activeTab === "team" && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(SalespeopleSection, {}),
-        activeTab === "saleslog" && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(SalesLogSection, {}),
-        activeTab === "assignments" && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(AssignmentsSection, {}),
-        activeTab === "settings" && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Account Settings" }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("p", { className: "text-sm text-gray-400 mb-4", children: "Manage your account preferences." }),
-          /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "space-y-4", children: [
-            !isDemo && subscription && /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-sm font-medium text-white", children: [
+        activeTab === "team" && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(SalespeopleSection, {}),
+        activeTab === "saleslog" && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(SalesLogSection, {}),
+        activeTab === "assignments" && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(AssignmentsSection, {}),
+        activeTab === "settings" && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h2", { className: "text-lg font-bold text-white mb-4", children: "Account Settings" }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "text-sm text-gray-400 mb-4", children: "Manage your account preferences." }),
+          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "space-y-4", children: [
+            !isDemo && subscription && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-sm font-medium text-white", children: [
                 "Current Plan: ",
                 subscription.tierLabel,
                 " ($",
                 subscription.price,
                 "/mo)"
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("p", { className: "text-xs text-gray-500 mt-1", children: [
                 "Next billing: ",
                 subscription.nextBillingDate ? new Date(subscription.nextBillingDate).toLocaleDateString() : "N/A"
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("a", { href: "/account", className: "inline-flex items-center gap-2 text-sm text-[#e63946] hover:underline", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("a", { href: "/account", className: "inline-flex items-center gap-2 text-sm text-[#e63946] hover:underline", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" }) }),
               "Full Account Settings"
             ] })
           ] })
@@ -54919,13 +55072,13 @@ function ProfileDashboard() {
     ] })
   ] });
 }
-var import_jsx_runtime59, import_react53, DEMO_EMAIL, TIER_FEATURES;
-var init_profile_Dtut2xQ9 = __esm({
-  "dist/server/assets/profile-Dtut2xQ9.js"() {
+var import_jsx_runtime60, import_react54, DEMO_EMAIL, TIER_FEATURES;
+var init_profile_XB9QEJoB = __esm({
+  "dist/server/assets/profile-XB9QEJoB.js"() {
     "use strict";
-    import_jsx_runtime59 = __toESM(require_jsx_runtime(), 1);
-    import_react53 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
+    import_jsx_runtime60 = __toESM(require_jsx_runtime(), 1);
+    import_react54 = __toESM(require_react(), 1);
+    init_router_BIxaY9WS();
     init_courses_CY9yjTRv();
     init_manager_CzgJH0An();
     init_production();
@@ -54945,60 +55098,62 @@ var init_profile_Dtut2xQ9 = __esm({
   }
 });
 
-// dist/server/assets/sales-log-BzXbDgVT.js
-var sales_log_BzXbDgVT_exports = {};
-__export(sales_log_BzXbDgVT_exports, {
+// dist/server/assets/sales-log-Dij2VL93.js
+var sales_log_Dij2VL93_exports = {};
+__export(sales_log_Dij2VL93_exports, {
   component: () => SalesLogPage
 });
+import "node:async_hooks";
 function SalesLogPage() {
-  return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("nav", { className: "flex items-center gap-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/manager", className: "text-sm text-gray-400 hover:text-white", children: "Manager Dashboard" }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 hover:text-white", children: "Profile" }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(LanguageSwitcher, {})
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("nav", { className: "flex items-center gap-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/manager", className: "text-sm text-gray-400 hover:text-white", children: "Manager Dashboard" }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 hover:text-white", children: "Profile" }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8 text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Sales Log" }),
-      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("p", { className: "mt-3 text-gray-400", children: "Track your sales, goals, and gross profit. This feature is available in the manager dashboard for Premium subscribers." }),
-      /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/manager", className: "btn-primary text-sm", children: "Go to Manager Dashboard" }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("a", { href: "/profile", className: "btn-secondary text-sm", children: "View Subscription" })
+    /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8 text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Sales Log" }),
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "mt-3 text-gray-400", children: "Track your sales, goals, and gross profit. This feature is available in the manager dashboard for Premium subscribers." }),
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/manager", className: "btn-primary text-sm", children: "Go to Manager Dashboard" }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/profile", className: "btn-secondary text-sm", children: "View Subscription" })
       ] })
     ] }) })
   ] });
 }
-var import_jsx_runtime60, import_react54;
-var init_sales_log_BzXbDgVT = __esm({
-  "dist/server/assets/sales-log-BzXbDgVT.js"() {
+var import_jsx_runtime61, import_react55;
+var init_sales_log_Dij2VL93 = __esm({
+  "dist/server/assets/sales-log-Dij2VL93.js"() {
     "use strict";
-    import_jsx_runtime60 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react54 = __toESM(require_react(), 1);
+    import_jsx_runtime61 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react55 = __toESM(require_react(), 1);
     init_production();
   }
 });
 
-// dist/server/assets/steps-GV2FU_Mr.js
-var steps_GV2FU_Mr_exports = {};
-__export(steps_GV2FU_Mr_exports, {
+// dist/server/assets/steps-5toRXckf.js
+var steps_5toRXckf_exports = {};
+__export(steps_5toRXckf_exports, {
   component: () => StepsPage
 });
+import "node:async_hooks";
 function StepsPage() {
   const {
     t
   } = useTranslation();
-  const [authState, setAuthState] = (0, import_react55.useState)("loading");
-  const [mode, setMode] = (0, import_react55.useState)("guide");
-  const [selectedAnswers, setSelectedAnswers] = (0, import_react55.useState)({});
-  const [submittedAnswers, setSubmittedAnswers] = (0, import_react55.useState)({});
-  (0, import_react55.useEffect)(() => {
+  const [authState, setAuthState] = (0, import_react56.useState)("loading");
+  const [mode, setMode] = (0, import_react56.useState)("guide");
+  const [selectedAnswers, setSelectedAnswers] = (0, import_react56.useState)({});
+  const [submittedAnswers, setSubmittedAnswers] = (0, import_react56.useState)({});
+  (0, import_react56.useEffect)(() => {
     const token = localStorage.getItem("salesdrive_token");
     if (!token) {
       setAuthState("unauthenticated");
@@ -55048,49 +55203,49 @@ function StepsPage() {
   }).length;
   const allAnswered = answeredCount === totalQuestions;
   if (authState === "loading") {
-    return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
   }
   if (authState === "unauthenticated") {
-    return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "w-full max-w-md text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Sign in to access the Sales Process" }),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "mt-3 text-gray-400", children: "Sign in to view the complete 10-step automotive sales process." }),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/login", className: "btn-primary text-sm", children: "Sign In" }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/signup", className: "btn-secondary text-sm", children: "Create Account" })
+    return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "w-full max-w-md text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Sign in to access the Sales Process" }),
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "mt-3 text-gray-400", children: "Sign in to view the complete 10-step automotive sales process." }),
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("a", { href: "/login", className: "btn-primary text-sm", children: "Sign In" }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("a", { href: "/signup", className: "btn-secondary text-sm", children: "Create Account" })
       ] })
     ] }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("nav", { className: "flex items-center gap-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: t("nav.training") }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(LanguageSwitcher, {})
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("nav", { className: "flex items-center gap-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: t("nav.training") }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "text-center mb-10", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "text-center mb-10", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
           "10-Step Sales Process"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
           "Steps of the ",
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "text-[#e63946]", children: "Sales Process" })
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "text-[#e63946]", children: "Sales Process" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Master every stage of the automotive sales process \u2014 from greeting to follow-up. Each step has detailed guidance and a dedicated training module." }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("a", { href: "/training/10-steps-part-1", className: "mt-6 inline-flex items-center gap-2 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-medium text-white hover:bg-[#c1121f] transition-colors", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Master every stage of the automotive sales process \u2014 from greeting to follow-up. Each step has detailed guidance and a dedicated training module." }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("a", { href: "/training/10-steps-part-1", className: "mt-6 inline-flex items-center gap-2 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-medium text-white hover:bg-[#c1121f] transition-colors", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" }) }),
           "Start the Training Course \u2192"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mb-8 flex gap-1 rounded-lg bg-[#0d1f35] p-1 max-w-xs mx-auto", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("button", { onClick: () => setMode("guide"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mode === "guide" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Part 1: Guide" }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mb-8 flex gap-1 rounded-lg bg-[#0d1f35] p-1 max-w-xs mx-auto", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("button", { onClick: () => setMode("guide"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mode === "guide" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Part 1: Guide" }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("button", { onClick: () => {
           setMode("quiz");
           handleReset();
         }, className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mode === "quiz" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: [
@@ -55099,69 +55254,69 @@ function StepsPage() {
           ")"
         ] })
       ] }),
-      mode === "guide" && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "space-y-8", children: detailedSteps.map((s2) => {
+      mode === "guide" && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "space-y-8", children: detailedSteps.map((s2) => {
         const course = courses.find((c3) => c3.id === s2.courseId);
-        return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sm:p-8 transition-all duration-200 hover:border-[#e63946]/30", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "flex items-start gap-5", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#e63946] text-lg font-bold text-white", children: s2.step }),
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "flex-1 min-w-0", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h2", { className: "text-xl font-bold text-white", children: s2.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "mt-3 leading-relaxed text-gray-300", children: s2.detailedDesc }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-4 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h3", { className: "text-sm font-bold text-[#e63946] mb-2", children: "Why It Matters" }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "text-sm leading-relaxed text-gray-400", children: s2.whyItMatters })
+        return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sm:p-8 transition-all duration-200 hover:border-[#e63946]/30", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "flex items-start gap-5", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#e63946] text-lg font-bold text-white", children: s2.step }),
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h2", { className: "text-xl font-bold text-white", children: s2.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "mt-3 leading-relaxed text-gray-300", children: s2.detailedDesc }),
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-4 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "text-sm font-bold text-[#e63946] mb-2", children: "Why It Matters" }),
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "text-sm leading-relaxed text-gray-400", children: s2.whyItMatters })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-3 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h3", { className: "text-sm font-bold text-[#e63946] mb-2", children: "How to Execute" }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "text-sm leading-relaxed text-gray-400", children: s2.howToExecute })
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-3 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "text-sm font-bold text-[#e63946] mb-2", children: "How to Execute" }),
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "text-sm leading-relaxed text-gray-400", children: s2.howToExecute })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h3", { className: "text-sm font-bold text-gray-400 mb-2", children: "Key Principles" }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "flex flex-wrap gap-2", children: s2.keyPrinciples.map((p3) => /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { className: "inline-flex items-center gap-1 rounded-full border border-[#1a2d4a] bg-[#0a1628] px-3 py-1 text-xs text-gray-400", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-3 w-3 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "text-sm font-bold text-gray-400 mb-2", children: "Key Principles" }),
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "flex flex-wrap gap-2", children: s2.keyPrinciples.map((p3) => /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("span", { className: "inline-flex items-center gap-1 rounded-full border border-[#1a2d4a] bg-[#0a1628] px-3 py-1 text-xs text-gray-400", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-3 w-3 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
                 p3
               ] }, p3)) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-4 grid gap-3 sm:grid-cols-2", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h3", { className: "text-sm font-bold text-red-400 mb-2", children: "Common Mistakes" }),
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("ul", { className: "space-y-1.5", children: s2.commonMistakes.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("li", { className: "flex items-start gap-2 text-xs text-gray-400", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "mt-0.5 h-3 w-3 shrink-0 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-4 grid gap-3 sm:grid-cols-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "text-sm font-bold text-red-400 mb-2", children: "Common Mistakes" }),
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("ul", { className: "space-y-1.5", children: s2.commonMistakes.map((m4) => /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("li", { className: "flex items-start gap-2 text-xs text-gray-400", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "mt-0.5 h-3 w-3 shrink-0 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }),
                   m4
                 ] }, m4)) })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h3", { className: "text-sm font-bold text-green-400 mb-2", children: "Pro Tips" }),
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("ul", { className: "space-y-1.5", children: s2.proTips.map((tip) => /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("li", { className: "flex items-start gap-2 text-xs text-gray-400", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "mt-0.5 h-3 w-3 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "text-sm font-bold text-green-400 mb-2", children: "Pro Tips" }),
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("ul", { className: "space-y-1.5", children: s2.proTips.map((tip) => /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("li", { className: "flex items-start gap-2 text-xs text-gray-400", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "mt-0.5 h-3 w-3 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }),
                   tip
                 ] }, tip)) })
               ] })
             ] }),
-            course && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("a", { href: `/training/${course.id}`, className: "mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#e63946] hover:text-white transition-colors", children: "View training module \u2192" })
+            course && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("a", { href: `/training/${course.id}`, className: "mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#e63946] hover:text-white transition-colors", children: "View training module \u2192" })
           ] })
         ] }) }, s2.step);
       }) }),
-      mode === "quiz" && /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mb-6 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "flex items-center justify-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h2", { className: "text-lg font-bold text-white", children: "Knowledge Check" }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("p", { className: "text-sm text-gray-400", children: "Test your understanding of the complete sales process" })
+      mode === "quiz" && /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mb-6 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "flex items-center justify-between", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h2", { className: "text-lg font-bold text-white", children: "Knowledge Check" }),
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "text-sm text-gray-400", children: "Test your understanding of the complete sales process" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "text-right", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "text-2xl font-bold text-white", children: correctCount }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { className: "text-gray-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "text-right", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "text-2xl font-bold text-white", children: correctCount }),
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("span", { className: "text-gray-500", children: [
                 "/",
                 totalQuestions
               ] }),
-              allAnswered && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "mt-1", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: `text-xs font-medium ${correctCount === totalQuestions ? "text-green-500" : correctCount >= totalQuestions * 0.7 ? "text-yellow-500" : "text-[#e63946]"}`, children: correctCount === totalQuestions ? "\u{1F389} Perfect Score!" : correctCount >= totalQuestions * 0.7 ? "Good Job!" : "Keep Practicing" }) })
+              allAnswered && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "mt-1", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: `text-xs font-medium ${correctCount === totalQuestions ? "text-green-500" : correctCount >= totalQuestions * 0.7 ? "text-yellow-500" : "text-[#e63946]"}`, children: correctCount === totalQuestions ? "\u{1F389} Perfect Score!" : correctCount >= totalQuestions * 0.7 ? "Good Job!" : "Keep Practicing" }) })
             ] })
           ] }),
-          answeredCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "mt-3 h-2 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00] transition-all duration-500", style: {
+          answeredCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "mt-3 h-2 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00] transition-all duration-500", style: {
             width: `${answeredCount / totalQuestions * 100}%`
           } }) }),
-          allAnswered && /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-4 flex items-center justify-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("p", { className: "text-sm text-gray-400", children: [
+          allAnswered && /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-4 flex items-center justify-between", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("p", { className: "text-sm text-gray-400", children: [
               "You answered ",
               correctCount,
               "/",
@@ -55170,22 +55325,22 @@ function StepsPage() {
               Math.round(correctCount / totalQuestions * 100),
               "%)"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("button", { onClick: handleReset, className: "rounded-lg border border-[#1a2d4a] px-3 py-1.5 text-xs text-gray-400 hover:border-gray-500 hover:text-white transition-colors", children: "Reset All" })
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("button", { onClick: handleReset, className: "rounded-lg border border-[#1a2d4a] px-3 py-1.5 text-xs text-gray-400 hover:border-gray-500 hover:text-white transition-colors", children: "Reset All" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "space-y-8", children: stepQuizzes.map((sq) => /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] overflow-hidden", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "flex items-center gap-3 border-b border-[#1a2d4a] bg-[#0a1628] px-5 py-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "flex h-7 w-7 items-center justify-center rounded-full bg-[#e63946] text-xs font-bold text-white", children: sq.step }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("h3", { className: "font-semibold text-white", children: sq.title })
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "space-y-8", children: stepQuizzes.map((sq) => /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] overflow-hidden", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "flex items-center gap-3 border-b border-[#1a2d4a] bg-[#0a1628] px-5 py-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "flex h-7 w-7 items-center justify-center rounded-full bg-[#e63946] text-xs font-bold text-white", children: sq.step }),
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "font-semibold text-white", children: sq.title })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "space-y-6 p-5", children: sq.questions.map((q3, qi) => {
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "space-y-6 p-5", children: sq.questions.map((q3, qi) => {
             const key = `${sq.step}-${qi}`;
             const selected = selectedAnswers[key];
             const submitted = submittedAnswers[key];
             const isCorrect = submitted && selected === q3.correctIndex;
-            return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("p", { className: "text-sm font-medium text-white", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { className: "text-[#e63946]", children: [
+            return /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("p", { className: "text-sm font-medium text-white", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("span", { className: "text-[#e63946]", children: [
                   "Q",
                   qi + 1,
                   ":"
@@ -55193,25 +55348,25 @@ function StepsPage() {
                 " ",
                 q3.question
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "mt-3 space-y-2", children: q3.options.map((opt, oi) => {
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "mt-3 space-y-2", children: q3.options.map((opt, oi) => {
                 const isAns = submitted && oi === q3.correctIndex;
                 const isWrong = submitted && selected === oi && oi !== q3.correctIndex;
-                return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("button", { onClick: () => handleSelectAnswer(key, oi), disabled: submitted, className: `flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left text-sm transition-all duration-200 ${submitted ? isAns ? "border-green-500/50 bg-green-500/10 text-green-400" : isWrong ? "border-red-500/50 bg-red-500/10 text-red-400" : "border-[#1a2d4a] text-gray-500 opacity-50" : selected === oi ? "border-[#e63946] bg-[#e63946]/10 text-white" : "border-[#1a2d4a] text-gray-400 hover:border-[#e63946]/50 hover:bg-[#e63946]/5"}`, children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { className: `flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${submitted && isAns ? "border-green-500 bg-green-500" : submitted && isWrong ? "border-red-500 bg-red-500" : selected === oi ? "border-[#e63946] bg-[#e63946]" : "border-gray-600"}`, children: [
-                    submitted && isAns && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }),
-                    submitted && isWrong && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M6 18L18 6M6 6l12 12" }) }),
-                    !submitted && selected === oi && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "h-2 w-2 rounded-full bg-white" })
+                return /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("button", { onClick: () => handleSelectAnswer(key, oi), disabled: submitted, className: `flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left text-sm transition-all duration-200 ${submitted ? isAns ? "border-green-500/50 bg-green-500/10 text-green-400" : isWrong ? "border-red-500/50 bg-red-500/10 text-red-400" : "border-[#1a2d4a] text-gray-500 opacity-50" : selected === oi ? "border-[#e63946] bg-[#e63946]/10 text-white" : "border-[#1a2d4a] text-gray-400 hover:border-[#e63946]/50 hover:bg-[#e63946]/5"}`, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("span", { className: `flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${submitted && isAns ? "border-green-500 bg-green-500" : submitted && isWrong ? "border-red-500 bg-red-500" : selected === oi ? "border-[#e63946] bg-[#e63946]" : "border-gray-600"}`, children: [
+                    submitted && isAns && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }),
+                    submitted && isWrong && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M6 18L18 6M6 6l12 12" }) }),
+                    !submitted && selected === oi && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "h-2 w-2 rounded-full bg-white" })
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { className: "text-xs text-gray-500 font-mono mr-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("span", { className: "text-xs text-gray-500 font-mono mr-1", children: [
                     String.fromCharCode(65 + oi),
                     "."
                   ] }),
                   opt
                 ] }, oi);
               }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "mt-3 flex items-center gap-3", children: [
-                !submitted && selected !== void 0 && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("button", { onClick: () => handleSubmitAnswer(key), className: "rounded-lg bg-[#e63946] px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#c1121f]", children: "Check Answer" }),
-                submitted && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("button", { onClick: () => {
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-3 flex items-center gap-3", children: [
+                !submitted && selected !== void 0 && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("button", { onClick: () => handleSubmitAnswer(key), className: "rounded-lg bg-[#e63946] px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#c1121f]", children: "Check Answer" }),
+                submitted && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("button", { onClick: () => {
                   const newSelected = {
                     ...selectedAnswers
                   };
@@ -55224,8 +55379,8 @@ function StepsPage() {
                   setSubmittedAnswers(newSubmitted);
                 }, className: "rounded-lg border border-[#1a2d4a] px-4 py-1.5 text-xs font-medium text-gray-400 transition-colors hover:border-gray-500 hover:text-white", children: "Retry" })
               ] }),
-              submitted && /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: `mt-3 rounded-lg p-3 text-xs leading-relaxed ${isCorrect ? "border border-green-500/30 bg-green-500/5 text-green-400" : "border border-red-500/30 bg-red-500/5 text-red-400"}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { className: "font-semibold", children: isCorrect ? "\u2713 Correct!" : "\u2717 Not quite." }),
+              submitted && /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: `mt-3 rounded-lg p-3 text-xs leading-relaxed ${isCorrect ? "border border-green-500/30 bg-green-500/5 text-green-400" : "border border-red-500/30 bg-red-500/5 text-red-400"}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "font-semibold", children: isCorrect ? "\u2713 Correct!" : "\u2717 Not quite." }),
                 " ",
                 q3.explanation
               ] })
@@ -55236,13 +55391,13 @@ function StepsPage() {
     ] })
   ] });
 }
-var import_jsx_runtime61, import_react55, detailedSteps, stepQuizzes;
-var init_steps_GV2FU_Mr = __esm({
-  "dist/server/assets/steps-GV2FU_Mr.js"() {
+var import_jsx_runtime62, import_react56, detailedSteps, stepQuizzes;
+var init_steps_5toRXckf = __esm({
+  "dist/server/assets/steps-5toRXckf.js"() {
     "use strict";
-    import_jsx_runtime61 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react55 = __toESM(require_react(), 1);
+    import_jsx_runtime62 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react56 = __toESM(require_react(), 1);
     init_courses_CY9yjTRv();
     init_auth_guard_DDzkafwD();
     init_production();
@@ -55993,20 +56148,21 @@ var init_steps_GV2FU_Mr = __esm({
   }
 });
 
-// dist/server/assets/support-Bnc4F6Sg.js
-var support_Bnc4F6Sg_exports = {};
-__export(support_Bnc4F6Sg_exports, {
+// dist/server/assets/support-Cl-2sPZv.js
+var support_Cl_2sPZv_exports = {};
+__export(support_Cl_2sPZv_exports, {
   component: () => SupportPage
 });
+import "node:async_hooks";
 function SupportPage() {
   const {
     t
   } = useTranslation();
-  const [name, setName] = (0, import_react56.useState)("");
-  const [email, setEmail] = (0, import_react56.useState)("");
-  const [subject, setSubject] = (0, import_react56.useState)("");
-  const [message, setMessage] = (0, import_react56.useState)("");
-  const [status, setStatus] = (0, import_react56.useState)("idle");
+  const [name, setName] = (0, import_react57.useState)("");
+  const [email, setEmail] = (0, import_react57.useState)("");
+  const [subject, setSubject] = (0, import_react57.useState)("");
+  const [message, setMessage] = (0, import_react57.useState)("");
+  const [status, setStatus] = (0, import_react57.useState)("idle");
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !subject || !message) return;
@@ -56052,55 +56208,55 @@ We'll review it and get back to you within 24 hours.
       setStatus("error");
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mx-auto flex h-16 max-w-4xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mx-auto flex h-16 max-w-4xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("a", { href: "/", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Home" })
+      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Home" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("main", { className: "mx-auto max-w-4xl px-6 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mx-auto max-w-lg", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h1", { className: "text-3xl font-bold text-white", children: t("support.title") }),
-      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "mt-2 text-gray-400", children: t("support.subtitle") }),
-      status === "success" ? /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "mt-10 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("svg", { className: "h-6 w-6 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "mt-4 text-xl font-bold text-white", children: t("support.success") }),
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "mt-2 text-gray-400", children: t("support.successDesc") })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("form", { onSubmit: handleSubmit, className: "mt-10 space-y-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.name") }),
-            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("input", { type: "text", required: true, value: name, onChange: (e) => setName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "John Doe" })
+    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("main", { className: "mx-auto max-w-4xl px-6 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mx-auto max-w-lg", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("h1", { className: "text-3xl font-bold text-white", children: t("support.title") }),
+      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("p", { className: "mt-2 text-gray-400", children: t("support.subtitle") }),
+      status === "success" ? /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mt-10 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { className: "mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("svg", { className: "h-6 w-6 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("h3", { className: "mt-4 text-xl font-bold text-white", children: t("support.success") }),
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("p", { className: "mt-2 text-gray-400", children: t("support.successDesc") })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("form", { onSubmit: handleSubmit, className: "mt-10 space-y-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.name") }),
+            /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("input", { type: "text", required: true, value: name, onChange: (e) => setName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "John Doe" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.email") }),
-            /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("input", { type: "email", required: true, value: email, onChange: (e) => setEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "you@dealership.com" })
+          /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.email") }),
+            /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("input", { type: "email", required: true, value: email, onChange: (e) => setEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "you@dealership.com" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.subject") }),
-          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("input", { type: "text", required: true, value: subject, onChange: (e) => setSubject(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "How can we help?" })
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.subject") }),
+          /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("input", { type: "text", required: true, value: subject, onChange: (e) => setSubject(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "How can we help?" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.message") }),
-          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("textarea", { required: true, rows: 5, value: message, onChange: (e) => setMessage(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "Tell us more about your issue..." })
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("support.message") }),
+          /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("textarea", { required: true, rows: 5, value: message, onChange: (e) => setMessage(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "Tell us more about your issue..." })
         ] }),
-        status === "error" && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: t("support.error") }),
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("button", { type: "submit", disabled: status === "loading", className: "btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50", children: status === "loading" ? t("support.sending") : t("support.submit") })
+        status === "error" && /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: t("support.error") }),
+        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("button", { type: "submit", disabled: status === "loading", className: "btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50", children: status === "loading" ? t("support.sending") : t("support.submit") })
       ] })
     ] }) })
   ] });
 }
-var import_jsx_runtime62, import_react56, submitTicket3;
-var init_support_Bnc4F6Sg = __esm({
-  "dist/server/assets/support-Bnc4F6Sg.js"() {
+var import_jsx_runtime63, import_react57, submitTicket3;
+var init_support_Cl_2sPZv = __esm({
+  "dist/server/assets/support-Cl-2sPZv.js"() {
     "use strict";
-    import_jsx_runtime62 = __toESM(require_jsx_runtime(), 1);
+    import_jsx_runtime63 = __toESM(require_jsx_runtime(), 1);
     init_createSsrRpc_l1y8KE69();
     init_server5();
-    import_react56 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
+    import_react57 = __toESM(require_react(), 1);
+    init_router_BIxaY9WS();
     init_production();
     submitTicket3 = createServerFn({
       method: "POST"
@@ -57531,104 +57687,17 @@ Everything I learned in 10+ years of training is built into Champion Sales Train
   }
 });
 
-// dist/server/assets/index-BwwVZm6r.js
-var index_BwwVZm6r_exports = {};
-__export(index_BwwVZm6r_exports, {
+// dist/server/assets/index-K8wmkF5Q.js
+var index_K8wmkF5Q_exports = {};
+__export(index_K8wmkF5Q_exports, {
   component: () => BlogListing
 });
+import "node:async_hooks";
 function BlogListing() {
-  const [posts, setPosts] = (0, import_react57.useState)([]);
-  (0, import_react57.useEffect)(() => {
+  const [posts, setPosts] = (0, import_react58.useState)([]);
+  (0, import_react58.useEffect)(() => {
     setPosts(getBlogPosts());
   }, []);
-  return /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/training", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Training" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/blog", className: "text-sm font-medium text-white", children: "Blog" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/pricing", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Pricing" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/login", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Sign In" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/signup", className: "btn-primary text-sm", children: "Get Started" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(LanguageSwitcher, {})
-      ] })
-    ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("section", { className: "border-b border-[#1a2d4a]/50 py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mx-auto max-w-5xl px-6 text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
-        "Blog"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("h1", { className: "mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl", children: [
-        "Sales Training ",
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("span", { className: "gradient-text", children: "Insights" })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Expert advice, proven strategies, and actionable tips to master automotive sales and grow your career." })
-    ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("section", { className: "py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { className: "mx-auto max-w-5xl px-6", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { className: "space-y-8", children: posts.map((post) => /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("a", { href: `/blog/${post.slug}`, className: "group block rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 sm:p-8", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "flex items-center gap-3 text-xs text-gray-500 mb-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("span", { className: "inline-flex items-center rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: "Article" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("span", { children: post.date })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("h2", { className: "text-xl font-bold text-white group-hover:text-[#e63946] transition-colors sm:text-2xl", children: post.title }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400 line-clamp-3", children: post.excerpt }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mt-5 flex items-center gap-2 text-sm font-medium text-[#e63946]", children: [
-        "Read More",
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("svg", { className: "h-4 w-4 transition-transform group-hover:translate-x-1", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 8l4 4m0 0l-4 4m4-4H3" }) })
-      ] })
-    ] }, post.slug)) }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "mx-auto max-w-5xl px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { className: "flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/", className: "hover:text-white transition-colors", children: "Home" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/training", className: "hover:text-white transition-colors", children: "Training" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/blog", className: "hover:text-white transition-colors", children: "Blog" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/pricing", className: "hover:text-white transition-colors", children: "Pricing" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/support", className: "hover:text-white transition-colors", children: "Support" }),
-        /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("a", { href: "/login", className: "hover:text-white transition-colors", children: "Sign In" })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-600", children: [
-        "\xA9 ",
-        (/* @__PURE__ */ new Date()).getFullYear(),
-        " Champion Sales Training & Events. All rights reserved."
-      ] })
-    ] }) })
-  ] });
-}
-var import_jsx_runtime63, import_react57;
-var init_index_BwwVZm6r = __esm({
-  "dist/server/assets/index-BwwVZm6r.js"() {
-    "use strict";
-    import_jsx_runtime63 = __toESM(require_jsx_runtime(), 1);
-    import_react57 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
-    init_blog_B_nmuHou();
-    init_production();
-  }
-});
-
-// dist/server/assets/_slug-iHvoSxo_.js
-var slug_iHvoSxo_exports = {};
-__export(slug_iHvoSxo_exports, {
-  component: () => BlogPostPage
-});
-function BlogPostPage() {
-  const params = Route$7.useParams();
-  const [post, setPost] = (0, import_react58.useState)(null);
-  const [recentPosts, setRecentPosts] = (0, import_react58.useState)([]);
-  (0, import_react58.useEffect)(() => {
-    const p3 = getBlogPost(params.slug);
-    setPost(p3);
-    const all = getBlogPosts().filter((bp) => bp.slug !== params.slug);
-    setRecentPosts(all);
-  }, [params.slug]);
-  if (!post) {
-    return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h1", { className: "text-2xl font-bold text-white", children: "Post not found" }),
-      /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/blog", className: "mt-4 inline-block text-[#e63946] hover:underline", children: "Back to Blog" })
-    ] }) });
-  }
   return /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
     /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
       /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
@@ -57637,56 +57706,145 @@ function BlogPostPage() {
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/training", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Training" }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/blog", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Blog" }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Pricing" }),
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/blog", className: "text-sm font-medium text-white", children: "Blog" }),
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/pricing", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Pricing" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/login", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Sign In" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/signup", className: "btn-primary text-sm", children: "Get Started" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "grid gap-8 lg:grid-cols-3", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("article", { className: "lg:col-span-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("a", { href: "/blog", className: "inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#e63946] transition-colors mb-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 19l-7-7 7-7" }) }),
-          "Back to Blog"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "flex items-center gap-3 text-xs text-gray-500 mb-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("span", { className: "inline-flex items-center rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: "Article" }),
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("span", { children: post.date })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h1", { className: "text-3xl font-extrabold text-white sm:text-4xl leading-tight", children: post.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("div", { className: "mt-8 space-y-6", children: post.sections.map((section, i2) => /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(BlogSectionRenderer, { section }, i2)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mt-12 rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-6 sm:p-8", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h3", { className: "text-xl font-bold text-white", children: "Ready to master the sales process?" }),
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("p", { className: "mt-2 text-gray-400", children: "Join Champion Sales Training & Events and get access to our complete training library, interactive assessments, and manager coaching tools." }),
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mt-6 flex gap-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/signup", className: "btn-primary text-sm", children: "Start Training" }),
-            /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/#pricing", className: "btn-secondary text-sm", children: "View Plans" })
-          ] })
-        ] })
+    /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("section", { className: "border-b border-[#1a2d4a]/50 py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mx-auto max-w-5xl px-6 text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+        "Blog"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("aside", { className: "lg:col-span-1", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sticky top-24", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h3", { className: "text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4", children: "More Articles" }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("div", { className: "space-y-4", children: recentPosts.map((rp) => /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("a", { href: `/blog/${rp.slug}`, className: "group block", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("p", { className: "text-sm font-medium text-white group-hover:text-[#e63946] transition-colors", children: rp.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("p", { className: "mt-1 text-xs text-gray-500", children: rp.date })
-        ] }, rp.slug)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mt-8 border-t border-[#1a2d4a] pt-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h3", { className: "text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3", children: "Start Learning" }),
-          /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/signup", className: "btn-primary text-sm w-full text-center block", children: "Get Started Free" })
-        ] })
-      ] }) })
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("h1", { className: "mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl", children: [
+        "Sales Training ",
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("span", { className: "gradient-text", children: "Insights" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Expert advice, proven strategies, and actionable tips to master automotive sales and grow your career." })
     ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("section", { className: "py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("div", { className: "mx-auto max-w-5xl px-6", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("div", { className: "space-y-8", children: posts.map((post) => /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("a", { href: `/blog/${post.slug}`, className: "group block rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 sm:p-8", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "flex items-center gap-3 text-xs text-gray-500 mb-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("span", { className: "inline-flex items-center rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: "Article" }),
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("span", { children: post.date })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h2", { className: "text-xl font-bold text-white group-hover:text-[#e63946] transition-colors sm:text-2xl", children: post.title }),
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400 line-clamp-3", children: post.excerpt }),
+      /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mt-5 flex items-center gap-2 text-sm font-medium text-[#e63946]", children: [
+        "Read More",
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("svg", { className: "h-4 w-4 transition-transform group-hover:translate-x-1", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 8l4 4m0 0l-4 4m4-4H3" }) })
+      ] })
+    ] }, post.slug)) }) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "mx-auto max-w-5xl px-6", children: [
       /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("div", { className: "flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500", children: [
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/", className: "hover:text-white transition-colors", children: "Home" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/training", className: "hover:text-white transition-colors", children: "Training" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/blog", className: "hover:text-white transition-colors", children: "Blog" }),
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/#pricing", className: "hover:text-white transition-colors", children: "Pricing" }),
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/pricing", className: "hover:text-white transition-colors", children: "Pricing" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/support", className: "hover:text-white transition-colors", children: "Support" }),
         /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("a", { href: "/login", className: "hover:text-white transition-colors", children: "Sign In" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-600", children: [
+        "\xA9 ",
+        (/* @__PURE__ */ new Date()).getFullYear(),
+        " Champion Sales Training & Events. All rights reserved."
+      ] })
+    ] }) })
+  ] });
+}
+var import_jsx_runtime64, import_react58;
+var init_index_K8wmkF5Q = __esm({
+  "dist/server/assets/index-K8wmkF5Q.js"() {
+    "use strict";
+    import_jsx_runtime64 = __toESM(require_jsx_runtime(), 1);
+    import_react58 = __toESM(require_react(), 1);
+    init_router_BIxaY9WS();
+    init_blog_B_nmuHou();
+    init_production();
+  }
+});
+
+// dist/server/assets/_slug-Dl1MqjSn.js
+var slug_Dl1MqjSn_exports = {};
+__export(slug_Dl1MqjSn_exports, {
+  component: () => BlogPostPage
+});
+import "node:async_hooks";
+function BlogPostPage() {
+  const params = Route$7.useParams();
+  const [post, setPost] = (0, import_react59.useState)(null);
+  const [recentPosts, setRecentPosts] = (0, import_react59.useState)([]);
+  (0, import_react59.useEffect)(() => {
+    const p3 = getBlogPost(params.slug);
+    setPost(p3);
+    const all = getBlogPosts().filter((bp) => bp.slug !== params.slug);
+    setRecentPosts(all);
+  }, [params.slug]);
+  if (!post) {
+    return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h1", { className: "text-2xl font-bold text-white", children: "Post not found" }),
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/blog", className: "mt-4 inline-block text-[#e63946] hover:underline", children: "Back to Blog" })
+    ] }) });
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/training", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Training" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/blog", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Blog" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Pricing" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/login", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Sign In" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/signup", className: "btn-primary text-sm", children: "Get Started" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(LanguageSwitcher, {})
+      ] })
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "grid gap-8 lg:grid-cols-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("article", { className: "lg:col-span-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("a", { href: "/blog", className: "inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#e63946] transition-colors mb-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 19l-7-7 7-7" }) }),
+          "Back to Blog"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-3 text-xs text-gray-500 mb-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "inline-flex items-center rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: "Article" }),
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { children: post.date })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h1", { className: "text-3xl font-extrabold text-white sm:text-4xl leading-tight", children: post.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "mt-8 space-y-6", children: post.sections.map((section, i2) => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(BlogSectionRenderer, { section }, i2)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-12 rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-6 sm:p-8", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-xl font-bold text-white", children: "Ready to master the sales process?" }),
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-2 text-gray-400", children: "Join Champion Sales Training & Events and get access to our complete training library, interactive assessments, and manager coaching tools." }),
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-6 flex gap-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/signup", className: "btn-primary text-sm", children: "Start Training" }),
+            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/#pricing", className: "btn-secondary text-sm", children: "View Plans" })
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("aside", { className: "lg:col-span-1", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sticky top-24", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4", children: "More Articles" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "space-y-4", children: recentPosts.map((rp) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("a", { href: `/blog/${rp.slug}`, className: "group block", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm font-medium text-white group-hover:text-[#e63946] transition-colors", children: rp.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-1 text-xs text-gray-500", children: rp.date })
+        ] }, rp.slug)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-8 border-t border-[#1a2d4a] pt-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3", children: "Start Learning" }),
+          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/signup", className: "btn-primary text-sm w-full text-center block", children: "Get Started Free" })
+        ] })
+      ] }) })
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mx-auto max-w-5xl px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/", className: "hover:text-white transition-colors", children: "Home" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/training", className: "hover:text-white transition-colors", children: "Training" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/blog", className: "hover:text-white transition-colors", children: "Blog" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/#pricing", className: "hover:text-white transition-colors", children: "Pricing" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/support", className: "hover:text-white transition-colors", children: "Support" }),
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("a", { href: "/login", className: "hover:text-white transition-colors", children: "Sign In" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-600", children: [
         "\xA9 ",
         (/* @__PURE__ */ new Date()).getFullYear(),
         " Champion Sales Training & Events. All rights reserved."
@@ -57699,75 +57857,76 @@ function BlogSectionRenderer({
 }) {
   switch (section.type) {
     case "heading":
-      return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h2", { className: "text-2xl font-bold text-white mt-10 mb-4", children: section.text });
+      return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h2", { className: "text-2xl font-bold text-white mt-10 mb-4", children: section.text });
     case "subheading":
-      return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("h3", { className: "text-lg font-bold text-[#f77f00] mt-6 mb-2", children: section.text });
+      return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-[#f77f00] mt-6 mb-2", children: section.text });
     case "text":
-      return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("p", { className: "leading-relaxed text-gray-300", children: section.text });
+      return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "leading-relaxed text-gray-300", children: section.text });
     case "list":
-      return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("ul", { className: "space-y-2", children: (section.items || []).map((item, j2) => /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)("li", { className: "flex items-start gap-3 text-sm text-gray-300", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("svg", { className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 5l7 7-7 7" }) }),
+      return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("ul", { className: "space-y-2", children: (section.items || []).map((item, j2) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("li", { className: "flex items-start gap-3 text-sm text-gray-300", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 5l7 7-7 7" }) }),
         item
       ] }, j2)) });
     case "quote":
-      return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("div", { className: "border-l-4 border-[#e63946] bg-[#1a2d4a]/50 rounded-r-lg p-4 italic text-gray-300", children: section.text });
+      return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "border-l-4 border-[#e63946] bg-[#1a2d4a]/50 rounded-r-lg p-4 italic text-gray-300", children: section.text });
     case "separator":
-      return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)("hr", { className: "border-[#1a2d4a] my-8" });
+      return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("hr", { className: "border-[#1a2d4a] my-8" });
     default:
       return null;
   }
 }
-var import_jsx_runtime64, import_react58;
-var init_slug_iHvoSxo = __esm({
-  "dist/server/assets/_slug-iHvoSxo_.js"() {
+var import_jsx_runtime65, import_react59;
+var init_slug_Dl1MqjSn = __esm({
+  "dist/server/assets/_slug-Dl1MqjSn.js"() {
     "use strict";
-    import_jsx_runtime64 = __toESM(require_jsx_runtime(), 1);
-    import_react58 = __toESM(require_react(), 1);
-    init_router_Ckp0VUkA();
+    import_jsx_runtime65 = __toESM(require_jsx_runtime(), 1);
+    import_react59 = __toESM(require_react(), 1);
+    init_router_BIxaY9WS();
     init_blog_B_nmuHou();
     init_production();
   }
 });
 
-// dist/server/assets/index-N_r3bUyv.js
-var index_N_r3bUyv_exports = {};
-__export(index_N_r3bUyv_exports, {
+// dist/server/assets/index-D-DvMbzp.js
+var index_D_DvMbzp_exports = {};
+__export(index_D_DvMbzp_exports, {
   component: () => ManagerDashboard
 });
+import "node:async_hooks";
 function ManagerDashboard() {
   const {
     t
   } = useTranslation();
-  const [token, setToken] = (0, import_react59.useState)(null);
-  const [team, setTeam] = (0, import_react59.useState)([]);
-  const [loading, setLoading] = (0, import_react59.useState)(true);
-  const [error, setError] = (0, import_react59.useState)("");
-  const [selectedUser, setSelectedUser] = (0, import_react59.useState)(null);
-  const [messageText, setMessageText] = (0, import_react59.useState)("");
-  const [sending, setSending] = (0, import_react59.useState)(false);
-  const [detailTab, setDetailTab] = (0, import_react59.useState)("progress");
-  const [mainTab, setMainTab] = (0, import_react59.useState)("completion");
-  const [appointments, setAppointments] = (0, import_react59.useState)([]);
-  const [showNewAppt, setShowNewAppt] = (0, import_react59.useState)(false);
-  const [apptSalesperson, setApptSalesperson] = (0, import_react59.useState)("");
-  const [apptCustomer, setApptCustomer] = (0, import_react59.useState)("");
-  const [apptTime, setApptTime] = (0, import_react59.useState)("");
-  const [apptCar, setApptCar] = (0, import_react59.useState)("");
-  const [apptTask, setApptTask] = (0, import_react59.useState)("");
-  const [apptSaving, setApptSaving] = (0, import_react59.useState)(false);
-  const [skillGaps, setSkillGaps] = (0, import_react59.useState)(null);
-  const [dailyCount, setDailyCount] = (0, import_react59.useState)(null);
-  const [showAddForm, setShowAddForm] = (0, import_react59.useState)(false);
-  const [newEmail, setNewEmail] = (0, import_react59.useState)("");
-  const [newName, setNewName] = (0, import_react59.useState)("");
-  const [newTier, setNewTier] = (0, import_react59.useState)("plus");
-  const [adding, setAdding] = (0, import_react59.useState)(false);
-  const [addError, setAddError] = (0, import_react59.useState)("");
-  const [showStripeConfirm, setShowStripeConfirm] = (0, import_react59.useState)(false);
-  const [stripeConfirmData, setStripeConfirmData] = (0, import_react59.useState)(null);
-  const [addedSuccess, setAddedSuccess] = (0, import_react59.useState)(null);
-  const [costSummary, setCostSummary] = (0, import_react59.useState)(null);
-  const [authCheck, setAuthCheck] = (0, import_react59.useState)("loading");
+  const [token, setToken] = (0, import_react60.useState)(null);
+  const [team, setTeam] = (0, import_react60.useState)([]);
+  const [loading, setLoading] = (0, import_react60.useState)(true);
+  const [error, setError] = (0, import_react60.useState)("");
+  const [selectedUser, setSelectedUser] = (0, import_react60.useState)(null);
+  const [messageText, setMessageText] = (0, import_react60.useState)("");
+  const [sending, setSending] = (0, import_react60.useState)(false);
+  const [detailTab, setDetailTab] = (0, import_react60.useState)("progress");
+  const [mainTab, setMainTab] = (0, import_react60.useState)("completion");
+  const [appointments, setAppointments] = (0, import_react60.useState)([]);
+  const [showNewAppt, setShowNewAppt] = (0, import_react60.useState)(false);
+  const [apptSalesperson, setApptSalesperson] = (0, import_react60.useState)("");
+  const [apptCustomer, setApptCustomer] = (0, import_react60.useState)("");
+  const [apptTime, setApptTime] = (0, import_react60.useState)("");
+  const [apptCar, setApptCar] = (0, import_react60.useState)("");
+  const [apptTask, setApptTask] = (0, import_react60.useState)("");
+  const [apptSaving, setApptSaving] = (0, import_react60.useState)(false);
+  const [skillGaps, setSkillGaps] = (0, import_react60.useState)(null);
+  const [dailyCount, setDailyCount] = (0, import_react60.useState)(null);
+  const [showAddForm, setShowAddForm] = (0, import_react60.useState)(false);
+  const [newEmail, setNewEmail] = (0, import_react60.useState)("");
+  const [newName, setNewName] = (0, import_react60.useState)("");
+  const [newTier, setNewTier] = (0, import_react60.useState)("plus");
+  const [adding, setAdding] = (0, import_react60.useState)(false);
+  const [addError, setAddError] = (0, import_react60.useState)("");
+  const [showStripeConfirm, setShowStripeConfirm] = (0, import_react60.useState)(false);
+  const [stripeConfirmData, setStripeConfirmData] = (0, import_react60.useState)(null);
+  const [addedSuccess, setAddedSuccess] = (0, import_react60.useState)(null);
+  const [costSummary, setCostSummary] = (0, import_react60.useState)(null);
+  const [authCheck, setAuthCheck] = (0, import_react60.useState)("loading");
   const TIER_PRICES = {
     basic: 149,
     plus: 169,
@@ -57778,7 +57937,7 @@ function ManagerDashboard() {
     plus: "https://buy.stripe.com/3cI7sL2aqbve7vkgQf8Vi0j",
     premium: "https://buy.stripe.com/28E00j02ibveaHw43t8Vi0k"
   };
-  (0, import_react59.useEffect)(() => {
+  (0, import_react60.useEffect)(() => {
     const t2 = localStorage.getItem("salesdrive_token");
     if (!t2) {
       window.location.href = "/login";
@@ -57886,7 +58045,7 @@ function ManagerDashboard() {
     setApptSaving(false);
     fetchAppointments(token);
   };
-  (0, import_react59.useEffect)(() => {
+  (0, import_react60.useEffect)(() => {
     const t2 = localStorage.getItem("salesdrive_token");
     if (!t2) {
       window.location.href = "/login";
@@ -58067,66 +58226,66 @@ function ManagerDashboard() {
     window.location.href = "/";
   };
   if (loading) {
-    return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
   }
-  const Header = () => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  const Header = () => /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("nav", { className: "flex items-center gap-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-1.5 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("nav", { className: "flex items-center gap-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center gap-1.5 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }) }),
         "Manager Dashboard"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: handleLogout, className: "text-sm text-gray-400 transition-colors hover:text-[#e63946]", children: t("account.signOut") }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(LanguageSwitcher, {})
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: handleLogout, className: "text-sm text-gray-400 transition-colors hover:text-[#e63946]", children: t("account.signOut") }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(LanguageSwitcher, {})
     ] })
   ] }) });
   const ProgressBar = ({
     percent,
     size = "md"
-  }) => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: `w-full rounded-full bg-[#1a2d4a] ${size === "sm" ? "h-1.5" : "h-2.5"}`, children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00] transition-all duration-500", style: {
+  }) => /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: `w-full rounded-full bg-[#1a2d4a] ${size === "sm" ? "h-1.5" : "h-2.5"}`, children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "h-full rounded-full bg-gradient-to-r from-[#e63946] to-[#f77f00] transition-all duration-500", style: {
     width: `${Math.min(percent, 100)}%`
   } }) });
-  const TeamOverview = () => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3", children: team.map((sp) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("button", { onClick: () => selectUser(sp.id), className: "group relative overflow-hidden rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 text-left transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5", children: [
-    sp.unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "absolute right-3 top-3 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#e63946] px-1.5 text-[10px] font-bold text-white", children: sp.unreadCount }),
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-3", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-sm font-bold text-[#e63946]", children: (sp.name?.[0] || sp.email[0]).toUpperCase() }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "min-w-0 flex-1", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "font-semibold text-white truncate", children: sp.name || sp.email }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-xs text-gray-500", children: sp.email })
+  const TeamOverview = () => /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3", children: team.map((sp) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("button", { onClick: () => selectUser(sp.id), className: "group relative overflow-hidden rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 text-left transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5", children: [
+    sp.unreadCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "absolute right-3 top-3 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#e63946] px-1.5 text-[10px] font-bold text-white", children: sp.unreadCount }),
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center gap-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-sm font-bold text-[#e63946]", children: (sp.name?.[0] || sp.email[0]).toUpperCase() }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "min-w-0 flex-1", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "font-semibold text-white truncate", children: sp.name || sp.email }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-xs text-gray-500", children: sp.email })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between text-sm", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-gray-400", children: t("manager.progress") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "font-medium text-white", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mt-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-gray-400", children: t("manager.progress") }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "font-medium text-white", children: [
           sp.percent,
           "%"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(ProgressBar, { percent: sp.percent, size: "sm" }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "mt-1 text-xs text-gray-500", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(ProgressBar, { percent: sp.percent, size: "sm" }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "mt-1 text-xs text-gray-500", children: [
         sp.totalCompleted,
         " of ",
         sp.totalLessons,
         " lessons"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-3 flex items-center justify-between border-t border-[#1a2d4a]/50 pt-3", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-xs text-gray-500 capitalize", children: "Plus" }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("select", { onClick: (e) => e.stopPropagation(), onChange: (e) => handleChangeTier(sp.id, e.target.value), className: "bg-transparent text-[10px] text-gray-400 border border-[#1a2d4a] rounded px-1 py-0.5", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "basic", children: "Basic" }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "plus", children: "Plus" }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "premium", children: "Premium" })
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mt-3 flex items-center justify-between border-t border-[#1a2d4a]/50 pt-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-xs text-gray-500 capitalize", children: "Plus" }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("select", { onClick: (e) => e.stopPropagation(), onChange: (e) => handleChangeTier(sp.id, e.target.value), className: "bg-transparent text-[10px] text-gray-400 border border-[#1a2d4a] rounded px-1 py-0.5", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "basic", children: "Basic" }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "plus", children: "Plus" }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "premium", children: "Premium" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: (e) => {
           e.stopPropagation();
           handleRemoveSalesperson(sp.id);
         }, className: "text-[10px] text-[#e63946] hover:text-white transition-colors", children: t("manager.remove") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: async (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: async (e) => {
           e.stopPropagation();
           if (!confirm(`Reset ALL progress for ${sp.name || sp.email}?`)) return;
           await resetUserProgress2({
@@ -58156,29 +58315,29 @@ function ManagerDashboard() {
         percent: Math.round(courseCompleted / course.lessonsList.length * 100)
       };
     });
-    return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "space-y-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white", children: t("manager.trainingProgress") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-sm text-gray-500", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "space-y-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white", children: t("manager.trainingProgress") }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-sm text-gray-500", children: [
           selectedUser.completedLessons.length,
           " total completed"
         ] })
       ] }),
-      allCourseData.map((course) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-3 flex items-center justify-between", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h4", { className: "font-semibold text-white", children: course.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-xs text-gray-500", children: [
+      allCourseData.map((course) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-3 flex items-center justify-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h4", { className: "font-semibold text-white", children: course.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-xs text-gray-500", children: [
             course.completed,
             "/",
             course.total
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(ProgressBar, { percent: course.percent, size: "sm" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "mt-4 space-y-2", children: course.lessonsList.map((lesson) => {
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(ProgressBar, { percent: course.percent, size: "sm" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mt-4 space-y-2", children: course.lessonsList.map((lesson) => {
           const isCompleted = !!selectedUser.completedMap[lesson.id];
-          return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => toggleLesson(course.id, lesson.id, isCompleted), className: `flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-colors ${isCompleted ? "border-[#e63946] bg-[#e63946]" : "border-[#1a2d4a] hover:border-[#e63946]/50"}`, children: isCompleted && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: `text-sm ${isCompleted ? "text-gray-400 line-through" : "text-gray-300"}`, children: lesson.title })
+          return /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => toggleLesson(course.id, lesson.id, isCompleted), className: `flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-colors ${isCompleted ? "border-[#e63946] bg-[#e63946]" : "border-[#1a2d4a] hover:border-[#e63946]/50"}`, children: isCompleted && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: `text-sm ${isCompleted ? "text-gray-400 line-through" : "text-gray-300"}`, children: lesson.title })
           ] }, lesson.id);
         }) })
       ] }, course.id))
@@ -58197,51 +58356,51 @@ function ManagerDashboard() {
       });
       selectUser(selectedUser.user.id);
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "space-y-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white", children: "Skill Gaps" }),
-        dailyCount && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: `text-xs ${dailyCount.limitReached ? "text-[#e63946]" : "text-gray-500"}`, children: dailyCount.limitReached ? "Daily limit reached" : `${dailyCount.completedToday}/${dailyCount.maxDaily} today` })
+    return /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "space-y-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white", children: "Skill Gaps" }),
+        dailyCount && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: `text-xs ${dailyCount.limitReached ? "text-[#e63946]" : "text-gray-500"}`, children: dailyCount.limitReached ? "Daily limit reached" : `${dailyCount.completedToday}/${dailyCount.maxDaily} today` })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-400", children: "Courses ranked by completion percentage \u2014 lowest first. Assign modules to address skill gaps." }),
-      skillGaps.map((gap) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between mb-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h4", { className: "font-semibold text-white", children: gap.courseName }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: `text-xs font-medium ${gap.weakest ? "text-[#e63946]" : "text-green-500"}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-400", children: "Courses ranked by completion percentage \u2014 lowest first. Assign modules to address skill gaps." }),
+      skillGaps.map((gap) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between mb-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h4", { className: "font-semibold text-white", children: gap.courseName }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: `text-xs font-medium ${gap.weakest ? "text-[#e63946]" : "text-green-500"}`, children: [
             gap.percent,
             "%"
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "h-2 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: `h-full rounded-full transition-all duration-500 ${gap.weakest ? "bg-[#e63946]" : "bg-gradient-to-r from-[#e63946] to-[#f77f00]"}`, style: {
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "h-2 w-full rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: `h-full rounded-full transition-all duration-500 ${gap.weakest ? "bg-[#e63946]" : "bg-gradient-to-r from-[#e63946] to-[#f77f00]"}`, style: {
           width: `${gap.percent}%`
         } }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-2 flex items-center justify-between", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-xs text-gray-500", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mt-2 flex items-center justify-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-xs text-gray-500", children: [
             gap.completed,
             "/",
             gap.total,
             " lessons"
           ] }),
-          gap.weakest && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => handleAssignModule(gap.courseId, gap.courseName), className: "text-xs text-[#e63946] hover:text-white transition-colors", children: "Assign Module" })
+          gap.weakest && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => handleAssignModule(gap.courseId, gap.courseName), className: "text-xs text-[#e63946] hover:text-white transition-colors", children: "Assign Module" })
         ] })
       ] }, gap.courseId))
     ] });
   };
   const MessagesSection = () => {
     if (!selectedUser) return null;
-    return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "space-y-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white", children: t("manager.messages") }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("form", { onSubmit: handleSendMessage, className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h4", { className: "text-sm font-semibold text-gray-300", children: t("manager.sendMessage") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("textarea", { value: messageText, onChange: (e) => setMessageText(e.target.value), placeholder: t("manager.messagePlaceholder"), rows: 3, className: "mt-3 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-3 flex items-center justify-between", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-xs text-gray-500", children: "They'll see this message when they log in." }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { type: "submit", disabled: sending || !messageText.trim(), className: "btn-primary text-sm !px-4 !py-2 disabled:opacity-50", children: sending ? "Sending..." : t("manager.sendMessage") })
+    return /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "space-y-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white", children: t("manager.messages") }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("form", { onSubmit: handleSendMessage, className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h4", { className: "text-sm font-semibold text-gray-300", children: t("manager.sendMessage") }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("textarea", { value: messageText, onChange: (e) => setMessageText(e.target.value), placeholder: t("manager.messagePlaceholder"), rows: 3, className: "mt-3 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-3 text-sm text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mt-3 flex items-center justify-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-xs text-gray-500", children: "They'll see this message when they log in." }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { type: "submit", disabled: sending || !messageText.trim(), className: "btn-primary text-sm !px-4 !py-2 disabled:opacity-50", children: sending ? "Sending..." : t("manager.sendMessage") })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "space-y-3", children: selectedUser.messages.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-center text-sm text-gray-500", children: t("manager.noMessages") }) : selectedUser.messages.map((msg) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: `rounded-xl border p-4 ${msg.is_read ? "border-[#1a2d4a] bg-[#0d1f35]/50" : "border-[#e63946]/20 bg-[#e63946]/5"}`, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-xs font-medium text-[#e63946]", children: msg.from_name || "Manager" }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "space-y-3", children: selectedUser.messages.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-center text-sm text-gray-500", children: t("manager.noMessages") }) : selectedUser.messages.map((msg) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: `rounded-xl border p-4 ${msg.is_read ? "border-[#1a2d4a] bg-[#0d1f35]/50" : "border-[#e63946]/20 bg-[#e63946]/5"}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-xs font-medium text-[#e63946]", children: msg.from_name || "Manager" }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-[10px] text-gray-600", children: [
             new Date(msg.created_at).toLocaleDateString(),
             " ",
             new Date(msg.created_at).toLocaleTimeString([], {
@@ -58250,150 +58409,150 @@ function ManagerDashboard() {
             })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-2 text-sm leading-relaxed text-gray-300 whitespace-pre-wrap", children: msg.message }),
-        !msg.is_read && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "mt-2 inline-flex items-center rounded-full bg-[#e63946]/10 px-2 py-0.5 text-[10px] font-medium text-[#e63946]", children: "Unread" })
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "mt-2 text-sm leading-relaxed text-gray-300 whitespace-pre-wrap", children: msg.message }),
+        !msg.is_read && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "mt-2 inline-flex items-center rounded-full bg-[#e63946]/10 px-2 py-0.5 text-[10px] font-medium text-[#e63946]", children: "Unread" })
       ] }, msg.id)) })
     ] });
   };
   if (authCheck === "redirect") {
-    return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "w-full max-w-md text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-yellow-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-8 w-8 text-yellow-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Manager Dashboard Only" }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-3 text-gray-400", children: "This dashboard is for management accounts only. Redirecting you to your profile..." }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "mt-6 h-2 w-full rounded-full bg-[#1a2d4a] overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "h-full w-full animate-pulse rounded-full bg-[#e63946]" }) })
+    return /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "w-full max-w-md text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-yellow-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-8 w-8 text-yellow-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Manager Dashboard Only" }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "mt-3 text-gray-400", children: "This dashboard is for management accounts only. Redirecting you to your profile..." }),
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mt-6 h-2 w-full rounded-full bg-[#1a2d4a] overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "h-full w-full animate-pulse rounded-full bg-[#e63946]" }) })
     ] }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(Header, {}),
-    error && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "mx-auto max-w-7xl px-6 pt-8", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-4 text-sm text-[#e63946]", children: error }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("main", { className: "mx-auto max-w-7xl px-6 py-8", children: selectedUser ? /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)(import_jsx_runtime65.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("button", { onClick: () => {
+  return /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(Header, {}),
+    error && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mx-auto max-w-7xl px-6 pt-8", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-4 text-sm text-[#e63946]", children: error }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("main", { className: "mx-auto max-w-7xl px-6 py-8", children: selectedUser ? /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)(import_jsx_runtime66.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("button", { onClick: () => {
           setSelectedUser(null);
           setMessageText("");
         }, className: "mb-4 flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-white", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 19l-7-7 7-7" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M15 19l-7-7 7-7" }) }),
           t("manager.backToTeam")
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-xl font-bold text-[#e63946]", children: (selectedUser.user.name?.[0] || selectedUser.user.email[0]).toUpperCase() }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h2", { className: "text-2xl font-bold text-white", children: selectedUser.user.name || "Unnamed" }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-500", children: selectedUser.user.email })
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1a2d4a] to-[#0a1628] text-xl font-bold text-[#e63946]", children: (selectedUser.user.name?.[0] || selectedUser.user.email[0]).toUpperCase() }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h2", { className: "text-2xl font-bold text-white", children: selectedUser.user.name || "Unnamed" }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-500", children: selectedUser.user.email })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mt-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setDetailTab("progress"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${detailTab === "progress" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: t("manager.trainingProgress") }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setDetailTab("skillgaps"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${detailTab === "skillgaps" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Skill Gaps" }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("button", { onClick: () => setDetailTab("messages"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${detailTab === "messages" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mt-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setDetailTab("progress"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${detailTab === "progress" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: t("manager.trainingProgress") }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setDetailTab("skillgaps"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${detailTab === "skillgaps" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Skill Gaps" }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("button", { onClick: () => setDetailTab("messages"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${detailTab === "messages" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: [
             t("manager.messages"),
-            selectedUser.messages.filter((m4) => !m4.is_read).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "ml-1.5 inline-flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#e63946] px-1 text-[10px] font-bold text-white", children: selectedUser.messages.filter((m4) => !m4.is_read).length })
+            selectedUser.messages.filter((m4) => !m4.is_read).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "ml-1.5 inline-flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#e63946] px-1 text-[10px] font-bold text-white", children: selectedUser.messages.filter((m4) => !m4.is_read).length })
           ] })
         ] })
       ] }),
-      detailTab === "progress" ? /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(ProgressDetail, {}) : detailTab === "skillgaps" ? /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(SkillGapsSection, {}) : /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(MessagesSection, {})
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)(import_jsx_runtime65.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "mb-8", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h1", { className: "text-3xl font-bold text-white", children: t("manager.title") }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-2 text-gray-400", children: t("manager.subtitle") })
+      detailTab === "progress" ? /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(ProgressDetail, {}) : detailTab === "skillgaps" ? /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(SkillGapsSection, {}) : /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(MessagesSection, {})
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)(import_jsx_runtime66.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mb-8", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h1", { className: "text-3xl font-bold text-white", children: t("manager.title") }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "mt-2 text-gray-400", children: t("manager.subtitle") })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setShowAddForm(!showAddForm), className: "btn-primary text-sm", children: t("manager.addSalesperson") })
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setShowAddForm(!showAddForm), className: "btn-primary text-sm", children: t("manager.addSalesperson") })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setMainTab("completion"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "completion" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Training Completion" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setMainTab("saleslog"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "saleslog" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Digital Sales Log" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setMainTab("tasks"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "tasks" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Assign Tasks" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setMainTab("process"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "process" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Steps of the Sale" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setMainTab("planner"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "planner" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Daily Planner" })
+      /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-6 flex gap-1 rounded-lg bg-[#0d1f35] p-1", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setMainTab("completion"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "completion" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Training Completion" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setMainTab("saleslog"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "saleslog" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Digital Sales Log" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setMainTab("tasks"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "tasks" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Assign Tasks" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setMainTab("process"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "process" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Steps of the Sale" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setMainTab("planner"), className: `flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${mainTab === "planner" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"}`, children: "Daily Planner" })
       ] }),
-      showAddForm && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-6 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: t("manager.addSalesperson") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("form", { onSubmit: handleAddSalesperson, className: "space-y-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.email") }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("input", { type: "email", required: true, value: newEmail, onChange: (e) => setNewEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none focus:border-[#e63946]", placeholder: "salesperson@dealership.com" })
+      showAddForm && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-6 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: t("manager.addSalesperson") }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("form", { onSubmit: handleAddSalesperson, className: "space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.email") }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("input", { type: "email", required: true, value: newEmail, onChange: (e) => setNewEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none focus:border-[#e63946]", placeholder: "salesperson@dealership.com" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.name") }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("input", { type: "text", value: newName, onChange: (e) => setNewName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none focus:border-[#e63946]", placeholder: "John Doe" })
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.name") }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("input", { type: "text", value: newName, onChange: (e) => setNewName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none focus:border-[#e63946]", placeholder: "John Doe" })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("manager.selectTier") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("select", { value: newTier, onChange: (e) => setNewTier(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "basic", children: "Basic - $149/mo" }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "plus", children: "Plus - $169/mo" }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "premium", children: "Premium - $189/mo" })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("manager.selectTier") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("select", { value: newTier, onChange: (e) => setNewTier(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "basic", children: "Basic - $149/mo" }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "plus", children: "Plus - $169/mo" }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "premium", children: "Premium - $189/mo" })
             ] })
           ] }),
-          addError && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: addError }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex gap-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { type: "submit", disabled: adding, className: "btn-primary text-sm disabled:opacity-50", children: adding ? "Loading..." : "Review & Pay \u2192" }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { type: "button", onClick: () => setShowAddForm(false), className: "text-sm text-gray-400 hover:text-white", children: "Cancel" })
+          addError && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: addError }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex gap-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { type: "submit", disabled: adding, className: "btn-primary text-sm disabled:opacity-50", children: adding ? "Loading..." : "Review & Pay \u2192" }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { type: "button", onClick: () => setShowAddForm(false), className: "text-sm text-gray-400 hover:text-white", children: "Cancel" })
           ] })
         ] })
       ] }),
-      showStripeConfirm && stripeConfirmData && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-6 rounded-xl border border-[#e63946] bg-[#0d1f35] p-6 shadow-lg shadow-[#e63946]/10", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white mb-2", children: "Complete Payment" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-400 mb-4", children: "You'll be redirected to Stripe, our secure payment processor, to complete the subscription." }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-lg bg-[#0a1628] p-4 mb-4 space-y-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex justify-between text-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-gray-400", children: "Salesperson" }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-white", children: stripeConfirmData.email })
+      showStripeConfirm && stripeConfirmData && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-6 rounded-xl border border-[#e63946] bg-[#0d1f35] p-6 shadow-lg shadow-[#e63946]/10", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white mb-2", children: "Complete Payment" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-400 mb-4", children: "You'll be redirected to Stripe, our secure payment processor, to complete the subscription." }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-lg bg-[#0a1628] p-4 mb-4 space-y-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex justify-between text-sm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-gray-400", children: "Salesperson" }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-white", children: stripeConfirmData.email })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex justify-between text-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-gray-400", children: "Tier" }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-white capitalize", children: stripeConfirmData.tier })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex justify-between text-sm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-gray-400", children: "Tier" }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-white capitalize", children: stripeConfirmData.tier })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "border-t border-[#1a2d4a] pt-3 flex justify-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-white font-semibold", children: "Monthly Cost" }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-[#e63946] text-xl font-extrabold", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "border-t border-[#1a2d4a] pt-3 flex justify-between", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-white font-semibold", children: "Monthly Cost" }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-[#e63946] text-xl font-extrabold", children: [
               "$",
               stripeConfirmData.price,
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-sm", children: "/mo" })
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-sm", children: "/mo" })
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "text-xs text-gray-600 mb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "text-xs text-gray-600 mb-4", children: [
           "You'll be charged $",
           stripeConfirmData.price,
           "/mo for this salesperson. They'll get full access to the ",
           stripeConfirmData.tier,
           " tier training. This is added to your existing monthly total."
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("button", { onClick: handleOpenStripePayment, className: "flex-1 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex gap-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("button", { onClick: handleOpenStripePayment, className: "flex-1 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20", children: [
             "Complete Payment \u2014 $",
             stripeConfirmData.price,
             "/mo"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => {
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => {
             setShowStripeConfirm(false);
             setStripeConfirmData(null);
             setShowAddForm(true);
           }, className: "text-sm text-gray-400 hover:text-white", children: "Cancel" })
         ] })
       ] }),
-      addedSuccess && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-6 rounded-xl border border-green-500/30 bg-green-500/5 p-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-3 mb-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "h-5 w-5 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white", children: "Salesperson Added" }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "text-sm text-gray-400", children: [
+      addedSuccess && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-6 rounded-xl border border-green-500/30 bg-green-500/5 p-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center gap-3 mb-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-5 w-5 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white", children: "Salesperson Added" }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "text-sm text-gray-400", children: [
               addedSuccess.email,
               " has been added to your team."
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setAddedSuccess(null), className: "text-sm text-gray-400 hover:text-white", children: "Dismiss" })
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setAddedSuccess(null), className: "text-sm text-gray-400 hover:text-white", children: "Dismiss" })
       ] }),
-      costSummary && costSummary.count > 0 && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "mb-6 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3", children: t("manager.costSummary") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "space-y-2", children: [
-          Object.entries(costSummary.breakdown).map(([tier, info]) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between text-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-gray-400 capitalize", children: [
+      costSummary && costSummary.count > 0 && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mb-6 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3", children: t("manager.costSummary") }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "space-y-2", children: [
+          Object.entries(costSummary.breakdown).map(([tier, info]) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between text-sm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-gray-400 capitalize", children: [
               tier,
               ": ",
               info.count,
@@ -58402,15 +58561,15 @@ function ManagerDashboard() {
               " \xD7 $",
               info.price
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-white font-medium", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-white font-medium", children: [
               "$",
               info.subtotal,
               t("manager.perMonth")
             ] })
           ] }, tier)),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between border-t border-[#1a2d4a] pt-2 text-sm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "text-gray-300 font-medium", children: t("manager.total") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("span", { className: "text-white font-bold", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between border-t border-[#1a2d4a] pt-2 text-sm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "text-gray-300 font-medium", children: t("manager.total") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("span", { className: "text-white font-bold", children: [
               costSummary.count,
               " ",
               t("manager.people"),
@@ -58423,27 +58582,27 @@ function ManagerDashboard() {
           ] })
         ] })
       ] }),
-      mainTab === "completion" && (team.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-12 text-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("svg", { className: "mx-auto h-12 w-12 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "mt-4 text-lg font-semibold text-white", children: t("manager.noMembers") }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-2 text-sm text-gray-500", children: t("manager.noMembers.desc") })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(TeamOverview, {})),
-      mainTab === "saleslog" && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: "Digital Sales Log" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-400 mb-6", children: "Track monthly sales performance for each salesperson. Click a name to view their sales log." }),
-        team.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-500", children: t("manager.noMembers") }) : /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "space-y-3", children: team.map((sp) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm font-medium text-white", children: sp.name || sp.email }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-xs text-gray-500", children: sp.email })
+      mainTab === "completion" && (team.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-12 text-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "mx-auto h-12 w-12 text-gray-600", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "mt-4 text-lg font-semibold text-white", children: t("manager.noMembers") }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "mt-2 text-sm text-gray-500", children: t("manager.noMembers.desc") })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(TeamOverview, {})),
+      mainTab === "saleslog" && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: "Digital Sales Log" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-400 mb-6", children: "Track monthly sales performance for each salesperson. Click a name to view their sales log." }),
+        team.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-500", children: t("manager.noMembers") }) : /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "space-y-3", children: team.map((sp) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm font-medium text-white", children: sp.name || sp.email }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-xs text-gray-500", children: sp.email })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => selectUser(sp.id), className: "text-xs text-[#e63946] hover:text-white transition-colors", children: "View Log" })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => selectUser(sp.id), className: "text-xs text-[#e63946] hover:text-white transition-colors", children: "View Log" })
         ] }, sp.id)) })
       ] }),
-      mainTab === "tasks" && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: "Assign Tasks" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-400 mb-6", children: "Assign any part of the training program to individual salespeople or your entire team." }),
-        team.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-500", children: t("manager.noMembers") }) : /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "space-y-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "grid grid-cols-2 sm:grid-cols-3 gap-2", children: ["Greeting & Approach", "Needs Assessment", "Presentation", "Objection Handling", "Closing Techniques", "Follow-up"].map((step) => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => {
+      mainTab === "tasks" && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: "Assign Tasks" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-400 mb-6", children: "Assign any part of the training program to individual salespeople or your entire team." }),
+        team.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-500", children: t("manager.noMembers") }) : /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "grid grid-cols-2 sm:grid-cols-3 gap-2", children: ["Greeting & Approach", "Needs Assessment", "Presentation", "Objection Handling", "Closing Techniques", "Follow-up"].map((step) => /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => {
             team.forEach((sp) => {
               if (token) {
                 sendMessage2({
@@ -58456,13 +58615,13 @@ function ManagerDashboard() {
               }
             });
           }, className: "rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-3 text-sm text-gray-300 hover:border-[#e63946] hover:text-white transition-colors text-left", children: step }, step)) }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-xs text-gray-500 mt-2", children: "Click a step to assign it to all salespeople. They'll receive a notification in their messages." })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-xs text-gray-500 mt-2", children: "Click a step to assign it to all salespeople. They'll receive a notification in their messages." })
         ] })
       ] }),
-      mainTab === "process" && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: "Steps of the Sales Process" }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-400 mb-6", children: "The complete automotive sales process. Available on all tiers \u2014 refer to it throughout training." }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("ol", { className: "space-y-4", children: [{
+      mainTab === "process" && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white mb-4", children: "Steps of the Sales Process" }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-400 mb-6", children: "The complete automotive sales process. Available on all tiers \u2014 refer to it throughout training." }),
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("ol", { className: "space-y-4", children: [{
           step: "1",
           title: "Greeting & Building Rapport",
           desc: "Create a positive first impression and establish trust with the customer."
@@ -58502,60 +58661,60 @@ function ManagerDashboard() {
           step: "10",
           title: "Follow-up & Referrals",
           desc: "Maintain the relationship and generate repeat business."
-        }].map((s2) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("li", { className: "flex gap-4 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e63946] text-sm font-bold text-white", children: s2.step }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h4", { className: "font-semibold text-white", children: s2.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "mt-1 text-sm text-gray-400", children: s2.desc })
+        }].map((s2) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("li", { className: "flex gap-4 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e63946] text-sm font-bold text-white", children: s2.step }),
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h4", { className: "font-semibold text-white", children: s2.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "mt-1 text-sm text-gray-400", children: s2.desc })
           ] })
         ] }, s2.step)) })
       ] }),
-      mainTab === "planner" && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center justify-between mb-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("h3", { className: "text-lg font-bold text-white", children: t("planner.title") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm text-gray-400", children: t("planner.subtitle") })
+      mainTab === "planner" && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center justify-between mb-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h3", { className: "text-lg font-bold text-white", children: t("planner.title") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm text-gray-400", children: t("planner.subtitle") })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: () => setShowNewAppt(!showNewAppt), className: "btn-primary text-sm", children: t("planner.newAppointment") })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: () => setShowNewAppt(!showNewAppt), className: "btn-primary text-sm", children: t("planner.newAppointment") })
         ] }),
-        showNewAppt && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("form", { onSubmit: handleCreateAppointment, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-5 space-y-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.selectSalesperson") }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("select", { value: apptSalesperson, onChange: (e) => setApptSalesperson(e.target.value), required: true, className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: "", children: "Select..." }),
-                team.map((sp) => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("option", { value: sp.id, children: sp.name || sp.email }, sp.id))
+        showNewAppt && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("form", { onSubmit: handleCreateAppointment, className: "mb-6 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-5 space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "grid gap-4 sm:grid-cols-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.selectSalesperson") }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("select", { value: apptSalesperson, onChange: (e) => setApptSalesperson(e.target.value), required: true, className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: "", children: "Select..." }),
+                team.map((sp) => /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("option", { value: sp.id, children: sp.name || sp.email }, sp.id))
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.appointmentTime") }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("input", { type: "datetime-local", required: true, value: apptTime, onChange: (e) => setApptTime(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]" })
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.appointmentTime") }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("input", { type: "datetime-local", required: true, value: apptTime, onChange: (e) => setApptTime(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]" })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.customerName") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("input", { type: "text", required: true, value: apptCustomer, onChange: (e) => setApptCustomer(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", placeholder: "John Smith" })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.customerName") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("input", { type: "text", required: true, value: apptCustomer, onChange: (e) => setApptCustomer(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", placeholder: "John Smith" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.carDescription") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("input", { type: "text", value: apptCar, onChange: (e) => setApptCar(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", placeholder: "2024 Silver Toyota Camry" })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.carDescription") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("input", { type: "text", value: apptCar, onChange: (e) => setApptCar(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", placeholder: "2024 Silver Toyota Camry" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.task") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("input", { type: "text", value: apptTask, onChange: (e) => setApptTask(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", placeholder: "Prepare test drive route" })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("planner.task") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("input", { type: "text", value: apptTask, onChange: (e) => setApptTask(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]", placeholder: "Prepare test drive route" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex gap-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { type: "submit", disabled: apptSaving, className: "btn-primary text-sm disabled:opacity-50", children: apptSaving ? t("planner.saving") : t("planner.save") }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { type: "button", onClick: () => setShowNewAppt(false), className: "text-sm text-gray-400 hover:text-white", children: "Cancel" })
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex gap-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { type: "submit", disabled: apptSaving, className: "btn-primary text-sm disabled:opacity-50", children: apptSaving ? t("planner.saving") : t("planner.save") }),
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { type: "button", onClick: () => setShowNewAppt(false), className: "text-sm text-gray-400 hover:text-white", children: "Cancel" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("div", { className: "space-y-3", children: appointments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-center text-sm text-gray-500", children: t("planner.noAppointments") }) : appointments.map((apt) => /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-start justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex-1", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { className: "flex items-center gap-3", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("span", { className: "flex h-8 w-8 items-center justify-center rounded-full bg-[#e63946]/20 text-sm font-bold text-[#e63946]", children: apt.customer_name?.[0] || "?" }),
-              /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("p", { className: "text-sm font-medium text-white", children: apt.customer_name }),
-                /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "text-xs text-gray-500", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "space-y-3", children: appointments.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-center text-sm text-gray-500", children: t("planner.noAppointments") }) : appointments.map((apt) => /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-start justify-between rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex-1", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "flex items-center gap-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("span", { className: "flex h-8 w-8 items-center justify-center rounded-full bg-[#e63946]/20 text-sm font-bold text-[#e63946]", children: apt.customer_name?.[0] || "?" }),
+              /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "text-sm font-medium text-white", children: apt.customer_name }),
+                /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "text-xs text-gray-500", children: [
                   new Date(apt.appointment_time).toLocaleDateString(),
                   " ",
                   new Date(apt.appointment_time).toLocaleTimeString([], {
@@ -58565,20 +58724,20 @@ function ManagerDashboard() {
                 ] })
               ] })
             ] }),
-            apt.car_description && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "mt-2 text-xs text-gray-400", children: [
+            apt.car_description && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "mt-2 text-xs text-gray-400", children: [
               "Car: ",
               apt.car_description
             ] }),
-            apt.task && /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "text-xs text-gray-400", children: [
+            apt.task && /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "text-xs text-gray-400", children: [
               "Task: ",
               apt.task
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("p", { className: "mt-1 text-xs text-gray-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("p", { className: "mt-1 text-xs text-gray-500", children: [
               "Salesperson: ",
               apt.salesperson_name || apt.salesperson_email
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime65.jsx)("button", { onClick: async () => {
+          /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("button", { onClick: async () => {
             if (!token) return;
             await deleteAppointment2({
               data: {
@@ -58593,17 +58752,17 @@ function ManagerDashboard() {
     ] }) })
   ] });
 }
-var import_jsx_runtime65, import_react59, getAppointments2, createAppointment2, deleteAppointment2;
-var init_index_N_r3bUyv = __esm({
-  "dist/server/assets/index-N_r3bUyv.js"() {
+var import_jsx_runtime66, import_react60, getAppointments2, createAppointment2, deleteAppointment2;
+var init_index_D_DvMbzp = __esm({
+  "dist/server/assets/index-D-DvMbzp.js"() {
     "use strict";
-    import_jsx_runtime65 = __toESM(require_jsx_runtime(), 1);
-    import_react59 = __toESM(require_react(), 1);
+    import_jsx_runtime66 = __toESM(require_jsx_runtime(), 1);
+    import_react60 = __toESM(require_react(), 1);
     init_manager_CzgJH0An();
     init_createSsrRpc_l1y8KE69();
     init_server5();
     init_courses_CY9yjTRv();
-    init_router_Ckp0VUkA();
+    init_router_BIxaY9WS();
     init_auth_guard_DDzkafwD();
     init_production();
     getAppointments2 = createServerFn({
@@ -58618,54 +58777,56 @@ var init_index_N_r3bUyv = __esm({
   }
 });
 
-// dist/server/assets/success-DLsreOEv.js
-var success_DLsreOEv_exports = {};
-__export(success_DLsreOEv_exports, {
+// dist/server/assets/success-BAHUa1V6.js
+var success_BAHUa1V6_exports = {};
+__export(success_BAHUa1V6_exports, {
   component: () => PurchaseSuccess
 });
+import "node:async_hooks";
 function PurchaseSuccess() {
   const {
     t
   } = useTranslation();
-  return /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "flex min-h-dvh flex-col items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mx-auto max-w-md text-center", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("svg", { className: "h-8 w-8 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("h1", { className: "mt-6 text-3xl font-bold text-white", children: t("purchase.success") }),
-    /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("p", { className: "mt-3 text-gray-400", children: t("purchase.successDesc") }),
-    /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("div", { className: "mt-4 rounded-lg border border-[#1a2d4a] bg-[#0d1f35] p-4 text-sm text-gray-400", children: t("purchase.emailSent") }),
-    /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)("div", { className: "mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("a", { href: "/login", className: "btn-primary text-sm", children: t("auth.signIn") }),
-      /* @__PURE__ */ (0, import_jsx_runtime66.jsx)("a", { href: "/training", className: "btn-secondary text-sm", children: t("training.start") })
+  return /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "flex min-h-dvh flex-col items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { className: "mx-auto max-w-md text-center", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("svg", { className: "h-8 w-8 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("h1", { className: "mt-6 text-3xl font-bold text-white", children: t("purchase.success") }),
+    /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("p", { className: "mt-3 text-gray-400", children: t("purchase.successDesc") }),
+    /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "mt-4 rounded-lg border border-[#1a2d4a] bg-[#0d1f35] p-4 text-sm text-gray-400", children: t("purchase.emailSent") }),
+    /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { className: "mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("a", { href: "/login", className: "btn-primary text-sm", children: t("auth.signIn") }),
+      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("a", { href: "/training", className: "btn-secondary text-sm", children: t("training.start") })
     ] })
   ] }) });
 }
-var import_jsx_runtime66, import_react60;
-var init_success_DLsreOEv = __esm({
-  "dist/server/assets/success-DLsreOEv.js"() {
+var import_jsx_runtime67, import_react61;
+var init_success_BAHUa1V6 = __esm({
+  "dist/server/assets/success-BAHUa1V6.js"() {
     "use strict";
-    import_jsx_runtime66 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react60 = __toESM(require_react(), 1);
+    import_jsx_runtime67 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react61 = __toESM(require_react(), 1);
     init_production();
   }
 });
 
-// dist/server/assets/index-CPm6EJ5G.js
-var index_CPm6EJ5G_exports = {};
-__export(index_CPm6EJ5G_exports, {
+// dist/server/assets/index-BhszrHhb.js
+var index_BhszrHhb_exports = {};
+__export(index_BhszrHhb_exports, {
   component: () => SignupPage
 });
+import "node:async_hooks";
 function SignupPage() {
   const {
     t
   } = useTranslation();
-  const [email, setEmail] = (0, import_react61.useState)("");
-  const [password, setPassword] = (0, import_react61.useState)("");
-  const [name, setName] = (0, import_react61.useState)("");
-  const [accountType, setAccountType] = (0, import_react61.useState)("individual");
-  const [selectedTier, setSelectedTier] = (0, import_react61.useState)("basic");
-  const [error, setError] = (0, import_react61.useState)("");
-  const [loading, setLoading] = (0, import_react61.useState)(false);
-  (0, import_react61.useEffect)(() => {
+  const [email, setEmail] = (0, import_react62.useState)("");
+  const [password, setPassword] = (0, import_react62.useState)("");
+  const [name, setName] = (0, import_react62.useState)("");
+  const [accountType, setAccountType] = (0, import_react62.useState)("individual");
+  const [selectedTier, setSelectedTier] = (0, import_react62.useState)("basic");
+  const [error, setError] = (0, import_react62.useState)("");
+  const [loading, setLoading] = (0, import_react62.useState)(false);
+  (0, import_react62.useEffect)(() => {
     const params = new URLSearchParams(window.location.search);
     const tier = params.get("tier");
     const type = params.get("type");
@@ -58725,84 +58886,84 @@ function SignupPage() {
     plus: "$169/mo",
     premium: "$189/mo"
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { className: "w-full max-w-md", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "mb-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("a", { href: "/", className: "inline-flex items-center gap-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { className: "w-full max-w-md", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "mb-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("a", { href: "/", className: "inline-flex items-center gap-2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(LanguageSwitcher, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("h1", { className: "text-2xl font-bold text-white", children: t("auth.signUp") }),
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: t("auth.join") }),
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("form", { onSubmit: handleSubmit, className: "mt-6 space-y-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: t("signup.accountType") }),
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { className: "space-y-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("label", { className: `flex items-start gap-3 rounded-lg border p-3 cursor-pointer transition-colors ${accountType === "individual" ? "border-[#e63946] bg-[#e63946]/5" : "border-[#1a2d4a] hover:border-[#2a4a6a]"}`, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("input", { type: "radio", name: "accountType", value: "individual", checked: accountType === "individual", onChange: () => setAccountType("individual"), className: "mt-1 h-4 w-4 accent-[#e63946]" }),
-              /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("span", { className: "text-sm font-medium text-white", children: t("signup.individual") }),
-                /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("p", { className: "text-xs text-gray-500 mt-0.5", children: t("signup.individualDesc") })
+    /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(LanguageSwitcher, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("h1", { className: "text-2xl font-bold text-white", children: t("auth.signUp") }),
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: t("auth.join") }),
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("form", { onSubmit: handleSubmit, className: "mt-6 space-y-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: t("signup.accountType") }),
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("label", { className: `flex items-start gap-3 rounded-lg border p-3 cursor-pointer transition-colors ${accountType === "individual" ? "border-[#e63946] bg-[#e63946]/5" : "border-[#1a2d4a] hover:border-[#2a4a6a]"}`, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("input", { type: "radio", name: "accountType", value: "individual", checked: accountType === "individual", onChange: () => setAccountType("individual"), className: "mt-1 h-4 w-4 accent-[#e63946]" }),
+              /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("span", { className: "text-sm font-medium text-white", children: t("signup.individual") }),
+                /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "text-xs text-gray-500 mt-0.5", children: t("signup.individualDesc") })
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("label", { className: `flex items-start gap-3 rounded-lg border p-3 cursor-pointer transition-colors ${accountType === "management" ? "border-[#e63946] bg-[#e63946]/5" : "border-[#1a2d4a] hover:border-[#2a4a6a]"}`, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("input", { type: "radio", name: "accountType", value: "management", checked: accountType === "management", onChange: () => setAccountType("management"), className: "mt-1 h-4 w-4 accent-[#e63946]" }),
-              /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("span", { className: "text-sm font-medium text-white", children: t("signup.management") }),
-                /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("p", { className: "text-xs text-gray-500 mt-0.5", children: t("signup.managementDesc") })
+            /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("label", { className: `flex items-start gap-3 rounded-lg border p-3 cursor-pointer transition-colors ${accountType === "management" ? "border-[#e63946] bg-[#e63946]/5" : "border-[#1a2d4a] hover:border-[#2a4a6a]"}`, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("input", { type: "radio", name: "accountType", value: "management", checked: accountType === "management", onChange: () => setAccountType("management"), className: "mt-1 h-4 w-4 accent-[#e63946]" }),
+              /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("span", { className: "text-sm font-medium text-white", children: t("signup.management") }),
+                /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "text-xs text-gray-500 mt-0.5", children: t("signup.managementDesc") })
               ] })
             ] })
           ] })
         ] }),
-        accountType === "individual" && /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: "Select Plan" }),
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "grid grid-cols-3 gap-2", children: ["basic", "plus", "premium"].map((tier) => /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("button", { type: "button", onClick: () => setSelectedTier(tier), className: `rounded-lg border px-3 py-2 text-xs font-medium transition ${selectedTier === tier ? "border-[#e63946] bg-[#e63946]/10 text-[#e63946]" : "border-[#1a2d4a] text-gray-400 hover:border-[#2a4a6a]"}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "capitalize", children: tier }),
-            /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "text-[10px] opacity-70", children: tierPrices[tier] })
+        accountType === "individual" && /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("label", { className: "block text-sm font-medium text-gray-300 mb-2", children: "Select Plan" }),
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "grid grid-cols-3 gap-2", children: ["basic", "plus", "premium"].map((tier) => /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("button", { type: "button", onClick: () => setSelectedTier(tier), className: `rounded-lg border px-3 py-2 text-xs font-medium transition ${selectedTier === tier ? "border-[#e63946] bg-[#e63946]/10 text-[#e63946]" : "border-[#1a2d4a] text-gray-400 hover:border-[#2a4a6a]"}`, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "capitalize", children: tier }),
+            /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "text-[10px] opacity-70", children: tierPrices[tier] })
           ] }, tier)) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.name") }),
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("input", { type: "text", value: name, onChange: (e) => setName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "John Doe" })
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.name") }),
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("input", { type: "text", value: name, onChange: (e) => setName(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "John Doe" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.email") }),
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("input", { type: "email", required: true, value: email, onChange: (e) => setEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "you@dealership.com" })
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.email") }),
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("input", { type: "email", required: true, value: email, onChange: (e) => setEmail(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "you@dealership.com" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.password") }),
-          /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("input", { type: "password", required: true, minLength: 6, value: password, onChange: (e) => setPassword(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "At least 6 characters" })
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("label", { className: "block text-sm font-medium text-gray-300", children: t("auth.password") }),
+          /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("input", { type: "password", required: true, minLength: 6, value: password, onChange: (e) => setPassword(e.target.value), className: "mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white placeholder-gray-500 outline-none transition-colors focus:border-[#e63946]", placeholder: "At least 6 characters" })
         ] }),
-        error && /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: error }),
-        accountType === "individual" && /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("p", { className: "text-xs text-gray-600", children: [
+        error && /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]", children: error }),
+        accountType === "individual" && /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("p", { className: "text-xs text-gray-600", children: [
           "You'll be redirected to Stripe to complete your ",
           selectedTier,
           " plan payment (",
           tierPrices[selectedTier],
           "). Your account will be created after payment."
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("button", { type: "submit", disabled: loading, className: "btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50", children: loading ? t("auth.creatingAccount") : accountType === "individual" ? `Continue to Payment \u2014 ${tierPrices[selectedTier]}` : "Continue to Setup" })
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("button", { type: "submit", disabled: loading, className: "btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50", children: loading ? t("auth.creatingAccount") : accountType === "individual" ? `Continue to Payment \u2014 ${tierPrices[selectedTier]}` : "Continue to Setup" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-400", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("p", { className: "mt-6 text-center text-sm text-gray-400", children: [
         t("auth.hasAccount"),
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("a", { href: "/login", className: "text-[#e63946] hover:underline", children: t("auth.signIn") })
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("a", { href: "/login", className: "text-[#e63946] hover:underline", children: t("auth.signIn") })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)("p", { className: "mt-4 text-center text-xs text-gray-600", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("p", { className: "mt-4 text-center text-xs text-gray-600", children: [
         "After signing up, check your spam folder if you don't see our email. Add ",
-        /* @__PURE__ */ (0, import_jsx_runtime67.jsx)("span", { className: "text-[#e63946]", children: "champion-sales-training-events-f80d0630@ctomail.io" }),
+        /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("span", { className: "text-[#e63946]", children: "champion-sales-training-events-f80d0630@ctomail.io" }),
         " to your contacts."
       ] })
     ] })
   ] }) });
 }
-var import_jsx_runtime67, import_react61, INDIVIDUAL_STRIPE_LINKS;
-var init_index_CPm6EJ5G = __esm({
-  "dist/server/assets/index-CPm6EJ5G.js"() {
+var import_jsx_runtime68, import_react62, INDIVIDUAL_STRIPE_LINKS;
+var init_index_BhszrHhb = __esm({
+  "dist/server/assets/index-BhszrHhb.js"() {
     "use strict";
-    import_jsx_runtime67 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react61 = __toESM(require_react(), 1);
+    import_jsx_runtime68 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react62 = __toESM(require_react(), 1);
     init_auth_EYtabqPq();
     init_production();
     INDIVIDUAL_STRIPE_LINKS = {
@@ -58818,11 +58979,12 @@ var complete_CefDkTNy_exports = {};
 __export(complete_CefDkTNy_exports, {
   component: () => SignupCompletePage
 });
+import "node:async_hooks";
 function SignupCompletePage() {
-  const [status, setStatus] = (0, import_react62.useState)("loading");
-  const [message, setMessage] = (0, import_react62.useState)("");
-  const [redirectPath, setRedirectPath] = (0, import_react62.useState)("/training");
-  (0, import_react62.useEffect)(() => {
+  const [status, setStatus] = (0, import_react63.useState)("loading");
+  const [message, setMessage] = (0, import_react63.useState)("");
+  const [redirectPath, setRedirectPath] = (0, import_react63.useState)("/training");
+  (0, import_react63.useEffect)(() => {
     const params = new URLSearchParams(window.location.search);
     const payment = params.get("payment");
     const tier = params.get("tier");
@@ -58855,37 +59017,37 @@ function SignupCompletePage() {
       setMessage("Something went wrong. Please contact support.");
     });
   }, []);
-  return /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { className: "w-full max-w-md text-center", children: [
-    status === "loading" && /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)(import_jsx_runtime68.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "mx-auto h-12 w-12 animate-spin rounded-full border-2 border-[#e63946] border-t-transparent" }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Setting Up Your Account" }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: "We're creating your account. This will just take a moment..." })
+  return /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "w-full max-w-md text-center", children: [
+    status === "loading" && /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)(import_jsx_runtime69.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mx-auto h-12 w-12 animate-spin rounded-full border-2 border-[#e63946] border-t-transparent" }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Setting Up Your Account" }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: "We're creating your account. This will just take a moment..." })
     ] }),
-    status === "success" && /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)(import_jsx_runtime68.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("svg", { className: "h-8 w-8 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("h1", { className: "mt-6 text-3xl font-bold text-white", children: "You're All Set!" }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-2 text-gray-400", children: "Your account has been created and your subscription is active." }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("a", { href: redirectPath, className: "mt-8 inline-block rounded-lg bg-[#e63946] px-8 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20", children: "Go to Your Dashboard \u2192" })
+    status === "success" && /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)(import_jsx_runtime69.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-8 w-8 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h1", { className: "mt-6 text-3xl font-bold text-white", children: "You're All Set!" }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-2 text-gray-400", children: "Your account has been created and your subscription is active." }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: redirectPath, className: "mt-8 inline-block rounded-lg bg-[#e63946] px-8 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20", children: "Go to Your Dashboard \u2192" })
     ] }),
-    status === "error" && /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)(import_jsx_runtime68.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Something Went Wrong" }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: message }),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { className: "mt-8 flex gap-4 justify-center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("a", { href: "/signup", className: "text-sm text-[#e63946] hover:underline", children: "Try Again" }),
-        /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("a", { href: "/support", className: "text-sm text-gray-400 hover:text-white", children: "Contact Support" })
+    status === "error" && /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)(import_jsx_runtime69.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Something Went Wrong" }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-2 text-sm text-gray-400", children: message }),
+      /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-8 flex gap-4 justify-center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/signup", className: "text-sm text-[#e63946] hover:underline", children: "Try Again" }),
+        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/support", className: "text-sm text-gray-400 hover:text-white", children: "Contact Support" })
       ] })
     ] })
   ] }) });
 }
-var import_jsx_runtime68, import_react62, completeSignupAfterPayment2;
+var import_jsx_runtime69, import_react63, completeSignupAfterPayment2;
 var init_complete_CefDkTNy = __esm({
   "dist/server/assets/complete-CefDkTNy.js"() {
     "use strict";
-    import_jsx_runtime68 = __toESM(require_jsx_runtime(), 1);
+    import_jsx_runtime69 = __toESM(require_jsx_runtime(), 1);
     init_createSsrRpc_l1y8KE69();
     init_server5();
-    import_react62 = __toESM(require_react(), 1);
+    import_react63 = __toESM(require_react(), 1);
     init_production();
     completeSignupAfterPayment2 = createServerFn({
       method: "POST"
@@ -58893,51 +59055,20 @@ var init_complete_CefDkTNy = __esm({
   }
 });
 
-// dist/server/assets/client-auth-feFyKRsW.js
-function base64UrlDecode(str) {
-  str = str.replace(/-/g, "+").replace(/_/g, "/");
-  while (str.length % 4) str += "=";
-  return atob(str);
-}
-function decodeToken(token) {
-  try {
-    const parts = token.split(".");
-    if (parts.length !== 3) return null;
-    const payload = JSON.parse(base64UrlDecode(parts[1]));
-    return payload;
-  } catch {
-    return null;
-  }
-}
-function isTokenValid(token) {
-  const decoded = decodeToken(token);
-  if (!decoded) return false;
-  return decoded.exp > Date.now();
-}
-function getTokenPayload(token) {
-  const decoded = decodeToken(token);
-  if (!decoded || decoded.exp <= Date.now()) return null;
-  return decoded;
-}
-var init_client_auth_feFyKRsW = __esm({
-  "dist/server/assets/client-auth-feFyKRsW.js"() {
-    "use strict";
-  }
-});
-
-// dist/server/assets/index-ISg_w-BO.js
-var index_ISg_w_BO_exports = {};
-__export(index_ISg_w_BO_exports, {
+// dist/server/assets/index-KdlAZPY2.js
+var index_KdlAZPY2_exports = {};
+__export(index_KdlAZPY2_exports, {
   component: () => TrainingCatalog
 });
+import "node:async_hooks";
 function TrainingCatalog() {
   const {
     t
   } = useTranslation();
-  const [authState, setAuthState] = (0, import_react63.useState)("loading");
-  const [userTier, setUserTier] = (0, import_react63.useState)(null);
-  const [assignedCourseIds, setAssignedCourseIds] = (0, import_react63.useState)(/* @__PURE__ */ new Set());
-  (0, import_react63.useEffect)(() => {
+  const [authState, setAuthState] = (0, import_react64.useState)("loading");
+  const [userTier, setUserTier] = (0, import_react64.useState)(null);
+  const [assignedCourseIds, setAssignedCourseIds] = (0, import_react64.useState)(/* @__PURE__ */ new Set());
+  (0, import_react64.useEffect)(() => {
     const token = localStorage.getItem("salesdrive_token");
     if (!token) {
       setAuthState("unauthenticated");
@@ -58973,103 +59104,103 @@ function TrainingCatalog() {
     });
   }, []);
   if (authState === "loading") {
-    return /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
   }
   if (authState === "unauthenticated") {
-    return /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+    return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("nav", { className: "hidden items-center gap-6 md:flex", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/training/preview", className: "text-sm text-gray-400 hover:text-white", children: "Preview" }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 hover:text-white", children: "Steps of the Sale" }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 hover:text-white", children: t("nav.pricing") }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/login", className: "rounded-lg bg-[#e63946] px-4 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign In" }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(LanguageSwitcher, {})
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("nav", { className: "hidden items-center gap-6 md:flex", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/training/preview", className: "text-sm text-gray-400 hover:text-white", children: "Preview" }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 hover:text-white", children: "Steps of the Sale" }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 hover:text-white", children: t("nav.pricing") }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/login", className: "rounded-lg bg-[#e63946] px-4 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign In" }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(LanguageSwitcher, {})
         ] })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mb-12 text-center", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mb-12 text-center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
             "Professional Sales Training"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
             "Automotive Sales ",
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "text-[#e63946]", children: "Training" })
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "text-[#e63946]", children: "Training" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Master the complete 10-step automotive sales process \u2014 from the initial greeting to follow-up referrals. Six courses, 42 lessons, 40+ quiz questions." }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Create Account \u2014 Start Free" }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/login", className: "rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: "Sign In" })
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Master the complete 10-step automotive sales process \u2014 from the initial greeting to follow-up referrals. Six courses, 42 lessons, 40+ quiz questions." }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Create Account \u2014 Start Free" }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/login", className: "rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: "Sign In" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("p", { className: "mt-4 text-sm text-gray-500", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/training/preview", className: "text-[#e63946] hover:underline", children: "Try a sample quiz \u2192" }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("p", { className: "mt-4 text-sm text-gray-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/training/preview", className: "text-[#e63946] hover:underline", children: "Try a sample quiz \u2192" }),
             " ",
             "No account required"
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3", children: courses.map((course) => {
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "grid gap-6 md:grid-cols-2 lg:grid-cols-3", children: courses.map((course) => {
           const isGated = course.requiredTier && course.requiredTier !== "basic";
-          return /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/30", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "flex items-center gap-3 mb-3", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: `rounded-full px-2.5 py-0.5 text-xs font-medium ${levelColors[course.levels]}`, children: course.levels }),
-              /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "text-xs text-gray-500", children: [
+          return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/30", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "flex items-center gap-3 mb-3", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: `rounded-full px-2.5 py-0.5 text-xs font-medium ${levelColors[course.levels]}`, children: course.levels }),
+              /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "text-xs text-gray-500", children: [
                 course.lessons,
                 " lessons"
               ] }),
-              isGated && /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400", children: "Plus+" }),
-              !isGated && /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400", children: "All Plans" })
+              isGated && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400", children: "Plus+" }),
+              !isGated && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400", children: "All Plans" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h3", { className: "text-base font-bold text-white", children: course.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-2 text-sm leading-relaxed text-gray-400", children: course.description.length > 140 ? course.description.slice(0, 140) + "..." : course.description }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-4 flex items-center gap-2 text-xs text-gray-500", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("h3", { className: "text-base font-bold text-white", children: course.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mt-2 text-sm leading-relaxed text-gray-400", children: course.description.length > 140 ? course.description.slice(0, 140) + "..." : course.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-4 flex items-center gap-2 text-xs text-gray-500", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
               course.duration
             ] })
           ] }, course.id);
         }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-12 text-center rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-8", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h2", { className: "text-xl font-bold text-white", children: "Ready to close more deals?" }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-2 text-gray-400", children: "Join hundreds of automotive sales professionals who use Champion Sales Training every day." }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-6 flex justify-center gap-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Get Started" }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/training/preview", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: "Try a Free Preview" })
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-12 text-center rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-8", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("h2", { className: "text-xl font-bold text-white", children: "Ready to close more deals?" }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mt-2 text-gray-400", children: "Join hundreds of automotive sales professionals who use Champion Sales Training every day." }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-6 flex justify-center gap-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Get Started" }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/training/preview", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: "Try a Free Preview" })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 bg-[#0a1628] py-8 mt-auto", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mx-auto max-w-5xl px-6 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign In to Access Training" }) }) })
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 bg-[#0a1628] py-8 mt-auto", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "mx-auto max-w-5xl px-6 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign In to Access Training" }) }) })
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/training", className: "text-sm font-medium text-white", children: t("nav.training") }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Steps of the Sale" }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Profile" }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 transition-colors hover:text-white", children: t("nav.pricing") }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/training", className: "text-sm font-medium text-white", children: t("nav.training") }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Steps of the Sale" }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Profile" }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 transition-colors hover:text-white", children: t("nav.pricing") }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("button", { onClick: () => {
           localStorage.removeItem("salesdrive_token");
           window.location.href = "/";
         }, className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Sign Out" }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(LanguageSwitcher, {})
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("section", { className: "border-b border-[#1a2d4a]/50 py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mx-auto max-w-7xl px-6 text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("section", { className: "border-b border-[#1a2d4a]/50 py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mx-auto max-w-7xl px-6 text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
         t("training.badge")
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h1", { className: "mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl", children: t("training.hero.title") }),
-      /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: t("training.hero.subtitle") })
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("h1", { className: "mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl", children: t("training.hero.title") }),
+      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: t("training.hero.subtitle") })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("section", { className: "py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mx-auto max-w-7xl px-6", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "grid gap-8 md:grid-cols-2", children: courses.map((course) => {
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("section", { className: "py-16 sm:py-20", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "mx-auto max-w-7xl px-6", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "grid gap-8 md:grid-cols-2", children: courses.map((course) => {
       const tierRank = {
         basic: 0,
         plus: 1,
@@ -59080,69 +59211,69 @@ function TrainingCatalog() {
       const isLocked = requiredRank > userRank;
       const isGated = course.requiredTier && course.requiredTier !== "basic";
       if (isLocked) {
-        return /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "group relative overflow-hidden rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sm:p-8 opacity-75", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-5 w-5 text-amber-400", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-7 w-7 text-gray-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: course.icon }) }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: `inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${levelColors[course.levels] || "bg-gray-500/20 text-gray-400"}`, children: course.levels }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "ml-2 inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-3 w-3", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }),
+        return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "group relative overflow-hidden rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sm:p-8 opacity-75", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-5 w-5 text-amber-400", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-7 w-7 text-gray-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: course.icon }) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: `inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${levelColors[course.levels] || "bg-gray-500/20 text-gray-400"}`, children: course.levels }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "ml-2 inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-3 w-3", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }),
             "Plus+"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h2", { className: "mt-3 text-xl font-bold text-gray-400", children: course.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-1 text-sm text-gray-500", children: course.subtitle }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-3 leading-relaxed text-gray-500 line-clamp-3", children: course.description }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-5 flex items-center gap-4 text-sm text-gray-600", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "flex items-center gap-1.5", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("h2", { className: "mt-3 text-xl font-bold text-gray-400", children: course.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mt-1 text-sm text-gray-500", children: course.subtitle }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mt-3 leading-relaxed text-gray-500 line-clamp-3", children: course.description }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-5 flex items-center gap-4 text-sm text-gray-600", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "flex items-center gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
               course.duration
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "flex items-center gap-1.5", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "flex items-center gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }),
               course.lessons,
               " ",
               t("training.lessons")
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-5 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "text-sm font-medium text-amber-400", children: "Upgrade to Plus+ to unlock" }),
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("a", { href: "/pricing", className: "mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[#e63946] hover:underline", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-5 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "text-sm font-medium text-amber-400", children: "Upgrade to Plus+ to unlock" }),
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("a", { href: "/pricing", className: "mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[#e63946] hover:underline", children: [
               "View Plans",
-              /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 8l4 4m0 0l-4 4m4-4H3" }) })
+              /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 8l4 4m0 0l-4 4m4-4H3" }) })
             ] })
           ] })
         ] }, course.id);
       }
-      return /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("a", { href: `/training/${course.id}`, className: "group relative overflow-hidden rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 sm:p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("div", { className: "mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-7 w-7 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: course.icon }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: `inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${levelColors[course.levels] || "bg-gray-500/20 text-gray-400"}`, children: course.levels }),
-        isGated && /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "ml-2 inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400", children: "Plus+" }),
-        !isGated && /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("span", { className: "ml-2 inline-flex items-center gap-1 rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400", children: "All Plans" }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("h2", { className: "mt-3 text-xl font-bold text-white group-hover:text-[#e63946] transition-colors", children: course.title }),
-        assignedCourseIds.has(course.id) && /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "mt-1 inline-flex items-center gap-1 rounded-full bg-[#e63946]/10 px-2 py-0.5 text-[10px] font-medium text-[#e63946]", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-3 w-3", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" }) }),
+      return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("a", { href: `/training/${course.id}`, className: "group relative overflow-hidden rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 sm:p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] group-hover:bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-7 w-7 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: course.icon }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: `inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${levelColors[course.levels] || "bg-gray-500/20 text-gray-400"}`, children: course.levels }),
+        isGated && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "ml-2 inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400", children: "Plus+" }),
+        !isGated && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "ml-2 inline-flex items-center gap-1 rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400", children: "All Plans" }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("h2", { className: "mt-3 text-xl font-bold text-white group-hover:text-[#e63946] transition-colors", children: course.title }),
+        assignedCourseIds.has(course.id) && /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "mt-1 inline-flex items-center gap-1 rounded-full bg-[#e63946]/10 px-2 py-0.5 text-[10px] font-medium text-[#e63946]", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-3 w-3", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" }) }),
           "Assigned by Manager"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-1 text-sm text-gray-500", children: course.subtitle }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400 line-clamp-3", children: course.description }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-5 flex items-center gap-4 text-sm text-gray-500", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "flex items-center gap-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mt-1 text-sm text-gray-500", children: course.subtitle }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400 line-clamp-3", children: course.description }),
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-5 flex items-center gap-4 text-sm text-gray-500", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "flex items-center gap-1.5", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
             course.duration
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("span", { className: "flex items-center gap-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "flex items-center gap-1.5", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" }) }),
             course.lessons,
             " ",
             t("training.lessons")
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mt-5 flex items-center gap-2 text-sm font-medium text-[#e63946]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-5 flex items-center gap-2 text-sm font-medium text-[#e63946]", children: [
           t("training.start"),
-          /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("svg", { className: "h-4 w-4 transition-transform group-hover:translate-x-1", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 8l4 4m0 0l-4 4m4-4H3" }) })
+          /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-4 w-4 transition-transform group-hover:translate-x-1", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 8l4 4m0 0l-4 4m4-4H3" }) })
         ] })
       ] }, course.id);
     }) }) }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime69.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)("div", { className: "mx-auto max-w-7xl px-6 text-center text-sm text-gray-600", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 py-12", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mx-auto max-w-7xl px-6 text-center text-sm text-gray-600", children: [
       "\xA9 ",
       (/* @__PURE__ */ new Date()).getFullYear(),
       " Champion Sales Training & Events. ",
@@ -59150,17 +59281,16 @@ function TrainingCatalog() {
     ] }) })
   ] });
 }
-var import_jsx_runtime69, import_react63, levelColors;
-var init_index_ISg_w_BO = __esm({
-  "dist/server/assets/index-ISg_w-BO.js"() {
+var import_jsx_runtime70, import_react64, levelColors;
+var init_index_KdlAZPY2 = __esm({
+  "dist/server/assets/index-KdlAZPY2.js"() {
     "use strict";
-    import_jsx_runtime69 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react63 = __toESM(require_react(), 1);
+    import_jsx_runtime70 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react64 = __toESM(require_react(), 1);
     init_courses_CY9yjTRv();
     init_auth_guard_DDzkafwD();
     init_manager_CzgJH0An();
-    init_client_auth_feFyKRsW();
     init_production();
     levelColors = {
       Beginner: "bg-green-500/20 text-green-400",
@@ -59172,186 +59302,186 @@ var init_index_ISg_w_BO = __esm({
 
 // dist/server/assets/quiz-question-au1f5CtM.js
 function CarIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "15", y: "30", width: "90", height: "30", rx: "8", fill: "#e63946" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M30 30 L40 10 L80 10 L90 30 Z", fill: "#c1121f" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "42", y: "14", width: "15", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "62", y: "14", width: "15", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "38", cy: "62", r: "10", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "38", cy: "62", r: "4", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "82", cy: "62", r: "10", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "82", cy: "62", r: "4", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "102", y: "36", width: "6", height: "8", rx: "2", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "12", y: "36", width: "6", height: "8", rx: "2", fill: "#FF4444" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "20", y: "42", width: "6", height: "2", rx: "1", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "94", y: "42", width: "6", height: "2", rx: "1", fill: "#888" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "15", y: "30", width: "90", height: "30", rx: "8", fill: "#e63946" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M30 30 L40 10 L80 10 L90 30 Z", fill: "#c1121f" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "42", y: "14", width: "15", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "62", y: "14", width: "15", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "38", cy: "62", r: "10", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "38", cy: "62", r: "4", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "82", cy: "62", r: "10", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "82", cy: "62", r: "4", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "102", y: "36", width: "6", height: "8", rx: "2", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "12", y: "36", width: "6", height: "8", rx: "2", fill: "#FF4444" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "20", y: "42", width: "6", height: "2", rx: "1", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "94", y: "42", width: "6", height: "2", rx: "1", fill: "#888" })
   ] });
 }
 function SalespersonIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 80 100", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "40", cy: "20", r: "14", fill: "#FFDAB9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M26 18 Q30 6 40 4 Q50 6 54 18", fill: "#4A3728" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "34", cy: "18", r: "2", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "46", cy: "18", r: "2", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M34 26 Q40 30 46 26", stroke: "#333", strokeWidth: "2", fill: "none", strokeLinecap: "round" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "22", y: "34", width: "36", height: "40", rx: "4", fill: "#1a3a5c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M30 34 L40 42 L50 34", fill: "#fff", opacity: "0.9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "37", y: "40", width: "6", height: "20", rx: "2", fill: "#e63946" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "10", y: "36", width: "14", height: "8", rx: "4", fill: "#1a3a5c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "56", y: "36", width: "14", height: "8", rx: "4", fill: "#1a3a5c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "12", cy: "44", r: "5", fill: "#FFDAB9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "68", cy: "44", r: "5", fill: "#FFDAB9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "34", y: "48", width: "12", height: "6", rx: "1", fill: "#fff" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "33", y: "47", width: "14", height: "8", rx: "1", fill: "none", stroke: "#ccc", strokeWidth: "0.5" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 80 100", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "40", cy: "20", r: "14", fill: "#FFDAB9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M26 18 Q30 6 40 4 Q50 6 54 18", fill: "#4A3728" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "34", cy: "18", r: "2", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "46", cy: "18", r: "2", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M34 26 Q40 30 46 26", stroke: "#333", strokeWidth: "2", fill: "none", strokeLinecap: "round" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "22", y: "34", width: "36", height: "40", rx: "4", fill: "#1a3a5c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M30 34 L40 42 L50 34", fill: "#fff", opacity: "0.9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "37", y: "40", width: "6", height: "20", rx: "2", fill: "#e63946" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "10", y: "36", width: "14", height: "8", rx: "4", fill: "#1a3a5c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "56", y: "36", width: "14", height: "8", rx: "4", fill: "#1a3a5c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "12", cy: "44", r: "5", fill: "#FFDAB9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "68", cy: "44", r: "5", fill: "#FFDAB9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "34", y: "48", width: "12", height: "6", rx: "1", fill: "#fff" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "33", y: "47", width: "14", height: "8", rx: "1", fill: "none", stroke: "#ccc", strokeWidth: "0.5" })
   ] });
 }
 function CustomerIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 70 100", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "35", cy: "18", r: "13", fill: "#D2A679" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M22 16 Q26 4 35 2 Q44 4 48 16", fill: "#2C1810" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "30", cy: "16", r: "2", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "40", cy: "16", r: "2", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M30 24 Q35 28 40 24", stroke: "#333", strokeWidth: "2", fill: "none", strokeLinecap: "round" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "20", y: "32", width: "30", height: "35", rx: "4", fill: "#4A90D9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M26 32 L35 38 L44 32", fill: "#fff", opacity: "0.9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "8", y: "34", width: "12", height: "7", rx: "3", fill: "#4A90D9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "50", y: "34", width: "12", height: "7", rx: "3", fill: "#4A90D9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "10", cy: "40", r: "4", fill: "#D2A679" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "60", cy: "40", r: "4", fill: "#D2A679" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "52", y: "38", width: "10", height: "12", rx: "2", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M55 38 Q57 34 59 38", stroke: "#FFD700", strokeWidth: "2", fill: "none" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 70 100", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "35", cy: "18", r: "13", fill: "#D2A679" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M22 16 Q26 4 35 2 Q44 4 48 16", fill: "#2C1810" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "30", cy: "16", r: "2", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "40", cy: "16", r: "2", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M30 24 Q35 28 40 24", stroke: "#333", strokeWidth: "2", fill: "none", strokeLinecap: "round" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "20", y: "32", width: "30", height: "35", rx: "4", fill: "#4A90D9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M26 32 L35 38 L44 32", fill: "#fff", opacity: "0.9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "8", y: "34", width: "12", height: "7", rx: "3", fill: "#4A90D9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "50", y: "34", width: "12", height: "7", rx: "3", fill: "#4A90D9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "10", cy: "40", r: "4", fill: "#D2A679" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "60", cy: "40", r: "4", fill: "#D2A679" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "52", y: "38", width: "10", height: "12", rx: "2", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M55 38 Q57 34 59 38", stroke: "#FFD700", strokeWidth: "2", fill: "none" })
   ] });
 }
 function HandshakeIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 100 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "5", y: "30", width: "30", height: "12", rx: "5", fill: "#1a3a5c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "65", y: "30", width: "30", height: "12", rx: "5", fill: "#4A90D9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M30 30 Q40 20 50 30 Q55 35 50 40 Q45 45 40 42 Q35 40 30 38 Z", fill: "#FFDAB9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M70 30 Q60 20 50 30 Q45 35 50 40 Q55 45 60 42 Q65 40 70 38 Z", fill: "#D2A679" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "45", y: "18", fontSize: "12", fill: "#FFD700", children: "\u2726" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "30", y: "12", fontSize: "8", fill: "#FFD700", children: "\u2726" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "60", y: "12", fontSize: "8", fill: "#FFD700", children: "\u2726" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 100 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "5", y: "30", width: "30", height: "12", rx: "5", fill: "#1a3a5c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "65", y: "30", width: "30", height: "12", rx: "5", fill: "#4A90D9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M30 30 Q40 20 50 30 Q55 35 50 40 Q45 45 40 42 Q35 40 30 38 Z", fill: "#FFDAB9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M70 30 Q60 20 50 30 Q45 35 50 40 Q55 45 60 42 Q65 40 70 38 Z", fill: "#D2A679" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "45", y: "18", fontSize: "12", fill: "#FFD700", children: "\u2726" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "30", y: "12", fontSize: "8", fill: "#FFD700", children: "\u2726" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "60", y: "12", fontSize: "8", fill: "#FFD700", children: "\u2726" })
   ] });
 }
 function ClipboardIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 60 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "10", y: "8", width: "40", height: "64", rx: "4", fill: "#F5F5DC", stroke: "#ccc", strokeWidth: "1.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "22", y: "4", width: "16", height: "8", rx: "2", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "30", cy: "8", r: "2", fill: "#666" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "16", y: "20", width: "28", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "16", y: "28", width: "28", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "16", y: "36", width: "28", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "16", y: "44", width: "20", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M18 52 L24 58 L38 44", stroke: "#4CAF50", strokeWidth: "3", strokeLinecap: "round", strokeLinejoin: "round" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 60 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "10", y: "8", width: "40", height: "64", rx: "4", fill: "#F5F5DC", stroke: "#ccc", strokeWidth: "1.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "22", y: "4", width: "16", height: "8", rx: "2", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "30", cy: "8", r: "2", fill: "#666" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "16", y: "20", width: "28", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "16", y: "28", width: "28", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "16", y: "36", width: "28", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "16", y: "44", width: "20", height: "3", rx: "1.5", fill: "#333", opacity: "0.4" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M18 52 L24 58 L38 44", stroke: "#4CAF50", strokeWidth: "3", strokeLinecap: "round", strokeLinejoin: "round" })
   ] });
 }
 function TrophyIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 80 90", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M20 20 Q20 10 30 8 L30 4 L50 4 L50 8 Q60 10 60 20 L60 30 Q55 42 40 44 Q25 42 20 30 Z", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "28", y: "48", width: "24", height: "6", rx: "1", fill: "#DAA520" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "32", y: "54", width: "16", height: "4", rx: "1", fill: "#B8860B" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "36", y: "44", width: "8", height: "6", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M20 20 Q10 20 12 30 Q14 35 20 32", fill: "none", stroke: "#FFD700", strokeWidth: "3", strokeLinecap: "round" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M60 20 Q70 20 68 30 Q66 35 60 32", fill: "none", stroke: "#FFD700", strokeWidth: "3", strokeLinecap: "round" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "36", y: "32", fontSize: "14", fill: "#B8860B", textAnchor: "middle", children: "\u2605" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 80 90", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M20 20 Q20 10 30 8 L30 4 L50 4 L50 8 Q60 10 60 20 L60 30 Q55 42 40 44 Q25 42 20 30 Z", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "28", y: "48", width: "24", height: "6", rx: "1", fill: "#DAA520" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "32", y: "54", width: "16", height: "4", rx: "1", fill: "#B8860B" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "36", y: "44", width: "8", height: "6", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M20 20 Q10 20 12 30 Q14 35 20 32", fill: "none", stroke: "#FFD700", strokeWidth: "3", strokeLinecap: "round" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M60 20 Q70 20 68 30 Q66 35 60 32", fill: "none", stroke: "#FFD700", strokeWidth: "3", strokeLinecap: "round" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "36", y: "32", fontSize: "14", fill: "#B8860B", textAnchor: "middle", children: "\u2605" })
   ] });
 }
 function QuestionIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 70 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "35", cy: "38", r: "30", fill: "#1a2d4a", stroke: "#e63946", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "35", y: "32", fontSize: "28", fill: "#e63946", textAnchor: "middle", fontWeight: "bold", children: "?" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "35", cy: "50", r: "3", fill: "#e63946" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "12", y: "14", fontSize: "8", fill: "#FFD700", children: "\u2726" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "56", y: "14", fontSize: "8", fill: "#FFD700", children: "\u2726" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 70 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "35", cy: "38", r: "30", fill: "#1a2d4a", stroke: "#e63946", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "35", y: "32", fontSize: "28", fill: "#e63946", textAnchor: "middle", fontWeight: "bold", children: "?" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "35", cy: "50", r: "3", fill: "#e63946" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "12", y: "14", fontSize: "8", fill: "#FFD700", children: "\u2726" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "56", y: "14", fontSize: "8", fill: "#FFD700", children: "\u2726" })
   ] });
 }
 function KeyIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 60 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "22", cy: "22", r: "14", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "22", cy: "22", r: "6", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "20", y: "36", width: "6", height: "32", rx: "2", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "14", y: "56", width: "6", height: "4", rx: "1", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "14", y: "64", width: "8", height: "4", rx: "1", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "44", y: "18", fontSize: "8", fill: "#FFD700", children: "\u2726" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 60 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "22", cy: "22", r: "14", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "22", cy: "22", r: "6", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "20", y: "36", width: "6", height: "32", rx: "2", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "14", y: "56", width: "6", height: "4", rx: "1", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "14", y: "64", width: "8", height: "4", rx: "1", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "44", y: "18", fontSize: "8", fill: "#FFD700", children: "\u2726" })
   ] });
 }
 function MoneyIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 80 70", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "40", cy: "35", r: "30", fill: "#1a3a2a", stroke: "#4CAF50", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("text", { x: "40", y: "38", fontSize: "32", fill: "#4CAF50", textAnchor: "middle", fontWeight: "bold", children: "$" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "18", cy: "52", r: "6", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "28", cy: "56", r: "5", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "55", cy: "54", r: "5", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "65", cy: "50", r: "6", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 80 70", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "40", cy: "35", r: "30", fill: "#1a3a2a", stroke: "#4CAF50", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("text", { x: "40", y: "38", fontSize: "32", fill: "#4CAF50", textAnchor: "middle", fontWeight: "bold", children: "$" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "18", cy: "52", r: "6", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "28", cy: "56", r: "5", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "55", cy: "54", r: "5", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "65", cy: "50", r: "6", fill: "#FFD700", stroke: "#DAA520", strokeWidth: "1" })
   ] });
 }
 function DealershipIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 100 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "15", y: "20", width: "70", height: "55", rx: "2", fill: "#1a2d4a", stroke: "#2a4a6a", strokeWidth: "1.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M10 20 L50 5 L90 20 Z", fill: "#e63946" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "40", y: "50", width: "20", height: "25", rx: "2", fill: "#0d1f35" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "42", y: "52", width: "16", height: "23", rx: "2", fill: "#1a3a5c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "54", cy: "64", r: "1.5", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "22", y: "28", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "66", y: "28", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "22", y: "45", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "66", y: "45", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("line", { x1: "50", y1: "5", x2: "50", y2: "-2", stroke: "#888", strokeWidth: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("polygon", { points: "50,-2 62,2 50,6", fill: "#e63946" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 100 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "15", y: "20", width: "70", height: "55", rx: "2", fill: "#1a2d4a", stroke: "#2a4a6a", strokeWidth: "1.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M10 20 L50 5 L90 20 Z", fill: "#e63946" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "40", y: "50", width: "20", height: "25", rx: "2", fill: "#0d1f35" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "42", y: "52", width: "16", height: "23", rx: "2", fill: "#1a3a5c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "54", cy: "64", r: "1.5", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "22", y: "28", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "66", y: "28", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "22", y: "45", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "66", y: "45", width: "12", height: "12", rx: "1", fill: "#87CEEB", opacity: "0.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("line", { x1: "50", y1: "5", x2: "50", y2: "-2", stroke: "#888", strokeWidth: "1" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("polygon", { points: "50,-2 62,2 50,6", fill: "#e63946" })
   ] });
 }
 function ChartIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 80 70", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "40", cy: "35", r: "30", fill: "#0d1f35", stroke: "#1a2d4a", strokeWidth: "1.5" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "16", y: "48", width: "10", height: "12", rx: "2", fill: "#e63946" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "30", y: "38", width: "10", height: "22", rx: "2", fill: "#4A90D9" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "44", y: "28", width: "10", height: "32", rx: "2", fill: "#4CAF50" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "58", y: "42", width: "10", height: "18", rx: "2", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M18 46 L28 28 L38 32 L48 18 L58 22", stroke: "#fff", strokeWidth: "2", strokeLinecap: "round", fill: "none", opacity: "0.5" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 80 70", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "40", cy: "35", r: "30", fill: "#0d1f35", stroke: "#1a2d4a", strokeWidth: "1.5" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "16", y: "48", width: "10", height: "12", rx: "2", fill: "#e63946" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "30", y: "38", width: "10", height: "22", rx: "2", fill: "#4A90D9" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "44", y: "28", width: "10", height: "32", rx: "2", fill: "#4CAF50" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "58", y: "42", width: "10", height: "18", rx: "2", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M18 46 L28 28 L38 32 L48 18 L58 22", stroke: "#fff", strokeWidth: "2", strokeLinecap: "round", fill: "none", opacity: "0.5" })
   ] });
 }
 function TruckIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "30", y: "25", width: "60", height: "30", rx: "4", fill: "#2a5a8a" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "78", y: "15", width: "25", height: "40", rx: "4", fill: "#1a3a5c" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "84", y: "19", width: "14", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "30", y: "20", width: "50", height: "8", rx: "2", fill: "#2a5a8a" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "48", cy: "57", r: "9", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "48", cy: "57", r: "4", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "88", cy: "57", r: "9", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "88", cy: "57", r: "4", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "100", y: "32", width: "5", height: "6", rx: "1", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "28", y: "50", width: "65", height: "5", rx: "2", fill: "#444" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "30", y: "25", width: "60", height: "30", rx: "4", fill: "#2a5a8a" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "78", y: "15", width: "25", height: "40", rx: "4", fill: "#1a3a5c" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "84", y: "19", width: "14", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "30", y: "20", width: "50", height: "8", rx: "2", fill: "#2a5a8a" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "48", cy: "57", r: "9", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "48", cy: "57", r: "4", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "88", cy: "57", r: "9", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "88", cy: "57", r: "4", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "100", y: "32", width: "5", height: "6", rx: "1", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "28", y: "50", width: "65", height: "5", rx: "2", fill: "#444" })
   ] });
 }
 function SuvIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "15", y: "30", width: "90", height: "28", rx: "6", fill: "#3a6a3a" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M25 30 L30 10 L90 10 L95 30 Z", fill: "#2a5a2a" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "32", y: "14", width: "18", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "54", y: "14", width: "18", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "76", y: "14", width: "16", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "28", y: "7", width: "65", height: "4", rx: "1", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "38", cy: "60", r: "10", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "38", cy: "60", r: "4", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "82", cy: "60", r: "10", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "82", cy: "60", r: "4", fill: "#888" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "102", y: "36", width: "5", height: "7", rx: "1", fill: "#FFD700" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "15", y: "30", width: "90", height: "28", rx: "6", fill: "#3a6a3a" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M25 30 L30 10 L90 10 L95 30 Z", fill: "#2a5a2a" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "32", y: "14", width: "18", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "54", y: "14", width: "18", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "76", y: "14", width: "16", height: "14", rx: "2", fill: "#87CEEB", opacity: "0.7" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "28", y: "7", width: "65", height: "4", rx: "1", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "38", cy: "60", r: "10", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "38", cy: "60", r: "4", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "82", cy: "60", r: "10", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "82", cy: "60", r: "4", fill: "#888" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "102", y: "36", width: "5", height: "7", rx: "1", fill: "#FFD700" })
   ] });
 }
 function JeepIcon({ className = "h-16 w-16" }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "10", y: "35", width: "100", height: "25", rx: "4", fill: "#c1440e" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { d: "M20 35 L25 5 L95 5 L100 35", stroke: "#333", strokeWidth: "3", fill: "none" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "30", y: "8", width: "15", height: "22", rx: "1", fill: "none", stroke: "#333", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("rect", { x: "75", y: "8", width: "15", height: "22", rx: "1", fill: "none", stroke: "#333", strokeWidth: "2" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "100", cy: "35", r: "6", fill: "#333", stroke: "#555", strokeWidth: "1" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "33", cy: "62", r: "11", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "33", cy: "62", r: "5", fill: "#666" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "87", cy: "62", r: "11", fill: "#333" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "87", cy: "62", r: "5", fill: "#666" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "107", cy: "42", r: "3", fill: "#FFD700" }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("circle", { cx: "107", cy: "52", r: "2", fill: "#FFD700" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("svg", { className, viewBox: "0 0 120 80", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "10", y: "35", width: "100", height: "25", rx: "4", fill: "#c1440e" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { d: "M20 35 L25 5 L95 5 L100 35", stroke: "#333", strokeWidth: "3", fill: "none" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "30", y: "8", width: "15", height: "22", rx: "1", fill: "none", stroke: "#333", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("rect", { x: "75", y: "8", width: "15", height: "22", rx: "1", fill: "none", stroke: "#333", strokeWidth: "2" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "100", cy: "35", r: "6", fill: "#333", stroke: "#555", strokeWidth: "1" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "33", cy: "62", r: "11", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "33", cy: "62", r: "5", fill: "#666" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "87", cy: "62", r: "11", fill: "#333" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "87", cy: "62", r: "5", fill: "#666" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "107", cy: "42", r: "3", fill: "#FFD700" }),
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("circle", { cx: "107", cy: "52", r: "2", fill: "#FFD700" })
   ] });
 }
 function getIllustrationForLesson(lessonId) {
@@ -59503,8 +59633,8 @@ function parseQuizContent(content) {
 }
 function QuizQuestion({ content, lessonId }) {
   const questions = parseQuizContent(content);
-  const [selectedAnswers, setSelectedAnswers] = (0, import_react64.useState)({});
-  const [showResults, setShowResults] = (0, import_react64.useState)({});
+  const [selectedAnswers, setSelectedAnswers] = (0, import_react65.useState)({});
+  const [showResults, setShowResults] = (0, import_react65.useState)({});
   if (questions.length === 0) {
     return null;
   }
@@ -59530,21 +59660,21 @@ function QuizQuestion({ content, lessonId }) {
   questions.every((_2, idx) => selectedAnswers[idx]);
   const allChecked = questions.every((_2, idx) => showResults[idx]);
   const correctCount = questions.filter((q3, idx) => selectedAnswers[idx] === q3.correctAnswer).length;
-  return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-8 rounded-xl border border-[#1a2d4a] bg-[#0a1628] overflow-hidden", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "flex items-center gap-4 border-b border-[#1a2d4a] bg-[#0d1f35] p-4 sm:p-5", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(Illustration, {}) }),
-      /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("h3", { className: "text-base font-bold text-white", children: "Quick Quiz" }),
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("p", { className: "text-xs text-gray-500", children: "Test your knowledge with this scenario question" })
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mt-8 rounded-xl border border-[#1a2d4a] bg-[#0a1628] overflow-hidden", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "flex items-center gap-4 border-b border-[#1a2d4a] bg-[#0d1f35] p-4 sm:p-5", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(Illustration, {}) }),
+      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h3", { className: "text-base font-bold text-white", children: "Quick Quiz" }),
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { className: "text-xs text-gray-500", children: "Test your knowledge with this scenario question" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "space-y-6 p-4 sm:p-5", children: questions.map((q3, qIdx) => {
+    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "space-y-6 p-4 sm:p-5", children: questions.map((q3, qIdx) => {
       const isSelected = (label) => selectedAnswers[qIdx] === label;
       const isCorrect = selectedAnswers[qIdx] === q3.correctAnswer;
       const showResult = showResults[qIdx];
-      return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0d1f35] p-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("p", { className: "text-sm font-medium text-white", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "text-[#e63946]", children: [
+      return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "rounded-lg border border-[#1a2d4a] bg-[#0d1f35] p-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("p", { className: "text-sm font-medium text-white", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { className: "text-[#e63946]", children: [
             "Q",
             q3.questionNumber,
             ":"
@@ -59552,29 +59682,29 @@ function QuizQuestion({ content, lessonId }) {
           " ",
           q3.questionText
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "mt-3 space-y-2", children: q3.options.map((opt) => {
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "mt-3 space-y-2", children: q3.options.map((opt) => {
           const isAns = showResult && opt.label === q3.correctAnswer;
           const isWrong = showResult && isSelected(opt.label) && opt.label !== q3.correctAnswer;
-          return /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(
+          return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(
             "button",
             {
               onClick: () => !showResult && handleSelect(qIdx, opt.label),
               disabled: showResult,
               className: `flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left text-sm transition-all duration-200 ${showResult ? isAns ? "border-green-500/50 bg-green-500/10 text-green-400" : isWrong ? "border-red-500/50 bg-red-500/10 text-red-400" : "border-[#1a2d4a] text-gray-500 opacity-50" : isSelected(opt.label) ? "border-[#e63946] bg-[#e63946]/10 text-white" : "border-[#1a2d4a] text-gray-400 hover:border-[#e63946]/50 hover:bg-[#e63946]/5"}`,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(
                   "span",
                   {
                     className: `flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${showResult && isAns ? "border-green-500 bg-green-500" : showResult && isWrong ? "border-red-500 bg-red-500" : isSelected(opt.label) ? "border-[#e63946] bg-[#e63946]" : "border-gray-600"}`,
                     children: [
-                      showResult && isAns && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }),
-                      showResult && isWrong && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M6 18L18 6M6 6l12 12" }) }),
-                      !showResult && isSelected(opt.label) && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "h-2 w-2 rounded-full bg-white" })
+                      showResult && isAns && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M5 13l4 4L19 7" }) }),
+                      showResult && isWrong && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-3 w-3 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 3, d: "M6 18L18 6M6 6l12 12" }) }),
+                      !showResult && isSelected(opt.label) && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "h-2 w-2 rounded-full bg-white" })
                     ]
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "flex-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "font-semibold", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { className: "flex-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { className: "font-semibold", children: [
                     opt.label,
                     ")"
                   ] }),
@@ -59586,8 +59716,8 @@ function QuizQuestion({ content, lessonId }) {
             opt.label
           );
         }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "mt-3 flex items-center gap-3", children: [
-          !showResult && selectedAnswers[qIdx] && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mt-3 flex items-center gap-3", children: [
+          !showResult && selectedAnswers[qIdx] && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
             "button",
             {
               onClick: () => handleCheck(qIdx),
@@ -59595,7 +59725,7 @@ function QuizQuestion({ content, lessonId }) {
               children: "Check Answer"
             }
           ),
-          showResult && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
+          showResult && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
             "button",
             {
               onClick: () => handleReset(qIdx),
@@ -59604,12 +59734,12 @@ function QuizQuestion({ content, lessonId }) {
             }
           )
         ] }),
-        showResult && /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(
+        showResult && /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(
           "div",
           {
             className: `mt-3 rounded-lg p-3 text-xs leading-relaxed ${isCorrect ? "border border-green-500/30 bg-green-500/5 text-green-400" : "border border-red-500/30 bg-red-500/5 text-red-400"}`,
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "font-semibold", children: isCorrect ? "\u2713 Correct!" : "\u2717 Not quite." }),
+              /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "font-semibold", children: isCorrect ? "\u2713 Correct!" : "\u2717 Not quite." }),
               " ",
               q3.explanation
             ]
@@ -59617,32 +59747,32 @@ function QuizQuestion({ content, lessonId }) {
         )
       ] }, qIdx);
     }) }),
-    allChecked && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "border-t border-[#1a2d4a] bg-[#0d1f35] px-4 py-3 sm:px-5", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("div", { className: "flex items-center justify-between", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("div", { className: "flex items-center gap-2 text-sm", children: correctCount === questions.length ? /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(import_jsx_runtime70.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "text-green-500 font-bold", children: "\u{1F389} Perfect Score!" }),
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "text-gray-500", children: [
+    allChecked && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "border-t border-[#1a2d4a] bg-[#0d1f35] px-4 py-3 sm:px-5", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex items-center gap-2 text-sm", children: correctCount === questions.length ? /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(import_jsx_runtime71.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "text-green-500 font-bold", children: "\u{1F389} Perfect Score!" }),
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { className: "text-gray-500", children: [
           "You got all ",
           questions.length,
           " right!"
         ] })
-      ] }) : correctCount >= questions.length / 2 ? /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(import_jsx_runtime70.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "text-yellow-500 font-bold", children: "Good Job!" }),
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "text-gray-500", children: [
+      ] }) : correctCount >= questions.length / 2 ? /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(import_jsx_runtime71.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "text-yellow-500 font-bold", children: "Good Job!" }),
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { className: "text-gray-500", children: [
           correctCount,
           "/",
           questions.length,
           " correct"
         ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(import_jsx_runtime70.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsx)("span", { className: "text-gray-400 font-bold", children: "Keep Practicing" }),
-        /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)("span", { className: "text-gray-500", children: [
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(import_jsx_runtime71.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "text-gray-400 font-bold", children: "Keep Practicing" }),
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { className: "text-gray-500", children: [
           correctCount,
           "/",
           questions.length,
           " correct"
         ] })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
         "button",
         {
           onClick: () => {
@@ -59656,20 +59786,21 @@ function QuizQuestion({ content, lessonId }) {
     ] }) })
   ] });
 }
-var import_jsx_runtime70, import_react64;
+var import_jsx_runtime71, import_react65;
 var init_quiz_question_au1f5CtM = __esm({
   "dist/server/assets/quiz-question-au1f5CtM.js"() {
     "use strict";
-    import_jsx_runtime70 = __toESM(require_jsx_runtime(), 1);
-    import_react64 = __toESM(require_react(), 1);
+    import_jsx_runtime71 = __toESM(require_jsx_runtime(), 1);
+    import_react65 = __toESM(require_react(), 1);
   }
 });
 
-// dist/server/assets/_courseId-lXw7ITKX.js
-var courseId_lXw7ITKX_exports = {};
-__export(courseId_lXw7ITKX_exports, {
+// dist/server/assets/_courseId-CrAopckR.js
+var courseId_CrAopckR_exports = {};
+__export(courseId_CrAopckR_exports, {
   component: () => CourseDetail
 });
+import "node:async_hooks";
 function renderMarkdown(md, lessonId) {
   const lines = md.split("\n");
   const nodes = [];
@@ -59694,27 +59825,27 @@ function renderMarkdown(md, lessonId) {
         i2++;
       }
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(QuizQuestion, { content: quizLines.join("\n"), lessonId }) }, `quiz-${i2}`)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(QuizQuestion, { content: quizLines.join("\n"), lessonId }) }, `quiz-${i2}`)
       );
       continue;
     }
     if (line.startsWith("## ")) {
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h2", { className: "mt-8 text-xl font-bold text-white first:mt-0", children: renderInline(line.slice(3)) }, i2)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h2", { className: "mt-8 text-xl font-bold text-white first:mt-0", children: renderInline(line.slice(3)) }, i2)
       );
       i2++;
       continue;
     }
     if (line.startsWith("### ")) {
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h3", { className: "mt-6 text-lg font-semibold text-white", children: renderInline(line.slice(4)) }, i2)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h3", { className: "mt-6 text-lg font-semibold text-white", children: renderInline(line.slice(4)) }, i2)
       );
       i2++;
       continue;
     }
     if (line.startsWith("#### ")) {
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h4", { className: "mt-4 text-base font-semibold text-white", children: renderInline(line.slice(5)) }, i2)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h4", { className: "mt-4 text-base font-semibold text-white", children: renderInline(line.slice(5)) }, i2)
       );
       i2++;
       continue;
@@ -59724,19 +59855,19 @@ function renderMarkdown(md, lessonId) {
       while (i2 < lines.length && lines[i2].trimEnd().match(/^[-*]\s/)) {
         const item = lines[i2].trimEnd().replace(/^[-*]\s/, "");
         items.push(
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)(
             "li",
             {
               className: "flex items-start gap-3 text-sm text-gray-400",
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
                   "svg",
                   {
                     className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946]",
                     fill: "none",
                     viewBox: "0 0 24 24",
                     stroke: "currentColor",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
+                    children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
                       "path",
                       {
                         strokeLinecap: "round",
@@ -59756,7 +59887,7 @@ function renderMarkdown(md, lessonId) {
         i2++;
       }
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("ul", { className: "mt-3 space-y-2", children: items }, `ul-${i2}`)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("ul", { className: "mt-3 space-y-2", children: items }, `ul-${i2}`)
       );
       continue;
     }
@@ -59765,12 +59896,12 @@ function renderMarkdown(md, lessonId) {
       while (i2 < lines.length && lines[i2].trimEnd().match(/^\d+\.\s/)) {
         const item = lines[i2].trimEnd().replace(/^\d+\.\s/, "");
         items.push(
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)(
             "li",
             {
               className: "flex items-start gap-3 text-sm text-gray-400",
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946] font-bold text-center", children: items.length + 1 }),
+                /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "mt-0.5 h-4 w-4 shrink-0 text-[#e63946] font-bold text-center", children: items.length + 1 }),
                 renderInline(item)
               ]
             },
@@ -59780,19 +59911,19 @@ function renderMarkdown(md, lessonId) {
         i2++;
       }
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("ol", { className: "mt-3 space-y-2 list-none", children: items }, `ol-${i2}`)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("ol", { className: "mt-3 space-y-2 list-none", children: items }, `ol-${i2}`)
       );
       continue;
     }
     if (line.startsWith("**") && line.endsWith("**") && !line.includes("\n")) {
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { className: "mt-3 font-semibold text-white", children: renderInline(line.slice(2, -2)) }, i2)
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "mt-3 font-semibold text-white", children: renderInline(line.slice(2, -2)) }, i2)
       );
       i2++;
       continue;
     }
     nodes.push(
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400", children: renderInline(line) }, i2)
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400", children: renderInline(line) }, i2)
     );
     i2++;
   }
@@ -59808,9 +59939,9 @@ function renderInline(text) {
       parts.push(text.slice(lastIndex, match.index));
     }
     if (match[2]) {
-      parts.push(/* @__PURE__ */ (0, import_jsx_runtime71.jsx)("strong", { children: match[2] }, match.index));
+      parts.push(/* @__PURE__ */ (0, import_jsx_runtime72.jsx)("strong", { children: match[2] }, match.index));
     } else if (match[3]) {
-      parts.push(/* @__PURE__ */ (0, import_jsx_runtime71.jsx)("em", { children: match[3] }, match.index));
+      parts.push(/* @__PURE__ */ (0, import_jsx_runtime72.jsx)("em", { children: match[3] }, match.index));
     }
     lastIndex = match.index + match[0].length;
   }
@@ -59825,12 +59956,12 @@ function CourseDetail() {
   } = useTranslation();
   const params = Route$1.useParams();
   const course = courses.find((c3) => c3.id === params.courseId);
-  const [currentLessonIdx, setCurrentLessonIdx] = (0, import_react65.useState)(0);
-  const [completedLessons, setCompletedLessons] = (0, import_react65.useState)(/* @__PURE__ */ new Set());
-  const [authToken, setAuthToken] = (0, import_react65.useState)(null);
-  const [authState, setAuthState] = (0, import_react65.useState)("loading");
-  const [userTier, setUserTier] = (0, import_react65.useState)("basic");
-  (0, import_react65.useEffect)(() => {
+  const [currentLessonIdx, setCurrentLessonIdx] = (0, import_react66.useState)(0);
+  const [completedLessons, setCompletedLessons] = (0, import_react66.useState)(/* @__PURE__ */ new Set());
+  const [authToken, setAuthToken] = (0, import_react66.useState)(null);
+  const [authState, setAuthState] = (0, import_react66.useState)("loading");
+  const [userTier, setUserTier] = (0, import_react66.useState)("basic");
+  (0, import_react66.useEffect)(() => {
     const token = localStorage.getItem("salesdrive_token");
     if (!token) {
       setAuthState("unauthenticated");
@@ -59894,23 +60025,23 @@ function CourseDetail() {
   };
   const currentLesson = course?.lessonsList?.[currentLessonIdx];
   if (authState === "loading") {
-    return /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" }) });
   }
   if (authState === "unauthenticated") {
-    return /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "w-full max-w-md text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Sign in to access training" }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { className: "mt-3 text-gray-400", children: "Please sign in to view this course content." }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/login", className: "btn-primary text-sm", children: "Sign In" }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/signup", className: "btn-secondary text-sm", children: "Create Account" })
+    return /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "w-full max-w-md text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Sign in to access training" }),
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "mt-3 text-gray-400", children: "Please sign in to view this course content." }),
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/login", className: "btn-primary text-sm", children: "Sign In" }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/signup", className: "btn-secondary text-sm", children: "Create Account" })
       ] })
     ] }) });
   }
   if (!course) {
-    return /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h1", { className: "text-2xl font-bold text-white", children: "Course not found" }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/training", className: "mt-4 inline-block text-[#e63946]", children: t("training.backToCourses") })
+    return /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h1", { className: "text-2xl font-bold text-white", children: "Course not found" }),
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/training", className: "mt-4 inline-block text-[#e63946]", children: t("training.backToCourses") })
     ] }) });
   }
   const tierRank = {
@@ -59922,72 +60053,72 @@ function CourseDetail() {
   const userRank = userTier ? tierRank[userTier] ?? 0 : 0;
   if (requiredRank > userRank) {
     const tierName = course.requiredTier === "premium" ? "Premium" : "Plus+";
-    return /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "w-full max-w-md text-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#f77f00]/20", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-8 w-8 text-[#f77f00]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("h1", { className: "mt-6 text-2xl font-bold text-white", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628] px-6", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "w-full max-w-md text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#f77f00]/20", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-8 w-8 text-[#f77f00]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" }) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("h1", { className: "mt-6 text-2xl font-bold text-white", children: [
         tierName,
         " Subscription Required"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("p", { className: "mt-3 text-gray-400", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("p", { className: "mt-3 text-gray-400", children: [
         course.title,
         " is available on the ",
         tierName,
         " tier and above. Upgrade your subscription to unlock this course and all its content."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/pricing", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f]", children: "View Plans" }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50", children: "Back to Courses" })
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/pricing", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f]", children: "View Plans" }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50", children: "Back to Courses" })
       ] })
     ] }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mx-auto flex h-16 max-w-7xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/training", className: "text-sm text-gray-400 transition-colors hover:text-white", children: t("training.backToCourses") }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Steps of the Sale" }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Profile" }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("button", { onClick: () => {
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("nav", { className: "hidden items-center gap-8 md:flex", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/training", className: "text-sm text-gray-400 transition-colors hover:text-white", children: t("training.backToCourses") }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Steps of the Sale" }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Profile" }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("button", { onClick: () => {
           localStorage.removeItem("salesdrive_token");
           window.location.href = "/";
         }, className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Sign Out" }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(LanguageSwitcher, {})
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("main", { className: "mx-auto max-w-7xl px-6 py-8", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "grid gap-8 lg:grid-cols-3", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "order-2 lg:order-1 lg:col-span-1", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h3", { className: "mb-3 text-sm font-semibold text-gray-400 uppercase tracking-wider", children: t("training.courseContent") }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "space-y-1", children: course.lessonsList.map((lesson, idx) => {
+    /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("main", { className: "mx-auto max-w-7xl px-6 py-8", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "grid gap-8 lg:grid-cols-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "order-2 lg:order-1 lg:col-span-1", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h3", { className: "mb-3 text-sm font-semibold text-gray-400 uppercase tracking-wider", children: t("training.courseContent") }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "space-y-1", children: course.lessonsList.map((lesson, idx) => {
           const isActive = idx === currentLessonIdx;
           const isCompleted = completedLessons.has(lesson.id);
-          return /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("button", { onClick: () => setCurrentLessonIdx(idx), className: `flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-all duration-200 ${isActive ? "bg-[#e63946]/20 text-white" : isCompleted ? "text-green-400 hover:bg-[#1a2d4a]/50" : "text-gray-400 hover:bg-[#1a2d4a]/50 hover:text-white"}`, children: [
-            isCompleted ? /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-4 w-4 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" }) }) : isActive ? /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "h-4 w-4 shrink-0 rounded-full border-2 border-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "m-0.5 h-2.5 w-2.5 rounded-full bg-[#e63946]" }) }) : /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "h-4 w-4 shrink-0 rounded-full border border-gray-600" }),
-            /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "flex-1 truncate", children: lesson.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { className: "shrink-0 text-xs text-gray-500", children: lesson.duration })
+          return /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("button", { onClick: () => setCurrentLessonIdx(idx), className: `flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-all duration-200 ${isActive ? "bg-[#e63946]/20 text-white" : isCompleted ? "text-green-400 hover:bg-[#1a2d4a]/50" : "text-gray-400 hover:bg-[#1a2d4a]/50 hover:text-white"}`, children: [
+            isCompleted ? /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-4 w-4 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" }) }) : isActive ? /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "h-4 w-4 shrink-0 rounded-full border-2 border-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "m-0.5 h-2.5 w-2.5 rounded-full bg-[#e63946]" }) }) : /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "h-4 w-4 shrink-0 rounded-full border border-gray-600" }),
+            /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "flex-1 truncate", children: lesson.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "shrink-0 text-xs text-gray-500", children: lesson.duration })
           ] }, lesson.id);
         }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mt-4 border-t border-[#1a2d4a] pt-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "flex items-center justify-between text-xs text-gray-500", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { children: t("training.progress") }),
-            /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-4 border-t border-[#1a2d4a] pt-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "flex items-center justify-between text-xs text-gray-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { children: t("training.progress") }),
+            /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("span", { children: [
               completedLessons.size,
               " / ",
               course.lessonsList.length
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "mt-2 h-1.5 overflow-hidden rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "h-full rounded-full bg-[#e63946] transition-all duration-300", style: {
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "mt-2 h-1.5 overflow-hidden rounded-full bg-[#1a2d4a]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "h-full rounded-full bg-[#e63946] transition-all duration-300", style: {
             width: `${completedLessons.size / course.lessonsList.length * 100}%`
           } }) })
         ] })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "order-1 lg:order-2 lg:col-span-2", children: currentLesson ? /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "p-6 sm:p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "flex items-center gap-2 text-xs text-gray-500 mb-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { children: t("training.badge") }),
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("span", { children: "\xB7" }),
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("span", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "order-1 lg:order-2 lg:col-span-2", children: currentLesson ? /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "p-6 sm:p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "flex items-center gap-2 text-xs text-gray-500 mb-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { children: t("training.badge") }),
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { children: "\xB7" }),
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("span", { children: [
             t("training.lessons"),
             " ",
             currentLessonIdx + 1,
@@ -59995,109 +60126,109 @@ function CourseDetail() {
             course.lessonsList.length
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h1", { className: "text-2xl font-bold text-white sm:text-3xl", children: currentLesson.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400", children: currentLesson.description }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h1", { className: "text-2xl font-bold text-white sm:text-3xl", children: currentLesson.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "mt-3 leading-relaxed text-gray-400", children: currentLesson.description }),
         renderMarkdown(currentLesson.content, currentLesson.id),
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "mt-8 flex items-center justify-between border-t border-[#1a2d4a] pt-6", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { children: completedLessons.has(currentLesson.id) ? /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { className: "flex items-center gap-2 text-sm text-green-500", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-5 w-5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-8 flex items-center justify-between border-t border-[#1a2d4a] pt-6", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { children: completedLessons.has(currentLesson.id) ? /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "flex items-center gap-2 text-sm text-green-500", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-5 w-5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
             t("training.completed")
-          ] }) : /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("button", { onClick: () => markComplete(currentLesson.id), className: "btn-primary text-sm", children: t("training.markComplete") }) }),
-          currentLessonIdx < course.lessonsList.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("button", { onClick: () => setCurrentLessonIdx(currentLessonIdx + 1), className: "flex items-center gap-2 text-sm font-medium text-[#e63946] hover:text-[#c1121f] transition-colors", children: [
+          ] }) : /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("button", { onClick: () => markComplete(currentLesson.id), className: "btn-primary text-sm", children: t("training.markComplete") }) }),
+          currentLessonIdx < course.lessonsList.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("button", { onClick: () => setCurrentLessonIdx(currentLessonIdx + 1), className: "flex items-center gap-2 text-sm font-medium text-[#e63946] hover:text-[#c1121f] transition-colors", children: [
             t("training.nextLesson"),
-            /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 5l7 7-7 7" }) })
+            /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 5l7 7-7 7" }) })
           ] })
         ] })
-      ] }) }) : /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { className: "flex h-64 items-center justify-center rounded-xl border border-[#1a2d4a] bg-[#0d1f35]", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { className: "text-gray-500", children: "Select a lesson to begin" }) }) })
+      ] }) }) : /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex h-64 items-center justify-center rounded-xl border border-[#1a2d4a] bg-[#0d1f35]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "text-gray-500", children: "Select a lesson to begin" }) }) })
     ] }) })
   ] });
 }
-var import_jsx_runtime71, import_react65;
-var init_courseId_lXw7ITKX = __esm({
-  "dist/server/assets/_courseId-lXw7ITKX.js"() {
+var import_jsx_runtime72, import_react66;
+var init_courseId_CrAopckR = __esm({
+  "dist/server/assets/_courseId-CrAopckR.js"() {
     "use strict";
-    import_jsx_runtime71 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
-    import_react65 = __toESM(require_react(), 1);
+    import_jsx_runtime72 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
+    import_react66 = __toESM(require_react(), 1);
     init_courses_CY9yjTRv();
     init_auth_guard_DDzkafwD();
-    init_client_auth_feFyKRsW();
     init_quiz_question_au1f5CtM();
     init_production();
   }
 });
 
-// dist/server/assets/preview-DAoZmXby.js
-var preview_DAoZmXby_exports = {};
-__export(preview_DAoZmXby_exports, {
+// dist/server/assets/preview-BxtwI78e.js
+var preview_BxtwI78e_exports = {};
+__export(preview_BxtwI78e_exports, {
   component: () => TrainingPreview
 });
+import "node:async_hooks";
 function TrainingPreview() {
   const {
     t
   } = useTranslation();
-  return /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+  return /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("nav", { className: "hidden items-center gap-6 md:flex", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: t("nav.training") }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 hover:text-white", children: "Steps of the Sale" }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 hover:text-white", children: t("nav.pricing") }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/login", className: "rounded-lg bg-[#e63946] px-4 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign In" }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(LanguageSwitcher, {})
+      /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("nav", { className: "hidden items-center gap-6 md:flex", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: t("nav.training") }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 hover:text-white", children: "Steps of the Sale" }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/#pricing", className: "text-sm text-gray-400 hover:text-white", children: t("nav.pricing") }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/login", className: "rounded-lg bg-[#e63946] px-4 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign In" }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(LanguageSwitcher, {})
       ] })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("main", { className: "mx-auto max-w-4xl px-6 py-12", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "text-center mb-10", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("main", { className: "mx-auto max-w-4xl px-6 py-12", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "text-center mb-10", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
           "Free Preview"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
           "Try a Sample ",
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "text-[#e63946]", children: "Quiz" })
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "text-[#e63946]", children: "Quiz" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "One question from each of our 6 training courses. See the quality and depth of our content \u2014 no account required." }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Create Account \u2014 Full Access" }),
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: t("nav.training") })
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "One question from each of our 6 training courses. See the quality and depth of our content \u2014 no account required." }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "mt-8 flex justify-center gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Create Account \u2014 Full Access" }),
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/training", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: t("nav.training") })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "space-y-8", children: previewQuestions.map((pq, idx) => /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mb-3 flex items-center gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("span", { className: "flex h-8 w-8 items-center justify-center rounded-full bg-[#e63946] text-xs font-bold text-white", children: idx + 1 }),
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("h2", { className: "text-lg font-bold text-white", children: pq.courseName })
+      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "space-y-8", children: previewQuestions.map((pq, idx) => /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "mb-3 flex items-center gap-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "flex h-8 w-8 items-center justify-center rounded-full bg-[#e63946] text-xs font-bold text-white", children: idx + 1 }),
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("h2", { className: "text-lg font-bold text-white", children: pq.courseName })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(QuizQuestion, { content: pq.question })
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(QuizQuestion, { content: pq.question })
       ] }, idx)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-12 text-center rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-8", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("h2", { className: "text-xl font-bold text-white", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "mt-12 text-center rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("h2", { className: "text-xl font-bold text-white", children: [
           "Want all ",
           courses.reduce((s2, c3) => s2 + c3.lessons, 0),
           " lessons and 40+ quiz questions?"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("p", { className: "mt-2 text-gray-400", children: "Create an account to unlock the full training catalog \u2014 6 courses, detailed guides, interactive quizzes, and progress tracking." }),
-        /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)("div", { className: "mt-6 flex justify-center gap-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Create Free Account" }),
-          /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/login", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: "Sign In" })
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("p", { className: "mt-2 text-gray-400", children: "Create an account to unlock the full training catalog \u2014 6 courses, detailed guides, interactive quizzes, and progress tracking." }),
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "mt-6 flex justify-center gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors", children: "Create Free Account" }),
+          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/login", className: "rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors", children: "Sign In" })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 bg-[#0a1628] py-8 mt-auto", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("div", { className: "mx-auto max-w-5xl px-6 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign Up for Full Access" }) }) })
+    /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("footer", { className: "border-t border-[#1a2d4a]/50 bg-[#0a1628] py-8 mt-auto", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "mx-auto max-w-5xl px-6 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]", children: "Sign Up for Full Access" }) }) })
   ] });
 }
-var import_jsx_runtime72, import_react66, previewQuestions;
-var init_preview_DAoZmXby = __esm({
-  "dist/server/assets/preview-DAoZmXby.js"() {
+var import_jsx_runtime73, import_react67, previewQuestions;
+var init_preview_BxtwI78e = __esm({
+  "dist/server/assets/preview-BxtwI78e.js"() {
     "use strict";
-    import_jsx_runtime72 = __toESM(require_jsx_runtime(), 1);
-    init_router_Ckp0VUkA();
+    import_jsx_runtime73 = __toESM(require_jsx_runtime(), 1);
+    init_router_BIxaY9WS();
     init_courses_CY9yjTRv();
     init_quiz_question_au1f5CtM();
-    import_react66 = __toESM(require_react(), 1);
+    import_react67 = __toESM(require_react(), 1);
     init_production();
     previewQuestions = [{
       courseName: "10 Steps to the Sale",
@@ -60150,13 +60281,15 @@ C) Greet them warmly, then give them space
   }
 });
 
-// dist/server/assets/router-Ckp0VUkA.js
-var router_Ckp0VUkA_exports = {};
-__export(router_Ckp0VUkA_exports, {
+// dist/server/assets/router-BIxaY9WS.js
+var router_BIxaY9WS_exports = {};
+__export(router_BIxaY9WS_exports, {
   L: () => LanguageSwitcher,
-  R: () => Route$i,
+  R: () => Route$j,
   a: () => Route$7,
   b: () => Route$1,
+  g: () => getTokenPayload,
+  i: () => isTokenValid,
   r: () => router,
   t: () => translations,
   u: () => useTranslation
@@ -60174,30 +60307,30 @@ function storeLanguage(code) {
 }
 function LanguageSwitcher() {
   const { lang, setLang, currentLanguage } = useTranslation();
-  const [open, setOpen] = (0, import_react67.useState)(false);
-  const ref = (0, import_react67.useRef)(null);
-  (0, import_react67.useEffect)(() => {
+  const [open, setOpen] = (0, import_react68.useState)(false);
+  const ref = (0, import_react68.useRef)(null);
+  (0, import_react68.useEffect)(() => {
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
-  return /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "relative", ref, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "mb-1 block text-[10px] font-medium uppercase tracking-wider text-gray-500", children: "Change Language" }),
-    /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { className: "relative", ref, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "mb-1 block text-[10px] font-medium uppercase tracking-wider text-gray-500", children: "Change Language" }),
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(
       "button",
       {
         onClick: () => setOpen(!open),
         className: "flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-gray-400 transition-colors hover:text-white hover:bg-[#1a2d4a]",
         "aria-label": "Select language",
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "hidden sm:inline", children: currentLanguage?.nativeName || lang })
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("svg", { className: "h-3.5 w-3.5", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "hidden sm:inline", children: currentLanguage?.nativeName || lang })
         ]
       }
     ),
-    open && /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "absolute right-0 top-full z-50 mt-1 max-h-72 w-48 overflow-y-auto rounded-xl border border-[#1a2d4a] bg-[#0d1f35] shadow-xl shadow-black/30", children: languages.map((langItem) => /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)(
+    open && /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { className: "absolute right-0 top-full z-50 mt-1 max-h-72 w-48 overflow-y-auto rounded-xl border border-[#1a2d4a] bg-[#0d1f35] shadow-xl shadow-black/30", children: languages.map((langItem) => /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(
       "button",
       {
         onClick: () => {
@@ -60206,8 +60339,8 @@ function LanguageSwitcher() {
         },
         className: `flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors hover:bg-[#1a2d4a] ${lang === langItem.code ? "text-[#e63946]" : "text-gray-400"}`,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "text-xs text-gray-500 w-6", children: langItem.code.toUpperCase() }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "font-medium", children: langItem.nativeName })
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "text-xs text-gray-500 w-6", children: langItem.code.toUpperCase() }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "font-medium", children: langItem.nativeName })
         ]
       },
       langItem.code
@@ -60217,7 +60350,7 @@ function LanguageSwitcher() {
 async function loadLocale(lang) {
   if (localeCache[lang]) return localeCache[lang];
   try {
-    const mod = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./locales/ar.ts": () => Promise.resolve().then(() => (init_ar_DYUP0zsq(), ar_DYUP0zsq_exports)), "./locales/bn.ts": () => Promise.resolve().then(() => (init_bn_DYUP0zsq(), bn_DYUP0zsq_exports)), "./locales/de.ts": () => Promise.resolve().then(() => (init_de_DYUP0zsq(), de_DYUP0zsq_exports)), "./locales/en.ts": () => Promise.resolve().then(() => en2), "./locales/es.ts": () => Promise.resolve().then(() => (init_es_DYUP0zsq(), es_DYUP0zsq_exports)), "./locales/fr.ts": () => Promise.resolve().then(() => (init_fr_DYUP0zsq(), fr_DYUP0zsq_exports)), "./locales/hi.ts": () => Promise.resolve().then(() => (init_hi_DYUP0zsq(), hi_DYUP0zsq_exports)), "./locales/it.ts": () => Promise.resolve().then(() => (init_it_DYUP0zsq(), it_DYUP0zsq_exports)), "./locales/ja.ts": () => Promise.resolve().then(() => (init_ja_DYUP0zsq(), ja_DYUP0zsq_exports)), "./locales/jv.ts": () => Promise.resolve().then(() => (init_jv_DYUP0zsq(), jv_DYUP0zsq_exports)), "./locales/ko.ts": () => Promise.resolve().then(() => (init_ko_DYUP0zsq(), ko_DYUP0zsq_exports)), "./locales/mr.ts": () => Promise.resolve().then(() => (init_mr_DYUP0zsq(), mr_DYUP0zsq_exports)), "./locales/ms.ts": () => Promise.resolve().then(() => (init_ms_DYUP0zsq(), ms_DYUP0zsq_exports)), "./locales/pa.ts": () => Promise.resolve().then(() => (init_pa_DYUP0zsq(), pa_DYUP0zsq_exports)), "./locales/pt.ts": () => Promise.resolve().then(() => (init_pt_DYUP0zsq(), pt_DYUP0zsq_exports)), "./locales/ru.ts": () => Promise.resolve().then(() => (init_ru_DYUP0zsq(), ru_DYUP0zsq_exports)), "./locales/ta.ts": () => Promise.resolve().then(() => (init_ta_DYUP0zsq(), ta_DYUP0zsq_exports)), "./locales/te.ts": () => Promise.resolve().then(() => (init_te_DYUP0zsq(), te_DYUP0zsq_exports)), "./locales/vi.ts": () => Promise.resolve().then(() => (init_vi_DYUP0zsq(), vi_DYUP0zsq_exports)), "./locales/zh.ts": () => Promise.resolve().then(() => (init_zh_DYUP0zsq(), zh_DYUP0zsq_exports)) }), `./locales/${lang}.ts`, 3);
+    const mod = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./locales/ar.ts": () => Promise.resolve().then(() => (init_ar_QfRfLJ4k(), ar_QfRfLJ4k_exports)), "./locales/bn.ts": () => Promise.resolve().then(() => (init_bn_QfRfLJ4k(), bn_QfRfLJ4k_exports)), "./locales/de.ts": () => Promise.resolve().then(() => (init_de_QfRfLJ4k(), de_QfRfLJ4k_exports)), "./locales/en.ts": () => Promise.resolve().then(() => en2), "./locales/es.ts": () => Promise.resolve().then(() => (init_es_QfRfLJ4k(), es_QfRfLJ4k_exports)), "./locales/fr.ts": () => Promise.resolve().then(() => (init_fr_QfRfLJ4k(), fr_QfRfLJ4k_exports)), "./locales/hi.ts": () => Promise.resolve().then(() => (init_hi_QfRfLJ4k(), hi_QfRfLJ4k_exports)), "./locales/it.ts": () => Promise.resolve().then(() => (init_it_QfRfLJ4k(), it_QfRfLJ4k_exports)), "./locales/ja.ts": () => Promise.resolve().then(() => (init_ja_QfRfLJ4k(), ja_QfRfLJ4k_exports)), "./locales/jv.ts": () => Promise.resolve().then(() => (init_jv_QfRfLJ4k(), jv_QfRfLJ4k_exports)), "./locales/ko.ts": () => Promise.resolve().then(() => (init_ko_QfRfLJ4k(), ko_QfRfLJ4k_exports)), "./locales/mr.ts": () => Promise.resolve().then(() => (init_mr_QfRfLJ4k(), mr_QfRfLJ4k_exports)), "./locales/ms.ts": () => Promise.resolve().then(() => (init_ms_QfRfLJ4k(), ms_QfRfLJ4k_exports)), "./locales/pa.ts": () => Promise.resolve().then(() => (init_pa_QfRfLJ4k(), pa_QfRfLJ4k_exports)), "./locales/pt.ts": () => Promise.resolve().then(() => (init_pt_QfRfLJ4k(), pt_QfRfLJ4k_exports)), "./locales/ru.ts": () => Promise.resolve().then(() => (init_ru_QfRfLJ4k(), ru_QfRfLJ4k_exports)), "./locales/ta.ts": () => Promise.resolve().then(() => (init_ta_QfRfLJ4k(), ta_QfRfLJ4k_exports)), "./locales/te.ts": () => Promise.resolve().then(() => (init_te_QfRfLJ4k(), te_QfRfLJ4k_exports)), "./locales/vi.ts": () => Promise.resolve().then(() => (init_vi_QfRfLJ4k(), vi_QfRfLJ4k_exports)), "./locales/zh.ts": () => Promise.resolve().then(() => (init_zh_QfRfLJ4k(), zh_QfRfLJ4k_exports)) }), `./locales/${lang}.ts`, 3);
     localeCache[lang] = mod.default || mod.translations;
     return localeCache[lang];
   } catch {
@@ -60226,9 +60359,9 @@ async function loadLocale(lang) {
   }
 }
 function I18nProvider({ children }) {
-  const [lang, setLangState] = (0, import_react67.useState)("en");
-  const [translations$1, setTranslations] = (0, import_react67.useState)(translations);
-  (0, import_react67.useEffect)(() => {
+  const [lang, setLangState] = (0, import_react68.useState)("en");
+  const [translations$1, setTranslations] = (0, import_react68.useState)(translations);
+  (0, import_react68.useEffect)(() => {
     const stored = getStoredLanguage();
     setLangState(stored);
     loadLocale(stored).then(setTranslations);
@@ -60242,38 +60375,38 @@ function I18nProvider({ children }) {
     return translations$1[key] || translations[key] || key;
   };
   const currentLanguage = languages.find((l2) => l2.code === lang);
-  return /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(I18nContext.Provider, { value: { lang, setLang, t, currentLanguage }, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(I18nContext.Provider, { value: { lang, setLang, t, currentLanguage }, children });
 }
 function useTranslation() {
-  return (0, import_react67.useContext)(I18nContext);
+  return (0, import_react68.useContext)(I18nContext);
 }
 function MobileNav() {
-  const [open, setOpen] = (0, import_react67.useState)(false);
+  const [open, setOpen] = (0, import_react68.useState)(false);
   const loggedIn = typeof window !== "undefined" && !!localStorage.getItem("salesdrive_token");
-  return /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)(import_jsx_runtime73.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(import_jsx_runtime74.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
       "button",
       {
         onClick: () => setOpen(!open),
         className: "fixed right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden",
         "aria-label": "Menu",
-        children: open ? /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }) : /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" }) })
+        children: open ? /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }) : /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" }) })
       }
     ),
-    open && /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "fixed inset-0 z-40 md:hidden", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "absolute inset-0 bg-black/60", onClick: () => setOpen(false) }),
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "absolute right-0 top-0 h-full w-64 bg-[#0d1f35] border-l border-[#1a2d4a] p-6 pt-20", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("nav", { className: "flex flex-col gap-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Home" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Training" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Steps of the Sale" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Profile" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/blog", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Blog" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/contact", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Contact Us" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/pricing", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Pricing" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/support", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Support" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/inbox", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Inbox" }),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("hr", { className: "border-[#1a2d4a]" }),
-        loggedIn ? /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
+    open && /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { className: "fixed inset-0 z-40 md:hidden", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { className: "absolute inset-0 bg-black/60", onClick: () => setOpen(false) }),
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { className: "absolute right-0 top-0 h-full w-64 bg-[#0d1f35] border-l border-[#1a2d4a] p-6 pt-20", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("nav", { className: "flex flex-col gap-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Home" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Training" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/steps", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Steps of the Sale" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/profile", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Profile" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/blog", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Blog" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/contact", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Contact Us" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/pricing", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Pricing" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/support", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Support" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/inbox", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Inbox" }),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("hr", { className: "border-[#1a2d4a]" }),
+        loggedIn ? /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
           "button",
           {
             onClick: () => {
@@ -60283,22 +60416,22 @@ function MobileNav() {
             className: "text-left text-sm text-[#e63946] hover:text-[#ff6b6b]",
             children: "Sign Out"
           }
-        ) : /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)(import_jsx_runtime73.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/login", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Sign In" }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#c1121f]", onClick: () => setOpen(false), children: "Get Started" })
+        ) : /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(import_jsx_runtime74.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/login", className: "text-sm text-gray-400 hover:text-white", onClick: () => setOpen(false), children: "Sign In" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/signup", className: "rounded-lg bg-[#e63946] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#c1121f]", onClick: () => setOpen(false), children: "Get Started" })
         ] })
       ] }) })
     ] })
   ] });
 }
 function RootComponent() {
-  return /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(RootDocument, { children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(Outlet, {}) });
+  return /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(RootDocument, { children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(Outlet, {}) });
 }
 function RootDocument({ children }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("html", { lang: "en", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("head", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(HeadContent, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("style", { children: `
+  return /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("html", { lang: "en", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("head", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(HeadContent, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("style", { children: `
           /* Auth-aware footer: CSS handles visibility, immune to React hydration */
           body:not(.is-logged-in) .auth-logged-out { display: inline; }
           body:not(.is-logged-in) .auth-logged-in { display: none; }
@@ -60306,12 +60439,12 @@ function RootDocument({ children }) {
           body.is-logged-in .auth-logged-in { display: inline; }
         ` })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("body", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(I18nProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)(ErrorBoundary, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "fixed right-4 top-20 z-40", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(LanguageSwitcher, {}) }),
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("body", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(I18nProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(ErrorBoundary, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { className: "fixed right-4 top-20 z-40", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(LanguageSwitcher, {}) }),
         children,
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(MobileNav, {}),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(MobileNav, {}),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
           "a",
           {
             href: "https://www.facebook.com/Championsalesevents",
@@ -60319,16 +60452,18 @@ function RootDocument({ children }) {
             rel: "noopener noreferrer",
             "aria-label": "Follow us on Facebook",
             className: "fixed bottom-6 left-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-[#e63946] text-white shadow-lg shadow-[#e63946]/20 transition-all duration-200 hover:bg-[#c1121f] hover:shadow-[#e63946]/40 hover:scale-110",
-            children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("svg", { className: "h-5 w-5", fill: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("path", { d: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" }) })
+            children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("svg", { className: "h-5 w-5", fill: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("path", { d: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" }) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "fixed bottom-6 right-6 z-50 flex items-center gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/contact", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Contact Us" }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "text-gray-600", children: "|" }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/blog", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Blog" }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("span", { className: "text-gray-600", children: "|" }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/login", className: "auth-logged-out text-sm font-medium text-[#e63946] transition-colors hover:text-[#ff6b6b]", children: "Sign In" }),
-          /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { className: "fixed bottom-6 right-6 z-50 flex items-center gap-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/contact", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Contact Us" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "text-gray-600", children: "|" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/blog", className: "text-sm text-gray-400 transition-colors hover:text-white", children: "Blog" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "text-gray-600", children: "|" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/email", className: "auth-logged-in text-sm text-gray-400 transition-colors hover:text-white", children: "Email" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { className: "text-gray-600 auth-logged-in", children: "|" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/login", className: "auth-logged-out text-sm font-medium text-[#e63946] transition-colors hover:text-[#ff6b6b]", children: "Sign In" }),
+          /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
             "a",
             {
               href: "#",
@@ -60344,8 +60479,8 @@ function RootDocument({ children }) {
           )
         ] })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(Scripts, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("script", { children: `
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(Scripts, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("script", { children: `
           (function(){
             // Always sync body class with token state \u2014 add if logged in, remove if not
             if (localStorage.getItem("salesdrive_token")) {
@@ -60366,21 +60501,46 @@ function RootDocument({ children }) {
     ] })
   ] });
 }
+function base64UrlDecode(str) {
+  str = str.replace(/-/g, "+").replace(/_/g, "/");
+  while (str.length % 4) str += "=";
+  return atob(str);
+}
+function decodeToken(token) {
+  try {
+    const parts = token.split(".");
+    if (parts.length !== 3) return null;
+    const payload = JSON.parse(base64UrlDecode(parts[1]));
+    return payload;
+  } catch {
+    return null;
+  }
+}
+function isTokenValid(token) {
+  const decoded = decodeToken(token);
+  if (!decoded) return false;
+  return decoded.exp > Date.now();
+}
+function getTokenPayload(token) {
+  const decoded = decodeToken(token);
+  if (!decoded || decoded.exp <= Date.now()) return null;
+  return decoded;
+}
 function getRouter() {
   return createRouter2({
     routeTree,
     defaultPreload: "intent",
     scrollRestoration: true,
-    defaultNotFoundComponent: () => /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("p", { children: "Not found" })
+    defaultNotFoundComponent: () => /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("p", { children: "Not found" })
   });
 }
-var import_jsx_runtime73, import_react67, __variableDynamicImportRuntimeHelper, languages, STORAGE_KEY, translations, en2, I18nContext, localeCache, logError2, appCss, ErrorBoundary, Route$m, $$splitComponentImporter$l, Route$l, $$splitComponentImporter$k, Route$k, $$splitComponentImporter$j, Route$j, $$splitComponentImporter$i, Route$i, $$splitComponentImporter$h, Route$h, $$splitComponentImporter$g, Route$g, $$splitComponentImporter$f, Route$f, $$splitComponentImporter$e, Route$e, $$splitComponentImporter$d, Route$d, $$splitComponentImporter$c, Route$c, $$splitComponentImporter$b, Route$b, $$splitComponentImporter$a, Route$a, $$splitComponentImporter$9, Route$9, $$splitComponentImporter$8, Route$8, $$splitComponentImporter$7, Route$7, $$splitComponentImporter$6, Route$6, $$splitComponentImporter$5, Route$5, $$splitComponentImporter$4, Route$4, $$splitComponentImporter$3, Route$3, $$splitComponentImporter$2, Route$2, $$splitComponentImporter$1, Route$1, $$splitComponentImporter, Route2, IndexRoute, AccountRoute, AdminRoute, CheckoutRoute, ContactRoute, InboxRoute, LoginRoute, PlannerRoute, PricingRoute, ProfileRoute, SalesLogRoute, StepsRoute, SupportRoute, BlogIndexRoute, BlogSlugRoute, ManagerIndexRoute, PurchaseSuccessRoute, SignupIndexRoute, SignupCompleteRoute, TrainingIndexRoute, TrainingCourseIdRoute, TrainingPreviewRoute, rootRouteChildren, routeTree, router;
-var init_router_Ckp0VUkA = __esm({
-  "dist/server/assets/router-Ckp0VUkA.js"() {
+var import_jsx_runtime74, import_react68, __variableDynamicImportRuntimeHelper, languages, STORAGE_KEY, translations, en2, I18nContext, localeCache, logError2, appCss, ErrorBoundary, Route$n, $$splitComponentImporter$m, Route$m, $$splitComponentImporter$l, Route$l, $$splitComponentImporter$k, Route$k, $$splitComponentImporter$j, Route$j, $$splitComponentImporter$i, Route$i, $$splitComponentImporter$h, Route$h, $$splitComponentImporter$g, Route$g, $$splitComponentImporter$f, Route$f, $$splitComponentImporter$e, Route$e, $$splitComponentImporter$d, Route$d, $$splitComponentImporter$c, Route$c, $$splitComponentImporter$b, Route$b, $$splitComponentImporter$a, Route$a, $$splitComponentImporter$9, Route$9, $$splitComponentImporter$8, Route$8, $$splitComponentImporter$7, Route$7, $$splitComponentImporter$6, Route$6, $$splitComponentImporter$5, Route$5, $$splitComponentImporter$4, Route$4, $$splitComponentImporter$3, Route$3, $$splitComponentImporter$2, Route$2, $$splitComponentImporter$1, Route$1, $$splitComponentImporter, Route2, IndexRoute, AccountRoute, AdminRoute, CheckoutRoute, ContactRoute, EmailRoute, InboxRoute, LoginRoute, PlannerRoute, PricingRoute, ProfileRoute, SalesLogRoute, StepsRoute, SupportRoute, BlogIndexRoute, BlogSlugRoute, ManagerIndexRoute, PurchaseSuccessRoute, SignupIndexRoute, SignupCompleteRoute, TrainingIndexRoute, TrainingCourseIdRoute, TrainingPreviewRoute, rootRouteChildren, routeTree, router;
+var init_router_BIxaY9WS = __esm({
+  "dist/server/assets/router-BIxaY9WS.js"() {
     "use strict";
-    import_jsx_runtime73 = __toESM(require_jsx_runtime(), 1);
+    import_jsx_runtime74 = __toESM(require_jsx_runtime(), 1);
     init_esm5();
-    import_react67 = __toESM(require_react(), 1);
+    import_react68 = __toESM(require_react(), 1);
     init_createSsrRpc_l1y8KE69();
     init_server5();
     __variableDynamicImportRuntimeHelper = (glob$1, path$13, segs) => {
@@ -60682,7 +60842,7 @@ var init_router_Ckp0VUkA = __esm({
       default: translations,
       translations
     }, Symbol.toStringTag, { value: "Module" }));
-    I18nContext = (0, import_react67.createContext)({
+    I18nContext = (0, import_react68.createContext)({
       lang: "en",
       setLang: () => {
       },
@@ -60696,8 +60856,8 @@ var init_router_Ckp0VUkA = __esm({
     logError2 = createServerFn({
       method: "POST"
     }).handler(createSsrRpc("38c3584af60e662981ee1e05b5e204b7e874c0a9ed5375e2eebc6b76c845d600"));
-    appCss = "/assets/app-D8ueR_MR.css";
-    ErrorBoundary = class extends import_react67.Component {
+    appCss = "/assets/app-FYQuGm25.css";
+    ErrorBoundary = class extends import_react68.Component {
       state = { hasError: false, error: null };
       static getDerivedStateFromError(error) {
         return { hasError: true, error };
@@ -60714,12 +60874,12 @@ var init_router_Ckp0VUkA = __esm({
       }
       render() {
         if (this.state.hasError) {
-          return /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "flex min-h-dvh flex-col items-center justify-center bg-[#0a1628] px-6 text-center", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" }) }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Something went wrong" }),
-            /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("p", { className: "mt-2 max-w-md text-gray-400", children: "We've been notified. Please try refreshing the page or contact support if the issue persists." }),
-            /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)("div", { className: "mt-6 flex gap-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { className: "flex min-h-dvh flex-col items-center justify-center bg-[#0a1628] px-6 text-center", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { className: "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("svg", { className: "h-8 w-8 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("h1", { className: "mt-6 text-2xl font-bold text-white", children: "Something went wrong" }),
+            /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("p", { className: "mt-2 max-w-md text-gray-400", children: "We've been notified. Please try refreshing the page or contact support if the issue persists." }),
+            /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { className: "mt-6 flex gap-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
                 "button",
                 {
                   onClick: () => window.location.reload(),
@@ -60727,14 +60887,14 @@ var init_router_Ckp0VUkA = __esm({
                   children: "Refresh Page"
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("a", { href: "/support", className: "btn-secondary text-sm", children: "Contact Support" })
+              /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("a", { href: "/support", className: "btn-secondary text-sm", children: "Contact Support" })
             ] })
           ] });
         }
         return this.props.children;
       }
     };
-    Route$m = createRootRoute({
+    Route$n = createRootRoute({
       head: () => ({
         meta: [
           { charSet: "utf-8" },
@@ -60776,38 +60936,52 @@ var init_router_Ckp0VUkA = __esm({
           }
         ]
       }),
-      notFoundComponent: () => /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)("p", { className: "text-xl text-gray-400", children: "Page not found" }) }),
+      notFoundComponent: () => /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { className: "flex min-h-dvh items-center justify-center bg-[#0a1628]", children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("p", { className: "text-xl text-gray-400", children: "Page not found" }) }),
       component: RootComponent
     });
-    $$splitComponentImporter$l = () => Promise.resolve().then(() => (init_index_Nl71Y8hr(), index_Nl71Y8hr_exports));
-    Route$l = createFileRoute("/")({
+    $$splitComponentImporter$m = () => Promise.resolve().then(() => (init_index_Cjwcwp4Z(), index_Cjwcwp4Z_exports));
+    Route$m = createFileRoute("/")({
+      component: lazyRouteComponent($$splitComponentImporter$m, "component")
+    });
+    $$splitComponentImporter$l = () => Promise.resolve().then(() => (init_account_yqdicznf(), account_yqdicznf_exports));
+    Route$l = createFileRoute("/account")({
       component: lazyRouteComponent($$splitComponentImporter$l, "component")
     });
-    $$splitComponentImporter$k = () => Promise.resolve().then(() => (init_account_CI8R_i83(), account_CI8R_i83_exports));
-    Route$k = createFileRoute("/account")({
+    $$splitComponentImporter$k = () => Promise.resolve().then(() => (init_admin_C_IeYcpL(), admin_C_IeYcpL_exports));
+    Route$k = createFileRoute("/admin")({
       component: lazyRouteComponent($$splitComponentImporter$k, "component")
     });
-    $$splitComponentImporter$j = () => Promise.resolve().then(() => (init_admin_C_IeYcpL(), admin_C_IeYcpL_exports));
-    Route$j = createFileRoute("/admin")({
+    $$splitComponentImporter$j = () => Promise.resolve().then(() => (init_checkout_WDFNiWds(), checkout_WDFNiWds_exports));
+    Route$j = createFileRoute("/checkout")({
       component: lazyRouteComponent($$splitComponentImporter$j, "component")
     });
-    $$splitComponentImporter$i = () => Promise.resolve().then(() => (init_checkout_CccZyfYe(), checkout_CccZyfYe_exports));
-    Route$i = createFileRoute("/checkout")({
+    $$splitComponentImporter$i = () => Promise.resolve().then(() => (init_contact_CRUWI_dA(), contact_CRUWI_dA_exports));
+    Route$i = createFileRoute("/contact")({
       component: lazyRouteComponent($$splitComponentImporter$i, "component")
     });
-    $$splitComponentImporter$h = () => Promise.resolve().then(() => (init_contact_CRUWI_dA(), contact_CRUWI_dA_exports));
-    Route$h = createFileRoute("/contact")({
-      component: lazyRouteComponent($$splitComponentImporter$h, "component")
+    $$splitComponentImporter$h = () => Promise.resolve().then(() => (init_email_oOyn1nPp(), email_oOyn1nPp_exports));
+    Route$h = createFileRoute("/email")({
+      component: lazyRouteComponent($$splitComponentImporter$h, "component"),
+      beforeLoad: () => {
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("salesdrive_token");
+          if (!token || !isTokenValid(token)) {
+            throw redirect2({
+              to: "/login"
+            });
+          }
+        }
+      }
     });
     $$splitComponentImporter$g = () => Promise.resolve().then(() => (init_inbox_P8KOWeFy(), inbox_P8KOWeFy_exports));
     Route$g = createFileRoute("/inbox")({
       component: lazyRouteComponent($$splitComponentImporter$g, "component")
     });
-    $$splitComponentImporter$f = () => Promise.resolve().then(() => (init_login_C1b7bHQv(), login_C1b7bHQv_exports));
+    $$splitComponentImporter$f = () => Promise.resolve().then(() => (init_login_Dca_xeNm(), login_Dca_xeNm_exports));
     Route$f = createFileRoute("/login")({
       component: lazyRouteComponent($$splitComponentImporter$f, "component")
     });
-    $$splitComponentImporter$e = () => Promise.resolve().then(() => (init_planner_B2p3_dti(), planner_B2p3_dti_exports));
+    $$splitComponentImporter$e = () => Promise.resolve().then(() => (init_planner_C_nct659(), planner_C_nct659_exports));
     Route$e = createFileRoute("/planner")({
       component: lazyRouteComponent($$splitComponentImporter$e, "component")
     });
@@ -60815,39 +60989,39 @@ var init_router_Ckp0VUkA = __esm({
     Route$d = createFileRoute("/pricing")({
       component: lazyRouteComponent($$splitComponentImporter$d, "component")
     });
-    $$splitComponentImporter$c = () => Promise.resolve().then(() => (init_profile_Dtut2xQ9(), profile_Dtut2xQ9_exports));
+    $$splitComponentImporter$c = () => Promise.resolve().then(() => (init_profile_XB9QEJoB(), profile_XB9QEJoB_exports));
     Route$c = createFileRoute("/profile")({
       component: lazyRouteComponent($$splitComponentImporter$c, "component")
     });
-    $$splitComponentImporter$b = () => Promise.resolve().then(() => (init_sales_log_BzXbDgVT(), sales_log_BzXbDgVT_exports));
+    $$splitComponentImporter$b = () => Promise.resolve().then(() => (init_sales_log_Dij2VL93(), sales_log_Dij2VL93_exports));
     Route$b = createFileRoute("/sales-log")({
       component: lazyRouteComponent($$splitComponentImporter$b, "component")
     });
-    $$splitComponentImporter$a = () => Promise.resolve().then(() => (init_steps_GV2FU_Mr(), steps_GV2FU_Mr_exports));
+    $$splitComponentImporter$a = () => Promise.resolve().then(() => (init_steps_5toRXckf(), steps_5toRXckf_exports));
     Route$a = createFileRoute("/steps")({
       component: lazyRouteComponent($$splitComponentImporter$a, "component")
     });
-    $$splitComponentImporter$9 = () => Promise.resolve().then(() => (init_support_Bnc4F6Sg(), support_Bnc4F6Sg_exports));
+    $$splitComponentImporter$9 = () => Promise.resolve().then(() => (init_support_Cl_2sPZv(), support_Cl_2sPZv_exports));
     Route$9 = createFileRoute("/support")({
       component: lazyRouteComponent($$splitComponentImporter$9, "component")
     });
-    $$splitComponentImporter$8 = () => Promise.resolve().then(() => (init_index_BwwVZm6r(), index_BwwVZm6r_exports));
+    $$splitComponentImporter$8 = () => Promise.resolve().then(() => (init_index_K8wmkF5Q(), index_K8wmkF5Q_exports));
     Route$8 = createFileRoute("/blog/")({
       component: lazyRouteComponent($$splitComponentImporter$8, "component")
     });
-    $$splitComponentImporter$7 = () => Promise.resolve().then(() => (init_slug_iHvoSxo(), slug_iHvoSxo_exports));
+    $$splitComponentImporter$7 = () => Promise.resolve().then(() => (init_slug_Dl1MqjSn(), slug_Dl1MqjSn_exports));
     Route$7 = createFileRoute("/blog/$slug")({
       component: lazyRouteComponent($$splitComponentImporter$7, "component")
     });
-    $$splitComponentImporter$6 = () => Promise.resolve().then(() => (init_index_N_r3bUyv(), index_N_r3bUyv_exports));
+    $$splitComponentImporter$6 = () => Promise.resolve().then(() => (init_index_D_DvMbzp(), index_D_DvMbzp_exports));
     Route$6 = createFileRoute("/manager/")({
       component: lazyRouteComponent($$splitComponentImporter$6, "component")
     });
-    $$splitComponentImporter$5 = () => Promise.resolve().then(() => (init_success_DLsreOEv(), success_DLsreOEv_exports));
+    $$splitComponentImporter$5 = () => Promise.resolve().then(() => (init_success_BAHUa1V6(), success_BAHUa1V6_exports));
     Route$5 = createFileRoute("/purchase/success")({
       component: lazyRouteComponent($$splitComponentImporter$5, "component")
     });
-    $$splitComponentImporter$4 = () => Promise.resolve().then(() => (init_index_CPm6EJ5G(), index_CPm6EJ5G_exports));
+    $$splitComponentImporter$4 = () => Promise.resolve().then(() => (init_index_BhszrHhb(), index_BhszrHhb_exports));
     Route$4 = createFileRoute("/signup/")({
       component: lazyRouteComponent($$splitComponentImporter$4, "component")
     });
@@ -60855,127 +61029,132 @@ var init_router_Ckp0VUkA = __esm({
     Route$3 = createFileRoute("/signup/complete")({
       component: lazyRouteComponent($$splitComponentImporter$3, "component")
     });
-    $$splitComponentImporter$2 = () => Promise.resolve().then(() => (init_index_ISg_w_BO(), index_ISg_w_BO_exports));
+    $$splitComponentImporter$2 = () => Promise.resolve().then(() => (init_index_KdlAZPY2(), index_KdlAZPY2_exports));
     Route$2 = createFileRoute("/training/")({
       component: lazyRouteComponent($$splitComponentImporter$2, "component")
     });
-    $$splitComponentImporter$1 = () => Promise.resolve().then(() => (init_courseId_lXw7ITKX(), courseId_lXw7ITKX_exports));
+    $$splitComponentImporter$1 = () => Promise.resolve().then(() => (init_courseId_CrAopckR(), courseId_CrAopckR_exports));
     Route$1 = createFileRoute("/training/$courseId")({
       component: lazyRouteComponent($$splitComponentImporter$1, "component")
     });
-    $$splitComponentImporter = () => Promise.resolve().then(() => (init_preview_DAoZmXby(), preview_DAoZmXby_exports));
+    $$splitComponentImporter = () => Promise.resolve().then(() => (init_preview_BxtwI78e(), preview_BxtwI78e_exports));
     Route2 = createFileRoute("/training/preview")({
       component: lazyRouteComponent($$splitComponentImporter, "component")
     });
-    IndexRoute = Route$l.update({
+    IndexRoute = Route$m.update({
       id: "/",
       path: "/",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
-    AccountRoute = Route$k.update({
+    AccountRoute = Route$l.update({
       id: "/account",
       path: "/account",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
-    AdminRoute = Route$j.update({
+    AdminRoute = Route$k.update({
       id: "/admin",
       path: "/admin",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
-    CheckoutRoute = Route$i.update({
+    CheckoutRoute = Route$j.update({
       id: "/checkout",
       path: "/checkout",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
-    ContactRoute = Route$h.update({
+    ContactRoute = Route$i.update({
       id: "/contact",
       path: "/contact",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
+    });
+    EmailRoute = Route$h.update({
+      id: "/email",
+      path: "/email",
+      getParentRoute: () => Route$n
     });
     InboxRoute = Route$g.update({
       id: "/inbox",
       path: "/inbox",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     LoginRoute = Route$f.update({
       id: "/login",
       path: "/login",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     PlannerRoute = Route$e.update({
       id: "/planner",
       path: "/planner",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     PricingRoute = Route$d.update({
       id: "/pricing",
       path: "/pricing",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     ProfileRoute = Route$c.update({
       id: "/profile",
       path: "/profile",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     SalesLogRoute = Route$b.update({
       id: "/sales-log",
       path: "/sales-log",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     StepsRoute = Route$a.update({
       id: "/steps",
       path: "/steps",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     SupportRoute = Route$9.update({
       id: "/support",
       path: "/support",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     BlogIndexRoute = Route$8.update({
       id: "/blog/",
       path: "/blog/",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     BlogSlugRoute = Route$7.update({
       id: "/blog/$slug",
       path: "/blog/$slug",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     ManagerIndexRoute = Route$6.update({
       id: "/manager/",
       path: "/manager/",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     PurchaseSuccessRoute = Route$5.update({
       id: "/purchase/success",
       path: "/purchase/success",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     SignupIndexRoute = Route$4.update({
       id: "/signup/",
       path: "/signup/",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     SignupCompleteRoute = Route$3.update({
       id: "/signup/complete",
       path: "/signup/complete",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     TrainingIndexRoute = Route$2.update({
       id: "/training/",
       path: "/training/",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     TrainingCourseIdRoute = Route$1.update({
       id: "/training/$courseId",
       path: "/training/$courseId",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     TrainingPreviewRoute = Route2.update({
       id: "/training/preview",
       path: "/training/preview",
-      getParentRoute: () => Route$m
+      getParentRoute: () => Route$n
     });
     rootRouteChildren = {
       IndexRoute,
@@ -60983,6 +61162,7 @@ var init_router_Ckp0VUkA = __esm({
       AdminRoute,
       CheckoutRoute,
       ContactRoute,
+      EmailRoute,
       InboxRoute,
       LoginRoute,
       PlannerRoute,
@@ -61001,7 +61181,7 @@ var init_router_Ckp0VUkA = __esm({
       SignupIndexRoute,
       TrainingIndexRoute
     };
-    routeTree = Route$m._addFileChildren(rootRouteChildren)._addFileTypes();
+    routeTree = Route$n._addFileChildren(rootRouteChildren)._addFileTypes();
     router = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
       __proto__: null,
       getRouter
@@ -61040,7 +61220,7 @@ var init_empty_plugin_adapters_BFgPZ6_d = __esm({
 // dist/server/server.js
 import { AsyncLocalStorage } from "node:async_hooks";
 function StartServer(props) {
-  return /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(RouterProvider, { router: props.router });
+  return /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(RouterProvider, { router: props.router });
 }
 function isPromiseLike(value) {
   return typeof value.then === "function";
@@ -61092,7 +61272,7 @@ function getResponse() {
   return getH3Event().res;
 }
 async function getStartManifest(matchedRoutes) {
-  const { tsrStartManifest: tsrStartManifest2 } = await Promise.resolve().then(() => (init_tanstack_start_manifest_v_D5SGz9hY(), tanstack_start_manifest_v_D5SGz9hY_exports));
+  const { tsrStartManifest: tsrStartManifest2 } = await Promise.resolve().then(() => (init_tanstack_start_manifest_v_BXRMYaDj(), tanstack_start_manifest_v_BXRMYaDj_exports));
   const startManifest = tsrStartManifest2();
   let routes = startManifest.routes;
   routes[rootRouteId];
@@ -61975,7 +62155,7 @@ function getStartResponseHeaders(opts) {
 }
 async function loadEntries() {
   const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-    Promise.resolve().then(() => (init_router_Ckp0VUkA(), router_Ckp0VUkA_exports)).then((n2) => n2.r),
+    Promise.resolve().then(() => (init_router_BIxaY9WS(), router_BIxaY9WS_exports)).then((n2) => n2.r),
     Promise.resolve().then(() => (init_start_HYkvq4Ni(), start_HYkvq4Ni_exports)),
     Promise.resolve().then(() => (init_empty_plugin_adapters_BFgPZ6_d(), empty_plugin_adapters_BFgPZ6_d_exports))
   ]);
@@ -62310,7 +62490,7 @@ function createServerEntry(entry) {
     }
   };
 }
-var import_react68, import_jsx_runtime74, defaultStreamHandler, GLOBAL_EVENT_STORAGE_KEY, globalObj$1, eventStorage, HEADERS, manifest, TSS_FORMDATA_CONTEXT, TSS_SERVER_FUNCTION, TSS_SERVER_FUNCTION_FACTORY, X_TSS_SERIALIZED, X_TSS_RAW_RESPONSE, TSS_CONTENT_TYPE_FRAMED, FrameType, FRAME_HEADER_SIZE, TSS_CONTENT_TYPE_FRAMED_VERSIONED, GLOBAL_STORAGE_KEY, globalObj, startStorage, getStartOptions, getStartContextServerOnly, createServerFn, createMiddleware, innerCreateCsrfMiddleware, createCsrfMiddleware, textEncoder2, EMPTY_PAYLOAD, serovalPlugins, FORM_DATA_CONTENT_TYPES, MAX_PAYLOAD_SIZE, handleServerAction, LINK_PARAM_TOKEN_RE, PRELOAD_AS_VALUES, ServerFunctionSerializationAdapter, entriesPromise, defaultCsrfMiddleware, getCachedBaseManifest, getProdBaseManifest, getBaseManifest, createEarlyHintsForRequest, ROUTER_BASEPATH, SERVER_FN_BASE, IS_PRERENDERING, IS_SHELL_ENV, ERR_NO_RESPONSE, ERR_NO_DEFER, fetch2, server;
+var import_react69, import_jsx_runtime75, defaultStreamHandler, GLOBAL_EVENT_STORAGE_KEY, globalObj$1, eventStorage, HEADERS, manifest, TSS_FORMDATA_CONTEXT, TSS_SERVER_FUNCTION, TSS_SERVER_FUNCTION_FACTORY, X_TSS_SERIALIZED, X_TSS_RAW_RESPONSE, TSS_CONTENT_TYPE_FRAMED, FrameType, FRAME_HEADER_SIZE, TSS_CONTENT_TYPE_FRAMED_VERSIONED, GLOBAL_STORAGE_KEY, globalObj, startStorage, getStartOptions, getStartContextServerOnly, createServerFn, createMiddleware, innerCreateCsrfMiddleware, createCsrfMiddleware, textEncoder2, EMPTY_PAYLOAD, serovalPlugins, FORM_DATA_CONTENT_TYPES, MAX_PAYLOAD_SIZE, handleServerAction, LINK_PARAM_TOKEN_RE, PRELOAD_AS_VALUES, ServerFunctionSerializationAdapter, entriesPromise, defaultCsrfMiddleware, getCachedBaseManifest, getProdBaseManifest, getBaseManifest, createEarlyHintsForRequest, ROUTER_BASEPATH, SERVER_FN_BASE, IS_PRERENDERING, IS_SHELL_ENV, ERR_NO_RESPONSE, ERR_NO_DEFER, fetch2, server;
 var init_server5 = __esm({
   "dist/server/server.js"() {
     init_node2();
@@ -62319,15 +62499,15 @@ var init_server5 = __esm({
     init_esm();
     init_client();
     init_server2();
-    import_react68 = __toESM(require_react(), 1);
+    import_react69 = __toESM(require_react(), 1);
     init_esm5();
-    import_jsx_runtime74 = __toESM(require_jsx_runtime(), 1);
+    import_jsx_runtime75 = __toESM(require_jsx_runtime(), 1);
     init_server4();
     defaultStreamHandler = defineHandlerCallback(({ request, router: router2, responseHeaders }) => renderRouterToStream({
       request,
       router: router2,
       responseHeaders,
-      children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(StartServer, { router: router2 })
+      children: /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(StartServer, { router: router2 })
     }));
     GLOBAL_EVENT_STORAGE_KEY = /* @__PURE__ */ Symbol.for("tanstack-start:event-storage");
     globalObj$1 = globalThis;
@@ -62405,7 +62585,7 @@ var init_server5 = __esm({
       },
       "4b25f436ce80645ccec0236688b03cba8c4693e2942328b43053eca42eb891d8": {
         functionName: "sendEmail_createServerFn_handler",
-        importer: () => Promise.resolve().then(() => (init_email_D5dPe5SV(), email_D5dPe5SV_exports))
+        importer: () => Promise.resolve().then(() => (init_email_Bk5ufhJu(), email_Bk5ufhJu_exports))
       },
       "4d95adaa58744130183a772a48ea1cb1f3a58c6c622c4f9cb1a7611c474dac26": {
         functionName: "getInboxEmail_createServerFn_handler",
