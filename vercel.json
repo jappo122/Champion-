@@ -1,5 +1,5 @@
 {
-  "buildCommand": "echo 'Using pre-built bundle'",
+  "buildCommand": "ls dist/client/assets/*.js > /dev/null && echo 'Build ready'",
   "installCommand": "echo 'Skipping install'",
   "outputDirectory": "dist/client",
   "framework": null,
