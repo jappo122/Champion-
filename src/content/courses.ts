@@ -1,3 +1,36 @@
+/*
+  ═══════════════════════════════════════════════════════════════
+  QUIZ FORMAT — All interactive quizzes MUST follow this format.
+  The QuizQuestion component parses these and the 80% threshold
+  enforces mastery before marking lessons complete.
+
+  ── Format A (with explanation) ──
+  ### Quick Quiz
+  **Q1:** Question text here?
+  A) Option A text
+  B) Option B text
+  C) Option C text
+  D) Option D text
+  *Answer: B — Brief explanation of why B is correct.*
+
+  ── Format B (no explanation) ──
+  ### Quick Quiz
+  **Q1:** Question text here?
+  A) Option A text
+  B) Option B text
+  C) Option C text
+  D) Option D text
+  **(Correct: B)**
+
+  RULES:
+  • MUST start with ### Quick Quiz (case-insensitive)
+  • Questions numbered Q1, Q2, Q3... (no limit)
+  • Options labeled A) B) C) D) — exactly 4 per question
+  • Answers use ONE of the two formats above (don't mix in same quiz)
+  • Each quiz section ends at the next ## or ### heading
+  • Salespeople must answer ALL questions AND score >=80% to mark complete
+  ═══════════════════════════════════════════════════════════════
+*/
 export interface Lesson {
   id: string;
   title: string;
