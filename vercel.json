@@ -1,4 +1,7 @@
 {
+  "installCommand": "npm install",
+  "buildCommand": "echo 'Build ready'",
+  "outputDirectory": "dist/client",
   "rewrites": [
     { "source": "/api/mark-complete", "destination": "/api/mark-complete" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
