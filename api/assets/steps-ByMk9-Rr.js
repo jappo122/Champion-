@@ -1,0 +1,341 @@
+import { jsxs, jsx } from "react/jsx-runtime";
+import { u as useTranslation, L as LanguageSwitcher } from "./router-jD0MEXbQ.js";
+import { c as courses } from "./courses-CY9yjTRv.js";
+import "@tanstack/react-router";
+import "react";
+import "./createSsrRpc-l1y8KE69.js";
+import "../server.js";
+import "node:async_hooks";
+import "h3-v2";
+import "@tanstack/router-core";
+import "seroval";
+import "@tanstack/history";
+import "@tanstack/router-core/ssr/client";
+import "@tanstack/router-core/ssr/server";
+import "@tanstack/react-router/ssr/server";
+const detailedSteps = [
+  {
+    step: 1,
+    title: "Greeting & Building Rapport",
+    detailedDesc: "The greeting is the single most important moment in the entire sales process. Within the first 10 seconds, the customer has already formed a lasting impression of you and your dealership. A warm, genuine greeting sets the tone for a trust-based relationship, while a rushed or transactional greeting triggers defensive walls that are difficult to break down. The goal is not to sell — it's to connect. Customers buy from people they like and trust, and that trust begins with how you make them feel in the first moment of contact.",
+    whyItMatters: "Research shows that customers decide within 30 seconds whether they trust a salesperson. A poor first impression is nearly impossible to reverse. The greeting is your only chance to make a positive first impression, and it directly impacts every subsequent step of the process.",
+    howToExecute: "Approach the customer warmly but not aggressively. Smile genuinely, make eye contact, and use their name as soon as you learn it. Start with an open-ended question like 'What brings you in today?' rather than a closed question like 'Can I help you?' Find common ground — notice something about their vehicle, their clothing, or their family. Make them feel welcomed, not hunted. The key is to be likable first and a salesperson second.",
+    keyPrinciples: [
+      "Be warm, not pushy — a genuine smile creates trust",
+      "Use open-ended questions to start conversations",
+      "Find common ground within the first 30 seconds",
+      "Listen more than you talk — let them speak 80% of the time",
+      "Make the customer feel welcomed, not hunted",
+      "Use their name once you've learned it"
+    ],
+    commonMistakes: [
+      "Rushing to qualify the customer before building rapport — this signals that you care more about the sale than the person",
+      "Using closed questions like 'Can I help you?' which invites a 'no' and ends the conversation before it starts"
+    ],
+    proTips: [
+      "Keep a bottle of water in your hand — it makes you appear approachable and gives you a natural prop",
+      "If the customer is on their phone, wait 30 seconds before approaching. It shows respect for their time"
+    ],
+    courseId: "10-steps-part-1"
+  },
+  {
+    step: 2,
+    title: "Needs Assessment",
+    detailedDesc: "The needs assessment is where top performers separate themselves from average salespeople. Instead of showing vehicles and hoping something sticks, great salespeople ask targeted questions to uncover exactly what the customer needs, wants, and can afford. This step is about gathering information, not presenting solutions. The more you understand about the customer's lifestyle, budget, preferences, and decision-making process, the better equipped you are to present the perfect vehicle. Think of yourself as a consultant, not a salesperson — your job is to diagnose before you prescribe.",
+    whyItMatters: "80% of sales are lost because the salesperson didn't understand the customer's needs. Without a thorough needs assessment, you're guessing. With one, you're solving problems. Customers can tell when you genuinely understand them, and that understanding builds trust and makes the rest of the sales process smoother.",
+    howToExecute: "Use the NEED system: Needs (what problems are they solving?), Expectations (what does their ideal experience look like?), Experience (what's their buying history?), Decision (who else is involved?). Also use the BANT framework: Budget, Authority, Need, Timeline. Ask open-ended questions and take detailed notes. Let them talk 80% of the time. After they answer, summarize what you heard: 'So if I understand correctly, you're looking for a reliable SUV with good fuel economy under $40,000. Did I get that right?'",
+    keyPrinciples: [
+      "Listen more than you talk — let them speak 80% of the time",
+      "Identify budget range and monthly payment targets",
+      "Understand primary use — commute, family, work, pleasure",
+      "Determine who else is involved in the decision",
+      "Take detailed notes — it shows you value their words",
+      "Summarize what you heard to confirm understanding"
+    ],
+    commonMistakes: [
+      "Jumping straight to vehicle features before understanding needs — this makes the customer feel unheard",
+      "Asking only yes/no questions that don't reveal the real motivations behind the purchase"
+    ],
+    proTips: [
+      "Use a physical notebook for notes — it's more personal than a tablet and signals that you're paying attention",
+      "Ask 'What do you love about your current vehicle?' before asking what they want to change — it reveals their priorities"
+    ],
+    courseId: "10-steps-part-1"
+  },
+  {
+    step: 3,
+    title: "Vehicle Presentation",
+    detailedDesc: "Once you understand the customer's needs, it's time to present the right vehicle. The key word is 'right' — not every vehicle on your lot, but the one that matches their specific requirements. Use the Feature-Advantage-Benefit (FAB) method to connect every feature to a customer benefit. For example: 'This vehicle has a blind-spot monitoring system (Feature), which means you'll be alerted to vehicles in your blind spots (Advantage), so you can change lanes with confidence, especially with your kids in the car (Benefit).' Limit choices to 2-3 vehicles max to avoid decision paralysis.",
+    whyItMatters: "Customers who see 3+ vehicles experience decision fatigue and are less likely to buy. Presenting the right vehicle — not everything you have — positions you as a trusted advisor who has their best interests at heart. Every feature you highlight should directly connect back to something they told you during the needs assessment.",
+    howToExecute: "Follow the walk-around sequence: Front (grille, headlights, stance), Side (lines, wheels, profile), Interior (seats, technology, space), Back (cargo, trunk, accessibility), Under the hood (engine, performance). At each point, connect the feature to their stated needs. Let them touch, sit in, and explore the vehicle. Ask questions like 'How does this feel?' to keep them engaged.",
+    keyPrinciples: [
+      "Present only 2-3 vehicles max to avoid decision paralysis",
+      "Use the Feature-Advantage-Benefit (FAB) method for every feature",
+      "Connect every feature back to something they told you",
+      "Let them touch, sit in, and explore the vehicle",
+      "Limit information to 3 key features at a time",
+      "Ask engagement questions throughout the presentation"
+    ],
+    commonMistakes: [
+      "Showing too many vehicles — this overwhelms the customer and leads to indecision",
+      "Talking about features without connecting them to benefits — features alone don't sell, benefits do"
+    ],
+    proTips: [
+      "Pre-load the vehicle with their preferred radio station and temperature setting before the walk-around",
+      "Use the '3-Feature Rule' — present only 3 features that directly address their stated needs, then stop"
+    ],
+    courseId: "customer-experience"
+  },
+  {
+    step: 4,
+    title: "Test Drive",
+    detailedDesc: "The test drive is where emotion takes over from logic. Data shows that customers who take a test drive are 70% more likely to buy. The test drive isn't about the car's specifications — it's about how the car makes them feel. Your job during the test drive is to facilitate that emotional connection, not to sell. Let the customer experience the vehicle's performance, comfort, and features firsthand. The more positive emotions they associate with the vehicle, the more likely they are to buy.",
+    whyItMatters: "The test drive is the moment when a customer goes from 'looking' to 'imagining ownership.' When they start saying 'I'd park it in the garage' or 'I'd take this on road trips,' they've already bought emotionally. Your role is to reinforce that emotional connection, not interrupt it with sales talk.",
+    howToExecute: "Before the drive, pre-set the seat, mirrors, and radio to a good station. Plan a route that highlights different driving conditions (highway, hills, smooth roads). Let the customer drive first — you drive back. During the drive, stay quiet for the first few minutes to let them experience the vehicle. Then, highlight benefits that connect to their needs: 'Notice how smooth the ride is — you mentioned you have a long commute.' After the drive, ask: 'How did that feel?'",
+    keyPrinciples: [
+      "Pre-set seat, mirrors, and radio before the drive",
+      "Plan a route that highlights different driving conditions",
+      "Let the customer drive first — you drive back",
+      "Stay quiet during the first few minutes of the drive",
+      "Highlight benefits that connect to their stated needs",
+      "Ask 'How did that feel?' after the drive, not 'What do you think?'"
+    ],
+    commonMistakes: [
+      "Talking too much during the test drive — this prevents the customer from forming their own emotional connection",
+      "Taking a boring route that doesn't showcase the vehicle's strengths"
+    ],
+    proTips: [
+      "Point out a specific landmark or feature on the route that they'll remember — it creates a lasting positive association",
+      "If they smile or laugh during the drive, note what caused it and reinforce it later during the numbers presentation"
+    ],
+    courseId: "customer-experience"
+  },
+  {
+    step: 5,
+    title: "Trade-In Appraisal",
+    detailedDesc: "The trade-in appraisal is often a tension point in the sales process because customers overvalue their vehicles and salespeople need to provide a fair market value. Handle this step with transparency and empathy. Use third-party data sources like Kelley Blue Book or NADA to justify your offer. Separate the trade-in conversation from the new car deal to keep the numbers clear. A fair, transparent trade-in offer builds enormous trust and sets the stage for a smooth negotiation.",
+    whyItMatters: "An unfair trade-in offer can destroy all the trust you've built. Customers talk to friends and family, and they'll quickly learn if they got a fair deal. A transparent trade-in process that's backed by data creates trust and reduces friction later in the deal.",
+    howToExecute: "Ask about the trade-in early in the process — don't wait until the end. Inspect the vehicle thoroughly, noting condition, mileage, and any damage. Use third-party valuation tools transparently. Explain how you arrived at the number: 'Based on the condition, mileage, and market data, this vehicle is worth approximately $X.' Be prepared to justify your number. If the customer disagrees, offer to let them get a second opinion from CarMax or another dealer.",
+    keyPrinciples: [
+      "Ask about trade-in early in the process, not at the end",
+      "Inspect thoroughly — walk around, note condition, mileage",
+      "Use third-party data to justify your offer",
+      "Be transparent about how you determined the value",
+      "Separate the trade-in from the new car deal",
+      "Offer a fair value — trust builds deals"
+    ],
+    commonMistakes: [
+      "Waiting until the end of the deal to bring up the trade-in — this feels like a bait-and-switch",
+      "Lowballing the trade-in to make up profit — this destroys trust and can kill the entire deal"
+    ],
+    proTips: [
+      "If the trade-in has noticeable issues, take photos during the walk-around and show the customer — it makes the justification more transparent",
+      "Offer to let them get a competing offer — the confidence that you'll match or beat it builds trust"
+    ],
+    courseId: "10-steps-part-1"
+  },
+  {
+    step: 6,
+    title: "Price Negotiation",
+    detailedDesc: "Price negotiation is where most salespeople lose control. The key is to focus on value, not price. Before you discuss numbers, remind the customer of everything they loved about the vehicle. Use the 'value stack' — list all the features, benefits, warranty, and service that are included. When you present the price, do it with confidence. If the customer objects, don't immediately drop the price. Instead, find out what's really holding them back. Use silence as a powerful negotiation tool — the person who speaks first after the number is presented typically loses.",
+    whyItMatters: "Every dollar you give away in negotiation comes directly from your commission and the dealership's profit. But more importantly, customers who pay full price for a fair value are happier than customers who get a discount but feel the process was adversarial. The goal is a win-win where the customer feels they got value and you protected your gross.",
+    howToExecute: "Present the price with confidence: 'Here's the complete picture.' Break down the numbers line by line. If they object, use the 'If I... will you...' technique: 'If I can get the monthly payment to $X, will you take it home today?' Know your walk-away number before you start. Use silence after presenting the numbers. Trade concessions rather than giving them away — 'If I can do that, I'll need you to finance with us.'",
+    keyPrinciples: [
+      "Know your walk-away number before you start negotiating",
+      "Focus on value, not just price",
+      "Use silence as your most powerful negotiation tool",
+      "Trade concessions, don't give them away",
+      "Use the 'If I... will you...' technique",
+      "Be willing to walk away — and mean it"
+    ],
+    commonMistakes: [
+      "Dropping price immediately without understanding the objection — this devalues the vehicle and trains the customer to push harder",
+      "Talking too much after presenting the number — silence is uncomfortable, but the person who breaks it first typically concedes"
+    ],
+    proTips: [
+      "Write the numbers on paper — it makes them feel more real and harder to dispute than numbers on a screen",
+      "Use the 'Feel, Felt, Found' pattern: 'I understand how you feel. Many customers have felt the same way. But what they found was...'"
+    ],
+    courseId: "advanced-closing"
+  },
+  {
+    step: 7,
+    title: "Closing the Sale",
+    detailedDesc: "Closing is the natural conclusion to a well-executed sales process. If you've done everything right — built rapport, assessed needs, presented the right vehicle, handled the test drive, appraised the trade-in fairly, and negotiated transparently — the close should feel like a formality. The most common reason salespeople fail to close is simple: they don't ask. They're afraid of rejection. But closing is a service — you're helping the customer make a decision that improves their life. Ask with confidence, and if they say no, find out why and address it.",
+    whyItMatters: "Studies show that 60% of sales are lost because the salesperson never asked for the commitment. Customers expect you to guide them through the decision. If you don't ask, they'll leave and buy from someone who will. The close is where all your hard work pays off.",
+    howToExecute: "Use the assumptive close: 'Let's get the paperwork started.' Use the alternative close: 'Would you like the red or the blue?' Use the summary close: recap all the value you've presented. Use the question close: 'Is there any reason we can't move forward today?' After presenting the final numbers, stay silent. Count to 10 in your head if you have to. The first person to speak after the number is presented typically loses the negotiation.",
+    keyPrinciples: [
+      "Assume the sale — act as if the decision has already been made",
+      "Use trial closes throughout the process",
+      "Create legitimate urgency without being pushy",
+      "Ask for the commitment directly",
+      "Use the assumptive, alternative, and summary closes",
+      "Stay silent after asking for the close"
+    ],
+    commonMistakes: [
+      "Not asking for the sale — fear of rejection prevents more deals than any other factor",
+      "Talking after asking for the close — this gives the customer reasons to say no"
+    ],
+    proTips: [
+      "Use the 'Benjamin Franklin' close: list pros and cons on paper. The pros will always outweigh the cons, and they'll see it visually",
+      "If they say 'I need to think about it,' isolate the objection: 'What specifically do you need to think through?'"
+    ],
+    courseId: "advanced-closing"
+  },
+  {
+    step: 8,
+    title: "Finance & Insurance (F&I)",
+    detailedDesc: "The F&I presentation is where you maximize the value of the deal for both the customer and the dealership. After the customer has agreed to purchase, they're in a positive emotional state — this is the best time to introduce protection products. The key is to present these products as solutions to real problems, not as add-ons that increase the price. Explain the benefits clearly and simply. Use third-party data to show the value: 'The average repair cost for a transmission is $3,500. This warranty covers that for 7 years.'",
+    whyItMatters: "F&I products protect the customer from unexpected expenses and generate significant profit for the dealership. A well-presented F&I menu can add $1,000-$2,000 per deal. But more importantly, customers who buy protection products are more satisfied because they feel protected and valued.",
+    howToExecute: "Make a warm introduction to the F&I manager with a summary of the deal. Present protection products one at a time, starting with the most valuable. Explain each product in terms of the problem it solves, not the features it has. Use simple language and avoid jargon. Address objections by reframing the value: 'I understand it's an additional cost. Consider that one major repair could cost more than this entire warranty.' Complete the paperwork accurately and efficiently.",
+    keyPrinciples: [
+      "Present F&I products as solutions, not add-ons",
+      "Explain benefits clearly and simply",
+      "Use third-party data to demonstrate value",
+      "Present products one at a time, starting with the most valuable",
+      "Address objections by reframing the value",
+      "Complete paperwork accurately and efficiently"
+    ],
+    commonMistakes: [
+      "Rushing through the F&I presentation — this signals that the products aren't valuable",
+      "Using jargon that confuses the customer — if they don't understand it, they won't buy it"
+    ],
+    proTips: [
+      "Use the 'If you buy one thing, buy this' approach — it creates urgency and prioritization",
+      "Share a real customer story where a protection product saved them money — stories are more persuasive than statistics"
+    ],
+    courseId: "digital-marketing"
+  },
+  {
+    step: 9,
+    title: "Delivery & Handover",
+    detailedDesc: "The delivery experience is the most memorable part of the customer journey. It's the moment they've been waiting for, and it should be celebrated. A well-executed delivery creates a lasting positive impression that leads to repeat business and referrals. The vehicle should be spotless, full of gas, and ready to go. Take the customer through a thorough feature walkthrough, making sure they know how to use everything. Set up their phone and technology integration. Take a photo with them in front of the vehicle — this creates a shareable moment.",
+    whyItMatters: "The delivery experience determines whether the customer becomes a repeat buyer and referral source. A poor delivery can undo all the goodwill you've built. A great delivery creates a customer for life. Studies show that customers who have a positive delivery experience are 3x more likely to refer others.",
+    howToExecute: "Use the delivery checklist: vehicle is detailed and clean, full tank of gas, floor mats installed, keys and owner's manual ready, license plates/temporary tags installed. Walk through key features one at a time — don't overwhelm them. Point out safety features, explain the maintenance schedule, and set expectations for follow-up. Take a photo together and ask for a review. Send a thank-you note within 24 hours.",
+    keyPrinciples: [
+      "Vehicle must be spotless and full of gas",
+      "Walk through key features one at a time",
+      "Set up phone and technology integration",
+      "Take a photo together for a shareable moment",
+      "Send a thank-you note within 24 hours",
+      "Set expectations for follow-up and service"
+    ],
+    commonMistakes: [
+      "Rushing the delivery because the customer is eager to leave — this leads to confusion and frustration later",
+      "Not setting up the phone integration — this is the #1 cause of post-delivery calls to the salesperson"
+    ],
+    proTips: [
+      "Have a small gift (keychain, hat, or branded item) waiting in the vehicle — it's a small touch that creates a big impression",
+      "Record a short video walkthrough of the key features and text it to them — they'll refer back to it later"
+    ],
+    courseId: "customer-experience"
+  },
+  {
+    step: 10,
+    title: "Follow-Up & Referrals",
+    detailedDesc: "The sale doesn't end at the delivery — it's just the beginning of the relationship. The fortune is in the follow-up. Most salespeople never follow up after the sale, leaving money on the table. A systematic follow-up process generates repeat business, referrals, and positive reviews. The first 24 hours after delivery are critical — this is when the customer is most excited and most likely to refer others. After that, a regular touch-point cadence keeps you top-of-mind.",
+    whyItMatters: "80% of sales are made between the 5th and 12th contact. Yet most salespeople stop after one or two follow-ups. A single customer who refers 3 people is worth more than 10 cold leads. Repeat customers spend 67% more than new customers. The follow-up is the highest-ROI activity a salesperson can do.",
+    howToExecute: "Day 1: Thank-you call. Week 1: Check-in call to see how everything is going. Month 1: Satisfaction survey and service reminder. Month 3: Service reminder and referral request. Month 6: Referral request and update on new inventory. Year 1: Anniversary call and trade-in evaluation offer. Use a CRM to track all interactions. Every contact should add value — never 'just checking in.'",
+    keyPrinciples: [
+      "Send a thank-you note within 24 hours of delivery",
+      "Make a follow-up call within the first week",
+      "Schedule a 30-day check-in with the customer",
+      "Ask for referrals at the right time — when they're happiest",
+      "Track every interaction in a CRM",
+      "Every contact must add value — never 'just checking in'"
+    ],
+    commonMistakes: [
+      "Never following up after the sale — this leaves money on the table and loses future business",
+      "Only contacting customers when you want something — this feels transactional and damages the relationship"
+    ],
+    proTips: [
+      "Set a recurring reminder in your calendar to reach out to past customers — treat it as seriously as a customer appointment",
+      "Use a handwritten note for the first follow-up — it's rare and memorable in a digital world"
+    ],
+    courseId: "digital-marketing"
+  }
+];
+function StepsPage() {
+  const {
+    t
+  } = useTranslation();
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-dvh bg-[#0a1628]", children: [
+    /* @__PURE__ */ jsx("header", { className: "border-b border-[#1a2d4a]/50 bg-[#0a1628]/90", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto flex h-16 max-w-5xl items-center justify-between px-6", children: [
+      /* @__PURE__ */ jsxs("a", { href: "/", className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsx("div", { className: "flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]", children: /* @__PURE__ */ jsx("svg", { className: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2.5, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }) }),
+        /* @__PURE__ */ jsx("span", { className: "text-lg font-bold text-white", children: "Champion Sales Training & Events" })
+      ] }),
+      /* @__PURE__ */ jsxs("nav", { className: "flex items-center gap-6", children: [
+        /* @__PURE__ */ jsx("a", { href: "/training", className: "text-sm text-gray-400 hover:text-white", children: t("nav.training") }),
+        /* @__PURE__ */ jsx(LanguageSwitcher, {})
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsxs("main", { className: "mx-auto max-w-5xl px-6 py-12", children: [
+      /* @__PURE__ */ jsxs("div", { className: "text-center mb-10", children: [
+        /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400", children: [
+          /* @__PURE__ */ jsx("span", { className: "flex h-2 w-2 rounded-full bg-[#e63946]" }),
+          "10-Step Sales Process"
+        ] }),
+        /* @__PURE__ */ jsxs("h1", { className: "mt-4 text-4xl font-extrabold text-white sm:text-5xl", children: [
+          "Steps of the ",
+          /* @__PURE__ */ jsx("span", { className: "text-[#e63946]", children: "Sales Process" })
+        ] }),
+        /* @__PURE__ */ jsx("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-gray-400", children: "Master every stage of the automotive sales process — from greeting to follow-up. Each step has detailed guidance and a dedicated training module." }),
+        /* @__PURE__ */ jsxs("a", { href: "/training/10-steps-part-1", className: "mt-6 inline-flex items-center gap-2 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-medium text-white hover:bg-[#c1121f] transition-colors", children: [
+          /* @__PURE__ */ jsx("svg", { className: "h-4 w-4", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" }) }),
+          "Start the Training Course →"
+        ] })
+      ] }),
+      /* @__PURE__ */ jsx("div", { className: "space-y-8", children: detailedSteps.map((s) => {
+        const course = courses.find((c) => c.id === s.courseId);
+        return /* @__PURE__ */ jsx("div", { className: "rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sm:p-8 transition-all duration-200 hover:border-[#e63946]/30", children: /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-5", children: [
+          /* @__PURE__ */ jsx("span", { className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#e63946] text-lg font-bold text-white", children: s.step }),
+          /* @__PURE__ */ jsxs("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsx("h2", { className: "text-xl font-bold text-white", children: s.title }),
+            /* @__PURE__ */ jsx("p", { className: "mt-3 leading-relaxed text-gray-300", children: s.detailedDesc }),
+            /* @__PURE__ */ jsxs("div", { className: "mt-4 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+              /* @__PURE__ */ jsx("h3", { className: "text-sm font-bold text-[#e63946] mb-2", children: "Why It Matters" }),
+              /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed text-gray-400", children: s.whyItMatters })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "mt-3 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4", children: [
+              /* @__PURE__ */ jsx("h3", { className: "text-sm font-bold text-[#e63946] mb-2", children: "How to Execute" }),
+              /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed text-gray-400", children: s.howToExecute })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "mt-4", children: [
+              /* @__PURE__ */ jsx("h3", { className: "text-sm font-bold text-gray-400 mb-2", children: "Key Principles" }),
+              /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2", children: s.keyPrinciples.map((p) => /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1 rounded-full border border-[#1a2d4a] bg-[#0a1628] px-3 py-1 text-xs text-gray-400", children: [
+                /* @__PURE__ */ jsx("svg", { className: "h-3 w-3 text-[#e63946]", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 13l4 4L19 7" }) }),
+                p
+              ] }, p)) })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "mt-4 grid gap-3 sm:grid-cols-2", children: [
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx("h3", { className: "text-sm font-bold text-red-400 mb-2", children: "Common Mistakes" }),
+                /* @__PURE__ */ jsx("ul", { className: "space-y-1.5", children: s.commonMistakes.map((m) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-2 text-xs text-gray-400", children: [
+                  /* @__PURE__ */ jsx("svg", { className: "mt-0.5 h-3 w-3 shrink-0 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }),
+                  m
+                ] }, m)) })
+              ] }),
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx("h3", { className: "text-sm font-bold text-green-400 mb-2", children: "Pro Tips" }),
+                /* @__PURE__ */ jsx("ul", { className: "space-y-1.5", children: s.proTips.map((tip) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-2 text-xs text-gray-400", children: [
+                  /* @__PURE__ */ jsx("svg", { className: "mt-0.5 h-3 w-3 shrink-0 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M13 10V3L4 14h7v7l9-11h-7z" }) }),
+                  tip
+                ] }, tip)) })
+              ] })
+            ] }),
+            course && /* @__PURE__ */ jsx("a", { href: `/training/${course.id}`, className: "mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#e63946] hover:text-white transition-colors", children: "View training module →" })
+          ] })
+        ] }) }, s.step);
+      }) })
+    ] }),
+    /* @__PURE__ */ jsx("footer", { className: "border-t border-[#1a2d4a]/50 py-12 mt-8", children: /* @__PURE__ */ jsxs("div", { className: "mx-auto max-w-5xl px-6 text-center text-sm text-gray-600", children: [
+      "© ",
+      (/* @__PURE__ */ new Date()).getFullYear(),
+      " Champion Sales Training & Events. All rights reserved."
+    ] }) })
+  ] });
+}
+export {
+  StepsPage as component
+};
