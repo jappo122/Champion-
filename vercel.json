@@ -1,6 +1,6 @@
 {
-  "buildCommand": "echo ok",
-  "installCommand": "echo ok",
+  "buildCommand": "npm run build && npx esbuild dist/server/server.js --bundle --platform=node --format=esm --outfile=api/ssr-bundled.mjs --external:node:*",
+  "installCommand": "npm install",
   "outputDirectory": "dist/client",
   "rewrites": [
     { "source": "/api/mark-complete", "destination": "/api/mark-complete" },
