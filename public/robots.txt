@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Private / auth-gated routes
+Disallow: /profile
+Disallow: /training/
+Allow: /training/preview
+Disallow: /manager
+Disallow: /email
+Disallow: /inbox
+Disallow: /api/
+Disallow: /planner
+Disallow: /sales-log
+Disallow: /account
+Disallow: /admin
+Disallow: /checkout
+Disallow: /signup/complete
+Disallow: /purchase/
+
+Sitemap: https://championsalestrainingandevents.com/sitemap.xml

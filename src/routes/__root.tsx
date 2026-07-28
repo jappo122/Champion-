@@ -92,6 +92,7 @@ export const Route = createRootRoute({
       { "http-equiv": "Permissions-Policy", content: "camera=(), microphone=(), geolocation=()" },
     ],
     links: [
+      { rel: "canonical", href: "https://championsalestrainingandevents.com" },
       { rel: "stylesheet", href: appCss },
       {
         rel: "preconnect",
@@ -194,6 +195,22 @@ function RootDocument({ children }: { children: ReactNode }) {
           </ErrorBoundary>
         </I18nProvider>
         <Scripts />
+        {/* Canonical updater — syncs link[rel=canonical] href to current page URL */}
+        <script>{`
+          (function(){
+            function updateCanonical() {
+              var link = document.querySelector('link[rel="canonical"]');
+              if (link) link.href = window.location.origin + window.location.pathname;
+            }
+            updateCanonical();
+            // Update on client-side navigation (pushState/replaceState)
+            var origPush = history.pushState;
+            history.pushState = function(){ origPush.apply(this, arguments); updateCanonical(); };
+            var origReplace = history.replaceState;
+            history.replaceState = function(){ origReplace.apply(this, arguments); updateCanonical(); };
+            window.addEventListener('popstate', updateCanonical);
+          })();
+        `}</script>
         {/* Auth detection — runs AFTER React hydration, uses CSS so React can't undo it */}
         <script>{`
           (function(){
