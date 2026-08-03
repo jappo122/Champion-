@@ -34,11 +34,11 @@ export function MobileNav() {
               <a href="/steps" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Steps of the Sale</a>
               <a href="/profile" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Profile</a>
               <a href="/blog" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Blog</a>
+              <a href="/webinars" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Webinars</a>
               <a href="/contact" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Contact Us</a>
-              <a href="/pricing" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Pricing</a>
               <a href="/support" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Support</a>
-              <a href="/inbox" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Inbox</a>
               <hr className="border-[#1a2d4a]" />
+              <a href="/pricing" className="rounded-lg bg-[#e63946] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#c1121f]" onClick={() => setOpen(false)}>See Pricing</a>
               {loggedIn ? (
                 <button
                   onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }}
@@ -47,10 +47,7 @@ export function MobileNav() {
                   Sign Out
                 </button>
               ) : (
-                <>
-                  <a href="/login" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Sign In</a>
-                  <a href="/signup" className="rounded-lg bg-[#e63946] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#c1121f]" onClick={() => setOpen(false)}>Get Started</a>
-                </>
+                <a href="/login" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Sign In</a>
               )}
             </nav>
           </div>

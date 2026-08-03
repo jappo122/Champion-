@@ -62,9 +62,6 @@ function Navbar({ t }: { t: (k: string) => string }) {
           )}
           <LanguageSwitcher />
         </nav>
-        <a href="/#pricing" className="btn-primary text-sm md:hidden">
-          {t('hero.cta.waitlist')}
-        </a>
       </div>
     </header>
   );
