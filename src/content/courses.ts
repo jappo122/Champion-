@@ -3629,14 +3629,14 @@ D) After they've signed
 
   },
 
-  // ===== Course 10: HEART Method =====
+  // ===== Course 10: Advanced Closing Techniques 3 =====
   {
     id: "heart-method",
-    title: "The H.E.A.R.T. Method",
-    subtitle: "A human-centered sales system that builds trust and closes more deals — Plus+ Tier",
+    title: "Advanced Closing Techniques 3",
+    subtitle: "Master human-centered closing strategies that turn hesitant buyers into loyal customers — Plus+ Tier",
     requiredTier: "plus",
     description:
-      "Plus+ Tier Exclusive. Master the H.E.A.R.T. framework: Human Connection, Emotional Discovery, Aligned Solutions, Respectful Guidance, and Trusted Partnership. Transform transactional selling into relational advising. 6 lessons with 48 scenario-based quiz questions.",
+      "Plus+ Tier Exclusive. Take your closing skills to the highest level with the H.E.A.R.T. framework: Human Connection, Emotional Discovery, Aligned Solutions, Respectful Guidance, and Trusted Partnership. For salespeople: higher closing rates, bigger commission checks, and the ability to guide customers to confident decisions without pressure. For dealerships: higher gross profit, fewer chargebacks, stronger CSI scores, and a reputation that brings customers back. 6 lessons with 48 scenario-based quiz questions.",
     levels: "Intermediate",
     duration: "5 hours",
     lessons: 6,

@@ -41,7 +41,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span className="text-lg font-bold text-white">Champion Sales Training & Events</span>
+          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-10 rounded-full" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {loggedIn ? (
@@ -550,7 +550,7 @@ function Footer({ t }: { t: (k: string) => string }) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <span className="text-lg font-bold text-white">Champion Sales Training & Events</span>
+<img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-10 rounded-full" />
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
               The complete automotive sales training platform. Master the proven sales process, close more deals, and grow your career.
