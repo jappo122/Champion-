@@ -9,7 +9,7 @@ export function MobileNav() {
       {/* Hamburger button — visible on mobile only */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
+        className="fixed right-4 top-[72px] z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
         aria-label="Menu"
       >
         {open ? (
