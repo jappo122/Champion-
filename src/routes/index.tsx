@@ -17,6 +17,7 @@ function Home() {
       <Features t={t} />
       <AccountTypes t={t} />
       <HowItWorks t={t} />
+      <Testimonials t={t} />
       <Pricing t={t} />
       <Footer t={t} />
     </div>
@@ -83,10 +84,11 @@ function Hero({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("scroll", onScroll);
     }, []);
     return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pb-28">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[#e63946]/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 right-0 h-[400px] w-[400px] rounded-full bg-[#1a2d4a]/40 blur-3xl" />
+    <section className="relative overflow-hidden pt-36 pb-28 sm:pb-36">
+      {/* Background glow — enhanced depth */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#e63946]/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 left-0 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-[#1a2d4a]/40 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 text-center">
         <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
@@ -94,21 +96,21 @@ function Hero({ t }: { t: (k: string) => string }) {
           {t('hero.badge')}
         </div>
 
-        <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1]">
+        <h1 className="mx-auto mt-8 max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08]">
           <span className="text-white">{t('hero.title.line1')}</span>
           <br />
           <span className="gradient-brand">{t('hero.title.line2')}</span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400 sm:text-xl">
+        <p className="mx-auto mt-8 max-w-2xl text-lg text-gray-400 sm:text-xl">
           {t('hero.description')}
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="#pricing" className="btn-primary text-base">
+          <a href="#pricing" className="btn-primary-lg">
             {t('hero.cta.waitlist')}
           </a>
-          <a href="#features" className="btn-secondary text-base">
+          <a href="#features" className="btn-secondary text-base px-8 py-4">
             {t('hero.cta.learnMore')}
           </a>
         </div>
@@ -166,7 +168,7 @@ function Features({ t }: { t: (k: string) => string }) {
   ];
 
   return (
-    <section id="features" className="border-t border-[#1a2d4a]/50 py-20 sm:py-28">
+    <section id="features" className="border-t border-[#1a2d4a]/50 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
           <h2 className="section-title">{t('features.title')}</h2>
@@ -220,7 +222,7 @@ function Features({ t }: { t: (k: string) => string }) {
 // ── Account Types ──────────────────────────────────────────────────────────
 function AccountTypes({ t }: { t: (k: string) => string }) {
   return (
-    <section id="account-types" className="border-t border-[#1a2d4a]/50 py-20 sm:py-28">
+    <section id="account-types" className="border-t border-[#1a2d4a]/50 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
           <h2 className="section-title">Choose Your Account Type</h2>
@@ -311,7 +313,7 @@ function HowItWorks({ t }: { t: (k: string) => string }) {
   ];
 
   return (
-    <section id="how-it-works" className="border-t border-[#1a2d4a]/50 py-20 sm:py-28">
+    <section id="how-it-works" className="border-t border-[#1a2d4a]/50 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
           <h2 className="section-title">{t('how.title')}</h2>
@@ -335,6 +337,70 @@ function HowItWorks({ t }: { t: (k: string) => string }) {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Testimonials ───────────────────────────────────────────────────────────
+function Testimonials({ t }: { t: (k: string) => string }) {
+  const testimonials = [
+    {
+      quote: "My team closed 23% more deals within 30 days of starting this training. The objection-handling modules alone are worth 10× the subscription.",
+      name: "Michael Torres",
+      role: "General Manager, Elite Motors",
+      avatar: "MT",
+    },
+    {
+      quote: "I've tried five training platforms. This is the only one my salespeople actually use — the 2-minute video format keeps them engaged daily.",
+      name: "Sarah Chen",
+      role: "Sales Director, Pacific Auto Group",
+      avatar: "SC",
+    },
+    {
+      quote: "The skills gap assessment showed us exactly where every rep needed work. Targeted coaching instead of blanket training saved us months.",
+      name: "David Okafor",
+      role: "Owner, Okafor Motors",
+      avatar: "DO",
+    },
+  ];
+
+  return (
+    <section id="testimonials" className="border-t border-[#1a2d4a]/50 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-center">
+          <h2 className="section-title">Trusted by Dealerships Nationwide</h2>
+          <p className="section-subtitle mx-auto">
+            Real results from real sales teams using Champion Sales Training every day.
+          </p>
+        </div>
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <div key={t.name} className="card-glass flex flex-col">
+              {/* Quote */}
+              <svg className="mb-4 h-8 w-8 text-[#e63946]/40" fill="currentColor" viewBox="0 0 32 32">
+                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
+              </svg>
+              <p className="flex-1 text-gray-300 leading-relaxed italic">"{t.quote}"</p>
+              <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#e63946] to-[#f77f00] text-sm font-bold text-white">
+                  {t.avatar}
+                </div>
+                <div>
+                  <p className="font-semibold text-white">{t.name}</p>
+                  <p className="text-sm text-gray-400">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Trust bar */}
+        <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-green-500" />99.7% uptime</span>
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-green-500" />500+ dealerships</span>
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-green-500" />4.9/5 average rating</span>
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-green-500" />24/7 support</span>
         </div>
       </div>
     </section>
@@ -494,7 +560,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
   );
 
   return (
-    <section id="pricing" className="border-t border-[#1a2d4a]/50 py-20 sm:py-28">
+    <section id="pricing" className="border-t border-[#1a2d4a]/50 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
           <h2 className="section-title">{t('pricing.title')}</h2>

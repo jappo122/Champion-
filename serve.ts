@@ -105,7 +105,52 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       return Response.json({ user: null });
     }
   }
-  
+
+  // ── Webinar URL (public GET) ──
+  if (url.pathname === "/api/webinar-url" && req.method === "GET") {
+    try {
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL!);
+      await sql`CREATE TABLE IF NOT EXISTS webinar_settings (key TEXT PRIMARY KEY, value TEXT)`;
+      const result = await sql`SELECT value FROM webinar_settings WHERE key = 'webinar_url'`;
+      return Response.json({ url: result.length > 0 ? result[0].value : null });
+    } catch (err: any) {
+      console.error("API webinar-url GET error:", err.message);
+      return Response.json({ url: null, error: "Server error" }, { status: 500 });
+    }
+  }
+
+  // ── Webinar URL (manager POST) ──
+  if (url.pathname === "/api/webinar-url" && req.method === "POST") {
+    try {
+      const authHeader = req.headers.get("Authorization");
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return Response.json({ success: false, error: "Unauthorized" }, { status: 401 });
+      }
+      const token = authHeader.slice(7);
+      const parts = token.split(".");
+      if (parts.length !== 3) return Response.json({ success: false, error: "Invalid token" }, { status: 401 });
+      const [headerB64, bodyB64, signature] = parts;
+      const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
+      const expected = createHash("sha256").update(`${headerB64}.${bodyB64}.${secret}`).digest("hex");
+      if (signature !== expected) return Response.json({ success: false, error: "Invalid token" }, { status: 401 });
+      const payload = JSON.parse(Buffer.from(bodyB64, "base64url").toString());
+      if (payload.role !== "management") {
+        return Response.json({ success: false, error: "Forbidden" }, { status: 403 });
+      }
+      const { url: newUrl } = await req.json();
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL!);
+      await sql`CREATE TABLE IF NOT EXISTS webinar_settings (key TEXT PRIMARY KEY, value TEXT)`;
+      await sql`INSERT INTO webinar_settings (key, value) VALUES ('webinar_url', ${newUrl || null})
+        ON CONFLICT (key) DO UPDATE SET value = ${newUrl || null}`;
+      return Response.json({ success: true, url: newUrl });
+    } catch (err: any) {
+      console.error("API webinar-url POST error:", err.message);
+      return Response.json({ success: false, error: "Server error" }, { status: 500 });
+    }
+  }
+
   return null; // Not an API route
 }
 
