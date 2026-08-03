@@ -37,12 +37,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <a href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]">
-            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-10 rounded-full" />
+          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-9 w-9 rounded-full" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {loggedIn ? (
@@ -613,12 +608,7 @@ function Footer({ t }: { t: (k: string) => string }) {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]">
-                <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-<img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-10 rounded-full" />
+              <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-9 w-9 rounded-full" />
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
               The complete automotive sales training platform. Master the proven sales process, close more deals, and grow your career.
