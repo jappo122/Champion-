@@ -35,16 +35,16 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-3 items-center px-4 md:flex md:justify-between md:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center shrink-0">
           <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-[125px] w-auto" />
         </a>
-        <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden justify-self-center">
+        <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
           See Plans &amp; Price
         </a>
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
-          className="md:hidden justify-self-end flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-white"
+          className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-white"
           aria-label="Menu"
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
