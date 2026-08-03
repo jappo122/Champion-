@@ -19,15 +19,27 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-[#e63946] px-6 py-3 font-semibold text-white transition-all duration-200 hover:bg-[#c1121f] hover:shadow-lg hover:shadow-[#e63946]/25 active:scale-95;
+    @apply inline-flex items-center justify-center rounded-xl bg-[#e63946] px-6 py-3 font-semibold text-white transition-all duration-200 hover:bg-[#c1121f] hover:shadow-xl hover:shadow-[#e63946]/25 active:scale-95;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border border-[#1a2d4a] px-6 py-3 font-semibold text-white transition-all duration-200 hover:border-[#e63946] hover:text-[#e63946] active:scale-95;
+    @apply inline-flex items-center justify-center rounded-xl border border-[#1a2d4a] px-6 py-3 font-semibold text-white transition-all duration-200 hover:border-[#e63946] hover:text-[#e63946] hover:shadow-lg active:scale-95;
+  }
+
+  .btn-primary-lg {
+    @apply inline-flex items-center justify-center rounded-xl bg-[#e63946] px-8 py-4 text-lg font-bold text-white transition-all duration-200 hover:bg-[#c1121f] hover:shadow-xl hover:shadow-[#e63946]/30 active:scale-95;
   }
 
   .card {
-    @apply rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#2a4a6a] hover:shadow-lg hover:shadow-black/20;
+    @apply rounded-2xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#2a4a6a] hover:shadow-xl hover:shadow-black/10;
+  }
+
+  .card-glow {
+    @apply rounded-2xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-300 hover:border-[#e63946]/30 hover:shadow-xl hover:shadow-[#e63946]/5 [&_.icon-bg]:hover:bg-[#e63946]/20;
+  }
+
+  .card-glass {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:shadow-xl hover:shadow-black/20;
   }
 
   .card-glow {
