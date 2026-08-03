@@ -35,15 +35,13 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 pr-16 md:pr-6">
         <a href="/" className="flex items-center -my-2 shrink-0">
           <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-20 w-auto -my-2" />
         </a>
-        <div className="flex items-center gap-3 md:hidden">
-          <a href="/pricing" className="btn-primary text-xs px-3 py-1.5">
-            See Plans &amp; Price
-          </a>
-        </div>
+        <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
+          See Plans &amp; Price
+        </a>
         <nav className="hidden items-center gap-6 md:flex">
           {loggedIn ? (
             <>
