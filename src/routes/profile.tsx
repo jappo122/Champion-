@@ -1120,6 +1120,7 @@ function ProfileDashboard() {
                     <p className="text-xs text-gray-500 mt-1">Next billing: {subscription.nextBillingDate ? new Date(subscription.nextBillingDate).toLocaleDateString() : "N/A"}</p>
                   </div>
                 )}
+                <WebinarUrlSetting />
                 <a href="/account" className="inline-flex items-center gap-2 text-sm text-[#e63946] hover:underline">
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -1131,6 +1132,73 @@ function ProfileDashboard() {
           )}
         </div>
       </main>
+    </div>
+  );
+}
+
+// ── Webinar URL Setting Component ─────────────────────────────────────────
+function WebinarUrlSetting() {
+  const [webinarUrl, setWebinarUrl] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [statusMsg, setStatusMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/webinar-url")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success && data.url) setWebinarUrl(data.url);
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleSave = async () => {
+    const token = localStorage.getItem("salesdrive_token");
+    if (!token) return;
+    setSaving(true);
+    setStatusMsg(null);
+    try {
+      const res = await fetch("/api/webinar-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, url: webinarUrl }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatusMsg({ type: "success", text: "Webinar URL saved successfully." });
+      } else {
+        setStatusMsg({ type: "error", text: data.error || "Failed to save." });
+      }
+    } catch {
+      setStatusMsg({ type: "error", text: "Something went wrong." });
+    }
+    setSaving(false);
+  };
+
+  return (
+    <div className="rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4">
+      <h3 className="text-sm font-bold text-white mb-2">Webinar Configuration</h3>
+      <p className="text-xs text-gray-500 mb-3">Set the URL for your live webinar. This will appear on the /webinars page for all attendees.</p>
+      <div className="flex gap-3">
+        <input
+          type="url"
+          value={webinarUrl}
+          onChange={(e) => setWebinarUrl(e.target.value)}
+          placeholder="https://zoom.us/j/your-webinar-link"
+          className="flex-1 rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-[#e63946]"
+        />
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="shrink-0 rounded-lg bg-[#e63946] px-4 py-2 text-sm font-medium text-white hover:bg-[#c1121f] transition-colors disabled:opacity-50"
+        >
+          {saving ? "Saving..." : "Save"}
+        </button>
+      </div>
+      {statusMsg && (
+        <p className={`mt-2 text-xs ${statusMsg.type === "success" ? "text-green-500" : "text-[#e63946]"}`}>
+          {statusMsg.text}
+        </p>
+      )}
     </div>
   );
 }

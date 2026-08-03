@@ -111,6 +111,43 @@ async function handleApiRequest(req) {
     }
   }
 
+  // GET /api/webinar-url — anyone can read
+  if (url.pathname === "/api/webinar-url" && req.method === "GET") {
+    try {
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL);
+      await sql`CREATE TABLE IF NOT EXISTS webinar_settings (key TEXT PRIMARY KEY, value TEXT)`;
+      const rows = await sql`SELECT value FROM webinar_settings WHERE key = 'webinar_url'`;
+      return new Response(JSON.stringify({ success: true, url: rows.length > 0 ? rows[0].value : null }), { headers: { "Content-Type": "application/json" } });
+    } catch (err) {
+      return new Response(JSON.stringify({ success: false, error: "Server error" }), { status: 500, headers: { "Content-Type": "application/json" } });
+    }
+  }
+
+  // POST /api/webinar-url — manager only
+  if (url.pathname === "/api/webinar-url" && req.method === "POST") {
+    try {
+      const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+      const { token, url: webinarUrl } = body || {};
+      if (!token) return new Response(JSON.stringify({ success: false, error: "Unauthorized" }), { status: 401, headers: { "Content-Type": "application/json" } });
+      const parts = token.split(".");
+      if (parts.length !== 3) return new Response(JSON.stringify({ success: false, error: "Unauthorized" }), { status: 401, headers: { "Content-Type": "application/json" } });
+      const [header, bodyPart, signature] = parts;
+      const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
+      const expected = createHash("sha256").update(`${header}.${bodyPart}.${secret}`).digest("hex");
+      if (signature !== expected) return new Response(JSON.stringify({ success: false, error: "Unauthorized" }), { status: 401, headers: { "Content-Type": "application/json" } });
+      const payload = JSON.parse(Buffer.from(bodyPart, "base64url").toString());
+      if (payload.role !== "management") return new Response(JSON.stringify({ success: false, error: "Manager access required" }), { status: 403, headers: { "Content-Type": "application/json" } });
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL);
+      await sql`CREATE TABLE IF NOT EXISTS webinar_settings (key TEXT PRIMARY KEY, value TEXT)`;
+      await sql`INSERT INTO webinar_settings (key, value) VALUES ('webinar_url', ${webinarUrl || ""}) ON CONFLICT (key) DO UPDATE SET value = ${webinarUrl || ""}`;
+      return new Response(JSON.stringify({ success: true, url: webinarUrl }), { headers: { "Content-Type": "application/json" } });
+    } catch (err) {
+      return new Response(JSON.stringify({ success: false, error: "Server error" }), { status: 500, headers: { "Content-Type": "application/json" } });
+    }
+  }
+
   // DEBUG catch-all for any /api/* POST
   if (url.pathname.startsWith('/api/') && req.method === 'POST') {
     return new Response(JSON.stringify({ debug: true, pathname: url.pathname, deployed: '2026-07-25T19:25:00Z' }), { headers: { 'Content-Type': 'application/json' } });

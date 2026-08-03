@@ -48,6 +48,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
             <>
               <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
               <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+              <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
               <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">{t('profile.title')}</a>
               <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
             </>
@@ -55,6 +56,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
             <>
               <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
               <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
+              <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
               <a href="/manager" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.manager')}</a>
               <a href="/#features" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.features')}</a>
               <a href="/#pricing" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.pricing')}</a>
@@ -92,10 +94,10 @@ function Hero({ t }: { t: (k: string) => string }) {
           {t('hero.badge')}
         </div>
 
-        <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1]">
           <span className="text-white">{t('hero.title.line1')}</span>
           <br />
-          <span className="gradient-text">{t('hero.title.line2')}</span>
+          <span className="gradient-brand">{t('hero.title.line2')}</span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400 sm:text-xl">
@@ -174,8 +176,8 @@ function Features({ t }: { t: (k: string) => string }) {
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-2">
-          <div className="card group md:col-span-2 max-w-2xl mx-auto">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] group-hover:bg-[#e63946]/20">
+          <div className="card-glow md:col-span-2 max-w-2xl mx-auto">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] icon-bg transition-colors duration-200">
               <svg className="h-7 w-7 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
@@ -228,8 +230,8 @@ function AccountTypes({ t }: { t: (k: string) => string }) {
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 max-w-3xl mx-auto">
-          <div className="card group">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] group-hover:bg-[#e63946]/20">
+          <div className="card-glow">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] icon-bg transition-colors duration-200">
               <svg className="h-7 w-7 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -254,8 +256,8 @@ function AccountTypes({ t }: { t: (k: string) => string }) {
             </a>
           </div>
 
-          <div className="card group border-[#e63946]/30">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] group-hover:bg-[#e63946]/20">
+          <div className="card-glow border-[#e63946]/30">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#1a2d4a] icon-bg transition-colors duration-200">
               <svg className="h-7 w-7 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -320,7 +322,7 @@ function HowItWorks({ t }: { t: (k: string) => string }) {
 
         <div className="mt-16 grid gap-8 md:grid-cols-3">
           {steps.map((step) => (
-            <div key={step.number} className="card relative">
+            <div key={step.number} className="card-glow relative">
               <div className="mb-4 inline-flex items-center justify-center rounded-full bg-gradient-to-r px-4 py-1 text-xs font-bold text-white">
                 <span className="gradient-text" style={{ WebkitTextFillColor: "white" }}>
                   {t('how.step')} {step.number}
@@ -562,6 +564,7 @@ function Footer({ t }: { t: (k: string) => string }) {
             <ul className="space-y-3">
               <li><a href="/training" className="text-sm text-gray-500 transition-colors hover:text-white">{t('nav.training')}</a></li>
               <li><a href="/blog" className="text-sm text-gray-500 transition-colors hover:text-white">Blog</a></li>
+              <li><a href="/webinars" className="text-sm text-gray-500 transition-colors hover:text-white">Webinars</a></li>
               <li><a href="/#features" className="text-sm text-gray-500 transition-colors hover:text-white">{t('nav.features')}</a></li>
               <li><a href="/#pricing" className="text-sm text-gray-500 transition-colors hover:text-white">{t('nav.pricing')}</a></li>
             </ul>
