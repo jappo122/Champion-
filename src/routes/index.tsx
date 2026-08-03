@@ -35,9 +35,10 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2">
-          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-14 w-auto" />
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
+        <a href="/" className="flex flex-col items-start gap-0.5">
+          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-16 w-auto" />
+          <span className="text-[10px] font-medium text-[#e63946] uppercase tracking-widest whitespace-nowrap">Training salespeople nationwide since 2015</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {loggedIn ? (
@@ -90,8 +91,6 @@ function Hero({ t }: { t: (k: string) => string }) {
           <span className="flex h-2 w-2 rounded-full bg-[#e63946] animate-pulse" />
           {t('hero.badge')}
         </div>
-
-        <p className="mt-4 text-sm font-medium text-[#e63946] uppercase tracking-widest">Training salespeople nationwide since 2015</p>
 
         <h1 className="mx-auto mt-8 max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08]">
           <span className="text-white">{t('hero.title.line1')}</span>
