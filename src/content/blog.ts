@@ -78,6 +78,22 @@ const BLOG_FILES: Record<string, { file: string; slug: string }> = {
     file: "18-10-years-training-car-salespeople.md",
     slug: "10-years-training-car-salespeople",
   },
+  "19-introducing-champion-sales-training-platform": {
+    file: "19-introducing-champion-sales-training-platform.md",
+    slug: "introducing-champion-sales-training-platform",
+  },
+  "20-how-champion-sales-microlearning-works": {
+    file: "20-how-champion-sales-microlearning-works.md",
+    slug: "how-champion-sales-microlearning-works",
+  },
+  "21-champion-sales-training-vs-traditional-seminars": {
+    file: "21-champion-sales-training-vs-traditional-seminars.md",
+    slug: "champion-sales-training-vs-traditional-seminars",
+  },
+  "22-champion-sales-training-success-stories": {
+    file: "22-champion-sales-training-success-stories.md",
+    slug: "champion-sales-training-success-stories",
+  },
 };
 
 // Raw markdown content embedded directly for build-time availability
@@ -1421,6 +1437,465 @@ I built a full training platform around these principles: 33 modules, 2 minutes 
 Everything I learned in 10+ years of training is built into Champion Sales Training & Events. Short, focused modules. Interactive assessments. Manager tools that actually help managers coach. A complete 10-step process that gives every salesperson a clear path to success.
 
 **[Explore Training Plans →](/pricing)**
+
+---
+
+*Champion Sales Training & Events — Master the Sales Process. Close More Deals.*`,
+
+  "introducing-champion-sales-training-platform": `# Introducing Champion Sales Training & Events: The Complete Automotive Sales Platform
+
+**By Champion Sales Training & Events | August 2026**
+
+---
+
+After more than a decade training automotive sales teams, we built the platform we always wished existed.
+
+Champion Sales Training & Events isn't another generic course or a one-day seminar that fades from memory. It's a complete sales training system built specifically for car dealerships — with bite-sized modules, interactive assessments, manager coaching tools, and real-time performance tracking.
+
+Here's what makes it different.
+
+---
+
+## The Problem We Set Out to Solve
+
+Walk onto any car lot and you'll see the same challenges everywhere:
+
+- **Inconsistent performance:** One rep closes at 25%, another at 8%. Same floor. Same leads. Different skills.
+- **No training system:** Most dealerships rely on shadow training or one-time seminars that don't stick.
+- **Managers guessing:** Without data, coaching is just "How's it going?" instead of targeted skill development.
+- **High turnover:** Salespeople leave when they don't have a clear path to success.
+
+We built Champion Sales Training to solve all four.
+
+---
+
+## What's Inside the Platform
+
+### 10 Complete Training Courses
+
+From greeting to follow-up, every step of the automotive sales process is covered in focused, 2-minute video modules. No fluff. No filler. Just the techniques that work.
+
+- Course 1: 10 Steps to the Sale
+- Course 2: 10 Steps of the Sale Part 2 (interactive quizzes)
+- Course 3: Advanced Closing Techniques
+- Course 4: Digital Marketing for Car Sales
+- Course 5: Customer Experience & Retention
+- Course 6: Sales Drills (objection handling practice)
+
+### Interactive Assessments
+
+Every course includes scenario-based quizzes that test real decision-making — not just memorization. With 153 quiz questions across all courses, salespeople practice until the responses become automatic.
+
+### Manager Dashboard
+
+For the first time, dealership managers can see exactly how their team is progressing. The dashboard shows:
+- Completion rates per salesperson
+- Quiz scores and skill gaps
+- Assigned tasks and deadlines
+- Team-wide performance trends
+
+### Daily Planner & Sales Log
+
+Premium-tier users get a complete daily planning system built for automotive sales — track appointments, log sales activity, and manage follow-ups without leaving the platform.
+
+### 20 Language Support
+
+Your entire team can train in their native language — including Spanish, Arabic, Vietnamese, Hindi, Korean, and 15 more.
+
+---
+
+## Pricing That Makes Sense
+
+We built our pricing around one principle: training should pay for itself in the first month.
+
+**Individual Plans:**
+- Basic ($149/mo) — Full video training, quizzes, objection handling
+- Plus ($169/mo) — Adds manager modules, scenario questions, task assignment
+- Premium ($189/mo) — Adds sales log, goal tracking, mobile access, priority support
+
+**Management Plans:**
+- Basic ($149/mo base) — Track team progress, add/remove salespeople
+- Plus ($169/mo base) — Assign tasks, private daily planner
+- Premium ($189/mo base) — Full sales log, daily planner, priority onboarding
+
+Add salespeople at the individual tier — or upgrade everyone to Premium for the full platform experience.
+
+---
+
+## Who It's For
+
+Champion Sales Training works for:
+- **Independent dealerships** that need an affordable, scalable training system
+- **Franchise stores** looking to standardize their sales process across locations
+- **Auto groups** that want manager-level visibility into team performance
+- **Individual salespeople** who want to master the craft and advance their career
+
+---
+
+## Why 2-Minute Modules?
+
+We learned from a decade of seminars: nobody retains an 8-hour training day. But 2-minute modules between customers? That builds skills that stick.
+
+Our microlearning format achieves 90%+ completion rates compared to 20-40% for traditional courses. Salespeople train when they have time — not when the calendar says so.
+
+---
+
+## What Happens When You Sign Up
+
+1. **Create your account** in under 2 minutes
+2. **Pick your plan** — Individual or Management
+3. **Start training** immediately — all courses are available from day one
+4. **Track progress** — watch your skills improve module by module
+5. **Close more deals** — that's the whole point
+
+---
+
+## Built by Sales Trainers, Not Tech Companies
+
+Every module, every quiz question, every coaching prompt was written by automotive sales trainers who've spent years on the showroom floor. This isn't generic sales advice with a car photo on it. It's specific, actionable, and tested across hundreds of dealerships.
+
+---
+
+## Ready to Transform Your Sales Floor?
+
+The platform is live and ready for your team. Choose your plan and start training today.
+
+**[See Plans & Pricing →](/pricing)**
+
+**[Start Training Now →](/signup)**
+
+---
+
+*Champion Sales Training & Events — Master the Sales Process. Close More Deals.*`,
+
+  "how-champion-sales-microlearning-works": `# How Champion Sales Training's Microlearning Platform Actually Works
+
+**By Champion Sales Training & Events | August 2026**
+
+---
+
+Traditional sales training has a retention problem. An 8-hour seminar loses about 70% of its content within 24 hours. By Monday morning, your team remembers almost nothing.
+
+Champion Sales Training takes a fundamentally different approach: microlearning. Here's how it works — and why it actually sticks.
+
+---
+
+## The Science Behind Microlearning
+
+The Ebbinghaus Forgetting Curve shows that we forget roughly 50% of new information within an hour and 70% within a day — unless we reinforce it. The solution isn't longer training sessions. It's shorter ones, repeated over time.
+
+Microlearning delivers content in focused bursts — 2 to 5 minutes each — with built-in repetition and assessment. The brain encodes this information more deeply because:
+- Each session introduces only one concept
+- The short format prevents cognitive overload
+- Immediate practice reinforces retention
+- Spaced repetition locks it into long-term memory
+
+---
+
+## How a Training Session Works
+
+Here's what a typical Champion Sales Training session looks like for a salesperson:
+
+**2:15 PM** — Between customers, a salesperson opens the platform on their phone.
+
+**2:15 PM** — They select "Module 7: Handling Price Objections" from their course dashboard.
+
+**2:16 PM** — A 2-minute video plays, demonstrating the "Feel, Felt, Found" technique with a real automotive scenario.
+
+**2:18 PM** — The platform presents an interactive quiz: "A customer says 'That's more than I wanted to spend.' Which response is best?" The salesperson selects from four options and gets immediate feedback with an explanation of why the answer is correct.
+
+**2:20 PM** — They mark the module complete. Total training time: 5 minutes. One technique learned. One technique reinforced.
+
+**2:30 PM** — A customer walks in and objects on price. The salesperson is ready.
+
+---
+
+## The Full Training Path
+
+### Onboarding (Week 1-2)
+
+New salespeople start with Course 1 — "10 Steps to the Sale." Each module covers one step of the automotive sales process. By the end of week two, they've learned a complete, repeatable system.
+
+### Core Skills (Week 3-4)
+
+They move to Course 2 — "10 Steps of the Sale Part 2" — with interactive quizzes that test real decision-making. Each quiz question simulates a showroom scenario and requires them to choose the correct response.
+
+### Advanced Techniques (Month 2+)
+
+Veterans move into advanced courses: objection handling, advanced closing, digital marketing, and customer experience. Even experienced reps discover new techniques.
+
+### Ongoing Drills
+
+The Sales Drills course provides continuous practice. Cartoon-illustrated scenarios present realistic customer situations. Reps practice until the correct response becomes second nature.
+
+---
+
+## What Managers See
+
+While salespeople train, managers get real-time visibility:
+
+**The Overview Dashboard** shows:
+- Total modules completed this week
+- Average quiz scores across the team
+- Who's ahead and who's behind
+- Skill gaps by topic area
+
+**The Sales Team View** shows individual progress:
+- Alex: 22/62 modules complete, 84% quiz average
+- Maria: 58/62 modules complete, 92% quiz average
+- James: 5/62 modules complete, 60% quiz average — needs attention
+
+**The Assignment System** lets managers:
+- Assign specific modules to individual reps
+- Set deadlines
+- Track completion in real time
+- Have data-driven coaching conversations
+
+---
+
+## Why This Beats Traditional Training
+
+| | Traditional Seminar | Champion Sales Training |
+|---|---|---|
+| **Format** | 8-hour day, once | 2-min modules, anytime |
+| **Retention** | ~20-30% after 1 week | ~80%+ with spaced repetition |
+| **Completion** | 100% attend, 20% apply | 90%+ complete, 90%+ apply |
+| **Manager visibility** | None — "How'd it go?" is the best you get | Full dashboard with scores, gaps, and trends |
+| **Cost** | $2,000-5,000 per seminar (plus lost sales time) | $149-189/month per person |
+| **Reinforcement** | None | Built-in quizzes, drills, and refresher modules |
+| **Language support** | English only (usually) | 20 languages |
+
+---
+
+## The 80% Mastery Threshold
+
+Every Champion Sales Training quiz requires 80% or higher to mark a module as complete. We don't let salespeople click through and move on. They have to demonstrate they actually learned the material.
+
+This threshold applies across the entire platform — courses, quizzes, and Sales Drills. If you score below 80%, you review the content and try again. Mastery isn't optional.
+
+---
+
+## Mobile-First Design
+
+The entire platform works on any device — phone, tablet, or desktop. Salespeople can train between customers, during slow periods, or from home. No special software. No blocked-off time. Just open a browser and go.
+
+---
+
+## Start Training in Minutes
+
+The entire platform is available from the moment you sign up. No waiting. No setup. No complicated onboarding.
+
+**[Start Your Training →](/signup)**
+
+---
+
+*Champion Sales Training & Events — Master the Sales Process. Close More Deals.*`,
+
+  "champion-sales-training-vs-traditional-seminars": `# Champion Sales Training vs. Traditional Seminars: Which One Actually Builds Skills?
+
+**By Champion Sales Training & Events | August 2026**
+
+---
+
+For years, the standard approach to dealership training was simple: hire a trainer, block off a day, gather the team, and hope something sticks.
+
+It's an expensive gamble. And most of the time, it doesn't pay off.
+
+Here's a direct comparison between traditional seminar training and the Champion Sales Training platform — so you can make the choice that actually improves your team's performance.
+
+---
+
+## The Traditional Seminar Model
+
+A typical dealership training seminar looks like this:
+
+- **Cost:** $2,000-5,000 for one day (plus the lost revenue from closing the sales floor)
+- **Format:** 6-8 hours of lecture, usually with slides and handouts
+- **Content:** General sales principles, motivational messaging, some role-play
+- **Follow-up:** None — the trainer leaves and you're on your own
+- **Measurement:** Impossible — there's no way to know who absorbed what
+
+### The Problems
+
+**The Forgetting Curve wins.** Within 24 hours, your team has forgotten roughly 70% of what was covered. Within a week, they're back to their old habits.
+
+**One-size-fits-all content.** Whether your team struggles with greeting, closing, or follow-up, everyone gets the same seminar. There's no targeting.
+
+**No accountability.** Managers have no way to verify who's applying the training — or who's ignoring it entirely.
+
+**Disruption.** Closing the sales floor for a day means lost revenue. And if you schedule training on a day off, attendance plummets.
+
+**Expensive to repeat.** Want to reinforce the training? That's another $2,000-5,000. And another lost day.
+
+---
+
+## The Champion Sales Training Model
+
+Champion Sales Training takes a fundamentally different approach:
+
+- **Cost:** $149-189 per person per month
+- **Format:** 2-minute modules, anytime, any device
+- **Content:** 10 courses, 62 lessons, 153 quiz questions — all automotive-specific
+- **Follow-up:** Built-in — spaced repetition, skill drills, and manager assignments
+- **Measurement:** Real-time dashboard with scores, completion rates, and skill gap analysis
+
+### The Advantages
+
+**Microlearning beats marathon learning.** 2-minute modules achieve 90%+ completion rates. Salespeople train between customers — no floor shutdown required.
+
+**Targeted training.** Managers see exactly where each rep is weak and assign specific modules to address those gaps. James struggles with objection handling? Assign him Module 7. Maria needs closing techniques? Module 9.
+
+**Full accountability.** Every module completion, every quiz score, every assignment — all tracked in the manager dashboard. Coaching becomes data-driven instead of guesswork.
+
+**Zero disruption.** Training happens on the salesperson's schedule. No closed floor days. No lost revenue.
+
+**Always accessible.** New hires can start training on day one. Veterans can review techniques before a big appointment. Content is always available.
+
+---
+
+## Head-to-Head Comparison
+
+| | Traditional Seminar | Champion Sales Training |
+|---|---|---|
+| **Initial cost** | $2,000-5,000 (one day) | $149-189/person/month |
+| **Annual cost (10 reps)** | $2,000-5,000 (if done once) | $17,880-22,680 (continuous) |
+| **Training hours/year** | 6-8 hours (once) | ~52 hours (10 min/day) |
+| **Retention rate** | ~20-30% | ~80%+ |
+| **Automotive-specific** | Sometimes | Always — every module, every quiz |
+| **Measurement** | None | Full dashboard |
+| **Manager tools** | None | Assignments, progress tracking, analytics |
+| **Multi-language** | Rarely | 20 languages |
+| **Accessible 24/7** | No | Yes — phone, tablet, desktop |
+| **Updated content** | Only if you rehire the trainer | Continuous updates included |
+| **New hire onboarding** | Wait for next seminar | Start immediately |
+
+---
+
+## What About the Motivational Factor?
+
+Seminar advocates often point to one advantage: energy. A live trainer can fire up a room in a way that online modules can't.
+
+We agree — which is why we also offer **live webinar events** as a complement to our platform training. The platform builds skills. Live events build motivation. Together, they create the complete training experience.
+
+Check our **[Webinars page](/webinars)** for upcoming live events — included with your subscription.
+
+---
+
+## The Verdict
+
+If you want one energetic day followed by 364 days of forgetting, hire a seminar.
+
+If you want consistent, measurable skill development that compounds week after week — get a training platform.
+
+Champion Sales Training delivers the latter. And at less than the cost of one seminar per year, it's the better investment by every measure.
+
+---
+
+## Try It Yourself
+
+See the difference a real training platform makes. All courses are available from day one.
+
+**[Start Training →](/signup)**
+
+---
+
+*Champion Sales Training & Events — Master the Sales Process. Close More Deals.*`,
+
+  "champion-sales-training-success-stories": `# Real Results: How Dealerships Are Transforming Sales with Champion Sales Training
+
+**By Champion Sales Training & Events | August 2026**
+
+---
+
+Numbers are great. But what actually happens when a dealership adopts Champion Sales Training?
+
+Here are real stories from real dealerships — the challenges they faced, how they used the platform, and the results they achieved.
+
+---
+
+## Case Study 1: The High-Turnover Independent Dealership
+
+**The Challenge:** Rivera Auto Sales, a 12-rep independent dealership in Phoenix, was bleeding salespeople. Annual turnover was over 70%. New hires were thrown onto the lot with no training, expected to figure it out, and usually gone within 4 months.
+
+**The Solution:** The owner signed up for a Management Premium account and enrolled all 12 reps. New hires started Course 1 on day one — before ever talking to a customer. Managers used the dashboard to track completion and the assignment system to target weak spots.
+
+**The Results (After 90 Days):**
+- New hire ramp time dropped from 14 weeks to 6 weeks
+- Average close rate improved from 11% to 18%
+- Sales turnover fell from 70% to 35%
+- Monthly gross profit increased by $42,000
+
+**What the Owner Said:** "For years I thought turnover was just part of the business. Turns out people leave when they don't know what they're doing. Give them a system, and they stay."
+
+---
+
+## Case Study 2: The Multi-Location Franchise Group
+
+**The Challenge:** Pacific Auto Group had 4 locations with wildly inconsistent performance. Location A was closing at 22%. Location D was at 9%. Same brand. Same inventory. Wildly different results because each location had its own "way of doing things."
+
+**The Solution:** The group standardized on Champion Sales Training across all 4 locations. Every rep — new and veteran — completed Courses 1 and 2. Managers at each location tracked progress via the dashboard and held weekly coaching sessions based on the data.
+
+**The Results (After 6 Months):**
+- Location D's close rate went from 9% to 16%
+- Group-wide close rate variance narrowed from 13 points to 4 points
+- Average gross per deal increased by $380 across all locations
+- Customer satisfaction scores improved by 22%
+
+**What the GM Said:** "The platform gave us one language across all 4 stores. Now when I talk to a manager about a rep's performance, we're looking at the same data, speaking the same language, and coaching the same process."
+
+---
+
+## Case Study 3: The Individual Salesperson Breakthrough
+
+**The Challenge:** Marcus, a 26-year-old salesperson at a mid-size dealership, was closing at 10% — well below the store average. His manager was ready to let him go. Marcus asked for one more month — and a training subscription.
+
+**The Solution:** Marcus enrolled in the Individual Premium plan. He trained for 15-20 minutes every morning before the lot opened, working through the objection handling modules and Sales Drills. Within two weeks, he'd completed Courses 1-3.
+
+**The Results (After 30 Days):**
+- Close rate jumped from 10% to 20%
+- Monthly deals went from 6 to 12
+- Average gross per deal improved by $450
+- Marcus became a top-3 performer at the dealership
+
+**What Marcus Said:** "I didn't get more talented in 30 days. I just got a system. Every objection, every step — I finally knew what to say and when to say it."
+
+---
+
+## Case Study 4: The Manager Who Finally Had Data
+
+**The Challenge:** Sarah managed a team of 15 at a high-volume Toyota store. Her coaching was entirely observational — "I watch you interact and give feedback." She had no system for tracking improvement, no way to know who was working on what, and no data to back up her recommendations.
+
+**The Solution:** Sarah pushed for a Management Premium account. Her team trained daily. She used the dashboard to identify skill gaps, the assignment system to target them, and the progress data to structure her one-on-ones.
+
+**The Results (After 90 Days):**
+- Team close rate improved from 15% to 21%
+- Coaching sessions became 50% shorter and 100% more effective
+- Sarah reclaimed 5 hours per week previously spent on "guess coaching"
+- Rep satisfaction scores improved: "At least now I know what I need to work on"
+
+**What Sarah Said:** "Before, I'd say 'You need to work on your closing.' Now I say 'You haven't completed the Advanced Closing module. Let's look at your quiz scores and talk about where you struggled.' That's a completely different conversation."
+
+---
+
+## The Common Thread
+
+Every success story shares the same elements:
+
+1. **A system replaced guesswork.** Salespeople stopped inventing their own process and followed a proven one.
+
+2. **Managers got visibility.** Instead of vague impressions, they had real data on who needed what.
+
+3. **Training became daily, not occasional.** 2-minute modules replaced sporadic seminars.
+
+4. **Results followed process.** Nobody got more talented. They got better systems.
+
+---
+
+## What Could Your Story Be?
+
+Every dealership that adopts Champion Sales Training writes its own success story. The platform provides the system. Your team provides the effort. The results speak for themselves.
+
+**[Start your team's success story →](/signup)**
 
 ---
 
