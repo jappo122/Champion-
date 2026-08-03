@@ -44,7 +44,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
             See Plans &amp; Price
           </a>
         </div>
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {loggedIn ? (
             <>
               <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
@@ -56,13 +56,11 @@ function Navbar({ t }: { t: (k: string) => string }) {
           ) : (
             <>
               <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-              <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
+              <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
               <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
-              <a href="/manager" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.manager')}</a>
-              <a href="/#features" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.features')}</a>
-              <a href="/#pricing" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.pricing')}</a>
+              <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
               <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
-              <a href="/signup" className="btn-primary text-sm">{t('nav.getStarted')}</a>
+              <a href="/pricing" className="btn-primary text-sm">See Plans &amp; Price</a>
             </>
           )}
           <LanguageSwitcher />
