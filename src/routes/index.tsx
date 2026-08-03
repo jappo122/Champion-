@@ -35,13 +35,22 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="/" className="flex items-center -my-2 shrink-0">
-          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-20 w-auto -my-2" />
+      <div className="mx-auto grid h-16 max-w-7xl grid-cols-3 items-center px-4 md:flex md:justify-between md:px-6">
+        <a href="/" className="flex items-center shrink-0">
+          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-24 w-auto -my-2" />
         </a>
-        <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
+        <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden justify-self-center">
           See Plans &amp; Price
         </a>
+        <button
+          onClick={() => (window as any).__toggleMobileNav?.()}
+          className="md:hidden justify-self-end flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-white"
+          aria-label="Menu"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
         <nav className="hidden items-center gap-6 md:flex">
           {loggedIn ? (
             <>
