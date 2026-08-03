@@ -91,6 +91,8 @@ function Hero({ t }: { t: (k: string) => string }) {
           {t('hero.badge')}
         </div>
 
+        <p className="mt-4 text-sm font-medium text-[#e63946] uppercase tracking-widest">Training salespeople nationwide since 2015</p>
+
         <h1 className="mx-auto mt-8 max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08]">
           <span className="text-white">{t('hero.title.line1')}</span>
           <br />
