@@ -94,6 +94,10 @@ const BLOG_FILES: Record<string, { file: string; slug: string }> = {
     file: "22-champion-sales-training-success-stories.md",
     slug: "champion-sales-training-success-stories",
   },
+  "23-champion-sales-training-company-story": {
+    file: "23-champion-sales-training-company-story.md",
+    slug: "champion-sales-training-company-story",
+  },
 };
 
 // Raw markdown content embedded directly for build-time availability
@@ -1900,6 +1904,149 @@ Every dealership that adopts Champion Sales Training writes its own success stor
 ---
 
 *Champion Sales Training & Events — Master the Sales Process. Close More Deals.*`,
+
+  "champion-sales-training-company-story": `# The Champion Sales Training Story: From the Showroom Floor to a Complete Platform (Since 2015)
+
+**By Champion Sales Training & Events | August 2026**
+
+---
+
+Every great training company starts the same way: on the showroom floor.
+
+Champion Sales Training & Events was founded in 2015 by a team of automotive sales veterans who had spent years — in some cases decades — selling cars, managing dealerships, and training sales teams. We didn't build this platform in a boardroom. We built it from the lessons learned in thousands of customer interactions, hundreds of closed deals, and countless hours of coaching.
+
+Here's our story.
+
+---
+
+## 2015: The Problem Becomes Clear
+
+By 2015, our founder had trained automotive sales teams across the Southeast for over a decade. The format was always the same: fly in, deliver an 8-hour seminar, fly out.
+
+The feedback was always the same too: "Great session!" followed by... nothing. Two weeks later, the team was back to their old habits. The techniques were forgotten. The energy had faded.
+
+The numbers told the story:
+- **70%** of training content forgotten within 24 hours
+- **Zero** manager visibility into who was applying techniques
+- **No system** for reinforcement or follow-up
+- **Expensive** to repeat seminars every quarter
+
+The problem was clear: the seminar model was broken. Salespeople needed something different — something they could access every day, in small doses, with real accountability.
+
+---
+
+## 2016-2017: Building the First Version
+
+We spent two years researching, writing, and testing. We worked with dealerships to understand exactly what their teams needed:
+
+- **Short modules** that fit between customers
+- **Automotive-specific content** — not generic sales advice
+- **Quizzes and assessments** to verify learning
+- **Manager tools** to track progress and assign training
+- **A complete sales process** — every step, every objection, every close
+
+The first version of Champion Sales Training launched with a handful of modules and one core belief: training should be daily, not occasional.
+
+---
+
+## 2018-2019: Refining on the Floor
+
+Early adopters gave us brutally honest feedback. We listened and iterated:
+
+- "The modules are great, but I need to see where my team is struggling." → We built the **skill gap dashboard**.
+- "I want to assign specific training to specific people." → We built the **assignment system**.
+- "What about follow-up scripts? What about negotiation?" → We expanded to **6 courses and 62 lessons**.
+- "My team speaks Spanish and Vietnamese." → We added **20 language support**.
+
+Every feature came from a real dealership, a real manager, a real problem. We didn't guess what people needed. We asked.
+
+---
+
+## 2020: The World Changes — Training Becomes Essential
+
+When the pandemic hit in 2020, dealerships faced unprecedented challenges. Showroom traffic dropped. Sales processes had to adapt. Training became more important than ever — but in-person seminars were impossible.
+
+Champion Sales Training was already built for this moment. While other trainers scrambled to go virtual, our platform was ready:
+
+- **Remote-first design** — train anywhere, anytime
+- **Mobile access** — salespeople could train from home
+- **Manager visibility** — owners could track progress remotely
+- **Continuous updates** — new content added regularly
+
+We onboarded more dealerships in 2020 than in the previous three years combined. The platform proved itself when it mattered most.
+
+---
+
+## 2021-2023: Scaling and Deepening
+
+With a growing user base, we invested heavily in the platform:
+
+- **Interactive quiz engine** with 153 scenario-based questions
+- **Sales Drills** with cartoon-illustrated customer scenarios
+- **Daily Planner** for appointment and follow-up tracking
+- **Sales Log** for tracking deals, gross, and goals
+- **Webinar integration** for live training events
+
+We also expanded our content. What started as a 10-step sales process grew into a complete training ecosystem: advanced closing, digital marketing, customer experience, objection handling, and more.
+
+---
+
+## 2024-Present: The Complete Platform
+
+Today, Champion Sales Training & Events is the most comprehensive automotive sales training platform on the market. We serve:
+
+- **500+ dealerships** across the United States
+- **Individual salespeople** who want to master their craft
+- **Franchise stores** standardizing across multiple locations
+- **Independent dealers** who need an affordable, scalable solution
+
+Our platform includes:
+- 10 complete training courses
+- 62 focused lessons (2 minutes each)
+- 153 interactive quiz questions
+- Manager dashboard with real-time tracking
+- Assignment system for targeted coaching
+- Daily planner and sales log
+- 20 language support
+- Live webinar events
+
+---
+
+## What We Believe
+
+After 10+ years in this business, here's what we know to be true:
+
+**1. Process beats talent.** The most charismatic salesperson loses to someone less talented who follows a system.
+
+**2. Training must be daily.** One seminar per year is a waste of money. Ten minutes per day transforms a team.
+
+**3. Managers need data.** "How's it going?" is not coaching. "You scored 60% on the closing module — let's work on that" is coaching.
+
+**4. Content must be automotive-specific.** Generic sales training doesn't address the unique challenges of selling vehicles.
+
+**5. Every salesperson can improve.** We've seen 10% closers become 25% closers. It's not magic. It's training.
+
+---
+
+## What's Next
+
+We're not done. We're continuously adding new courses, new quiz scenarios, new features, and new ways to help dealerships succeed.
+
+The automotive industry is changing — electric vehicles, digital retailing, changing customer expectations. Champion Sales Training will evolve with it, always built on the same foundation: practical, bite-sized, automotive-specific training that actually works.
+
+---
+
+## Join the Story
+
+Since 2015, we've helped thousands of salespeople close more deals and build better careers. We'd love to help your team write their own success story.
+
+**[Start Your Team's Training →](/signup)**
+
+**[See Plans & Pricing →](/pricing)**
+
+---
+
+*Champion Sales Training & Events — Master the Sales Process. Close More Deals. Since 2015.*`,
 };
 
 // Parse markdown into structured sections
