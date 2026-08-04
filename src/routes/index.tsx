@@ -40,7 +40,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
           <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
         </a>
         <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
-          See Plans &amp; Price
+          Pricing Information
         </a>
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
@@ -67,7 +67,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
               <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
               <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
               <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
-              <a href="/pricing" className="btn-primary text-sm">See Plans &amp; Price</a>
+              <a href="/pricing" className="btn-primary text-sm">Pricing Information</a>
             </>
           )}
           <LanguageSwitcher />
