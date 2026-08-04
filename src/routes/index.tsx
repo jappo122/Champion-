@@ -35,7 +35,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-evenly px-4 md:justify-between md:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center shrink-0">
           <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
         </a>
