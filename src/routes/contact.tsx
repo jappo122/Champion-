@@ -94,12 +94,7 @@ function ContactPage() {
       <header className="border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
           <a href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]">
-              <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="text-lg font-bold text-white">Champion Sales Training & Events</span>
+            <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
           <nav className="flex items-center gap-6">
             <a href="/" className="text-sm text-gray-400 transition-colors hover:text-white">Home</a>

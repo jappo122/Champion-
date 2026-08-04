@@ -42,12 +42,7 @@ function LoginPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <a href="/" className="inline-flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#e63946]">
-              <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="text-lg font-bold text-white">Champion Sales Training & Events</span>
+            <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
         </div>
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
