@@ -30,7 +30,11 @@ function SupportPage() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    typeof window !== "undefined" && new URLSearchParams(window.location.search).get("error") === "1"
+      ? "error"
+      : "idle"
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

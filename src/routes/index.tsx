@@ -118,7 +118,7 @@ function Hero({ t }: { t: (k: string) => string }) {
 
         {/* Scroll down indicator — bottom right, fades on scroll */}
         <div
-          className={`fixed bottom-8 right-8 z-40 flex flex-col items-center gap-1.5 transition-all duration-700 ${
+          className={`fixed bottom-8 right-8 z-40 hidden sm:flex flex-col items-center gap-1.5 transition-all duration-700 ${
             scrolled ? "pointer-events-none opacity-0" : "opacity-100"
           }`}
         >
