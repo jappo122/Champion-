@@ -79,14 +79,18 @@ function SupportPage() {
           <p className="mt-2 text-gray-400">{t('support.subtitle')}</p>
 
           {status === "success" ? (
-            <div className="mt-10 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20">
-                <svg className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            <div className="mt-10 rounded-xl border border-green-500/30 bg-green-500/10 p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-500/20">
+                  <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-green-400">{t('support.success')}</h3>
+                  <p className="mt-1 text-sm text-gray-300">{t('support.successDesc')}</p>
+                </div>
               </div>
-              <h3 className="mt-4 text-xl font-bold text-white">{t('support.success')}</h3>
-              <p className="mt-2 text-gray-400">{t('support.successDesc')}</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-10 space-y-4">
@@ -137,7 +141,16 @@ function SupportPage() {
                 />
               </div>
               {status === "error" && (
-                <div className="rounded-lg bg-[#e63946]/10 p-3 text-sm text-[#e63946]">{t('support.error')}</div>
+                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500/20">
+                      <svg className="h-4 w-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium text-red-300">{t('support.error')}</p>
+                  </div>
+                </div>
               )}
               <button
                 type="submit"
