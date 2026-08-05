@@ -35,12 +35,9 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full bg-transparent">
-      <div className="mx-auto flex h-[172px] max-w-7xl items-center justify-between px-3 md:px-6">
+      <div className="mx-auto flex h-[210px] max-w-7xl items-center justify-between px-3 md:px-6">
         <a href="/" className="flex items-center shrink-0 pl-0">
-          <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[140px] w-auto object-contain" />
-        </a>
-        <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
-          PRICING
+          <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[175px] w-auto object-contain" />
         </a>
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
@@ -67,7 +64,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
               <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
               <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
               <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
-              <a href="/pricing" className="btn-primary text-sm">PLANS AND PRICING</a>
+              
             </>
           )}
           <LanguageSwitcher />
@@ -86,7 +83,7 @@ function Hero({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("scroll", onScroll);
     }, []);
     return (
-    <section className="relative overflow-hidden pt-36 pb-28 sm:pb-36">
+    <section className="relative overflow-hidden pt-56 pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#e63946]/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />
