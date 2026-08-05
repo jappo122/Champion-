@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
 import { courses } from "~/content/courses";
 import { detailedSteps } from "~/content/steps-content";
 import type { DetailedStep } from "~/content/steps-content";
+import { QuizQuestion } from "~/components/quiz-question";
 
 export const Route = createFileRoute("/steps")({
   component: StepsPage,
@@ -10,6 +12,10 @@ export const Route = createFileRoute("/steps")({
 
 function StepsPage() {
   const { t } = useTranslation();
+  const [activePart, setActivePart] = useState<1 | 2>(1);
+
+  // Get the Part 2 quiz course
+  const quizCourse = courses.find((c) => c.id === "10-steps-part-2");
 
   return (
     <div className="min-h-dvh bg-[#0a1628]">
@@ -41,7 +47,51 @@ function StepsPage() {
           </a>
         </div>
 
-        {/* Guide content */}
+        {/* Part 1 / Part 2 Toggle */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-1.5 gap-1.5">
+            <button
+              onClick={() => setActivePart(1)}
+              className={`flex items-center gap-3 rounded-lg px-5 py-3 text-left transition-all duration-200 ${
+                activePart === 1
+                  ? "bg-[#0a1628] border border-[#e63946]/30 shadow-lg shadow-[#e63946]/5"
+                  : "hover:bg-[#0a1628]/50"
+              }`}
+            >
+              <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${activePart === 1 ? "bg-[#1a2d4a]" : "bg-[#0a1628]"} transition-colors`}>
+                <svg className={`h-5 w-5 ${activePart === 1 ? "text-white" : "text-gray-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </span>
+              <div>
+                <div className={`text-sm font-semibold ${activePart === 1 ? "text-white" : "text-gray-400"}`}>Read the Steps</div>
+                <div className="text-xs text-gray-500 mt-0.5">Detailed explanations</div>
+              </div>
+            </button>
+            <button
+              onClick={() => setActivePart(2)}
+              className={`flex items-center gap-3 rounded-lg px-5 py-3 text-left transition-all duration-200 ${
+                activePart === 2
+                  ? "bg-[#0a1628] border border-[#e63946]/30 shadow-lg shadow-[#e63946]/5"
+                  : "hover:bg-[#0a1628]/50"
+              }`}
+            >
+              <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${activePart === 2 ? "bg-[#e63946]" : "bg-[#0a1628]"} transition-colors`}>
+                <svg className={`h-5 w-5 ${activePart === 2 ? "text-white" : "text-gray-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+              </span>
+              <div>
+                <div className={`text-sm font-semibold ${activePart === 2 ? "text-white" : "text-gray-400"}`}>Test Your Knowledge</div>
+                <div className="text-xs text-gray-500 mt-0.5">40 quiz questions</div>
+              </div>
+              <span className="ml-auto inline-flex items-center rounded-full bg-[#e63946]/20 px-2 py-0.5 text-[10px] font-bold text-[#e63946] uppercase tracking-wider">Quiz</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Part 1: Detailed Explanations */}
+        {activePart === 1 && (
         <div className="space-y-8">
           {detailedSteps.map((s: DetailedStep) => {
             const course = courses.find((c) => c.id === s.courseId);
@@ -124,6 +174,29 @@ function StepsPage() {
             );
           })}
         </div>
+        )}
+
+        {/* Part 2: Interactive Quiz */}
+        {activePart === 2 && quizCourse && (
+        <div className="space-y-8">
+          <div className="text-center mb-6">
+            <p className="text-gray-400">
+              Test your knowledge of each step with scenario-based questions. Select an answer to see instant feedback and explanations.
+            </p>
+          </div>
+          {quizCourse.lessonsList.map((lesson) => (
+            <div key={lesson.id} className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 sm:p-8">
+              <h2 className="text-lg font-bold text-white mb-2">{lesson.title}</h2>
+              <p className="text-sm text-gray-500 mb-4">{lesson.description}</p>
+              {lesson.content ? (
+                <QuizQuestion content={lesson.content} lessonId={lesson.id} />
+              ) : (
+                <p className="text-gray-400 text-sm italic">No quiz content available for this step.</p>
+              )}
+            </div>
+          ))}
+        </div>
+        )}
       </main>
 
       {/* Footer */}
