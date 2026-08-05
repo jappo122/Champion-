@@ -40,7 +40,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
           <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-28 w-auto object-contain" />
         </a>
         <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
-          PLANS AND PRICING
+          PRICING
         </a>
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
