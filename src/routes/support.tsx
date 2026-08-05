@@ -67,7 +67,7 @@ function SupportPage() {
       <header className="border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
           <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
           <a href="/" className="text-sm text-gray-400 transition-colors hover:text-white">Home</a>
         </div>

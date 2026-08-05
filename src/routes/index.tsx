@@ -37,7 +37,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
     <header className="fixed top-0 z-50 w-full border-b border-[#1a2d4a]/50 bg-[#0a1628]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center shrink-0">
-          <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
+          <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
         </a>
         <a href="/pricing" className="btn-primary text-xs px-3 py-1.5 whitespace-nowrap md:hidden">
           Pricing Information
@@ -617,7 +617,7 @@ function Footer({ t }: { t: (k: string) => string }) {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2">
-              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
+              <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
               The complete automotive sales training platform. Master the proven sales process, close more deals, and grow your career.

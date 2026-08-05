@@ -42,7 +42,7 @@ function LoginPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <a href="/" className="inline-flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
         </div>
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
