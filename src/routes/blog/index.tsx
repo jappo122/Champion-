@@ -1,18 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { LanguageSwitcher } from "~/i18n";
 import { getBlogPosts, type BlogPost } from "~/content/blog";
+
+const POSTS_PER_PAGE = 6;
 
 export const Route = createFileRoute("/blog/")({
   component: BlogListing,
 });
 
 function BlogListing() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-
-  useEffect(() => {
-    setPosts(getBlogPosts());
-  }, []);
+  const search = useSearch({ from: Route.id as any });
+  const currentPage = Math.max(1, parseInt((search as any)?.page) || 1);
+  const allPosts = getBlogPosts();
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+  const safePage = Math.min(currentPage, totalPages || 1);
+  const startIdx = (safePage - 1) * POSTS_PER_PAGE;
+  const posts = allPosts.slice(startIdx, startIdx + POSTS_PER_PAGE);
 
   return (
     <div className="min-h-dvh bg-[#0a1628]">
@@ -79,6 +82,51 @@ function BlogListing() {
               </a>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12 flex items-center justify-center gap-4">
+              {safePage > 1 ? (
+                <a
+                  href={`/blog?page=${safePage - 1}`}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#1a2d4a] px-4 py-2 text-sm text-gray-300 transition-all hover:border-[#e63946]/50 hover:text-white"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Previous
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#1a2d4a]/30 px-4 py-2 text-sm text-gray-600 cursor-not-allowed">
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Previous
+                </span>
+              )}
+              <span className="text-sm text-gray-400">
+                Page <span className="text-white font-semibold">{safePage}</span> of <span className="text-white font-semibold">{totalPages}</span>
+              </span>
+              {safePage < totalPages ? (
+                <a
+                  href={`/blog?page=${safePage + 1}`}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#1a2d4a] px-4 py-2 text-sm text-gray-300 transition-all hover:border-[#e63946]/50 hover:text-white"
+                >
+                  Next
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#1a2d4a]/30 px-4 py-2 text-sm text-gray-600 cursor-not-allowed">
+                  Next
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
