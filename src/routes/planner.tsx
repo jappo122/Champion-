@@ -56,7 +56,7 @@ function PlannerPage() {
       <header className="border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
           <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.jpg" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
           <nav className="flex items-center gap-6">
             <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
