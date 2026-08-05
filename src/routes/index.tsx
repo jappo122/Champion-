@@ -108,7 +108,7 @@ function Hero({ t }: { t: (k: string) => string }) {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="#pricing" className="btn-primary-lg">
+          <a href="/pricing" className="btn-primary-lg">
             {t('hero.cta.waitlist')}
           </a>
           <a href="#features" className="btn-secondary text-base px-8 py-4">
