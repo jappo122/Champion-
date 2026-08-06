@@ -47,9 +47,10 @@ const completeSignupAfterPayment = createServerFn({ method: "POST" }).handler(
     `;
 
     // Verify login credentials work before sending welcome email
+    // (read-only — never modifies the stored password)
     const { verifyAndEnsureLogin } = await import("~/lib/verify-login");
-    const verifyResult = await verifyAndEnsureLogin(email, tempPassword, db);
-    const finalPassword = verifyResult.password; // May have been regenerated on retry
+    const verifyResult = await verifyAndEnsureLogin(email, tempPassword);
+    const finalPassword = verifyResult.password; // Always the tempPassword we stored
 
     // Send welcome email with verified login credentials
     const tierLabel = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);

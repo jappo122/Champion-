@@ -1,12 +1,11 @@
 // ── Login Credential Verification ──────────────────────────────────────────
-// Before any welcome email is sent, this module verifies that the credentials
-// ACTUALLY work by making a real HTTP request to the /api/login endpoint.
-// Up to 3 retry attempts with regenerated passwords if verification fails.
+// Pure read-only verification — makes a single HTTP POST to /api/login and
+// reports success/failure. Never writes to the DB, never regenerates passwords.
+// The caller is responsible for emailing the tempPassword they generated at
+// insert time, which already matches the stored hash.
 //
 // Used by: signup/complete.tsx, manager.ts (addSalesperson)
 // ────────────────────────────────────────────────────────────────────────────
-
-import { createHash, randomBytes } from "node:crypto";
 
 const LOGIN_URL = "http://localhost:3000/api/login";
 
@@ -17,8 +16,9 @@ interface VerificationResult {
 }
 
 /**
- * Verify login credentials by making a real HTTP POST to the login API.
+ * Verify login credentials by making a single HTTP POST to the login API.
  * This tests the exact same code path a customer would use.
+ * Pure read-only — no side effects, no retries, no password changes.
  */
 async function callLoginApi(email: string, password: string): Promise<VerificationResult> {
   try {
@@ -45,68 +45,37 @@ async function callLoginApi(email: string, password: string): Promise<Verificati
 }
 
 /**
- * Generate a new password hash.
- */
-function generatePassword(password: string): { password: string; hash: string } {
-  const salt = randomBytes(16).toString("hex");
-  let key = password + salt;
-  for (let i = 0; i < 1000; i++) {
-    key = createHash("sha256").update(key).digest("hex");
-  }
-  return { password, hash: `${salt}:${key}` };
-}
-
-/**
  * Verify that an email/password pair can successfully log in.
- * Makes up to 3 attempts — if the first password fails, regenerates and retries.
- * 
- * Returns { ok: true, password } on success (with the working password).
- * Returns { ok: false, error } if all 3 attempts fail.
+ * Single attempt — read-only, NO database writes, NO password changes.
+ *
+ * Returns { ok: true, password: <initialPassword> } on success.
+ * Returns { ok: false, password: <initialPassword>, error } on failure.
+ * The password returned is ALWAYS the initialPassword — callers email
+ * that value, which matches the stored hash from insert time.
  */
 export async function verifyAndEnsureLogin(
   email: string,
-  initialPassword: string,
-  db: any,
+  password: string,
 ): Promise<{ ok: boolean; password: string; error?: string }> {
-  let currentPassword = initialPassword;
+  console.log(`[VerifyLogin] Verifying login for ${email}`);
 
-  for (let attempt = 0; attempt < 3; attempt++) {
-    console.log(`[VerifyLogin] Attempt ${attempt + 1}/3 for ${email}`);
+  const result = await callLoginApi(email, password);
 
-    const result = await callLoginApi(email, currentPassword);
-
-    if (result.ok) {
-      console.log(`[VerifyLogin] ✅ Login verified for ${email} on attempt ${attempt + 1}`);
-      // Session token update removed — no longer invalidates other sessions
-      return { ok: true, password: currentPassword };
-    }
-
-    console.log(`[VerifyLogin] ❌ Attempt ${attempt + 1} failed: ${result.error}`);
-
-    // On failure, regenerate password and update DB (unless it's the last attempt)
-    if (attempt < 2) {
-      const { password: newPassword, hash: newHash } = generatePassword(
-        randomBytes(12).toString("hex"),
-      );
-      currentPassword = newPassword;
-      try {
-        await db`UPDATE users SET password_hash = ${newHash} WHERE LOWER(email) = ${email.toLowerCase()}`;
-        console.log(`[VerifyLogin] Regenerated credentials for ${email}`);
-      } catch (err: any) {
-        console.error(`[VerifyLogin] Failed to update password for ${email}:`, err.message);
-      }
-    }
+  if (result.ok) {
+    console.log(`[VerifyLogin] ✅ Login verified for ${email}`);
+  } else {
+    console.log(`[VerifyLogin] ❌ Login verification failed for ${email}: ${result.error}`);
   }
 
-  console.error(`[VerifyLogin] ❌ All 3 attempts failed for ${email}`);
-  return { ok: false, password: currentPassword, error: "Login verification failed after 3 attempts" };
+  return { ok: result.ok, password, error: result.error };
 }
 
 /**
  * Quick check: verify all existing demo accounts can log in.
  * Run this after deploys or when troubleshooting.
+ * Read-only — no side effects.
  */
-export async function verifyAllAccounts(db: any): Promise<{ passed: string[]; failed: string[] }> {
+export async function verifyAllAccounts(): Promise<{ passed: string[]; failed: string[] }> {
   const passed: string[] = [];
   const failed: string[] = [];
 
