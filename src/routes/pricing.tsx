@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useTranslation, LanguageSwitcher } from "~/i18n";
 
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
@@ -195,6 +196,18 @@ function PricingPage() {
 
   return (
     <div className="min-h-screen bg-[#0a1628]">
+      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+          <a href="/" className="flex items-center gap-2">
+            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+          </a>
+          <nav className="flex items-center gap-6">
+            <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
+            <LanguageSwitcher />
+          </nav>
+        </div>
+      </header>
+
       {/* Hero */}
       <section className="px-4 py-16 md:py-24">
         <div className="mx-auto max-w-6xl text-center">

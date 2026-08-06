@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { getAuthInfo } from "~/lib/auth-guard";
 import { getInboxEmails, getInboxEmail, markInboxRead } from "~/lib/inbox";
+import { LanguageSwitcher } from "~/i18n";
 
 export const Route = createFileRoute("/inbox")({
   component: InboxPage,
@@ -100,8 +101,21 @@ function InboxPage() {
   // Loading state
   if (initializing) {
     return (
-      <div className="min-h-screen bg-[#0a1628] flex items-center justify-center">
-        <div className="animate-spin h-8 w-8 border-2 border-[#e63946] border-t-transparent rounded-full" />
+      <div className="min-h-screen bg-[#0a1628]">
+        <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+            <a href="/" className="flex items-center gap-2">
+              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            </a>
+            <nav className="flex items-center gap-6">
+              <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
+              <LanguageSwitcher />
+            </nav>
+          </div>
+        </header>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin h-8 w-8 border-2 border-[#e63946] border-t-transparent rounded-full" />
+        </div>
       </div>
     );
   }
@@ -109,13 +123,26 @@ function InboxPage() {
   // Not authenticated
   if (!token) {
     return (
-      <div className="min-h-screen bg-[#0a1628] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Inbox</h1>
-          <p className="text-slate-400 mb-6">Please sign in to access the inbox.</p>
-          <a href="/login" className="px-6 py-3 bg-[#e63946] text-white rounded-lg hover:bg-[#c1121f] transition font-semibold">
-            Sign In
-          </a>
+      <div className="min-h-screen bg-[#0a1628]">
+        <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+            <a href="/" className="flex items-center gap-2">
+              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            </a>
+            <nav className="flex items-center gap-6">
+              <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
+              <LanguageSwitcher />
+            </nav>
+          </div>
+        </header>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-white mb-4">Inbox</h1>
+            <p className="text-slate-400 mb-6">Please sign in to access the inbox.</p>
+            <a href="/login" className="px-6 py-3 bg-[#e63946] text-white rounded-lg hover:bg-[#c1121f] transition font-semibold">
+              Sign In
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -124,15 +151,28 @@ function InboxPage() {
   // Not a demo user
   if (!isDemo) {
     return (
-      <div className="min-h-screen bg-[#0a1628] flex items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20 mb-4">
-            <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+      <div className="min-h-screen bg-[#0a1628]">
+        <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+            <a href="/" className="flex items-center gap-2">
+              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            </a>
+            <nav className="flex items-center gap-6">
+              <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
+              <LanguageSwitcher />
+            </nav>
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Access Denied</h1>
-          <p className="text-slate-400">The inbox is only available to account owners.</p>
+        </header>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20 mb-4">
+              <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h1 className="text-2xl font-bold text-white mb-2">Access Denied</h1>
+            <p className="text-slate-400">The inbox is only available to account owners.</p>
+          </div>
         </div>
       </div>
     );
@@ -140,6 +180,18 @@ function InboxPage() {
 
   return (
     <div className="min-h-screen bg-[#0a1628]">
+      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+          <a href="/" className="flex items-center gap-2">
+            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+          </a>
+          <nav className="flex items-center gap-6">
+            <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
+            <LanguageSwitcher />
+          </nav>
+        </div>
+      </header>
+
       {/* Top bar */}
       <div className="bg-[#0f1d32] border-b border-[#1a2d4a] px-4 py-3 md:px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
