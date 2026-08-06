@@ -33,7 +33,7 @@ function WebinarsPage() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       {/* Header */}
-      <header className="border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <a href="/" className="flex items-center gap-2">
             <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />

@@ -27,18 +27,24 @@ function Home() {
 // ── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar({ t }: { t: (k: string) => string }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [hamburgerScrolled, setHamburgerScrolled] = useState(false);
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     const check = () => setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
   }, []);
+  useEffect(() => {
+    const onScroll = () => setHamburgerScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <header className="fixed top-0 z-50 w-full h-[254px] pointer-events-none">
-      {/* Logo — independently fixed to viewport, never moves on scroll */}
+      {/* Logo — independently fixed to viewport, raised ~1/4in, never moves on scroll */}
       <a
         href="/"
-        className="fixed top-[18px] left-3 md:left-6 z-50 pointer-events-auto"
+        className="fixed top-[-6px] left-3 md:left-6 z-50 pointer-events-auto"
       >
         <img
           src="/fb-logo.png"
@@ -47,10 +53,12 @@ function Navbar({ t }: { t: (k: string) => string }) {
         />
       </a>
 
-      {/* Hamburger — always visible, fully static on scroll */}
+      {/* Hamburger — the ONLY element that moves on scroll */}
       <button
         onClick={() => (window as any).__toggleMobileNav?.()}
-        className="fixed top-[103px] right-3 z-50 md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white pointer-events-auto"
+        className={`fixed top-[103px] right-3 z-50 md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white transition-all duration-300 pointer-events-auto ${
+          hamburgerScrolled ? "translate-y-4 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        }`}
         aria-label="Menu"
       >
         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
