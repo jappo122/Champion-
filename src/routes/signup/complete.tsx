@@ -3,6 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { sql } from "~/db";
 import { randomBytes, createHash } from "node:crypto";
 import { useState, useEffect } from "react";
+import { LanguageSwitcher } from "~/i18n";
 
 // ── Server function: create account after Stripe payment ───────────────────
 
@@ -116,8 +117,21 @@ function SignupCompletePage() {
   }, []);
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-[#0a1628] px-6">
-      <div className="w-full max-w-md text-center">
+    <div className="min-h-dvh bg-[#0a1628]">
+      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+          <a href="/" className="flex items-center gap-2">
+            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+          </a>
+          <nav className="flex items-center gap-6">
+            <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
+            <LanguageSwitcher />
+          </nav>
+        </div>
+      </header>
+
+      <div className="flex items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md text-center">
         {status === "loading" && (
           <>
             <div className="mx-auto h-12 w-12 animate-spin rounded-full border-2 border-[#e63946] border-t-transparent" />
@@ -159,6 +173,7 @@ function SignupCompletePage() {
             </div>
           </>
         )}
+      </div>
       </div>
     </div>
   );

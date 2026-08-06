@@ -92,13 +92,26 @@ function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-[#0a1628] px-6">
-      <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <a href="/" className="inline-flex items-center gap-2">
-<img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+    <div className="min-h-dvh bg-[#0a1628]">
+      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+          <a href="/" className="flex items-center gap-2">
+            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
+          <nav className="flex items-center gap-6">
+            <a href="/training" className="text-sm text-gray-400 hover:text-white">{t('nav.training')}</a>
+            <LanguageSwitcher />
+          </nav>
         </div>
+      </header>
+
+      <div className="flex items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md">
+          <div className="mb-8 text-center">
+            <a href="/" className="inline-flex items-center gap-2">
+              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
+            </a>
+          </div>
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
           <LanguageSwitcher />
           <h1 className="text-2xl font-bold text-white">{t('auth.signUp')}</h1>
@@ -249,6 +262,7 @@ function SignupPage() {
             After signing up, check your spam folder if you don't see our email. Add <span className="text-[#e63946]">champion-sales-training-events-f80d0630@ctomail.io</span> to your contacts.
           </p>
         </div>
+      </div>
       </div>
     </div>
   );
