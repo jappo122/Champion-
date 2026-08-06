@@ -1,5 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { isTokenValid } from "~/lib/client-auth";
 import { sendEmail } from "~/lib/email";
 
@@ -16,6 +16,12 @@ export const Route = createFileRoute("/email")({
 });
 
 function EmailPage() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const [to, setTo] = useState("");
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
@@ -49,7 +55,7 @@ function EmailPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[#1a2d4a] bg-[#0d1f35]/60 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="/" className="text-xl font-bold text-white">
+          <a href="/" className={`text-xl font-bold text-white transition-all duration-300 ${scrolled ? "-translate-y-2 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
             Champion<span className="text-[#e63946]">Sales</span>
           </a>
           <nav className="flex items-center gap-6 text-sm">
