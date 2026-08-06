@@ -27,49 +27,66 @@ function Home() {
 // ── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar({ t }: { t: (k: string) => string }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [hamburgerScrolled, setHamburgerScrolled] = useState(false);
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     const check = () => setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
   }, []);
+  useEffect(() => {
+    const onScroll = () => setHamburgerScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="fixed top-0 z-50 w-full bg-transparent">
-      <div className="mx-auto flex h-[210px] max-w-7xl items-center justify-between px-3 md:px-6">
-        <a href="/" className="flex items-center shrink-0 pl-0">
-          <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[175px] w-auto object-contain" />
-        </a>
-        <button
-          onClick={() => (window as any).__toggleMobileNav?.()}
-          className="md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white"
-          aria-label="Menu"
-        >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <nav className="hidden items-center gap-6 md:flex">
-          {loggedIn ? (
-            <>
-              <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-              <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
-              <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
-              <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">{t('profile.title')}</a>
-              <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
-            </>
-          ) : (
-            <>
-              <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-              <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
-              <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
-              <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
-              <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
-              
-            </>
-          )}
-          <LanguageSwitcher />
-        </nav>
-      </div>
+    <header className="fixed top-0 z-50 w-full h-[254px] pointer-events-none">
+      {/* Logo — independently fixed to viewport, never moves on scroll */}
+      <a
+        href="/"
+        className="fixed top-[18px] left-3 md:left-6 z-50 pointer-events-auto"
+      >
+        <img
+          src="/fb-logo.png"
+          alt="Champion Sales Training & Events"
+          className="h-[219px] w-auto object-contain"
+        />
+      </a>
+
+      {/* Hamburger — independently fixed, fades on scroll */}
+      <button
+        onClick={() => (window as any).__toggleMobileNav?.()}
+        className={`fixed top-[103px] right-3 z-50 md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white transition-all duration-300 pointer-events-auto ${
+          hamburgerScrolled ? "translate-y-4 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        }`}
+        aria-label="Menu"
+      >
+        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Desktop nav — absolutely positioned within the fixed header */}
+      <nav className="absolute top-[103px] right-6 z-50 hidden md:flex items-center gap-6 pointer-events-auto">
+        {loggedIn ? (
+          <>
+            <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
+            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+            <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
+            <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">{t('profile.title')}</a>
+            <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
+          </>
+        ) : (
+          <>
+            <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
+            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+            <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
+            <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
+            <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
+          </>
+        )}
+        <LanguageSwitcher />
+      </nav>
     </header>
   );
 }
@@ -83,7 +100,7 @@ function Hero({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("scroll", onScroll);
     }, []);
     return (
-    <section className="relative overflow-hidden pt-56 pb-28 sm:pb-36">
+    <section className="relative overflow-hidden pt-[180px] pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#e63946]/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />
