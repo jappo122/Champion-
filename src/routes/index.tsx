@@ -27,11 +27,17 @@ function Home() {
 // ── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar({ t }: { t: (k: string) => string }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [hamburgerScrolled, setHamburgerScrolled] = useState(false);
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     const check = () => setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
+  }, []);
+  useEffect(() => {
+    const onScroll = () => setHamburgerScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full bg-transparent">
@@ -41,7 +47,9 @@ function Navbar({ t }: { t: (k: string) => string }) {
         </a>
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
-          className="md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white"
+          className={`md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white transition-all duration-300 ${
+            hamburgerScrolled ? "translate-y-4 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+          }`}
           aria-label="Menu"
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
