@@ -411,9 +411,10 @@ export const addSalesperson = createServerFn({ method: "POST" }).handler(
     }
 
     // Verify login credentials before sending welcome email
+    // (read-only — never modifies the stored password)
     const { verifyAndEnsureLogin } = await import("~/lib/verify-login");
-    const verifyResult = await verifyAndEnsureLogin(data.email, tempPassword, db);
-    const finalPassword = verifyResult.password; // May have been regenerated on retry
+    const verifyResult = await verifyAndEnsureLogin(data.email, tempPassword);
+    const finalPassword = verifyResult.password; // Always the tempPassword we stored
 
     // Send welcome email to the new salesperson with verified login credentials
     try {
