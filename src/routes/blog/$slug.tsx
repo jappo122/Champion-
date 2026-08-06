@@ -8,12 +8,6 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogPostPage() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   const params = Route.useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
@@ -42,7 +36,7 @@ function BlogPostPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="/" className={`flex items-center gap-2 transition-all duration-300 ${scrolled ? "-translate-y-2 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
+          <a href="/" className="flex items-center gap-2">
 <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
           <nav className="hidden items-center gap-8 md:flex">

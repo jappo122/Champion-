@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { useState, useEffect } from 'react';
+import { useState } from "react";
 import { sendEmail } from "~/lib/email";
 
 const submitContactForm = createServerFn({ method: "POST" }).handler(
@@ -55,12 +55,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -99,7 +93,7 @@ function ContactPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
-          <a href="/" className={`flex items-center gap-2 transition-all duration-300 ${scrolled ? "-translate-y-2 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
+          <a href="/" className="flex items-center gap-2">
             <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
           <nav className="flex items-center gap-6">

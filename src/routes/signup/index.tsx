@@ -16,12 +16,6 @@ const INDIVIDUAL_STRIPE_LINKS: Record<string, string> = {
 };
 
 function SignupPage() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -101,7 +95,7 @@ function SignupPage() {
     <div className="min-h-dvh bg-[#0a1628]">
       <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="/" className={`flex items-center gap-2 transition-all duration-300 ${scrolled ? "-translate-y-2 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
+          <a href="/" className="flex items-center gap-2">
             <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
           </a>
           <nav className="flex items-center gap-6">
