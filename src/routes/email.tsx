@@ -47,7 +47,7 @@ function EmailPage() {
   return (
     <div className="min-h-screen bg-[#0a1628]">
       {/* Header */}
-      <header className="border-b border-[#1a2d4a] bg-[#0d1f35]/60 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-[#1a2d4a] bg-[#0d1f35]/60 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
           <a href="/" className="text-xl font-bold text-white">
             Champion<span className="text-[#e63946]">Sales</span>
