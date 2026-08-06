@@ -41,10 +41,12 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full h-[254px] pointer-events-none">
-      {/* Logo — independently fixed to viewport, raised ~1/4in, never moves on scroll */}
+      {/* Logo — fixed to viewport; fades out on scroll like the hamburger, returns when scrolled back to top */}
       <a
         href="/"
-        className="fixed top-[-6px] left-3 md:left-6 z-50 pointer-events-auto"
+        className={`fixed top-[-6px] left-3 md:left-6 z-50 transition-all duration-300 pointer-events-auto ${
+          hamburgerScrolled ? "-translate-y-2 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        }`}
       >
         <img
           src="/fb-logo.png"
