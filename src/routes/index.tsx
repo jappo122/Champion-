@@ -27,68 +27,54 @@ function Home() {
 // ── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar({ t }: { t: (k: string) => string }) {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [hamburgerScrolled, setHamburgerScrolled] = useState(false);
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     const check = () => setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
   }, []);
-  useEffect(() => {
-    const onScroll = () => setHamburgerScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   return (
-    <header className="fixed top-0 z-50 w-full h-[254px] pointer-events-none">
-      {/* Logo — fixed to viewport; fades out on scroll like the hamburger, returns when scrolled back to top */}
-      <a
-        href="/"
-        className={`fixed top-[-6px] left-3 md:left-6 z-50 transition-all duration-300 pointer-events-auto ${
-          hamburgerScrolled ? "-translate-y-2 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
-        }`}
-      >
-        <img
-          src="/fb-logo.png"
-          alt="Champion Sales Training & Events"
-          className="h-[219px] w-auto object-contain"
-        />
-      </a>
-
-      {/* Hamburger — the ONLY element that moves on scroll */}
-      <button
-        onClick={() => (window as any).__toggleMobileNav?.()}
-        className={`fixed top-[103px] right-3 z-50 md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white transition-all duration-300 pointer-events-auto ${
-          hamburgerScrolled ? "translate-y-4 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
-        }`}
-        aria-label="Menu"
-      >
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-      {/* Desktop nav — absolutely positioned within the fixed header */}
-      <nav className="absolute top-[103px] right-6 z-50 hidden md:flex items-center gap-6 pointer-events-auto">
-        {loggedIn ? (
-          <>
-            <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
-            <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
-            <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">{t('profile.title')}</a>
-            <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
-          </>
-        ) : (
-          <>
-            <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
-            <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
-            <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
-            <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
-          </>
-        )}
-        <LanguageSwitcher />
-      </nav>
+    <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
+        <a href="/" className="flex items-center gap-2">
+          <img
+            src="/fb-logo.png"
+            alt="Champion Sales Training & Events"
+            className="h-10 w-auto object-contain"
+          />
+        </a>
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-6">
+          {loggedIn ? (
+            <>
+              <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
+              <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+              <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
+              <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">{t('profile.title')}</a>
+              <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
+            </>
+          ) : (
+            <>
+              <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
+              <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+              <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
+              <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
+              <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
+            </>
+          )}
+          <LanguageSwitcher />
+        </nav>
+        {/* Mobile hamburger — always visible, no scroll animation */}
+        <button
+          onClick={() => (window as any).__toggleMobileNav?.()}
+          className="md:hidden flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white"
+          aria-label="Menu"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </header>
   );
 }
@@ -102,55 +88,65 @@ function Hero({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("scroll", onScroll);
     }, []);
     return (
-    <section className="relative overflow-hidden pt-[180px] pb-28 sm:pb-36">
+    <section className="relative overflow-hidden pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#e63946]/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />
       <div className="pointer-events-none absolute top-1/2 left-0 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-[#1a2d4a]/40 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-6 text-center">
-        <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
-          <span className="flex h-2 w-2 rounded-full bg-[#e63946] animate-pulse" />
-          {t('hero.badge')}
+      <div className="relative mx-auto max-w-7xl px-6">
+        {/* Big brand logo — part of the page flow, scrolls away naturally */}
+        <div className="pt-10 md:pt-14">
+          <img
+            src="/fb-logo.png"
+            alt="Champion Sales Training & Events"
+            className="h-[120px] w-auto object-contain md:h-[160px]"
+          />
         </div>
 
-        <p className="mt-6 text-sm font-semibold text-[#e63946]/80 uppercase tracking-[0.2em]">Training salespeople since 2015</p>
+        <div className="text-center">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
+            <span className="flex h-2 w-2 rounded-full bg-[#e63946] animate-pulse" />
+            {t('hero.badge')}
+          </div>
 
-        <h1 className="mx-auto mt-4 max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08]">
-          <span className="text-white">{t('hero.title.line1')}</span>
-          <br />
-          <span className="gradient-brand">{t('hero.title.line2')}</span>
-        </h1>
+          <p className="mt-6 text-sm font-semibold text-[#e63946]/80 uppercase tracking-[0.2em]">Training salespeople since 2015</p>
 
-        <p className="mx-auto mt-8 max-w-2xl text-lg text-gray-400 sm:text-xl">
-          {t('hero.description')}
-        </p>
+          <h1 className="mx-auto mt-4 max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08]">
+            <span className="text-white">{t('hero.title.line1')}</span>
+            <br />
+            <span className="gradient-brand">{t('hero.title.line2')}</span>
+          </h1>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="/pricing" className="btn-primary-lg">
-            {t('hero.cta.waitlist')}
-          </a>
-          <a href="#features" className="btn-secondary text-base px-8 py-4">
-            {t('hero.cta.learnMore')}
-          </a>
-        </div>
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-gray-400 sm:text-xl">
+            {t('hero.description')}
+          </p>
 
-        {/* Scroll down indicator — bottom right, fades on scroll */}
-        <div
-          className={`fixed bottom-8 right-8 z-40 hidden sm:flex flex-col items-center gap-1.5 transition-all duration-700 ${
-            scrolled ? "pointer-events-none opacity-0" : "opacity-100"
-          }`}
-        >
-          <span className="text-xs font-medium uppercase tracking-widest text-gray-500">
-            Scroll Down
-          </span>
-          <svg className="h-5 w-5 animate-bounce text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="/pricing" className="btn-primary-lg">
+              {t('hero.cta.waitlist')}
+            </a>
+            <a href="#features" className="btn-secondary text-base px-8 py-4">
+              {t('hero.cta.learnMore')}
+            </a>
+          </div>
 
-        {/* Trust indicators */}
-        <div className="mt-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-10">
+          {/* Scroll down indicator — bottom right, fades on scroll */}
+          <div
+            className={`fixed bottom-8 right-8 z-40 hidden sm:flex flex-col items-center gap-1.5 transition-all duration-700 ${
+              scrolled ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+          >
+            <span className="text-xs font-medium uppercase tracking-widest text-gray-500">
+              Scroll Down
+            </span>
+            <svg className="h-5 w-5 animate-bounce text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="mt-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-10">
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <svg className="h-5 w-5 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -169,6 +165,7 @@ function Hero({ t }: { t: (k: string) => string }) {
             </svg>
             {t('hero.trust.forDealers')}
           </div>
+        </div>
         </div>
       </div>
     </section>
