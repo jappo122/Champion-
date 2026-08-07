@@ -34,14 +34,14 @@ function Navbar({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("storage", check);
   }, []);
   return (
-    <header className="relative z-50 w-full bg-transparent">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 md:px-6 pt-3">
-        {/* Logo — full size, sits in the page flow */}
+    <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-3 md:px-6">
+        {/* Logo — slim header logo, top-aligned like inner pages */}
         <a href="/" className="block shrink-0">
           <img
             src="/fb-logo.png"
             alt="Champion Sales Training & Events"
-            className="h-[160px] w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </a>
 
