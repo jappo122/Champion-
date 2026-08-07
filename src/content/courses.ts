@@ -4774,6 +4774,581 @@ D) Ask a second close question immediately
       },
     ],
   },
+  // ===== Course 12: Landing on the Right Vehicle =====
+  {
+    id: "landing-right-vehicle",
+    title: "Landing on the Right Vehicle",
+    subtitle: "Match the customer's real needs, habits, and budget to the perfect inventory match",
+    description:
+      "Landing a customer on the right vehicle requires matching their real needs, daily habits, and budget to the correct inventory option through active listening, smart profiling, and guided vehicle selection. This 10-lesson module walks the complete three-stage framework: Needs Assessment — open questions about lifestyle, likes and dislikes about the current car, non-negotiable features, and honest budget; Selecting and Exploring Inventory — picking the best match, letting the customer physically explore, watching their reactions, and pivoting to close-match alternatives; and The Walkaround and Presentation — leading with the features that matter most, inviting them inside, handling objections honestly, and connecting benefits to their daily driving problems. Each lesson ends with 5 scenario-based quiz questions — 50 total — to lock in the skill.",
+    levels: "Intermediate",
+    duration: "2.5 hours",
+    lessons: 10,
+    image: "needs",
+    icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
+    lessonsList: [
+      {
+        id: "right-vehicle-intro",
+        title: "Why Landing on the Right Vehicle Matters",
+        description: "Understand the cost of mismatches — for the customer, for your gross, and for your reputation.",
+        duration: "15 min",
+        content: `## Why Landing on the Right Vehicle Matters
+**Goal:** Understand why matching the customer to the correct vehicle is the heart of the sale — and what a mismatch costs everyone.
+### The Cost of a Mismatch
+When a customer buys the wrong vehicle, the damage is not finished at delivery. The car that does not fit their life gets returned, traded early, or — worst of all — keeps them unhappy and telling everyone about it. Mismatches cost the dealership in returns and buybacks, they cost the salesperson a lost repeat customer and referral chain, and they cost the customer real money in depreciation, penalties, and frustration. A mismatched sale is not a sale at all; it is a future problem you will pay for twice.
+### Matching Is the Sale
+Customers rarely say "sell me anything" — they say "I need something that fits my family, my commute, and my budget." The dealership that nails the match wins on value, not price. When the vehicle fits, the customer feels smart, the gross holds, and the delivery is easy because the car sells itself. The entire sales process — needs assessment, inventory selection, walkaround — exists for one purpose: to make the match so obvious that the customer cannot imagine leaving with anything else.
+### The Three-Stage Framework
+The framework for landing the right vehicle has three stages. Needs Assessment: ask open questions about lifestyle, what they like and dislike about their current car, identify non-negotiables, and confirm an honest budget. Selecting and Exploring Inventory: pick the best match from your lot, let them physically explore it, and watch their reactions. The Walkaround and Presentation: lead with the features that matter most to that buyer, invite them inside, handle objections honestly, and tie every benefit to their daily driving problems. Miss a stage and the match gets fuzzy; complete all three and the right vehicle is obvious.
+### Common Mistakes
+- Showing the vehicle you want to sell instead of the one the customer needs
+- Rushing past needs assessment straight to a test drive
+- Pushing the most expensive option and calling it "the best fit"
+- Celebrating a sale that you know is a mismatch — it always comes back
+### Pro Tips
+- Treat every customer as a match to solve, not a sale to close
+- Remind yourself: a mismatch costs more than a lost sale
+- Use the three-stage framework on every deal, no matter how rushed the customer seems
+- When in doubt between two vehicles, ask the customer which one feels right and listen to the answer
+### Quick Quiz
+**Q1:** Why is a mismatched vehicle sale a future problem for the dealership?
+A) It is illegal to sell a mismatched vehicle
+B) It leads to returns, early trades, and unhappy customers who tell everyone
+C) It confuses the inventory system
+D) It only matters if the customer complains
+*Answer: B — Mismatches cost the dealership in returns and buybacks, and an unhappy customer stops buying and referring — the damage repeats.*
+**Q2:** What does matching the right vehicle win that price alone cannot?
+A) A higher payment
+B) Value — the customer feels smart, the gross holds, and the delivery is easy
+C) A faster test drive
+D) A larger inventory
+*Answer: B — When the vehicle fits, the customer feels smart, the gross holds, and the car sells itself at delivery.*
+**Q3:** What are the three stages of the framework?
+A) Greeting, test drive, close
+B) Needs Assessment, Selecting and Exploring Inventory, The Walkaround and Presentation
+C) Budget, trade-in, financing
+D) Features, price, delivery
+*Answer: B — The framework runs Needs Assessment → Selecting and Exploring Inventory → The Walkaround and Presentation.*
+**Q4:** What happens when a salesperson skips the needs assessment stage?
+A) The customer is impressed by the speed
+B) The match gets fuzzy because there is no criteria to match against
+C) The test drive is longer
+D) The customer always buys more
+*Answer: B — Without needs assessment there are no criteria, so the vehicle shown is a guess and the match is fuzzy.*
+**Q5:** Which mindset should a salesperson hold for every customer?
+A) Close the deal as fast as possible
+B) Treat each customer as a match to solve, not a sale to close
+C) Show the highest-margin vehicle first
+D) Let the customer decide everything alone
+*Answer: B — Approaching each customer as a match to solve keeps the framework working and prevents mismatched sales.*
+`,
+      },
+      {
+        id: "right-vehicle-listening",
+        title: "Active Listening and Smart Profiling",
+        description: "Master the listening and profiling skills that turn a conversation into a precise customer profile.",
+        duration: "15 min",
+        content: `## Active Listening and Smart Profiling
+**Goal:** Turn active listening into a precise customer profile — the foundation that makes every later stage of the sale accurate.
+### Listen to Build the Profile
+Every sentence a customer speaks is a data point for the profile: how many kids, what commute, what towing, what budget, what fears. Active listening is how you collect those data points. It means giving the customer your full attention, acknowledging what they say, and asking follow-up questions that deepen the picture. The salesperson who listens well builds a profile so detailed that the right vehicle picks itself.
+### The Listening Habits That Matter
+Nod, make eye contact, and use short acknowledgments — "got it," "that makes sense" — to keep the customer talking. Take notes on a worksheet; writing shows you value what they say and gives you the profile in writing. Do not interrupt, do not mentally rehearse your next point, and do not jump to show a vehicle before the picture is complete. The customer who feels genuinely heard tells you more — and the customer who tells you more gets matched better.
+### Building the Smart Profile
+A smart profile captures five things: who the driver is and who rides along, how the vehicle is used day to day, what they like and dislike about the current car, their non-negotiable features, and their honest budget picture. You do not need a formal form — you need a habit of listening for those five categories in every conversation. When the profile is complete, you have the checklist that the inventory stage will run against.
+### Common Mistakes
+- Interrupting the customer to point out a car or a feature
+- Nodding along but retaining nothing, then asking a question they already answered
+- Letting the customer ramble without steering toward the five profile categories
+- Trying to build the profile from assumptions instead of the customer's own words
+### Pro Tips
+- Keep a simple worksheet: Driver, Usage, Likes/Dislikes, Non-negotiables, Budget — fill it as the customer talks
+- Mirror key words back: "So third-row seating is a must?" to confirm the profile
+- Ask one follow-up question per answer to deepen each data point
+- Review the profile out loud with the customer before you walk to the lot
+### Quick Quiz
+**Q1:** What is the salesperson's job during active listening?
+A) To prepare the next feature to present
+B) To collect data points for the customer profile — kids, commute, towing, budget, fears
+C) To wait for the customer to finish so they can talk
+D) To agree with everything the customer says
+*Answer: B — Every customer sentence is a profile data point; active listening collects them so the right vehicle picks itself.*
+**Q2:** Why should you take notes while the customer talks?
+A) It impresses the customer with your organization
+B) It shows you value what they say and gives you the profile in writing
+C) It makes the conversation official
+D) It speeds up the paperwork later
+*Answer: B — Note-taking signals the customer's words matter and captures the profile you will match inventory against.*
+**Q3:** Which five things does a smart profile capture?
+A) Color, trim, engine, price, warranty
+B) Driver, usage, likes/dislikes, non-negotiables, budget
+C) Trade-in, financing, insurance, delivery, service
+D) Age, income, credit, occupation, address
+*Answer: B — The profile captures who drives, how it is used, likes/dislikes of the current car, non-negotiable features, and the budget picture.*
+**Q4:** "So third-row seating is a must?" is an example of:
+A) A leading question
+B) Mirroring key words back to confirm the profile
+C) A closed sales question
+D) A budget question
+*Answer: B — Mirroring confirms each data point in the customer's own terms, locking the profile.*
+**Q5:** When should you review the profile with the customer?
+A) Never — keep it private
+B) Only at the close
+C) Out loud, before you walk to the lot
+D) In the finance office
+*Answer: C — Reviewing the profile out loud before the lot confirms you understood and gets the customer's agreement before you select inventory.*
+`,
+      },
+      {
+        id: "right-vehicle-needs-lifestyle",
+        title: "Needs Assessment — Lifestyle and Daily Habits",
+        description: "Ask open questions about the customer's lifestyle and daily driving habits to define what the vehicle must do.",
+        duration: "15 min",
+        content: `## Needs Assessment — Lifestyle and Daily Habits
+**Goal:** Open the needs assessment with questions about the customer's lifestyle and daily habits — the real requirements the vehicle must satisfy.
+### Define the Life, Then the Vehicle
+The vehicle is a tool for a life. Before you can match it, you need to know the life: the commute, the school run, the weekend adventures, the work site, the vacation trips. Open questions about lifestyle — "Tell me about a typical week for you" — reveal the true requirements: how many seats, how much cargo, what range, what capability. The customer describing their lifestyle is handing you the spec sheet for the right vehicle; your job is to capture it.
+### The Lifestyle Question Bank
+Ask open questions that paint the picture: "Who rides in the car most days?" "What does your commute look like?" "What do you do on weekends that involves driving?" "Do you tow, haul, or carry anything regularly?" "Where do you park — tight city spots or a wide driveway?" Each answer adds a requirement. The customer who parks in a compact garage spot has a different need than the customer who hauls a trailer — and only the questions reveal which one you are dealing with.
+### From Habits to Requirements
+Translate what you hear into requirements as you go. "Two kids in car seats" means rear-facing seat anchors matter. "A 40-minute highway commute" means comfort and efficiency matter. "I tow a boat on weekends" means towing capacity is non-negotiable. Do not just collect facts — convert each fact into a requirement you will check against the inventory. That conversion is what separates a profile from a chat.
+### Common Mistakes
+- Asking only about the car ("what color do you want?") and never the life around it
+- Assuming the customer's needs from their vehicle type — a truck buyer may not need towing
+- Letting the customer describe their life without converting it into requirements
+- Rushing the lifestyle questions to get to the lot faster
+### Pro Tips
+- Open with "Tell me about a typical week for you" — it opens the whole picture
+- Follow every lifestyle fact with "So what does that mean for the vehicle?" to convert it into a requirement
+- Ask about parking, passengers, and cargo — the details most salespeople skip
+- Write each requirement next to the fact that produced it
+### Quick Quiz
+**Q1:** What is the purpose of lifestyle and daily-habit questions?
+A) To make conversation while walking to the lot
+B) To reveal the real requirements the vehicle must satisfy
+C) To qualify the customer's income
+D) To find a reason to show a specific vehicle
+*Answer: B — The life defines the vehicle: commute, passengers, cargo, and capability all become requirements.*
+**Q2:** Which question best reveals the customer's true requirements?
+A) "Do you want a sedan or an SUV?"
+B) "Tell me about a typical week for you — work, kids, weekends."
+C) "What color were you thinking?"
+D) "How much do you want to spend?"
+*Answer: B — It paints the whole picture of the life the vehicle must serve, which produces the real requirements.*
+**Q3:** Why must you convert lifestyle facts into requirements?
+A) It makes the conversation more interesting
+B) Facts alone do not match vehicles — "two kids" must become "rear-facing seat anchors matter"
+C) It impresses the customer
+D) It is required by the dealership
+*Answer: B — The conversion from fact to requirement is what makes the profile useful for selecting inventory.*
+**Q4:** A customer parks in a tight city garage. What does this mean for the vehicle match?
+A) Nothing — parking does not matter
+B) Maneuverability and compact size are likely requirements
+C) They need a truck
+D) They need all-wheel drive
+*Answer: B — Parking constraints are real requirements; the tight spot translates into a need for maneuverability and size.*
+**Q5:** What is the mistake of assuming a truck buyer needs towing?
+A) There is no mistake — truck buyers always tow
+B) Needs are revealed by questions, not vehicle type assumptions
+C) Truck buyers only care about looks
+D) Towing is a luxury feature
+*Answer: B — A truck buyer may never tow; requirements come from the customer's life, not from the vehicle class they walk toward.*
+`,
+      },
+      {
+        id: "right-vehicle-needs-likes",
+        title: "Needs Assessment — Likes, Dislikes, and Non-Negotiables",
+        description: "Uncover what the customer loves and hates about their current car — and the features they will not give up.",
+        duration: "15 min",
+        content: `## Needs Assessment — Likes, Dislikes, and Non-Negotiables
+**Goal:** Ask what the customer likes and dislikes about their current vehicle and identify the non-negotiable features the next one must have.
+### The Current Car Is the Best Research
+The customer's current vehicle is a living document of their needs. What they love about it is what the next vehicle must keep — the seat comfort, the visibility, the way it fits the garage. What they dislike is the gap the new vehicle must close — the cramped back seat, the poor mileage, the weak air conditioning. Asking "What do you like about your current car, and what would you change?" gives you both lists at once, from the only source that knows.
+### The Non-Negotiables
+Some features are wants; some are dealbreakers. The third-row seating for the carpool, the safety tech for the teenage driver, the towing package for the boat — these are the non-negotiables, and they are the filter your inventory selection runs through first. Ask directly: "Are there any features the new vehicle absolutely has to have?" Then test each one: "If everything else was perfect but it didn't have the third row, would that end the deal?" A true non-negotiable survives the test; a wish does not.
+### The Transition Feature
+Customers often keep one feature from the old car purely out of habit — the same color, the same brand — even when it does not serve them. Gently challenge habits that conflict with the real needs: "You've had a sedan for ten years — with two kids and the dog, have you thought about what the extra space would do for you?" The goal is not to argue; it is to make sure the non-negotiables are needs, not habits.
+### Common Mistakes
+- Never asking what they like about the current car, then removing a loved feature in the "upgrade"
+- Treating every wish as a non-negotiable, so the inventory filter becomes impossible
+- Challenging a true non-negotiable as if it were negotiable
+- Ignoring the dislikes and presenting a vehicle with the same flaw
+### Pro Tips
+- Ask the two-part question: "What do you love about your current car, and what drives you crazy?"
+- List non-negotiables on the worksheet and test each with "Would that end the deal?"
+- Keep the loves intact in the presentation: "You said the seat comfort is great in your current car — this one is even better"
+- Watch for habit-driven wants and gently test whether they are real needs
+### Quick Quiz
+**Q1:** Why is the customer's current vehicle the best research tool?
+A) It shows the salesperson what they can afford
+B) It reveals what must be kept (loves) and what must change (dislikes)
+C) It tells the salesperson the trade-in value
+D) It is the easiest thing to talk about
+*Answer: B — The current car is a living document: loves are what the next vehicle must keep, dislikes are the gaps it must close.*
+**Q2:** What question best surfaces both the loves and the dislikes at once?
+A) "What color is your current car?"
+B) "What do you love about your current car, and what drives you crazy?"
+C) "How old is your current car?"
+D) "How many miles does it have?"
+*Answer: B — The two-part question produces both lists from the only source who knows — the customer.*
+**Q3:** How do you test whether a stated feature is a true non-negotiable?
+A) Ask if the customer is sure
+B) "If everything else was perfect but it didn't have that feature, would that end the deal?"
+C) Assume every stated feature is non-negotiable
+D) Check the inventory first
+*Answer: B — The end-the-deal test separates true non-negotiables from wishes; a real one survives, a wish does not.*
+**Q4:** A customer has driven sedans for ten years but now has two kids and a dog. What should you do?
+A) Show them sedans because that is what they know
+B) Gently test the habit: "With the kids and the dog, have you thought about what extra space would do?"
+C) Tell them they are wrong about sedans
+D) Ignore the family situation
+*Answer: B — Gently challenge habits that conflict with real needs, so non-negotiables are needs and not just familiarity.*
+**Q5:** What is the mistake of treating every customer wish as a non-negotiable?
+A) It makes the customer happy
+B) The inventory filter becomes impossible and the sale stalls
+C) It increases the sale price
+D) It shortens the presentation
+*Answer: B — If every wish is a dealbreaker, no vehicle qualifies and the selection stage cannot proceed.*
+`,
+      },
+      {
+        id: "right-vehicle-needs-budget",
+        title: "Needs Assessment — Budget, Payment, and Down Payment Honesty",
+        description: "Confirm the realistic monthly budget and down payment limits — honestly and without awkwardness.",
+        duration: "15 min",
+        content: `## Needs Assessment — Budget, Payment, and Down Payment Honesty
+**Goal:** Confirm the customer's realistic monthly budget and down payment limits early, with respect, so you never waste their time or yours.
+### The Honest Budget Conversation
+Budget is not the last thing to discuss — it is the filter the whole selection runs through. A customer who falls in love with a vehicle they cannot afford is a painful, often lost, deal; a customer whose budget is confirmed up front gets matched to vehicles that actually fit. Ask with respect and frame it as protecting them: "So I only show you vehicles that fit, what monthly payment are you comfortable with?" The customer who is asked directly, without judgment, answers honestly.
+### The Three Numbers
+Three numbers define the financial picture. The monthly payment they are comfortable with — the anchor for the whole deal. The down payment they can put down — which determines how much vehicle they can buy. And the trade-in equity, if they have a trade — what the current vehicle is worth versus what they owe. Get all three early and the finance conversation at the desk is a formality, not a crisis. Skip them and the desk becomes the place where deals die.
+### Handling the Awkwardness
+Customers often give a lowball or vague number because they fear being judged or steered upward. Do not flinch and do not judge. Acknowledge it: "That's helpful — thank you for being straight with me." Then explore it: "Is that payment the hard number, or is there some room if the vehicle is exactly right?" The honest number — even if it is lower than you hoped — is worth more than a fake one, because a real deal beats a dead one.
+### Common Mistakes
+- Avoiding the budget conversation until the desk, then watching the deal collapse
+- Sneering or sighing at a low budget, which shuts the customer down
+- Taking the first number as final without exploring whether it is a hard number
+- Showing vehicles above budget and hoping the customer stretches
+### Pro Tips
+- Ask payment comfort, down payment, and trade-in status early — the trio of numbers
+- Thank the customer for their honesty before exploring the number further
+- Ask "Is that a hard number, or is there room if the vehicle is exactly right?"
+- Match the inventory to the numbers; never show above-budget vehicles and hope
+### Quick Quiz
+**Q1:** Why should budget be confirmed early in the sale?
+A) It is the most comfortable topic
+B) It is the filter the whole selection runs through, so the customer never falls in love with what they cannot afford
+C) It speeds up the test drive
+D) It is required by law
+*Answer: B — Confirmed budget up front means the inventory selection matches reality and the deal does not collapse at the desk.*
+**Q2:** What are the three numbers that define the financial picture?
+A) Payment, down payment, and trade-in equity
+B) Price, tax, and fees
+C) Interest rate, term, and total cost
+D) Insurance, fuel, and maintenance
+*Answer: A — Monthly payment comfort, down payment, and trade-in equity anchor the whole deal.*
+**Q3:** A customer gives you a lowball budget. How should you respond?
+A) Sigh and end the conversation
+B) Thank them for their honesty, then explore whether it is a hard number
+C) Ignore it and show expensive vehicles anyway
+D) Tell them it is not enough to buy anything
+*Answer: B — Acknowledge and thank, then explore — an honest low number is worth more than a fake high one.*
+**Q4:** "Is that a hard number, or is there room if the vehicle is exactly right?" does what?
+A) It pressures the customer into lying
+B) It explores whether the stated budget is flexible without judgment
+C) It makes the customer uncomfortable
+D) It is a closing technique
+*Answer: B — It gently probes flexibility while accepting the stated number, keeping the conversation honest.*
+**Q5:** What is the cost of showing vehicles above the customer's stated budget?
+A) The customer feels important
+B) The customer falls in love with what they cannot afford, and the deal often dies
+C) It is a standard practice
+D) It increases the trade-in value
+*Answer: B — Love for an unaffordable vehicle leads to painful, often lost, deals — match the inventory to the numbers instead.*
+`,
+      },
+      {
+        id: "right-vehicle-inventory",
+        title: "Selecting and Exploring Inventory — Matching Criteria to Stock",
+        description: "Pick the best match from your lot using the customer's stated criteria — not your own favorites.",
+        duration: "15 min",
+        content: `## Selecting and Exploring Inventory — Matching Criteria to Stock
+**Goal:** Select the best inventory match from the customer's stated criteria and explain why this vehicle, out of everything on the lot, is the one.
+### The Criteria-Driven Selection
+You now hold the profile: the lifestyle, the non-negotiables, the budget. Selection is the act of running your inventory against that profile and picking the vehicle that scores highest. Do this deliberately, out loud, so the customer sees the logic: "You need the third row, the towing package, and the payment around $450 — that puts us at the midsize SUV we just got in." When the customer sees you select on their criteria, they trust the match before they ever open the door.
+### Narrow to One, Keep a Close Second
+Pick a primary vehicle — the best match — and hold one close second in reserve. The primary gets the full presentation; the second is your pivot if something about the primary falls short (a missing feature, a budget gap, a bad reaction). Presenting three or four options at once scatters the customer's attention and makes the decision harder, not easier. One strong match plus one backup is the formula that lands the right vehicle.
+### Why This Vehicle — Say It
+Never walk to a vehicle silently. As you approach, state the match: "This is the one that checks every box you gave me — the third row for the carpool, the safety suite, and it's within the payment you named." This moment is where the customer's profile becomes the sales argument. The vehicle is not a random pick; it is the answer to the list the customer built with you.
+### Common Mistakes
+- Selecting the vehicle you want to move off the lot instead of the one that fits
+- Showing three or four vehicles at once and scattering the customer's attention
+- Walking to the vehicle without explaining why it was chosen
+- Ignoring the stated budget and selecting above it
+### Pro Tips
+- Run the profile against the inventory before you leave the showroom, and pick the best score
+- Keep one close-match backup ready for the pivot
+- Narrate the selection out loud — "you said X, and this one has X"
+- If nothing on the lot fits, say so — honesty sends the customer to a match and keeps your credibility
+### Quick Quiz
+**Q1:** What should drive the inventory selection?
+A) Which vehicle has been on the lot longest
+B) The customer's stated criteria — lifestyle, non-negotiables, and budget
+C) Which vehicle pays the highest commission
+D) The most popular model this month
+*Answer: B — Selection runs the profile against the inventory and picks the vehicle that scores highest on the customer's own criteria.*
+**Q2:** Why is one strong match plus one backup better than showing three or four options?
+A) It takes less time
+B) Several options scatter the customer's attention and make the decision harder
+C) It uses less inventory
+D) Customers prefer fewer choices
+*Answer: B — One primary gets the full presentation and a single backup supports a pivot; many options make the choice harder, not easier.*
+**Q3:** What should you say as you walk the customer to the selected vehicle?
+A) Nothing — let the car speak for itself
+B) State the match: "This one checks every box you gave me — third row, safety suite, and your payment range"
+C) The price of the vehicle
+D) Which features are optional extras
+*Answer: B — Narrating the match turns the customer's own profile into the sales argument before they open the door.*
+**Q4:** What is the risk of selecting the vehicle you want to move off the lot?
+A) It might be too popular
+B) It ignores the customer's criteria and produces a mismatch
+C) It is against policy
+D) It takes too long to explain
+*Answer: B — Selecting on your goals instead of their criteria produces exactly the mismatches the framework exists to prevent.*
+**Q5:** Nothing on the lot matches the customer's criteria. What should you do?
+A) Force the closest vehicle anyway
+B) Say so honestly — it keeps your credibility and lets you locate the right match
+C) Raise the customer's budget
+D) Hide the missing features
+*Answer: B — Honesty about the match preserves trust and credibility; forcing a mismatch costs more than a lost same-day deal.*
+`,
+      },
+      {
+        id: "right-vehicle-walkaround",
+        title: "The Physical Walkaround — Watching Reactions",
+        description: "Let the customer physically explore the vehicle and read their reactions to gauge true interest.",
+        duration: "15 min",
+        content: `## The Physical Walkaround — Watching Reactions
+**Goal:** Give the customer space to walk around and look inside the vehicle — and read their reactions to gauge true interest in size and style.
+### Let Them Explore
+After selection, step back. Give the customer room to walk around the vehicle, open the doors, sit in the driver's seat, and look in the trunk. Physical exploration is where the intellectual match becomes a personal connection. The customer who touches, opens, and sits is engaging with the vehicle as theirs. Do not hover, do not talk over them, and do not rush them — let the vehicle and the customer meet on their own.
+### Watching the Reactions
+The walkaround is a treasure of buying signals. Where does the customer linger — the driver's seat, the back seat, the trunk? What do they open and touch first? Do their eyes light up at the color, or do they pause at the size? A customer who keeps returning to the driver's seat is imagining themselves in it; a customer who keeps glancing at the trunk may be silently measuring their gear. Watch, note, and use what you see: "I noticed you spent a while in the back seat — is that where the kids ride?"
+### What the Reactions Tell You
+Reactions tell you where the customer's real interest lies — and where the doubts are. Enthusiasm at the wheel with hesitation at the price sticker is a price conversation waiting to happen. Love for the size with worry about parking is a maneuvering concern. Silence after a question is a signal to probe. The walkaround turns the profile into a live picture of interest, and every reaction you catch is a place to deepen the match or address a doubt before it grows.
+### Common Mistakes
+- Hovering over the customer and talking through every feature while they try to explore
+- Rushing the walkaround to get to the test drive
+- Ignoring where the customer lingers and what they touch first
+- Missing a hesitation and carrying it silently all the way to the desk
+### Pro Tips
+- Give the customer the first two minutes of the walkaround in silence — let them explore
+- Watch the hands: what they open, touch, and return to is where their interest lives
+- Narrate only when the customer looks up or asks — then speak to what they are looking at
+- Name what you observe: "You keep coming back to the driver's seat — how does it feel?"
+### Quick Quiz
+**Q1:** What should you do at the start of the physical walkaround?
+A) Narrate every feature immediately
+B) Step back and let the customer explore the vehicle on their own
+C) Open every door for them
+D) Start the test drive immediately
+*Answer: B — Give the customer space to explore; physical contact with the vehicle is where the match becomes a personal connection.*
+**Q2:** Why is watching where the customer lingers valuable?
+A) It shows how much time you have
+B) It reveals true interest — the driver's seat means imagining ownership, the trunk means measuring their gear
+C) It tells you the customer's budget
+D) It predicts the trade-in value
+*Answer: B — Where the customer lingers and what they touch reveals the real interest and the silent doubts.*
+**Q3:** "I noticed you spent a while in the back seat — is that where the kids ride?" is an example of:
+A) A leading question
+B) Naming an observation to deepen the match
+C) A budget question
+D) A closing technique
+*Answer: B — Naming what you observed connects the walkaround reaction to the customer's life and deepens the match.*
+**Q4:** Enthusiasm at the wheel plus hesitation at the price sticker signals:
+A) The customer hates the car
+B) A price conversation is waiting to happen
+C) The customer is ready to buy
+D) The car is too small
+*Answer: B — Mixed signals show where the doubt lives — address the price concern before it grows into a desk objection.*
+**Q5:** What is the mistake of hovering and talking through every feature during the walkaround?
+A) It takes too long
+B) It prevents the customer from exploring and forming their own connection
+C) It confuses the customer
+D) It is against policy
+*Answer: B — Hovering and over-talking blocks the customer's own exploration, which is exactly where the personal connection forms.*
+`,
+      },
+      {
+        id: "right-vehicle-pivot",
+        title: "Handling Missing Color or Trim — Pivoting to Close Matches",
+        description: "Turn the missing exact color or trim into an opportunity to present a close-match alternative without losing the sale.",
+        duration: "15 min",
+        content: `## Handling Missing Color or Trim — Pivoting to Close Matches
+**Goal:** When the exact color or trim is not on the lot, pivot smoothly to the closest match and keep the deal moving instead of losing it to the search for perfection.
+### The Missing Vehicle Problem
+The customer has agreed on the model — and then asks for the blue one with the premium trim, which you do not have. This is where many deals stall: the customer leaves to "look around," or orders a car and the momentum dies. The pivot is your recovery: present the closest available match as a better practical answer, while keeping the door open for the exact build if they truly need it.
+### Pivot with the Profile, Not the Spec
+Never apologize for the missing color and offer a random substitute. Pivot with the profile: "You wanted the blue one, and I understand the color matters. We have this one in gray — but here's the part that actually matters for you: it has the third row you need and it's within your payment. Want to take a look, or would you rather wait for the blue?" The profile — not the color — is the anchor. If the vehicle still checks the boxes, most customers will take the close match.
+### The Three-Part Pivot
+Use a three-part pivot: acknowledge the missing item, redirect to what still fits, and offer a choice. "I hear you on the blue — that's a great color. What I can get you this week is the gray one with the same third row and the same payment. Would you like to see it, or is the color worth waiting for?" The choice respects their preference while keeping you in the deal. If they truly need the exact build, help them order it — a confident order beats a dead walk-away.
+### Common Mistakes
+- Apologizing and freezing, leaving the customer to drift away
+- Presenting a substitute with no logic — "this one's here today, want it?"
+- Dismissing the customer's color or trim preference as unimportant
+- Forcing the close match when the exact build is a genuine non-negotiable
+### Pro Tips
+- Acknowledge first: "I hear you on the blue" — never argue with a preference
+- Anchor the pivot to the profile: same seats, same payment, same capability
+- Offer the choice: see the close match now, or order the exact build
+- If they order, treat it as a sale, not a defeat — a deposit is still a deal
+### Quick Quiz
+**Q1:** Why do deals often stall when the exact color or trim is missing?
+A) The vehicle is defective
+B) The customer leaves to look around and the momentum dies
+C) The customer always orders anyway
+D) The salesperson loses their commission
+*Answer: B — Without a smooth pivot, the customer drifts to "look around" and the deal loses momentum.*
+**Q2:** What should anchor the pivot instead of the color?
+A) The price of the substitute
+B) The customer's profile — the third row, the payment, the capability that still fit
+C) The age of the inventory
+D) The manager's approval
+*Answer: B — Pivot with the profile: if the close match still checks the boxes the customer named, it stays a match.*
+**Q3:** What are the three parts of a smooth pivot?
+A) Apologize, discount, close
+B) Acknowledge the missing item, redirect to what still fits, offer a choice
+C) Blame, substitute, pressure
+D) Ignore, negotiate, sign
+*Answer: B — Acknowledge ("I hear you on the blue"), redirect to what still fits, and offer the choice between the close match or the exact build.*
+**Q4:** A customer truly needs the exact build. What should you do?
+A) Talk them out of it
+B) Help them order it — a confident order with a deposit beats a dead walk-away
+C) Show them the close match anyway
+D) Send them to a competitor
+*Answer: B — When the exact build is a genuine need, help them order it; a deposit is still a sale.*
+**Q5:** Which pivot statement best keeps the deal moving?
+A) "That color is hard to find, sorry."
+B) "This gray one is here today — want it?"
+C) "I hear you on the blue — the gray one has the same third row and the same payment. Want to see it, or is the color worth waiting for?"
+D) "Blue is overrated anyway."
+*Answer: C — It acknowledges the preference, anchors the match to the profile, and offers a real choice.*
+`,
+      },
+      {
+        id: "right-vehicle-presentation",
+        title: "The Walkaround Presentation — Feature Priority and Sitting Inside",
+        description: "Lead the presentation with the features that matter most to this buyer and invite them inside to build the connection.",
+        duration: "15 min",
+        content: `## The Walkaround Presentation — Feature Priority and Sitting Inside
+**Goal:** Present the vehicle in the order of what matters most to this specific buyer, and get them sitting inside to build the personal connection.
+### Feature Order Is Everything
+Never present features in a memorized sequence — present them in the customer's priority order. The customer who named third-row seating hears about the third row first. The commuter hears about efficiency and driver comfort first. The safety-minded parent hears about the crash rating and driver-assist suite first. Leading with their priorities proves you listened and makes every feature after it supporting evidence. The customer's profile is your presentation outline.
+### The Features That Matter to Them
+Connect each feature to the life they described: "You said the morning commute is stop-and-go — the adaptive cruise handles that for you." "You mentioned the kids' car seats — the anchors are right here and the doors open wide." A feature presented in isolation is a spec; a feature connected to their own words is a solution. Rehearse the connection before you deliver it, and let the customer's reaction tell you when to linger and when to move on.
+### Sit Them Inside
+The moment the customer sits in the driver's seat, the vehicle becomes theirs. Invite them early and often: "Go ahead, get in — adjust the seat, feel the wheel." Inside the cabin, ask how it feels: "How does the seat feel compared to your current car?" "Does the visibility work for you?" Sitting inside is where the intellectual match becomes an emotional one, and it is the strongest buying-signal moment in the whole sale. Do not present the whole vehicle from the outside.
+### Common Mistakes
+- Presenting features in a fixed order that ignores the customer's priorities
+- Listing specs without connecting them to the customer's life
+- Keeping the customer outside, presenting over the hood while they stand on the pavement
+- Overwhelming the customer with every feature when three or four matter most
+### Pro Tips
+- Skim your worksheet before the walkaround and order the features by the customer's priorities
+- Lead with their #1 priority, then support with the rest
+- Get them in the driver's seat early and ask how it feels
+- Watch their face when they sit down — the "this is mine" moment is the whole sale
+### Quick Quiz
+**Q1:** What determines the order of the walkaround presentation?
+A) The vehicle's most expensive features
+B) The customer's stated priorities — their #1 need comes first
+C) The order in the brochure
+D) Which features are easiest to explain
+*Answer: B — Present in the customer's priority order; leading with their #1 need proves you listened and frames the rest as support.*
+**Q2:** "You said the morning commute is stop-and-go — the adaptive cruise handles that for you" is an example of:
+A) A feature listed in isolation
+B) Connecting a feature to the customer's own words
+C) A closing technique
+D) A budget question
+*Answer: B — The feature is tied to the life the customer described, turning a spec into a solution.*
+**Q3:** When should you invite the customer to sit inside the vehicle?
+A) Only after the test drive
+B) Never — keep the presentation outside
+C) Early and often — inside is where the match becomes emotional
+D) Only if they ask
+*Answer: C — Sitting in the driver's seat is the strongest buying-signal moment; invite them early.*
+**Q4:** What should you ask once the customer is sitting in the driver's seat?
+A) "Are you ready to buy?"
+B) "How does the seat feel compared to your current car?"
+C) "What's your trade-in?"
+D) "Do you like the color?"
+*Answer: B — Ask how it feels relative to their current car — it turns the seat into a comparison they make themselves.*
+**Q5:** What is the mistake of presenting every feature on the vehicle?
+A) It takes too long
+B) It overwhelms the customer when three or four features matter most
+C) It is against policy
+D) It confuses the trade-in
+*Answer: B — Overwhelming with every feature dilutes the priorities; lead with the few that matter most to this buyer.*
+`,
+      },
+      {
+        id: "right-vehicle-objections",
+        title: "Handling Objections and Connecting Benefits to Daily Driving",
+        description: "Address practical and financial objections honestly, tie benefits to daily problems, and put the whole framework together.",
+        duration: "15 min",
+        content: `## Handling Objections and Connecting Benefits to Daily Driving
+**Goal:** Handle practical and financial objections honestly, connect every benefit to the customer's daily driving problems, and close the framework-driven match.
+### The Honest Objection
+Objections are not rejections — they are questions the customer needs answered before they can say yes. A price objection is a request to justify value. A "let me think about it" is usually an unspoken concern that was never surfaced. Handle objections honestly: acknowledge the concern, answer the real question underneath, and never dismiss or talk over it. The customer who is told the truth about a limitation trusts you more, not less.
+### Connect Benefits to Daily Driving
+Every feature you presented should tie back to a problem the customer lives with every day. The smooth ride answers the potholed commute. The cargo space answers the weekly haul. The safety suite answers the worry about the highway. When you close the loop — feature to daily problem — the customer sees the vehicle not as a nice car but as the fix to their actual life. This connection is what makes the price feel fair and the decision feel easy.
+### Putting It All Together
+The framework ends where it began — with the customer's life. Recap the profile, restate the match, and connect it to the daily problems: "You needed the third row for the carpool, the safety suite for peace of mind on the highway, and a payment you can live with — this vehicle delivers all three, and the gray one we have on the lot does it this week." The close is not a new argument; it is the summary of everything the customer told you, matched to the vehicle in front of them.
+### Common Mistakes
+- Treating objections as attacks and getting defensive
+- Answering the surface objection without finding the real concern underneath
+- Presenting features without ever connecting them back to daily problems
+- Closing with a generic "so, are you ready?" instead of recapping the match
+### Pro Tips
+- Acknowledge the objection before answering it: "That's a fair question about the price"
+- Probe under "I need to think about it" — "What's the part that's still uncertain for you?"
+- Close the loop on every major feature: daily problem → feature → daily benefit
+- End with a profile recap in the customer's own words before asking for the decision
+### Quick Quiz
+**Q1:** What is an objection, at its core?
+A) A rejection of the salesperson
+B) A question the customer needs answered before they can say yes
+C) A signal to end the conversation
+D) A reason to lower the price
+*Answer: B — Objections are requests for the information or reassurance the customer still needs; answer the real question underneath.*
+**Q2:** "I need to think about it" usually means:
+A) The customer is lying
+B) An unspoken concern that was never surfaced
+C) The customer wants to leave
+D) The price is too low
+*Answer: B — "Think about it" typically hides an unspoken concern; probe gently to surface it.*
+**Q3:** Why must every major feature connect back to a daily driving problem?
+A) It makes the presentation longer
+B) The customer then sees the vehicle as the fix to their actual life, which makes the price feel fair
+C) It impresses the manager
+D) It is required by the manufacturer
+*Answer: B — Closing the loop from feature to daily problem turns the vehicle from a nice car into the answer to their life — and the price into a fair trade.*
+**Q4:** What is the right first response to a price objection?
+A) Defend the price aggressively
+B) Acknowledge it as a fair question, then justify the value
+C) Discount immediately
+D) Change the subject
+*Answer: B — Acknowledge before answering; then justify value honestly rather than defending or discounting reflexively.*
+**Q5:** How should the final close be structured?
+A) A generic "are you ready to go?"
+B) A recap of the profile and match in the customer's own words before asking for the decision
+C) A pressure deadline
+D) A list of every feature again
+*Answer: B — Recapping the profile and the match in the customer's own words makes the close a summary of their own conclusions, not a new argument.*
+`,
+      },
+    ],
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {
