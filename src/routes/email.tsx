@@ -50,7 +50,7 @@ function EmailPage() {
       {/* Header */}
       <SiteHeader />
 
-      <main className="mx-auto max-w-3xl px-4 pt-[184px] pb-12 sm:px-6">
+      <main className="mx-auto max-w-3xl px-4 pt-10 pb-12 sm:px-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white sm:text-4xl">Send Email</h1>
           <p className="mt-2 text-gray-400">Compose and send emails to your contacts.</p>

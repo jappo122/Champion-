@@ -200,7 +200,7 @@ function PricingPage() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="px-4 pt-[184px] pb-16 md:pt-[200px] md:pb-24">
+      <section className="px-4 pt-10 pb-16 md:pb-24">
         <div className="mx-auto max-w-6xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
             Simple, Transparent Pricing

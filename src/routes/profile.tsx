@@ -764,7 +764,7 @@ function ProfileDashboard() {
     return (
       <div className="min-h-dvh bg-[#0a1628]">
         <Header />
-        <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
+        <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
           {message && (
             <div className={`mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`}>
               {message.text}
@@ -976,7 +976,7 @@ function ProfileDashboard() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       <Header />
-      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
+      <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
         {message && (
           <div className={`mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`}>
             {message.text}

@@ -34,7 +34,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("storage", check);
   }, []);
   return (
-    <header className="fixed top-0 z-50 w-full bg-transparent">
+    <header className="w-full bg-[#0a1628]">
       <div className="mx-auto flex h-40 max-w-7xl items-center justify-between px-3 md:px-6">
         {/* Logo — big brand logo, same visual footprint as the original approved design */}
         <a href="/" className="block shrink-0">
@@ -97,7 +97,7 @@ function Hero({ t }: { t: (k: string) => string }) {
     };
   }, []);
     return (
-    <section className="relative overflow-hidden pt-[184px] sm:pt-[192px] pb-28 sm:pb-36">
+    <section className="relative overflow-hidden pt-12 pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}
       <div className="pointer-events-none absolute -top-[320px] left-1/2 h-[1200px] w-[1200px] -translate-x-1/2 rounded-full bg-[#e63946]/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />

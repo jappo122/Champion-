@@ -56,7 +56,7 @@ function PlannerPage() {
     <div className="min-h-dvh bg-[#0a1628]">
       <SiteHeader />
 
-      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
+      <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold text-white">My Planner</h1>

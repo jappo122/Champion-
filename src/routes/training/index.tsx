@@ -86,7 +86,7 @@ function TrainingCatalog() {
         {/* Header */}
         <SiteHeader />
 
-        <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
+        <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
           {/* Hero CTA */}
           <div className="mb-12 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">

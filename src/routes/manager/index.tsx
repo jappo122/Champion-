@@ -636,7 +636,7 @@ function ManagerDashboard() {
       <Header />
 
       {error && (
-        <div className="mx-auto max-w-7xl px-6 pt-[184px]">
+        <div className="mx-auto max-w-7xl px-6 pt-10">
           <div className="rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-4 text-sm text-[#e63946]">
             {error}
           </div>

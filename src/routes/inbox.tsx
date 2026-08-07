@@ -104,7 +104,7 @@ function InboxPage() {
     return (
       <div className="min-h-screen bg-[#0a1628]">
         <SiteHeader />
-        <div className="flex items-center justify-center pt-[184px] pb-12">
+        <div className="flex items-center justify-center pt-10 pb-12">
           <div className="animate-spin h-8 w-8 border-2 border-[#e63946] border-t-transparent rounded-full" />
         </div>
       </div>
@@ -116,7 +116,7 @@ function InboxPage() {
     return (
       <div className="min-h-screen bg-[#0a1628]">
         <SiteHeader />
-        <div className="flex items-center justify-center pt-[184px] pb-12">
+        <div className="flex items-center justify-center pt-10 pb-12">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">Inbox</h1>
             <p className="text-slate-400 mb-6">Please sign in to access the inbox.</p>
@@ -134,7 +134,7 @@ function InboxPage() {
     return (
       <div className="min-h-screen bg-[#0a1628]">
         <SiteHeader />
-        <div className="flex items-center justify-center pt-[184px] pb-12">
+        <div className="flex items-center justify-center pt-10 pb-12">
           <div className="text-center">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20 mb-4">
               <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">

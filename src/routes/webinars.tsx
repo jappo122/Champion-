@@ -37,7 +37,7 @@ function WebinarsPage() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-[184px] pb-16 sm:pt-[200px] sm:pb-20">
+      <section className="relative overflow-hidden pt-10 pb-16 sm:pb-20">
         <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#e63946]/8 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 right-0 h-[300px] w-[300px] rounded-full bg-[#1a2d4a]/40 blur-3xl" />
 

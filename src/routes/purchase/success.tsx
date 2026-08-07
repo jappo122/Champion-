@@ -13,7 +13,7 @@ function PurchaseSuccess() {
     <div className="min-h-dvh bg-[#0a1628]">
       <SiteHeader />
 
-      <div className="flex items-center justify-center px-6 pt-[184px] pb-12">
+      <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="mx-auto max-w-md text-center">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20">
           <svg className="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

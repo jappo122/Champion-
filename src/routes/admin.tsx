@@ -56,7 +56,7 @@ function AdminPage() {
     return (
       <div className="min-h-screen bg-[#0a1628]">
         <SiteHeader />
-        <div className="flex items-center justify-center pt-[184px] pb-12">
+        <div className="flex items-center justify-center pt-10 pb-12">
           <p className="text-slate-400">Loading...</p>
         </div>
       </div>
@@ -67,7 +67,7 @@ function AdminPage() {
     return (
       <div className="min-h-screen bg-[#0a1628]">
         <SiteHeader />
-        <div className="flex items-center justify-center pt-[184px] pb-12">
+        <div className="flex items-center justify-center pt-10 pb-12">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">Admin</h1>
             <p className="text-slate-400 mb-6">Please sign in to access the admin panel.</p>
@@ -84,7 +84,7 @@ function AdminPage() {
     return (
       <div className="min-h-screen bg-[#0a1628]">
         <SiteHeader />
-        <div className="flex items-center justify-center pt-[184px] pb-12">
+        <div className="flex items-center justify-center pt-10 pb-12">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">Access Denied</h1>
             <p className="text-slate-400">This page is restricted to owner accounts.</p>

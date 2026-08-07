@@ -71,7 +71,7 @@ function CheckoutPage() {
     <div className="min-h-dvh bg-[#0a1628]">
       <SiteHeader />
 
-      <main className="mx-auto max-w-2xl px-6 pt-[184px] pb-12">
+      <main className="mx-auto max-w-2xl px-6 pt-10 pb-12">
         <h1 className="text-3xl font-bold text-white">Management Account Setup</h1>
         <p className="mt-2 text-gray-400">Choose your plan and start building your sales team.</p>
 

@@ -38,7 +38,7 @@ function BlogPostPage() {
       <SiteHeader />
 
       {/* Blog Post */}
-      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
+      <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Main content */}
           <article className="lg:col-span-2">

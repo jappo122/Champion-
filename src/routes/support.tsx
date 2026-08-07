@@ -71,7 +71,7 @@ function SupportPage() {
     <div className="min-h-dvh bg-[#0a1628]">
       <SiteHeader />
 
-      <main className="mx-auto max-w-4xl px-6 pt-[184px] pb-12">
+      <main className="mx-auto max-w-4xl px-6 pt-10 pb-12">
         <div className="mx-auto max-w-lg">
           <h1 className="text-3xl font-bold text-white">{t('support.title')}</h1>
           <p className="mt-2 text-gray-400">{t('support.subtitle')}</p>

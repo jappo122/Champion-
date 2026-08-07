@@ -13,7 +13,7 @@ export function SiteHeader() {
     return () => window.removeEventListener("storage", check);
   }, []);
   return (
-    <header className="fixed top-0 z-50 w-full bg-[#0a1628]/95 backdrop-blur-sm">
+    <header className="w-full bg-[#0a1628]">
       <div className="mx-auto flex h-40 max-w-7xl items-center justify-between px-3 md:px-6">
         {/* Logo — same size on every page, never moves */}
         <a href="/" className="block shrink-0">

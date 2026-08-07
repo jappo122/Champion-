@@ -94,7 +94,7 @@ function ContactPage() {
       {/* Header */}
       <SiteHeader />
 
-      <main className="mx-auto max-w-4xl px-6 pt-[184px] pb-12">
+      <main className="mx-auto max-w-4xl px-6 pt-10 pb-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-3xl font-bold text-white">Contact Us</h1>
           <p className="mt-2 text-gray-400">

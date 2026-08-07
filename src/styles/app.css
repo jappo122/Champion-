@@ -24,7 +24,7 @@
   }
   /* Anchored sections (e.g. #features, #pricing) clear the fixed header */
   [id] {
-    scroll-margin-top: 176px;
+    scroll-margin-top: 24px;
   }
 }
 

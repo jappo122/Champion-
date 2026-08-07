@@ -167,7 +167,7 @@ function CourseDetail() {
       {/* Header */}
       <SiteHeader />
       {/* Main content */}
-      <main className="mx-auto max-w-7xl px-6 pt-[184px] pb-8">
+      <main className="mx-auto max-w-7xl px-6 pt-10 pb-8">
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Lesson list sidebar */}
           <div className="order-2 lg:order-1 lg:col-span-1">

@@ -96,7 +96,7 @@ function SignupPage() {
     <div className="min-h-dvh bg-[#0a1628]">
       <SiteHeader />
 
-      <div className="flex items-center justify-center px-6 pt-[184px] pb-12">
+      <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="w-full max-w-md">
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
           <LanguageSwitcher />

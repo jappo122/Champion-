@@ -121,7 +121,7 @@ function SignupCompletePage() {
     <div className="min-h-dvh bg-[#0a1628]">
       <SiteHeader />
 
-      <div className="flex items-center justify-center px-6 pt-[184px] pb-12">
+      <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="w-full max-w-md text-center">
         {status === "loading" && (
           <>
