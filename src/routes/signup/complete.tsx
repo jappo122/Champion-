@@ -4,6 +4,7 @@ import { sql } from "~/db";
 import { randomBytes, createHash } from "node:crypto";
 import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 // ── Server function: create account after Stripe payment ───────────────────
 

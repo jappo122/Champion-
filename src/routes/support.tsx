@@ -3,6 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { sql } from "~/db";
 import { useTranslation } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 const submitTicket = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { name: string; email: string; subject: string; message: string } }) => {

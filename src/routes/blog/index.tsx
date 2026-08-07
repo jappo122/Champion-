@@ -1,6 +1,7 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { LanguageSwitcher } from "~/i18n";
 import { getBlogPosts, type BlogPost } from "~/content/blog";
+import { SiteHeader } from "~/components/site-header";
 
 const POSTS_PER_PAGE = 6;
 

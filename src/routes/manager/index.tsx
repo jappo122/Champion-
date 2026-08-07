@@ -6,6 +6,7 @@ import { courses } from "~/content/courses";
 import { LanguageSwitcher } from '../../i18n';
 import { useTranslation } from '../../i18n';
 import { getAuthInfo } from "~/lib/auth-guard";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/manager/")({
   component: ManagerDashboard,

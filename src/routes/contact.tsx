@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { sendEmail } from "~/lib/email";
+import { SiteHeader } from "~/components/site-header";
 
 const submitContactForm = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: {

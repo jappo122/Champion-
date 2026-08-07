@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { signup } from "~/lib/auth";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/signup/")({
   component: SignupPage,

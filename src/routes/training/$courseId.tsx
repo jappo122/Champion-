@@ -6,6 +6,7 @@ import { courses, type Lesson } from "~/content/courses";
 import { getAuthInfo } from "~/lib/auth-guard";
 import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
 import { renderMarkdown } from "~/lib/renderer";
+import { SiteHeader } from "~/components/site-header";
 export const Route = createFileRoute("/training/$courseId")({
   component: CourseDetail,
 });

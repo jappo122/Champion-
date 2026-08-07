@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/purchase/success")({
   component: PurchaseSuccess,

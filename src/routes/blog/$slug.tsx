@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
 import { getBlogPost, getBlogPosts, type BlogPost, type BlogSection } from "~/content/blog";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/blog/$slug")({
   component: BlogPostPage,

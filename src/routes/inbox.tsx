@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getAuthInfo } from "~/lib/auth-guard";
 import { getInboxEmails, getInboxEmail, markInboxRead } from "~/lib/inbox";
 import { LanguageSwitcher } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/inbox")({
   component: InboxPage,
