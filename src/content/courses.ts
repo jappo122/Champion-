@@ -4199,6 +4199,581 @@ D) Switching dealerships frequently
       },
     ],
   },
+  // ===== Course 11: Stop Selling and Start Asking Questions =====
+  {
+    id: "stop-selling-start-asking",
+    title: "Stop Selling and Start Asking Questions",
+    subtitle: "Probe, don't pitch — let customers sell themselves",
+    description:
+      "The strongest sales pitch isn't yours — it's the one your customer gives themselves. When buyers articulate their own problems, put a dollar figure on the cost of inaction, and state why they need a change, they persuade themselves far more effectively than any feature list ever could. This 10-lesson module teaches the complete questioning framework built on three categories: Current Situation Questions that map the customer's world, Problem Awareness Questions that surface the pain, and Value and Consequence Questions that put a price on the fix and the feeling. Each lesson includes rich dealership-specific prose and ends with 5 scenario-based quiz questions — 50 total — so you can drill the skill until probing replaces pitching.",
+    levels: "Intermediate",
+    duration: "2.5 hours",
+    lessons: 10,
+    image: "needs",
+    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+    lessonsList: [
+      {
+        id: "asking-intro-why",
+        title: "Why Stop Pitching — Customers Sell Themselves",
+        description: "Understand the self-sell principle: when customers articulate their own problems, they persuade themselves.",
+        duration: "15 min",
+        content: `## Why Stop Pitching — Customers Sell Themselves
+**Goal:** Understand why probing beats pitching — when customers articulate their own problems, calculate the cost of inaction, and state why they need a change, they persuade themselves more powerfully than any sales pitch ever could.
+### The Self-Sell Principle
+When you pitch, you argue with a customer who is already on the defensive. When you probe, you give the customer a mirror — and the person they see in it makes the case for you. A customer who says out loud, "I've spent $2,400 on repairs this year and I can't trust this car on the highway with my kids" has just made the sale better than any feature monologue you could deliver. They told you the problem, they priced it, and they stated the consequence. All you have to do is listen and connect the solution.
+### Why Your Pitch Is Weak
+Your pitch is weak not because you're bad at it, but because it is your argument, not theirs. Customers instinctively resist being sold to; they do not resist their own conclusions. When the reasons to buy come out of the customer's mouth, there is nothing to argue with — they would have to argue with themselves. The salesperson's job shifts from persuader to guide: ask the questions, let the customer talk themselves into the car, and confirm what they say.
+### The Three Categories That Do the Work
+The framework runs on three question categories. Current Situation Questions map where the customer is today — what they drive, how they use it, what a typical week looks like. Problem Awareness Questions surface what hurts — the breakdowns, the costs, the compromises. Value and Consequence Questions put a number and a feeling on the fix — what solving it is worth in dollars and how it will feel when it's solved. Move through all three and the customer sells themselves from problem to solution.
+### Common Mistakes
+- Opening with a feature pitch before the customer has said a single sentence about their life
+- Arguing with the customer instead of asking them to explain their own situation
+- Stopping at the first problem the customer mentions without pricing its cost
+- Treating the conversation as a chance to talk instead of a chance to listen
+### Pro Tips
+- Before each customer interaction, remind yourself: my goal is to get them talking, not to talk
+- When the customer states a problem, resist the urge to fix it immediately — ask them what it costs first
+- Write down the customer's own words; their phrases become your presentation script
+- If you catch yourself delivering a pitch, stop and ask a question instead
+### Quick Quiz
+**Q1:** Why does a customer who articulates their own problem persuade themselves more effectively than a sales pitch?
+A) Customers trust their own conclusions more than someone else's argument
+B) Customers forget what the salesperson says
+C) Customers enjoy hearing themselves talk
+D) Pitches are always weak
+*Answer: A — People instinctively resist being sold to but do not resist their own conclusions; when the reasons come from the customer, there is nothing to argue with.*
+**Q2:** What is the salesperson's role in the self-sell approach?
+A) To deliver the most persuasive feature presentation possible
+B) To guide with questions and let the customer talk themselves into the car
+C) To stay silent for the entire interaction
+D) To argue each objection until the customer gives in
+*Answer: B — The salesperson becomes a guide: ask the questions, listen, and confirm what the customer concludes.*
+**Q3:** Which of the following is one of the three question categories in the framework?
+A) Price anchoring questions
+B) Current Situation Questions
+C) Inventory questions
+D) Test-drive questions
+*Answer: B — The three categories are Current Situation Questions, Problem Awareness Questions, and Value and Consequence Questions.*
+**Q4:** What is the job of Problem Awareness Questions?
+A) To map where the customer is today
+B) To surface what hurts — the breakdowns, costs, and compromises
+C) To put a dollar value on the solution
+D) To confirm the customer's budget
+*Answer: B — Problem Awareness Questions surface the pain: the breakdowns, costs, and compromises in the customer's current situation.*
+**Q5:** A customer says "I've spent $2,400 on repairs this year." What has the customer just done for you?
+A) Told you their exact budget
+B) Made the case for buying better than any pitch could
+C) Asked for a discount
+D) Committed to the sale
+*Answer: B — The customer has articulated the problem and priced it, making the case for a replacement more powerfully than any sales pitch could.*
+`,
+      },
+      {
+        id: "asking-open-ended-probing",
+        title: "The Power of Open-Ended Probing Questions",
+        description: "Master specific, open-ended probes that keep the customer talking and reveal the real story.",
+        duration: "15 min",
+        content: `## The Power of Open-Ended Probing Questions
+**Goal:** Replace closed questions and statements with specific, open-ended probes that open the customer up and reveal the details behind the purchase.
+### Why Open-Ended Probes Win
+A closed question — "Do you drive a lot?" — earns a one-word answer and tells you nothing. An open-ended probe — "Walk me through a typical week of driving for you" — opens a door the customer walks through, handing you their commute, their habits, their pain points, and their priorities in one answer. Open probes start with how, what, why, and walk-me-through. They cannot be answered with yes or no, which means the customer does the talking — and the customer who talks the most buys the most.
+### Specific Beats Generic
+The most powerful probes are specific. "What does your current process look like for handling the school run every morning?" outsells "Do you have kids?" Specificity does two things: it shows the customer you care about the real details of their life, and it forces a detailed answer instead of a shrug. The more specific the probe, the more the customer reveals — and the more they reveal, the more they are selling themselves.
+### The Probe Ladder
+One probe is rarely enough. Follow the first answer with a deeper probe: "Walk me through your typical morning drive." → "What happens on the days it doesn't go smoothly?" → "How does that affect the rest of your day?" Each rung of the ladder goes one level deeper into the customer's world. The surface answer is rarely the real reason; the real reason is usually two or three probes down.
+### Common Mistakes
+- Asking closed questions that invite one-word answers and kill the conversation
+- Using generic probes like "How's it going?" that produce generic answers
+- Firing a list of questions with no follow-up, so the conversation feels like an interview
+- Answering your own questions because you can't stand the silence
+### Pro Tips
+- Memorize three open probes and use them constantly: "Walk me through…", "What does that look like…", "How does that affect…"
+- After every customer answer, go one level deeper with a follow-up probe
+- Count to three after asking before you say anything else — the silence invites them to keep talking
+- If a customer answers with one word, re-open with "Tell me more about that"
+### Quick Quiz
+**Q1:** Why do open-ended probes outperform closed questions?
+A) They are faster to ask
+B) They cannot be answered with yes or no, so the customer keeps talking and reveals more
+C) They sound more professional
+D) They make the customer feel challenged
+*Answer: B — Open probes start with how, what, why, or walk-me-through, so they cannot be answered with a single word and the customer reveals their real story.*
+**Q2:** What makes a probe "specific" and powerful?
+A) It uses formal language
+B) It targets the real details of the customer's life, like the morning school run
+C) It is short and snappy
+D) It mentions the vehicle by name
+*Answer: B — Specific probes about real routines force detailed answers and show genuine interest in the customer's life.*
+**Q3:** What is the "probe ladder"?
+A) Asking the same question louder each time
+B) Following the first answer with deeper and deeper probes to reach the real reason
+C) Alternating open and closed questions
+D) Asking every question on your checklist in order
+*Answer: B — Each rung goes one level deeper into the customer's world; the surface answer is rarely the real reason, which is two or three probes down.*
+**Q4:** A customer answers your open probe with a one-word response. What should you do?
+A) Move to the next topic
+B) Re-open with "Tell me more about that"
+C) Assume they are not interested
+D) Start your presentation
+*Answer: B — Re-opening with "Tell me more about that" gently invites the customer to expand instead of shutting the conversation down.*
+**Q5:** Which of the following is an effective open-ended probe for a car customer?
+A) "Do you like your current car?"
+B) "Walk me through what happens on the mornings your car won't start."
+C) "Is gas mileage important to you?"
+D) "Are you ready to buy today?"
+*Answer: B — It is specific and open-ended, inviting a detailed answer about the customer's real experience instead of a yes or no.*
+`,
+      },
+      {
+        id: "asking-situation-world",
+        title: "Current Situation Questions — Mapping the Customer's World",
+        description: "Open the sale by mapping the customer's world: what they drive, how they use it, and what a typical day looks like.",
+        duration: "15 min",
+        content: `## Current Situation Questions — Mapping the Customer's World
+**Goal:** Open the sale with Current Situation Questions that map what the customer drives, how they use it, and what their world actually looks like.
+### Start With Their World, Not Your Lot
+The first category of the framework is Current Situation. Before you can help anyone, you need to know where they stand: what they drive today, how they use it, who rides in it, and what a normal week looks like. These questions are easy to ask, easy to answer, and they build the trust that makes the harder questions possible. A customer who has talked about their commute, their kids, and their camping trips for ten minutes is a customer who is open — not a customer braced against a pitch.
+### The Questions That Map the World
+Ask questions that paint a picture: "Tell me about the car you're driving now." "What does your typical week of driving look like?" "Who rides in the car most days?" "What do you use it for — commuting, hauling, road trips?" "Walk me through your normal morning routine with the car." Each answer adds a brushstroke to the customer's world, and the world you map determines which vehicle you will ultimately show them.
+### Why Mapping Comes First
+You cannot price a problem or sell a solution until you know the situation the customer lives in. A customer who drives thirty highway miles each way has a completely different need than one who does the school run in stop-and-go traffic — and the questions that reveal the difference are the same questions that make the customer feel genuinely understood. When the customer feels you understand their world, they stop guarding their wallet and start collaborating on a solution.
+### Common Mistakes
+- Walking straight to a vehicle before asking a single question about the customer's life
+- Asking only about the car and never about the life around it — the commute, the family, the hobbies
+- Jumping to budget questions before the situation is mapped
+- Interrupting the customer's description to point out a car on the lot
+### Pro Tips
+- Open with the easiest question: "Tell me about the car you're driving now" — everyone can answer it
+- Ask about the life around the car, not just the car: "Who rides with you most days?"
+- Take notes while they talk; the details you capture become your presentation material
+- Resist the urge to show a vehicle until the customer's world is at least roughly mapped
+### Quick Quiz
+**Q1:** What is the purpose of Current Situation Questions?
+A) To qualify the customer's credit immediately
+B) To map what the customer drives, how they use it, and what their daily world looks like
+C) To present the best vehicle on the lot
+D) To ask for the customer's contact information
+*Answer: B — Current Situation Questions map the customer's world first, building trust and providing the foundation for everything that follows.*
+**Q2:** Which question best maps the customer's world?
+A) "What's your budget?"
+B) "Walk me through your normal morning routine with the car."
+C) "Do you want a sedan or an SUV?"
+D) "When are you planning to buy?"
+*Answer: B — It invites a detailed picture of the customer's daily life with the car, which is exactly what mapping requires.*
+**Q3:** Why must mapping come before problem questions?
+A) It is easier and faster
+B) You cannot price a problem or sell a solution until you know the situation the customer lives in
+C) Customers expect it in this order
+D) It uses up the least conversation time
+*Answer: B — The situation determines the problem and the solution; without the map, you are guessing at both.*
+**Q4:** What effect does asking about the customer's world have on their mindset?
+A) It makes them defensive
+B) It makes them feel understood, so they stop guarding their wallet and collaborate
+C) It confuses them about the inventory
+D) It makes them want to leave
+*Answer: B — When the customer feels you understand their world, they open up and work with you instead of bracing against a pitch.*
+**Q5:** What is the best first question to open the mapping process?
+A) "Are you ready to buy today?"
+B) "Tell me about the car you're driving now."
+C) "What kind of payment are you looking for?"
+D) "Have you been to our dealership before?"
+*Answer: B — "Tell me about the car you're driving now" is easy to answer, gets the customer talking immediately, and starts the map.*
+`,
+      },
+      {
+        id: "asking-situation-history",
+        title: "Current Situation — History, Routines, and Specifics",
+        description: "Go deeper into the current situation: how long they've owned the vehicle, their routines, and the day-to-day specifics.",
+        duration: "15 min",
+        content: `## Current Situation — History, Routines, and Specifics
+**Goal:** Deepen the Current Situation picture with history, routines, and specifics — how long they've had the vehicle, what a typical day looks like, and the details that matter.
+### The History Questions
+The second layer of Current Situation digs into history and specifics. "How long have you been driving your current truck?" "How many miles do you put on it in a typical week?" "Have you owned this model before, or is this your first one?" History tells you how much experience the customer has with their vehicle, how emotionally attached they are to it, and how ready they are to move on. A customer who has driven the same car for nine years is in a very different place than one who trades every two years.
+### The Routine Questions
+Routines turn a map into a motion picture. "Walk me through how a typical day works when you run into [their issue]." "What time do you leave for work, and what's the traffic like?" "How often do you haul or tow, and what do you carry?" Routine questions reveal the actual demands the vehicle must meet — the daily grind that a feature list never captures. The customer who tows a boat every weekend has a non-negotiable need that only the routine questions will expose.
+### The Specifics That Win Deals
+Specifics are where deals are won. Knowing the customer drives 45 minutes each way, carries two kids and a dog, and needs to fit a stroller changes which car you show — and lets you present it as the obvious answer to their own life. The more specific the picture, the more obvious the match, and the easier the close. Specifics also prove you listened: when you reference their exact commute or routine in the presentation, the customer hears their own life in your words.
+### Common Mistakes
+- Stopping at "what do you drive" and never asking how long or how much
+- Asking for mileage and history but never asking about the daily routine
+- Failing to follow up on a routine the customer mentions — "you said you tow every weekend — tell me about that"
+- Collecting facts without ever connecting them to the vehicle decision
+### Pro Tips
+- Always ask the trio: how long have you owned it, how many miles per week, and how is it actually used
+- Follow any mention of an issue with "Walk me through how a typical day works when you run into that"
+- Record the specifics on your worksheet — the commute distance, the kids, the trailer — you will use them in the presentation
+- If a customer mentions a hobby or routine, drill into it; that is where the real requirements hide
+### Quick Quiz
+**Q1:** What does asking how long a customer has owned their current vehicle reveal?
+A) Their exact budget
+B) How experienced they are with the vehicle and how ready they are to move on
+C) Which dealership they prefer
+D) Their credit score
+*Answer: B — History reveals experience and attachment; a nine-year owner is in a very different place than a two-year trader.*
+**Q2:** Why are routine questions important?
+A) They fill conversation time comfortably
+B) They reveal the daily demands the vehicle must meet, which a feature list never captures
+C) They are easier than feature questions
+D) They help the customer relax
+*Answer: B — Routine questions expose the real daily grind — the commute, the towing, the car seats — that determines which vehicle fits.*
+**Q3:** "Walk me through how a typical day works when you run into [the issue]" is an example of:
+A) A closed question
+B) A routine question that turns the map into a motion picture
+C) A value question
+D) A budget question
+*Answer: B — It is a routine question that shows how the customer's day actually plays out when they hit their problem.*
+**Q4:** Why do specifics win deals?
+A) They impress the customer with your knowledge
+B) The more specific the picture, the more obvious the vehicle match, and the easier the close
+C) They make the customer talk less
+D) They shorten the sales process
+*Answer: B — Specifics make the right vehicle obvious and let you present it as the answer to the customer's own life, which eases the close.*
+**Q5:** A customer mentions they tow a boat every weekend. What should you do?
+A) Note it and move on to the next question
+B) Drill into it — towing is a non-negotiable requirement hidden in the routine
+C) Show them a small sedan
+D) Ask about their budget instead
+*Answer: B — Follow any routine or hobby the customer mentions; that is where the real, non-negotiable requirements hide.*
+`,
+      },
+      {
+        id: "asking-problem-pain",
+        title: "Problem Awareness — Surfacing the Pain",
+        description: "Move to the second category: help the customer articulate their problems and what they cost.",
+        duration: "15 min",
+        content: `## Problem Awareness — Surfacing the Pain
+**Goal:** Use Problem Awareness Questions to help the customer articulate what is wrong with their current vehicle — and what it is really costing them.
+### From Situation to Problem
+Once you have mapped the customer's world, the second category of the framework begins: Problem Awareness. These questions surface the pain. "What's the hardest part about your current car?" "How much time or money does this issue cost you each week?" "What happens if you don't fix this in the next six months?" "How is this lack of reliability affecting your family or your work?" The customer's answers are the seeds of the sale — every problem they name is a reason to buy that you did not have to invent.
+### Make the Customer Say It
+The power of Problem Awareness is that the customer says it, not you. If you say "your car is unreliable," the customer defends it — it's their car, their decision, their pride. But if you ask "How many times has it left you stranded this year?" and the customer says "Three times, and twice with my kids in the car," they have just told you why they need a new vehicle. Your job is to ask the question and stay quiet while the customer talks themselves into the problem being real.
+### From Pain to Cost
+A named problem is good; a priced problem is gold. Follow every problem the customer mentions with a cost question: "How much did those repairs run you?" "What does a missed day of work cost you?" "What's the risk if it breaks down again?" When the customer puts a dollar figure or a consequence on their own problem, they have started building the case for the sale — and it is a case you never had to argue.
+### Common Mistakes
+- Skipping the problem stage and going straight from situation to features
+- Telling the customer what their problem is instead of asking them to name it
+- Rushing past a problem the customer names without pricing its cost
+- Accepting a vague "it's getting old" without probing for the specifics underneath
+### Pro Tips
+- Ask the problem openers: "What's the hardest part about your current car?" and "If you could change one thing, what would it be?"
+- After every problem the customer names, ask "How much does that cost you — in money or time?"
+- Stay quiet after the question; the customer needs space to admit the pain
+- Capture the customer's exact words — "stranded twice with the kids" — they are your strongest closing material
+### Quick Quiz
+**Q1:** What is the job of Problem Awareness Questions?
+A) To map the customer's commute
+B) To help the customer articulate what is wrong with their current vehicle and what it costs
+C) To present the solution immediately
+D) To ask about the customer's timeline
+*Answer: B — Problem Awareness surfaces the pain — what is wrong and what it costs — which becomes the customer's own reason to buy.*
+**Q2:** Why must the customer name the problem themselves rather than the salesperson?
+A) It saves time
+B) If you say the car is unreliable, the customer defends it; if they say it, they cannot argue with themselves
+C) Customers prefer to be told the truth
+D) It is required by the dealership
+*Answer: B — Customers defend their own car when you criticize it, but they cannot argue with a problem they named and admitted themselves.*
+**Q3:** "How much did those repairs run you?" is an example of:
+A) A Current Situation question
+B) A cost question that turns a named problem into a priced problem
+C) A value question
+D) A closing question
+*Answer: B — Cost questions follow a named problem and put a dollar figure on it, building the case for the sale.*
+**Q4:** A customer says "it's getting old" about their car. What should you do?
+A) Accept it and show them a new car
+B) Probe for the specifics underneath the vague answer
+C) Agree that it's old
+D) Move on to budget
+*Answer: B — A vague answer hides specifics; probe for the real problems underneath before moving forward.*
+**Q5:** Why is a "priced problem" described as gold?
+A) It earns the salesperson a bigger commission
+B) When the customer puts a dollar figure on their own problem, they have started building the case for the sale themselves
+C) It is rare to find
+D) It makes the customer feel smart
+*Answer: B — A priced problem is the customer's own financial case for buying — one you never had to argue.*
+`,
+      },
+      {
+        id: "asking-cost-inaction",
+        title: "Cost of Inaction — Making the Problem Expensive",
+        description: "Quantify the cost of doing nothing so the customer feels the price of waiting.",
+        duration: "15 min",
+        content: `## Cost of Inaction — Making the Problem Expensive
+**Goal:** Quantify the cost of inaction — what the problem is costing the customer in money, time, and risk — so waiting becomes the expensive choice.
+### The Question That Makes Waiting Expensive
+The most powerful question in the framework is the one that prices the status quo: "What happens if you don't fix this problem in the next six months?" Most customers have never done the math on what doing nothing costs. They feel the pain — the repairs, the breakdowns, the worry — but they have not added it up. Your job is to ask the questions that make them add it up, out loud, in their own words.
+### The Three Costs of Inaction
+Price inaction in three currencies. Money: "What will the next repair likely cost, and the one after that?" "How much does the poor fuel economy cost you each month?" Time: "How many hours have you spent at the shop this year?" "How much time do you lose when it breaks down on a workday?" Risk: "What happens if it fails on the highway with your family in it?" "What will you do if it won't start on the morning of your daughter's wedding?" When the customer answers these, waiting stops being neutral — it becomes a bet they are losing.
+### Let the Customer Do the Math
+Resist the urge to do the math for them. If you say "you're wasting $300 a month," the customer can argue with your number. If you ask "how much is that costing you a month?" and the customer says "$300," the number is theirs and it is final. The customer who calculates their own cost of inaction has talked themselves out of waiting — and into the market. Your presentation then becomes the answer to a problem they have already priced.
+### Common Mistakes
+- Skipping the cost-of-inaction questions and letting the customer leave thinking "I'll wait a little longer"
+- Doing the math for the customer instead of letting them arrive at the number themselves
+- Pressuring with fear — "this car could kill your family" — instead of asking the customer to state their own risk
+- Forgetting that time and convenience are costs too, not just repair bills
+### Pro Tips
+- Ask the money question: "What did you spend on repairs in the last twelve months?"
+- Ask the time question: "How many days has it been in the shop this year?"
+- Ask the risk question: "What worries you most about driving it as-is?"
+- After each cost, ask "Is that sustainable for you?" — the customer answers no, and they have said it, not you
+### Quick Quiz
+**Q1:** What is the purpose of cost-of-inaction questions?
+A) To justify a higher price
+B) To price the status quo so that waiting becomes the expensive choice
+C) To make the customer feel guilty
+D) To speed up the paperwork
+*Answer: B — Cost-of-inaction questions quantify what doing nothing costs, so waiting stops being neutral and becomes a losing bet.*
+**Q2:** The three currencies of inaction are:
+A) Money, time, and risk
+B) Money, features, and color
+C) Time, fuel, and warranty
+D) Risk, trade-in, and insurance
+*Answer: A — Price inaction in money (repairs, fuel), time (shop days, downtime), and risk (breakdowns, safety).*
+**Q3:** Why should the customer do the math themselves rather than the salesperson?
+A) It saves the salesperson effort
+B) The customer's own number cannot be argued with, while yours can
+C) Customers enjoy calculating
+D) It is a legal requirement
+*Answer: B — If you supply the number, the customer can argue with it; if they arrive at it themselves, it is theirs and it is final.*
+**Q4:** "How many days has it been in the shop this year?" prices inaction in which currency?
+A) Money
+B) Time
+C) Risk
+D) Fuel
+*Answer: B — Shop days and downtime are the time cost of inaction.*
+**Q5:** After a customer states a cost of their current situation, what should you ask?
+A) "Is that sustainable for you?"
+B) "Can I show you a car now?"
+C) "Do you have a trade-in?"
+D) "What color do you prefer?"
+*Answer: A — Asking if the cost is sustainable forces the customer to answer no out loud — and they have said it, not you.*
+`,
+      },
+      {
+        id: "asking-value-dollars",
+        title: "Value and Consequence — The Magic Wand and the Dollar Value",
+        description: "Move to the third category: put a dollar value on the fix with magic-wand questions.",
+        duration: "15 min",
+        content: `## Value and Consequence — The Magic Wand and the Dollar Value
+**Goal:** Use Value and Consequence Questions to help the customer put a dollar figure on what solving their problem is worth.
+### The Magic Wand Question
+The third category of the framework is Value and Consequence — and it opens with the magic wand. "If you could wave a magic wand and solve this problem today, what would that mean for you — in dollars?" For a car buyer, the magic wand question sounds like: "If you woke up tomorrow with a vehicle that never broke down, what would that be worth to you each month?" The question makes the customer translate their pain into value — the repairs they would not pay, the fuel they would save, the peace of mind they would buy.
+### From Pain to Payoff
+Value questions flip the conversation from the problem to the payoff. "How much would you save in repairs and fuel with a reliable vehicle?" "What's it worth to you to never miss a day of work again?" "What would it mean to have a car that fits the whole family comfortably?" Every answer is a benefit the customer has priced themselves — and a benefit you can now deliver. The customer is no longer buying a car; they are buying the value they just named.
+### The Dollar Value of Reliability
+Help the customer stack the value. Repair savings, fuel savings, insurance differences, and the cost of the breakdowns that never happen. When a customer says "I'm spending about $300 a month keeping this car alive," the payment conversation has already started — a new vehicle payment in that range is not a cost, it is a swap. The customer who has priced their own problem and their own solution is comparing two numbers, both of which they arrived at. You barely have to argue anything.
+### Common Mistakes
+- Asking value questions but never asking for the dollars — leaving the benefit vague and unanchored
+- Putting your own dollar figure on the solution before the customer has named theirs
+- Skipping the value stage entirely and jumping straight to payments
+- Treating the magic wand as a gimmick instead of a serious question that forces a concrete answer
+### Pro Tips
+- Ask the magic wand question early in the value stage and then go quiet
+- Push for the dollar: "What would that be worth to you — ballpark, per month?"
+- Stack the savings out loud: repairs, fuel, time, and peace of mind
+- When the customer names a number, use it: "So if the right vehicle gets you out from under that $300 a month, that's a straight swap"
+### Quick Quiz
+**Q1:** What is the magic wand question designed to do?
+A) Make the customer dream about a fantasy car
+B) Make the customer translate their pain into a dollar value they have named themselves
+C) Impress the customer with creative questions
+D) Delay the price discussion
+*Answer: B — The magic wand question makes the customer price the solution — what fixing their problem is worth in dollars.*
+**Q2:** Why does the value stage matter for the payment conversation?
+A) It lets the salesperson set the payment
+B) When the customer prices their own problem and solution, the new payment becomes a swap, not a cost
+C) It is a legal requirement before quoting payments
+D) It makes the customer feel good about the dealership
+*Answer: B — A customer spending $300 a month keeping a car alive compares that to a payment they also named — the new vehicle becomes a swap, not an added expense.*
+**Q3:** "How much would you save in repairs and fuel with a reliable vehicle?" is an example of:
+A) A Current Situation question
+B) A Problem Awareness question
+C) A Value and Consequence question
+D) A budget question
+*Answer: C — It prices the payoff of the solution, which is the job of Value and Consequence questions.*
+**Q4:** What is the mistake of putting your own dollar figure on the solution first?
+A) It takes too long
+B) The customer can argue with your number, while their own number is final
+C) It is against dealership policy
+D) It confuses the customer
+*Answer: B — Numbers the customer arrive at themselves are final; numbers you supply are arguable.*
+**Q5:** After the customer names a dollar value, what should you do with it?
+A) Write it down and forget it
+B) Use it in the presentation: the right vehicle turns that cost into a straight swap
+C) Argue that the value is too low
+D) Keep it private until the finance office
+*Answer: B — Use the customer's own number in the presentation to show the new vehicle eliminates the cost they named.*
+`,
+      },
+      {
+        id: "asking-emotional-value",
+        title: "Emotional Value — How It Feels",
+        description: "Ask how the solution will feel — and sell the peace of mind, pride, and security behind the purchase.",
+        duration: "15 min",
+        content: `## Emotional Value — How It Feels
+**Goal:** Ask the feeling questions — how it will feel once the problem is solved — and connect the vehicle to the emotion that actually drives the purchase.
+### The Feeling Behind the Dollars
+Money explains purchases; emotion decides them. A customer can tell you the dollar value of a reliable car, but what makes them sign is the feeling: the peace of mind of a car that starts every morning, the pride of driving a vehicle they chose, the security of knowing their family is safe on the highway. The framework's value stage has an emotional arm — "How will it feel once this is finally running smoothly for you?" — and that answer is often the real reason they buy.
+### The Feeling Questions
+Ask them directly: "How will it feel to drive to work without worrying about the check-engine light?" "What will it be like to take the family on a road trip without fear of breaking down?" "How will you feel pulling up in a car you're proud of?" These questions sound soft, but they are the most powerful in the sale — because the customer answers by describing the exact feeling your vehicle will deliver, in their own words.
+### Sell the Feeling, Deliver the Feature
+Once the customer names the feeling, attach it to the vehicle: "You said you want peace of mind on the highway — that's exactly what the safety suite and the bumper-to-bumper warranty deliver." The feature alone is a spec; the feature attached to the customer's named feeling is a promise kept. This is also what makes the sale stick — the customer is not buying a car, they are buying the feeling they described, and no competitor offering a slightly lower number can match it.
+### Common Mistakes
+- Skipping the feeling questions as too soft or unnecessary
+- Letting the customer name a feeling and never using it in the presentation
+- Dismissing an emotional answer — "so it's the safety you like — anyway, here's the cargo specs"
+- Inventing feelings the customer never expressed
+### Pro Tips
+- Ask the feeling opener: "How will it feel once this is finally running smoothly for you?"
+- Write the customer's emotional words in capital letters — peace of mind, proud, safe — they are your presentation script
+- Pair every major feature you show with the feeling the customer named
+- Remember the passenger: the spouse who wants the family safe often decides the deal
+### Quick Quiz
+**Q1:** What role does emotion play in a car purchase?
+A) It is irrelevant compared to the numbers
+B) Money explains the purchase, but emotion decides it
+C) It only matters for luxury cars
+D) It complicates the paperwork
+*Answer: B — Customers can justify a purchase with money, but the feeling — peace of mind, pride, security — is what makes them sign.*
+**Q2:** "How will it feel to drive to work without worrying about the check-engine light?" is:
+A) A Current Situation question
+B) A Problem Awareness question
+C) An emotional value question
+D) A budget question
+*Answer: C — It asks the customer to describe the feeling of the solution, which is the emotional arm of the value stage.*
+**Q3:** Why is the emotional answer powerful?
+A) It makes the customer happy
+B) The customer describes the exact feeling your vehicle delivers, in their own words
+C) It speeds up the presentation
+D) It impresses the finance manager
+*Answer: B — The customer names the feeling themselves, and you can then attach the vehicle to that feeling as a promise kept.*
+**Q4:** Once the customer names a feeling, what should you do with it?
+A) Note it and move on
+B) Attach it to the features you present: "You wanted peace of mind — that's what the safety suite delivers"
+C) Keep it out of the presentation to stay professional
+D) Question whether the feeling is realistic
+*Answer: B — Connect every key feature back to the feeling the customer named; the feature attached to their emotion is a promise, not a spec.*
+**Q5:** Why does selling the feeling make the deal stick against competitors?
+A) Feelings are cheaper than features
+B) No competitor offering a slightly lower number can match the feeling the customer described
+C) Competitors cannot discuss emotions
+D) It makes the customer feel obligated
+*Answer: B — The customer is buying the feeling they described; a slightly lower price elsewhere cannot replace it.*
+`,
+      },
+      {
+        id: "asking-priority-urgency",
+        title: "Priority and Urgency — Why Now",
+        description: "Ask why solving the problem is a priority right now, and turn the answer into genuine urgency.",
+        duration: "15 min",
+        content: `## Priority and Urgency — Why Now
+**Goal:** Ask the customer why solving this is a priority right now — and let their own answer create the urgency, not pressure tactics.
+### The Question That Creates Real Urgency
+"Why is finding a fix for this a priority for you right now?" is one of the most valuable questions in the framework. It does what no sales pressure can: it makes the customer state their own deadline and their own reason for it. The answer is usually concrete — a new job that requires a reliable commute, a baby on the way, a vacation planned, a trade-in that's about to lose value, a repair that finally broke the camel's back. That concrete reason is the urgency, and it comes from the customer.
+### Urgency That Is Real vs. Urgency That Is Fake
+Manufactured urgency — "this deal ends tonight" — makes customers distrust you. Customer-stated urgency — "my daughter starts college in three weeks and I need her to have a car she can trust" — is bulletproof because it is real. When the customer tells you why now, they have given you the timeline, the stakes, and the motivation. Your job is to honor it: build the plan around their date, and remind them — gently — of the reason they gave.
+### The Priority Check
+Sometimes the answer to "why now" is "no rush." That is valuable information too. A customer who is six months from buying needs nurturing, not a hard close — and pushing a timeline they did not state breaks the trust you built. Ask the priority question early enough to know which customer you are with: the one who needs a car this week, or the one who is still researching. Then serve each one appropriately.
+### Common Mistakes
+- Never asking why now, then being blindsided when the customer says "we want to wait"
+- Replacing customer-stated urgency with manufactured urgency like "today only" deals
+- Ignoring the customer's stated reason and pushing your own timeline
+- Pressuring a "no rush" customer instead of nurturing them
+### Pro Tips
+- Ask the priority question in the value stage: "Why is getting this solved a priority for you right now?"
+- Write down the reason and the date — you will reference both in the close
+- When the customer gives a date, plan backward from it: "If you need it by the 15th, here's what that looks like"
+- If the customer has no urgency, respect it — set a follow-up and keep the relationship warm
+### Quick Quiz
+**Q1:** What does the question "Why is finding a fix for this a priority for you right now?" accomplish?
+A) It pressures the customer into buying today
+B) It makes the customer state their own deadline and reason, creating genuine urgency
+C) It qualifies the customer's budget
+D) It ends the conversation politely
+*Answer: B — The customer states their own reason and timeline, which is real urgency — far more powerful than any sales pressure.*
+**Q2:** How does customer-stated urgency differ from manufactured urgency?
+A) It is easier to say
+B) It is bulletproof because it is real, while "deal ends tonight" breeds distrust
+C) It is louder
+D) It works on fewer customers
+*Answer: B — Customer-stated urgency is grounded in their real life and cannot be argued with; manufactured urgency makes customers distrust you.*
+**Q3:** A customer says they are "not in a rush." What should you do?
+A) Push harder to create urgency
+B) Respect it, set a follow-up, and keep the relationship warm
+C) End the conversation immediately
+D) Tell them they are making a mistake
+*Answer: B — A no-rush customer needs nurturing, not a hard close; pushing a timeline they did not state breaks the trust you built.*
+**Q4:** "My daughter starts college in three weeks and needs a car she can trust" is an example of:
+A) A manufactured urgency line
+B) A customer-stated reason that creates real urgency
+C) A budget objection
+D) A trade-in question
+*Answer: B — It is a concrete, real reason from the customer's life — the strongest possible urgency.*
+**Q5:** What should you do with the customer's stated reason and date?
+A) Forget them once the presentation starts
+B) Write them down and reference them in the close, planning backward from their date
+C) Keep them secret from the manager
+D) Use them to justify a higher price
+*Answer: B — The reason and date are your close: plan backward from their timeline and remind them of the reason they gave.*
+`,
+      },
+      {
+        id: "asking-full-conversation",
+        title: "Putting It All Together — The Full Self-Sell Conversation",
+        description: "Run the complete framework in one flow — situation, problem, cost, value, emotion, urgency — and close the self-sold customer.",
+        duration: "15 min",
+        content: `## Putting It All Together — The Full Self-Sell Conversation
+**Goal:** Sequence the entire framework in one natural conversation — Current Situation, Problem Awareness, Value and Consequence — so the customer sells themselves from first hello to the close.
+### The Natural Arc
+The framework flows like a story, not a checklist. Open with Current Situation: "Tell me about the car you're driving now — how long have you had it, and what does a typical week look like?" Move into Problem Awareness: "What's the hardest part about it these days?" "What's that costing you — in repairs, in time, in worry?" "What happens if you don't do something in the next six months?" Then Value and Consequence: "If you could wave a magic wand, what would the right vehicle be worth to you?" "How will it feel?" "Why is this a priority right now?" Each answer feeds the next, and the customer builds the case at every step.
+### The Self-Sell Close
+By the end of the arc, the customer has stated their own problem, priced their own cost of inaction, named the value of the fix, described the feeling, and given you their reason and date. The close writes itself: "You're spending about $300 a month keeping this car alive, you need it to be reliable for your commute by the 15th, and you said peace of mind is the big thing — let me show you the vehicle that does exactly that." Every point in that sentence came from the customer's mouth. They have already sold themselves; you are just confirming the order.
+### The Full Walk-Through
+A complete example: "Tell me about your current car." → "How long have you had it?" → "Walk me through your typical week with it." → "What's the hardest part lately?" → "What did the last repair set you back?" → "What happens if it leaves you stranded again?" → "If you could wave a magic wand, what would the right vehicle save you a month?" → "How will it feel to not worry about it?" → "Why is now the time?" → Then present the vehicle and close with their own words. Ten questions, and the customer has sold themselves.
+### Common Mistakes
+- Treating the three categories as a rigid script instead of a natural conversation
+- Skipping a category and leaving a gap — no cost of inaction, so the customer walks to "think about it"
+- Forgetting to use the customer's own words in the close
+- Closing before the arc is complete, while the customer still has unspoken doubts
+### Pro Tips
+- Practice the arc until it is second nature; the customer should never feel the structure
+- Keep a worksheet with three boxes — Situation, Problem, Value — and fill them as you talk
+- End the arc with a summary in the customer's own words and ask "Did I get that right?"
+- When the customer says yes to the summary, they have agreed with everything they told you — the close is just the next question
+### Quick Quiz
+**Q1:** What is the correct overall flow of the framework?
+A) Value → Problem → Situation
+B) Current Situation → Problem Awareness → Value and Consequence
+C) Problem → Value → Situation
+D) Budget → Features → Close
+*Answer: B — The framework flows Situation (map the world), Problem (surface the pain), then Value and Consequence (price the fix and the feeling).*
+**Q2:** Why does the close "write itself" after the arc?
+A) The salesperson has memorized the best closing lines
+B) Every point in the close came from the customer's own mouth, so they have already sold themselves
+C) The customer is tired by then
+D) The price is lower than expected
+*Answer: B — When the customer has stated the problem, the cost, the value, the feeling, and the deadline, the close is just confirming their own conclusions.*
+**Q3:** What is the risk of skipping the cost-of-inaction step in the arc?
+A) The customer gets bored
+B) The customer walks to "think about it" because waiting still feels free
+C) The presentation is too short
+D) The finance office rejects the deal
+*Answer: B — Without pricing the status quo, waiting remains neutral to the customer, and they leave to think about it.*
+**Q4:** How should the three categories be delivered in the conversation?
+A) As a rigid, scripted checklist
+B) As a natural story where each answer feeds the next
+C) As three separate meetings
+D) In random order depending on the customer
+*Answer: B — The framework should flow like a conversation; the customer should never feel the structure.*
+**Q5:** What is the final step before presenting the vehicle?
+A) Ask for the customer's phone number
+B) Summarize the customer's own words and ask "Did I get that right?"
+C) Quote the out-the-door price
+D) Hand the customer a brochure
+*Answer: B — Summarizing their own words and getting their confirmation locks in everything they told you, so the close is just the next question.*
+`,
+      },
+    ],
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {
