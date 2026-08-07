@@ -99,7 +99,7 @@ function Hero({ t }: { t: (k: string) => string }) {
     return (
     <section className="relative overflow-hidden pt-[184px] sm:pt-[192px] pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}
-      <div className="pointer-events-none absolute -top-[280px] left-1/2 h-[900px] w-[900px] -translate-x-1/2 rounded-full bg-[#e63946]/20 blur-3xl" />
+      <div className="pointer-events-none absolute -top-[320px] left-1/2 h-[1200px] w-[1200px] -translate-x-1/2 rounded-full bg-[#e63946]/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />
       <div className="pointer-events-none absolute top-1/2 left-0 h-[300px] w-[300px] -translate-y-1/2 rounded-full bg-[#1a2d4a]/40 blur-3xl" />
 
