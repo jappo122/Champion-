@@ -27,14 +27,20 @@ function Home() {
 // ── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar({ t }: { t: (k: string) => string }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     const check = () => setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
   }, []);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
+    <header className="fixed top-0 z-50 w-full bg-transparent">
       <div className="mx-auto flex h-40 max-w-7xl items-center justify-between px-3 md:px-6">
         {/* Logo — big brand logo, same visual footprint as the original approved design */}
         <a href="/" className="block shrink-0">
@@ -48,7 +54,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
         {/* Hamburger — mobile only */}
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
-          className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
+          className={`flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden transition-all duration-300 ${scrolled ? "pointer-events-none -translate-y-8 opacity-0" : "translate-y-0 opacity-100"}`}
           aria-label="Menu"
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,7 +97,7 @@ function Hero({ t }: { t: (k: string) => string }) {
     return () => window.removeEventListener("scroll", onScroll);
     }, []);
     return (
-    <section className="relative overflow-hidden pt-8 sm:pt-10 pb-28 sm:pb-36">
+    <section className="relative overflow-hidden pt-[184px] sm:pt-[192px] pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#e63946]/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-[#f77f00]/8 blur-3xl" />
