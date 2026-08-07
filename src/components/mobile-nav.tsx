@@ -13,9 +13,9 @@ export function MobileNav() {
     <>
       {/* Mobile slide-out menu */}
       {open && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div className="fixed inset-0 z-[60] md:hidden">
           <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-64 bg-[#0d1f35] border-l border-[#1a2d4a] p-6 pt-20">
+          <div className="absolute right-0 top-0 h-full w-64 bg-[#0d1f35] border-l border-[#1a2d4a] p-6 pt-44">
             <nav className="flex flex-col gap-4">
               <a href="/" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Home</a>
               <a href="/training" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Training</a>
