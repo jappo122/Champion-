@@ -27,17 +27,11 @@ function Home() {
 // ── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar({ t }: { t: (k: string) => string }) {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     const check = () => setLoggedIn(!!localStorage.getItem("salesdrive_token"));
     window.addEventListener("storage", check);
     return () => window.removeEventListener("storage", check);
-  }, []);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
     <header className="fixed top-0 z-50 w-full bg-transparent">
@@ -51,10 +45,10 @@ function Navbar({ t }: { t: (k: string) => string }) {
           />
         </a>
 
-        {/* Hamburger — mobile only */}
+        {/* Hamburger — mobile only, always visible & same size, never moves */}
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
-          className={`flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden transition-all duration-300 ${scrolled ? "pointer-events-none -translate-y-8 opacity-0" : "translate-y-0 opacity-100"}`}
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
           aria-label="Menu"
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,9 +124,9 @@ function Hero({ t }: { t: (k: string) => string }) {
           </a>
         </div>
 
-        {/* Scroll down indicator — bottom right, fades on scroll */}
+        {/* Scroll down indicator — bottom right, fades on scroll, visible on all screens */}
         <div
-          className={`fixed bottom-8 right-8 z-40 hidden sm:flex flex-col items-center gap-1.5 transition-all duration-700 ${
+          className={`fixed bottom-8 right-8 z-40 flex flex-col items-center gap-1.5 transition-all duration-700 ${
             scrolled ? "pointer-events-none opacity-0" : "opacity-100"
           }`}
         >
