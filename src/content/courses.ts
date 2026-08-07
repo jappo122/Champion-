@@ -4199,6 +4199,581 @@ D) Switching dealerships frequently
       },
     ],
   },
+  // ===== Course 11: Stop Selling and Start Asking Questions =====
+  {
+    id: "question-based-selling",
+    title: "Stop Selling and Start Asking Questions",
+    subtitle: "Master the questioning framework that uncovers real needs and closes more deals",
+    description:
+      "The days of pitching your way to a sale are over. Today's buyers have already researched the car, the price, and the competition before they walk onto your lot. The salespeople who win are the ones who ask the right questions, listen to the answers, and present exactly what the customer actually needs. This 10-lesson module teaches the complete questioning framework: why questions outperform pitches, the 80/20 listening rule, open vs closed questions, the question funnel, the Five Ws and How of discovery, emotional and aspirational questioning, budget and timing questions done right, tie-downs and confirmations, hearing what isn't said, and the question-driven close. Each lesson ends with 5 scenario-based quiz questions — 50 total — to lock in the skill.",
+    levels: "Intermediate",
+    duration: "4 hours",
+    lessons: 10,
+    image: "needs",
+    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+    lessonsList: [
+      {
+        id: "qbs-why-questions",
+        title: "Why Questions Beat Pitches",
+        description: "Understand why asking questions outsells talking, and how questions give you control of the sale.",
+        duration: "20 min",
+        content: `## Why Questions Beat Pitches
+**Goal:** Understand why a question-driven approach outsells feature pitching, and why the salesperson who asks the questions controls the conversation.
+### The Pitch Is Dead
+Customers today arrive with more information than you have. They have watched YouTube reviews, compared trims on the manufacturer's site, checked three dealerships' inventory, and read your Google reviews before ever shaking your hand. When you open with a memorized feature pitch, you are telling a highly informed adult things they already know — and they hear it as noise. The pitch says nothing about them, so it builds no trust and answers no real question they have.
+### Questions Do Three Jobs a Pitch Can't
+First, questions uncover the customer's actual needs, so you never waste time selling the wrong vehicle. Second, questions make the customer feel heard and understood — the single strongest driver of purchase intent. Third, questions put you in control of the conversation. Whoever asks the questions sets the direction. A customer who is talking is engaged; a customer who is listening to a pitch is already checking their phone.
+### The Doctor Principle
+A doctor who prescribed medicine without asking what hurts would lose their license. Selling a car is no different: you cannot match a customer to a vehicle until you have diagnosed the problem, the lifestyle, and the priorities. Asking questions first is not a soft skill — it is the most efficient path to the sale. Every minute spent asking the right questions saves ten minutes of pitching the wrong features.
+### Common Mistakes
+- Opening with a feature list before knowing a single thing about the customer
+- Mistaking talking for selling — the customer who talks the most buys the most
+- Answering every question the customer asks while never asking one yourself
+- Treating the needs assessment as a chore to rush through instead of the foundation of the deal
+### Pro Tips
+- Before you open your mouth, ask yourself: what do I not know yet about this person?
+- Aim for a 80/20 split — the customer should do 80 percent of the talking
+- Write down what you learn; a question you forget to follow up on is a signal you were not listening
+- When a customer asks you a question, answer it briefly, then hand the conversation back with a question of your own
+### Quick Quiz
+**Q1:** Why has the traditional feature pitch become less effective in modern car sales?
+A) Customers have shorter attention spans than ever before
+B) Customers arrive already informed and hear pitches as noise
+C) Features no longer matter to car buyers
+D) Salespeople are no longer trained to pitch
+*Answer: B — Buyers research online before visiting, so pitching features they already know comes across as noise and builds no trust.*
+**Q2:** According to the lesson, which salesperson controls the conversation?
+A) The one who talks the most
+B) The one with the most product knowledge
+C) The one who asks the questions
+D) The one who talks the fastest
+*Answer: C — Whoever asks the questions sets the direction of the conversation and controls the sale.*
+**Q3:** The "Doctor Principle" means:
+A) Always present the most expensive option first
+B) Diagnose the customer's needs before prescribing a vehicle
+C) Refer complex customers to a specialist
+D) Ask about medical conditions before selling
+*Answer: B — Like a doctor, you must diagnose before you prescribe — you cannot match a customer to a vehicle until you understand their needs.*
+**Q4:** What is the single strongest driver of purchase intent according to the lesson?
+A) The lowest price on the lot
+B) A long list of standard features
+C) The customer feeling heard and understood
+D) The number of vehicles shown
+*Answer: C — Questions that make the customer feel heard and understood drive purchase intent more than price or features.*
+**Q5:** A customer asks you a question about a vehicle. What should you do next?
+A) Answer thoroughly and wait for their next question
+B) Answer briefly, then ask a question to keep the conversation moving
+C) Ignore it and continue your presentation
+D) Ask them to research it themselves
+*Answer: B — Answer briefly, then hand the conversation back with a question of your own to keep the customer engaged and talking.*
+`,
+      },
+      {
+        id: "qbs-80-20-listening",
+        title: "The 80/20 Listening Rule",
+        description: "Master the discipline of listening — the customer who talks the most buys the most.",
+        duration: "20 min",
+        content: `## The 80/20 Listening Rule
+**Goal:** Make listening the centerpiece of your sales process by letting the customer do 80 percent of the talking.
+### Why Listening Sells
+The customer who talks the most buys the most. Every sentence a customer speaks is free information: their budget, their timeline, their fears, their priorities. When you talk, you learn nothing — you only run the risk of saying something that pushes them away. When you listen, you gather everything you need to present the right car, the right payment, and the right close. Listening is not the absence of selling; it is the most powerful selling technique there is.
+### How to Listen Like a Professional
+Use short, open questions to keep the customer talking, then get out of the way. Nod, make eye contact, and use verbal acknowledgments like "got it" and "that makes sense" to show you are tracking. Take notes on a worksheet — not only does it capture details, it signals to the customer that what they say matters. When the customer finishes a thought, pause for a full two seconds before speaking. That pause tells them you are processing, and it often prompts them to keep talking and reveal more.
+### The Three Traps of Bad Listening
+The first trap is waiting to speak — mentally rehearsing your next point while the customer talks, so you hear nothing. The second trap is interrupting to correct or clarify, which shuts the customer down. The third trap is answering a question the customer did not ask, which signals you were not paying attention. If you catch yourself in any of these, stop, apologize, and ask them to continue.
+### Common Mistakes
+- Interrupting the customer to jump in with a feature or a price
+- Filling silence with nervous chatter instead of letting the customer think
+- Nodding along but retaining nothing — then asking a question the customer already answered
+- Treating listening as waiting for your turn to talk
+### Pro Tips
+- Count to two silently before responding after the customer finishes
+- Mirror one or two key words back: "So the third-row seats are the dealbreaker?"
+- Write down three facts about every customer before you leave the greeting — it forces real listening
+- If you catch yourself planning your next sentence, refocus on their words, not your reply
+### Quick Quiz
+**Q1:** Why does the customer who talks the most tend to buy the most?
+A) They talk themselves into the sale
+B) They reveal the information you need to match them correctly
+C) They are easier to pressure
+D) They lose track of the price
+*Answer: B — Every sentence the customer speaks is information about budget, timeline, fears, and priorities that lets you present the right car and close more easily.*
+**Q2:** What should you do when the customer finishes a thought?
+A) Immediately start your feature pitch
+B) Pause for two seconds before responding
+C) Ask them if they are ready to buy
+D) Recap everything they just said back to them
+*Answer: B — The pause signals you are processing, keeps the customer engaged, and often prompts them to reveal more.*
+**Q3:** Which of the following is a trap of bad listening?
+A) Taking notes while the customer talks
+B) Mentally rehearsing your next point while the customer speaks
+C) Asking open-ended follow-up questions
+D) Making eye contact with the customer
+*Answer: B — Mentally rehearsing your reply while the customer talks means you hear nothing; it is the most common trap of bad listening.*
+**Q4:** What does mirroring key words back to the customer accomplish?
+A) It shows you were listening and confirms understanding
+B) It makes the customer think you agree with everything
+C) It speeds up the conversation
+D) It confuses the customer into agreeing
+*Answer: A — Mirroring key words shows you were listening and confirms you understand what matters to them.*
+**Q5:** A customer reveals their budget during the greeting. What should you do?
+A) Immediately show them only cars in that range
+B) Note it and keep listening for the rest of their needs
+C) Tell them budget comes later
+D) Ask them to raise their budget
+*Answer: B — Note the detail and keep listening; the full picture matters more than any single fact, and jumping on budget too early feels pushy.*
+`,
+      },
+      {
+        id: "qbs-open-closed-questions",
+        title: "Open vs. Closed Questions",
+        description: "Use open questions to open the conversation and closed questions to lock in agreement.",
+        duration: "20 min",
+        content: `## Open vs. Closed Questions
+**Goal:** Master when to use open-ended questions to explore and closed questions to confirm, without sounding like an interrogation.
+### Two Tools, Two Jobs
+Open questions — "What brings you in today?", "How will you mainly use the truck?" — cannot be answered with yes or no. They open the conversation, get the customer talking, and surface needs you did not know to ask about. Closed questions — "Is this your first time here?", "Does the payment work for you?" — invite a short answer. They are perfect for confirming details, checking understanding, and moving the sale forward. The skill is knowing which tool to use at which moment.
+### Open Early, Close Late
+The front of the sale belongs to open questions. Ask them early and often to build the needs profile. The back of the sale belongs to closed questions — the alternative choice close ("Would 60 or 72 months work better?") is a closed question doing its job. The mistake most salespeople make is reversing the order: firing closed questions at a customer in the first two minutes, which feels like an interrogation, and then going vague and open at the close, when the customer needs clarity.
+### Crafting Questions That Do Not Feel Like an Interview
+Start with the customer's world, not your checklist. "Tell me about your family's weekends" beats "Do you have kids?" Vary your phrasing so the conversation flows like a chat, and always follow one answer with a natural follow-up question. If a customer gives a one-word answer to an open question, gently re-open it: "Interesting — what makes you say that?" Keep your questions short and your ears long.
+### Common Mistakes
+- Opening with a barrage of closed questions that feels like a police interview
+- Using "Can I help you?" — a closed question that invites a "no" and ends the conversation
+- Asking a closed question when you need an explanation, or an open question when you need a commitment
+- Interrogating: asking several questions in a row without acknowledging the answers
+### Pro Tips
+- The best opening question is "What brings you in today?" — it is open, natural, and gets the customer talking immediately
+- When you need a commitment, use a closed question; when you need information, use an open one
+- Acknowledge every answer before asking the next question: "That makes sense — and how often do you tow with it?"
+- If you catch yourself asking three closed questions in a row, stop and re-open with an open question
+### Quick Quiz
+**Q1:** What is the primary job of an open-ended question?
+A) To get a quick yes or no answer
+B) To open the conversation and surface needs you did not know to ask about
+C) To confirm the customer's budget
+D) To move the customer toward signing
+*Answer: B — Open questions cannot be answered with yes or no; they get the customer talking and reveal needs you did not know to ask about.*
+**Q2:** Why is "Can I help you?" a poor opening question?
+A) It is too long
+B) It is a closed question that invites a "no" and ends the conversation
+C) It sounds too formal
+D) It reveals too much about the inventory
+*Answer: B — "Can I help you?" invites a polite "no, just looking" and shuts the conversation down before it starts.*
+**Q3:** Where in the sale do closed questions belong?
+A) In the first two minutes of the greeting
+B) Throughout the needs assessment
+C) When you need to confirm details and lock in agreement
+D) Nowhere — they should always be avoided
+*Answer: C — Closed questions are perfect for confirming details and moving the sale forward, especially in the back half of the sale.*
+**Q4:** A customer answers your open question with a one-word response. What should you do?
+A) Accept it and move on
+B) Gently re-open it with something like "Interesting — what makes you say that?"
+C) Assume they are not interested
+D) Switch to a feature pitch
+*Answer: B — Re-opening with a gentle follow-up keeps the conversation flowing and surfaces the real reason behind the short answer.*
+**Q5:** Which sequence best matches the natural flow of a sale?
+A) Closed questions early, open questions late
+B) Open questions early, closed questions late
+C) Open questions only, all the way through
+D) Closed questions only, all the way through
+*Answer: B — Open questions build the needs profile up front; closed questions confirm and lock in commitment near the close.*
+`,
+      },
+      {
+        id: "qbs-question-funnel",
+        title: "The Question Funnel",
+        description: "Drill from broad to specific with layered questions that isolate the customer's real need.",
+        duration: "20 min",
+        content: `## The Question Funnel
+**Goal:** Use progressively narrower questions to drill from the general situation down to the specific problem — and the exact vehicle that solves it.
+### How the Funnel Works
+Start wide, then narrow. A broad question like "Tell me about your current vehicle" opens the funnel. Follow with "What do you like about it, and what drives you crazy?" to narrow toward pain points. Then go specific: "How many days a month does the check-engine light come on?" Each level of the funnel filters out irrelevant information until only the true need remains. The customer rarely states their real need in the first sentence — the funnel is how you dig it out.
+### Why Broad-to-Specific Wins
+If you ask narrow questions too early, you guess wrong and steer the customer away from what they actually need. If you stay broad forever, you never get the specifics needed to pick the right vehicle. The funnel also builds trust: the customer watches you take a genuine interest in their situation step by step, and by the time you reach the bottom, they are telling you exactly what to sell them.
+### The Pain-to-Solution Sequence
+Work the funnel in three stages. First, situation: who drives, what do they drive now, how is it used. Second, problem: what is wrong, missing, or frustrating — where does the current vehicle fall short? Third, payoff: "If your new truck could fix that one thing, what would it be?" The payoff question is gold — the customer hands you the feature to lead with, so the presentation sells itself.
+### Common Mistakes
+- Jumping straight to price and payment before you know the vehicle need
+- Asking narrow questions first and steering the customer by assumption
+- Letting the customer change the subject and never bringing them back to the funnel
+- Stopping at the first problem they mention when the real problem is deeper
+### Pro Tips
+- Write the funnel on your worksheet: Situation → Problem → Payoff, and track which stage you are in
+- Each follow-up question should be narrower than the last
+- When the customer mentions a problem, drill one level deeper: "How does that affect your day-to-day?"
+- End the funnel with a summary and a confirmation before moving to the lot
+### Quick Quiz
+**Q1:** What is the correct order of the question funnel?
+A) Specific to broad
+B) Broad to specific
+C) Budget to features
+D) Random order based on the conversation
+*Answer: B — The funnel starts broad to open the conversation, then narrows level by level until only the true need remains.*
+**Q2:** Why is asking narrow questions too early a mistake?
+A) It takes too long
+B) You guess wrong and steer the customer away from their real need
+C) Customers dislike narrow questions
+D) It makes the customer talk more
+*Answer: B — Narrow questions asked too early are guesses; they can steer the customer away from what they actually need before you know it.*
+**Q3:** What is the "payoff" stage of the funnel?
+A) Asking what the customer will pay
+B) Asking what the new vehicle would need to fix to make the purchase worthwhile
+C) Asking when the customer will buy
+D) Asking who will co-sign the loan
+*Answer: B — The payoff question asks what the new vehicle must solve; the answer hands you the exact feature to lead with in the presentation.*
+**Q4:** A customer says their current car is "fine, I guess." What should you do next?
+A) Accept it and move to pricing
+B) Drill one level deeper — "What could it do better?" or "What's the one thing you'd change?"
+C) Assume they are a tire-kicker
+D) Show them the most popular vehicle on the lot
+*Answer: B — "Fine, I guess" hides a problem underneath; drilling one level deeper surfaces the pain point the funnel exists to find.*
+**Q5:** Which sequence best demonstrates the funnel in action?
+A) "Do you want a sedan? Do you want leather? What's your budget?"
+B) "Tell me about your current car. What frustrates you about it? If the new one fixed that, what would it be?"
+C) "Here's our best truck. Here's our best SUV. Which do you like?"
+D) "How much can you put down? What payment works? When can you take delivery?"
+*Answer: B — It moves from situation (current car) to problem (frustration) to payoff (what the new one must fix) — the funnel in proper order.*
+`,
+      },
+      {
+        id: "qbs-five-ws",
+        title: "The Five Ws and How of Discovery",
+        description: "Build a complete needs profile with who, what, where, when, why, and how questions.",
+        duration: "25 min",
+        content: `## The Five Ws and How of Discovery
+**Goal:** Build a complete needs profile by systematically covering who, what, where, when, why, and how — the discovery question bank every car sale runs on.
+### The Question Bank
+Every good needs assessment covers six dimensions. Who is driving — and who else will drive it? What is the vehicle for: commuting, hauling, family hauling? Where does it live: city streets, highway miles, gravel roads? When is it needed: this week, next month, or just looking? Why are they buying now — what triggered the visit? How will they pay: finance, lease, cash, with a trade-in? Cover all six and you will rarely be surprised by a late-stage objection.
+### Why Coverage Matters
+The deal that falls apart at the desk usually fails because a dimension was skipped. A customer who seems ready to buy suddenly needs to "check with my spouse" because you never asked who the decision-maker is. A price objection surfaces because you never asked how they intend to pay. The five Ws and how are your insurance policy: when every dimension is covered, the presentation, the numbers, and the close all line up because nothing was left to assumption.
+### Keep It Conversational, Not Mechanical
+A checklist delivered like a clipboard interview kills rapport. Weave the questions into natural conversation and let the customer's answers guide the order. If they mention their commute, ask about the commute. If they mention kids, ask about car seats. The six dimensions are your coverage map, not your script — use them to make sure nothing important goes unasked, but ask in the order the conversation naturally flows.
+### Common Mistakes
+- Never asking who the decision-maker is, then getting stuck when the spouse vetoes the deal
+- Skipping the "how will you pay" question and getting blindsided by a budget objection at the desk
+- Asking all six dimensions robotically, one after another, with no follow-up
+- Assuming "just looking" means no need to ask — "just looking" customers still have needs worth uncovering
+### Pro Tips
+- The why question is the most important: "What made you decide to start looking now?" reveals urgency and emotion
+- Always confirm the decision process: "When you're ready to move forward, will this be your decision or are you shopping with your spouse?"
+- Ask about trade-in early — it shapes the whole deal and surprises no one at the desk
+- End the discovery with a one-sentence summary of everything you learned and ask "Did I get that right?"
+### Quick Quiz
+**Q1:** Which of the following is one of the six discovery dimensions?
+A) What color the customer prefers
+B) Why they are buying now
+C) Which dealership they visited first
+D) How many cars they have owned
+*Answer: B — The six dimensions are who, what, where, when, why, and how — the "why now" question reveals urgency and emotion.*
+**Q2:** Why does a deal often fall apart at the desk?
+A) The customer changes their mind about color
+B) A discovery dimension was skipped — like who the decision-maker is or how they plan to pay
+C) The paperwork takes too long
+D) The salesperson talked too little
+*Answer: B — Deals that collapse at the desk usually fail because a dimension was skipped, such as the decision-maker or the payment method.*
+**Q3:** What is the most important of the six dimensions?
+A) What the vehicle is for
+B) Where the customer drives
+C) Why they are buying now
+D) When they need the vehicle
+*Answer: C — The "why now" question reveals urgency and emotion, which drive the sale more than any other single dimension.*
+**Q4:** A customer says they are "just looking." What should you do?
+A) Leave them alone until they ask for help
+B) Politely ask about their situation anyway — "just looking" customers still have needs
+C) Ask them to come back when they are ready to buy
+D) Hand them a brochure and walk away
+*Answer: B — "Just looking" customers still have needs worth uncovering; a good discovery question invites them to share what brought them in.*
+**Q5:** When the customer mentions their commute, the best next step is:
+A) Ask a follow-up about the commute to weave the discovery into natural conversation
+B) Move to the next item on your checklist
+C) Show them a commuter car immediately
+D) Ask about their budget
+*Answer: A — Follow the customer's lead; weaving questions into natural conversation keeps the discovery from feeling like an interview.*
+`,
+      },
+      {
+        id: "qbs-emotional-questions",
+        title: "Emotional & Aspirational Questions",
+        description: "Uncover the feelings, status, and dreams behind the purchase — and sell to them.",
+        duration: "25 min",
+        content: `## Emotional & Aspirational Questions
+**Goal:** Uncover the emotional reasons behind the purchase — status, family, safety, freedom — so you can connect the vehicle to what the customer truly values.
+### Logic Justifies, Emotion Decides
+Customers can explain their purchase logically — better fuel economy, more cargo space — but the decision itself is usually emotional. A minivan is bought with the heart (keeping kids safe, family road trips) and justified with the head (third-row seats, safety ratings). If you only ask logical questions, you get a logical presentation, and any competitor offering a slightly better number can steal the deal. If you uncover the emotion, you sell something no competitor can match: the feeling.
+### Questions That Find the Feeling
+Ask about the life the vehicle will enable. "What are you most looking forward to doing with the new one?" "Tell me about the trips you want to take." "What will it feel like to not worry about breaking down on the highway?" "Is this the car you've had your eye on for a while?" These questions surface status ("I've worked toward this truck for years"), family ("the kids are getting older and we want to camp"), and security ("I don't want my daughter in that old car"). Each feeling is a hook the presentation can hang on.
+### Sell the Feeling, Deliver the Fact
+Once you know the emotion, lead your presentation with it and back it up with the feature. "You said peace of mind on the highway is the big thing — this one has the driver-assist package and the five-star crash rating, so you can relax and let the car help you." The feature alone is forgettable; the feature attached to their emotion is compelling. This is also what makes you memorable: the customer leaves telling their spouse "this guy actually listened."
+### Common Mistakes
+- Asking only logical questions and presenting only logical features
+- Dismissing an emotional answer as irrelevant: "So it's the safety you like — anyway, here's the cargo specs"
+- Putting words in the customer's mouth about feelings they never expressed
+- Ignoring the emotions of the passenger — the spouse or kids often decide
+### Pro Tips
+- Ask "What are you most looking forward to?" — it almost always surfaces the real motivation
+- Watch the customer's face when they answer; the eyes and tone tell you which answer carries the emotion
+- Write the emotional answer in capital letters on your worksheet — it is your presentation script
+- Connect every key feature you show back to a feeling they named
+### Quick Quiz
+**Q1:** What is the relationship between logic and emotion in a car purchase?
+A) The decision is logical and the emotion is irrelevant
+B) Emotion decides the purchase and logic justifies it
+C) Logic decides the purchase and emotion justifies it
+D) Both play exactly equal roles in every decision
+*Answer: B — Customers can explain a purchase logically, but the decision itself is usually emotional; the logic comes after to justify it.*
+**Q2:** Which question is most likely to surface the customer's real motivation?
+A) "What are you most looking forward to doing with the new one?"
+B) "What's your budget?"
+C) "Do you prefer automatic or manual?"
+D) "What color were you thinking?"
+*Answer: A — Asking about the life the vehicle will enable reveals the feelings — family, status, freedom — that actually drive the purchase.*
+**Q3:** Why is a purely logical presentation risky?
+A) It takes longer to deliver
+B) A competitor with a slightly better number can steal the deal
+C) Customers find logical presentations confusing
+D) It is harder to memorize
+*Answer: B — If you only sell logic, any competitor with a slightly better number can win; selling the emotion gives you something no competitor can match.*
+**Q4:** How should you present a feature once you know the customer's emotional motivation?
+A) Lead with the feature alone and let it speak for itself
+B) Connect the feature back to the feeling they named
+C) Present all features before mentioning any emotion
+D) Avoid mentioning the emotion so the customer stays rational
+*Answer: B — The feature attached to their emotion is compelling; the feature alone is forgettable.*
+**Q5:** Which of the following is a mistake when uncovering emotions?
+A) Asking what the customer is looking forward to
+B) Watching the customer's face as they answer
+C) Putting words in the customer's mouth about feelings they never expressed
+D) Connecting features back to the feelings they named
+*Answer: C — Never assume feelings the customer never expressed; ask, observe, and let them name the emotion themselves.*
+`,
+      },
+      {
+        id: "qbs-budget-timing",
+        title: "Budget, Trade-In & Timing Questions Done Right",
+        description: "Ask about money and timing without awkwardness — and never get blindsided at the desk.",
+        duration: "25 min",
+        content: `## Budget, Trade-In & Timing Questions Done Right
+**Goal:** Handle the money questions — budget, trade-in, financing, and timeline — confidently and tactfully, so the desk is never a surprise.
+### Money Questions Are Not Taboo — They Are Expected
+Most salespeople dread asking about budget because they fear offending the customer. The opposite is true: a customer who is never asked about budget assumes you do not care about their situation, and a customer who is asked directly — with respect — relaxes. The key is how you ask. Never ask "What's your budget?" cold. Ask about the payment they would be comfortable with, the down payment they are planning, and the trade-in they are driving. Frame it as protecting their interests: "So I only show you vehicles that fit, what payment range are you comfortable with?"
+### The Trade-In Conversation
+Ask about the trade-in early and treat it with respect. "Tell me about your current vehicle — what do you love about it, and what's it time to move on from?" Never insult the trade — customers are emotionally attached to the car that got them through the last five years. Get the year, mileage, and condition so you can build an honest expectation of its value before the desk, and frame the payoff discussion around equity: what they owe versus what it's worth.
+### Timing Reveals Urgency
+"How soon are you looking to make a move?" is one of the most valuable questions in the sale. The answer tells you whether this is a today-customer or a next-month customer, how much pressure to apply, and how to shape the close. A customer who needs a car this week is motivated; a customer who is "just starting to look" needs nurturing, not a hard close. Asking about timing also prevents the devastating end-of-day "we want to wait until next month" surprise.
+### Common Mistakes
+- Avoiding money questions entirely, then guessing at the desk and wasting everyone's time
+- Asking "What's your budget?" cold and putting the customer on the defensive
+- Insulting the trade-in, which instantly loses the customer's trust
+- Never asking about timeline, then getting hit with "we're not ready to buy yet" after the test drive
+### Pro Tips
+- Ask payment comfort, not budget: "What monthly payment would you be comfortable with?" is easier to answer than "What's your budget?"
+- Always confirm the trade-in details: year, model, mileage, condition, and what they owe
+- Ask "How soon are you looking to make a move?" early — it shapes the entire sales strategy
+- Remember the customer may be lying to themselves about budget; their lifestyle and needs often reveal the real range
+### Quick Quiz
+**Q1:** Why is asking about money early in the sale actually appreciated by customers?
+A) It shows you care about their situation and protects them from wasted time
+B) It signals the dealership is expensive
+C) It lets them negotiate better
+D) It is required by law
+*Answer: A — Asked with respect, the money conversation shows you care about their situation and lets you show vehicles that actually fit.*
+**Q2:** What is the best way to frame the budget question?
+A) "What's your budget?"
+B) "So I only show you vehicles that fit, what payment range are you comfortable with?"
+C) "How much can you afford?"
+D) "Money isn't an issue for you, right?"
+*Answer: B — Framing the question around payment comfort and fitting their needs makes it easy and non-threatening to answer.*
+**Q3:** Why should you never insult a customer's trade-in?
+A) It is illegal to criticize a trade-in
+B) Customers are emotionally attached to their current vehicle and will lose trust
+C) The trade-in value is always accurate
+D) It makes the customer ask for a higher trade-in value
+*Answer: B — Customers are emotionally attached to the car that got them through years of life; insulting it destroys trust instantly.*
+**Q4:** What does the timing question ("How soon are you looking to make a move?") reveal?
+A) The customer's budget
+B) Whether this is a today-customer or a future-customer and how to shape the close
+C) The trade-in value
+D) The customer's preferred color
+*Answer: B — Timing reveals urgency, which tells you how much pressure to apply and how to shape the close.*
+**Q5:** Which details should you confirm about the trade-in?
+A) Color and sound system
+B) Year, mileage, condition, and what they owe
+C) Number of previous owners and service history
+D) Fuel economy and tire brand
+*Answer: B — Year, mileage, condition, and payoff let you build an honest equity expectation before the desk — no surprises.*
+`,
+      },
+      {
+        id: "qbs-tie-downs",
+        title: "Tie-Downs & Confirmation Questions",
+        description: "Use small agreement questions to build momentum and keep the customer on your side.",
+        duration: "20 min",
+        content: `## Tie-Downs & Confirmation Questions
+**Goal:** Use light confirmation questions throughout the sale to keep the customer agreeing — and to catch disagreements before they become objections.
+### The Power of Small Yeses
+People are wired to be consistent. When a customer says yes to small things throughout the conversation — "Does the cargo space work for your gear?" "Would this be easier to park than your old sedan?" — they build a pattern of agreement that carries into the close. These are tie-downs: short confirmation questions that check understanding and lock in each point before moving on. They are not manipulation; they are checkpoints that keep you and the customer aligned.
+### Catch Problems Early
+A tie-down is also an early-warning system. Ask "Does that make sense?" after explaining a feature, and the customer either agrees — momentum — or hesitates, which gives you the chance to address the concern while it is small. The customer who is silently nodding through the whole presentation and then says "I need to think about it" at the desk has been quietly disagreeing the entire time. Tie-downs prevent that by surfacing every doubt in the moment.
+### Keep Them Genuine
+The moment tie-downs feel scripted, they fail. Rotate your phrasing so you are not asking "does that make sense?" after every sentence. Use variations: "How does that sound to you?" "Does that fit what you had in mind?" "Would that work for your family's schedule?" And genuinely listen to the answer — a tie-down with a disengaged customer is worse than none, because it proves you were not really asking.
+### Common Mistakes
+- Asking "does that make sense?" after every single point until it sounds robotic
+- Rushing past a hesitation instead of stopping to explore it
+- Using tie-downs to pressure — "You agree, right?" backed into a corner is not agreement
+- Never asking any tie-downs, then being blindsided by a desk objection
+### Pro Tips
+- Vary your tie-downs: "How does that sound?", "Does that fit what you pictured?", "Would that work for you?"
+- After a tie-down that gets a hesitation, stop selling and ask "What's giving you pause?"
+- Use tie-downs after every major point: needs summary, feature demo, test-drive feedback, and numbers
+- A good tie-down closes one topic and opens the next: "Great — and how does the trunk size compare to what you need?"
+### Quick Quiz
+**Q1:** Why do small yeses throughout the sale build toward the close?
+A) Customers forget what they agreed to
+B) People are wired to stay consistent with their prior agreements
+C) It keeps the customer talking
+D) It increases the price they will accept
+*Answer: B — People are wired for consistency; a pattern of small agreements carries into the close.*
+**Q2:** What is a tie-down's role as an early-warning system?
+A) It reveals when the customer is about to leave
+B) It surfaces doubts in the moment while they are still small
+C) It tells you the customer's budget
+D) It confirms the customer is the decision-maker
+*Answer: B — A tie-down catches hesitation immediately, letting you address a concern before it grows into a desk objection.*
+**Q3:** How should you respond when a tie-down gets a hesitation?
+A) Move on quickly to avoid awkwardness
+B) Stop selling and ask "What's giving you pause?"
+C) Repeat the question louder
+D) Assume they agree and continue
+*Answer: B — A hesitation is a small objection; stop and explore it immediately before it grows.*
+**Q4:** Why is asking "does that make sense?" after every single point a mistake?
+A) It takes too much time
+B) It becomes robotic and loses its power
+C) Customers hate being asked questions
+D) It lowers the customer's trust in the vehicle
+*Answer: B — Overused phrasing sounds scripted and disengages the customer; rotate your tie-downs to keep them genuine.*
+**Q5:** Which of the following is the best use of a tie-down?
+A) "You agree this is the best deal in town, right?"
+B) "How does that sound to you?" after presenting a solution that fits their stated need
+C) "We're done here, correct?"
+D) "You're ready to sign, aren't you?"
+*Answer: B — A good tie-down checks understanding after a point that fits their needs, in genuine, varied language — never as pressure.*
+`,
+      },
+      {
+        id: "qbs-hearing-unspoken",
+        title: "Hearing What Isn't Said",
+        description: "Read body language, tone, and hesitation — and probe gently to uncover the real objection.",
+        duration: "20 min",
+        content: `## Hearing What Isn't Said
+**Goal:** Read the signals customers send without words — body language, tone, and hesitation — and probe gently to bring hidden concerns into the open.
+### The Second Conversation
+Every customer is having two conversations: the one out loud and the one in their head. The unspoken one shows up in signals — arms crossed during the walkaround, a long pause before answering, eyes that keep drifting to the price sticker, a spouse who goes quiet. These signals are not objections yet, but they are the early smoke. The salesperson who misses them closes fewer deals; the one who reads them and probes gently prevents the "I need to think about it" at the desk.
+### What the Signals Mean
+Crossed arms and a turned body often mean resistance or discomfort. A long pause before "it's nice" usually means it is not. Eyes that keep going back to the window sticker mean price anxiety. A quiet spouse in a two-person visit often holds veto power. Sudden changes — the customer who was chatty going quiet after a feature or a number — mean something landed wrong. Each signal is a clue, not a verdict; the only way to know is to ask.
+### The Gentle Probe
+When you catch a signal, probe softly instead of pushing past it. "I noticed you paused there — what's on your mind?" "You've glanced at the price a few times — should we talk about numbers before we go further?" "You seem quiet — is there something about this one that doesn't sit right?" Deliver the probe with a relaxed tone and open body language so the customer feels safe answering honestly. The probe turns a hidden objection into a solvable one.
+### Common Mistakes
+- Ignoring body language and barreling through the presentation
+- Noticing a signal but never addressing it, then being surprised by the objection later
+- Confronting the customer harshly: "Why do you look upset?"
+- Reading one signal as proof — "they crossed their arms, they hate it" — instead of asking
+### Pro Tips
+- Watch for clusters: one signal means little; two or three together mean something real
+- After a sensitive moment, give the customer space — a beat of silence often brings the truth out
+- When you see a signal, name it neutrally and ask: "I noticed you went quiet — what's going through your mind?"
+- Always probe the spouse or partner too — the quiet one often decides
+### Quick Quiz
+**Q1:** What are the two conversations every customer is having?
+A) One with the salesperson and one on their phone
+B) One out loud and one in their head
+C) One about price and one about features
+D) One about trade-in and one about financing
+*Answer: B — The out-loud conversation is what they say; the unspoken one shows in body language, tone, and hesitation — and holds the real concerns.*
+**Q2:** A customer's eyes keep drifting to the window sticker. What does this signal most likely mean?
+A) They are bored
+B) Price anxiety
+C) They like the color
+D) They are looking for the salesperson
+*Answer: B — Eyes that keep returning to the price sticker usually signal price anxiety — probe it before the desk.*
+**Q3:** What should you do when you catch a hidden signal?
+A) Push past it and continue the presentation
+B) Probe gently with something like "I noticed you paused there — what's on your mind?"
+C) End the interaction politely
+D) Point it out bluntly and demand an explanation
+*Answer: B — A gentle, neutral probe brings the hidden concern into the open where it can be solved.*
+**Q4:** Why should you look for clusters of signals rather than a single one?
+A) Clusters are easier to see
+B) One signal means little; several together indicate something real
+C) Clusters are required to complete the needs assessment
+D) Single signals are always false
+*Answer: B — A single signal is often noise; two or three together are a reliable indication of a real concern.*
+**Q5:** In a two-person visit, why should you also probe the quiet one?
+A) The quiet one is always the buyer
+B) The quiet one often holds veto power over the decision
+C) The quiet one knows more about cars
+D) The loud one is never the decision-maker
+*Answer: B — The quiet partner often holds the veto power; probing them gently prevents a surprise "let me check with my spouse" at the desk.*
+`,
+      },
+      {
+        id: "qbs-question-driven-close",
+        title: "From Questions to the Presentation & Close",
+        description: "Summarize the needs, confirm with the customer, present their own answers back — and close with questions.",
+        duration: "25 min",
+        content: `## From Questions to the Presentation & Close
+**Goal:** Turn everything you learned into a presentation the customer already agrees with — and close with questions, not pressure.
+### The Summary Handoff
+Before you ever walk to the lot, summarize the customer's own answers back to them. "So you're replacing the sedan because it can't tow the camper, you need seating for six, and you'd like it by the end of the month — did I get that right?" This summary does three things: it proves you listened, it lets the customer correct anything you got wrong, and it gets a verbal commitment to the needs before a single vehicle is shown. Never skip it — it is the hinge between discovery and presentation.
+### Present Their Answers, Not Your Script
+Now present only what the customer told you they need. Every feature you show should trace back to a need they named: "You mentioned towing the camper — this one is rated for exactly your trailer's weight." When the customer hears their own words coming back, the presentation feels like confirmation, not persuasion. This is why question-driven selling closes more deals: the customer is not resisting a pitch — they are agreeing with themselves.
+### The Question-Driven Close
+Close the same way you sold: with questions. The alternative choice — "Would 60 or 72 months work better for your budget?" — and the assumptive trial — "If we get the payment where you need it, is this the truck you want to drive home today?" — are both questions, and both assume the decision the discovery already earned. Use the timeline you uncovered ("You wanted it by the end of the month — we can make that happen") and the emotion you surfaced ("You said peace of mind — that's exactly what this warranty gives you"). The close is not a new argument; it is the natural end of the conversation you started with questions.
+### Common Mistakes
+- Skipping the summary and walking straight to the lot, so the customer never confirms the needs
+- Presenting a memorized feature list instead of the customer's own needs
+- Switching to pressure language at the close after a consultative presentation
+- Forgetting to use the timeline and emotion they revealed in the close
+### Pro Tips
+- Rehearse the summary as the single most important sentence of the sale — get it right, get the customer's "yes"
+- Point to your notes as you summarize; it proves you were listening
+- Keep every close a question: choice questions, assumption questions, and confirmation questions
+- After the close, stop talking — the next person to speak often loses the deal
+### Quick Quiz
+**Q1:** What is the purpose of the summary handoff before walking to the lot?
+A) To fill time while the customer decides
+B) To prove you listened, let the customer correct you, and get commitment to the needs
+C) To present the price early
+D) To ask for the customer's contact information
+*Answer: B — The summary proves you listened, lets the customer correct any misunderstanding, and locks in a verbal commitment to the needs before showing vehicles.*
+**Q2:** Why does presenting the customer's own answers back to them work so well?
+A) Customers like hearing their own words
+B) The customer is agreeing with themselves, not resisting a pitch
+C) It is faster than a feature list
+D) It makes the customer feel important
+*Answer: B — When features trace back to needs the customer named, the presentation confirms their own conclusions instead of fighting a pitch.*
+**Q3:** Which of the following is an example of a question-driven close?
+A) "Sign here and we're done."
+B) "Would 60 or 72 months work better for your budget?"
+C) "You'd be crazy not to take this deal."
+D) "This is the last one on the lot."
+*Answer: B — The alternative choice close is a question that assumes the decision the discovery already earned.*
+**Q4:** What should you do with the timeline and emotion you uncovered during discovery?
+A) Forget them — they were only for the needs assessment
+B) Use them in the close: "You wanted it by the end of the month — we can make that happen"
+C) Keep them private so the customer does not feel exposed
+D) Mention them only if the customer brings them up
+*Answer: B — The timeline and emotion are the fuel of the close; bring them back to show the deal is built on their own words.*
+**Q5:** After delivering the close question, what should you do?
+A) Keep talking to fill the silence
+B) Add more features to strengthen the deal
+C) Stop talking — the next person to speak often loses the deal
+D) Ask a second close question immediately
+*Answer: C — Silence after the close lets the customer process and answer; the salesperson who fills the silence often talks themselves out of the deal.*
+`,
+      },
+    ],
+  },
 ];
 
 export function getCourse(id: string): Course | undefined {
