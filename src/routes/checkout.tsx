@@ -1,6 +1,7 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 // ── Stripe payment links for management tiers ──────────────────────────────
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { upgradeDemoAccounts } from "~/lib/admin";
 import { getAuthInfo } from "~/lib/auth-guard";
 import { LanguageSwitcher } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/admin")({
   component: AdminPage,

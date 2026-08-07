@@ -2,6 +2,7 @@ import { LanguageSwitcher } from '../i18n';
 import { useTranslation } from '../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,

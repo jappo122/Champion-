@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LanguageSwitcher } from "~/i18n";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/sales-log")({
   component: SalesLogPage,

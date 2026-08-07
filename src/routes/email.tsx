@@ -2,6 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { isTokenValid } from "~/lib/client-auth";
 import { sendEmail } from "~/lib/email";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/email")({
   component: EmailPage,

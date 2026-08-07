@@ -5,6 +5,7 @@ import { courses } from "~/content/courses";
 import { detailedSteps } from "~/content/steps-content";
 import type { DetailedStep } from "~/content/steps-content";
 import { QuizQuestion } from "~/components/quiz-question";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/steps")({
   component: StepsPage,

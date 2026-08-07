@@ -18,6 +18,7 @@ import {
   getMyMessages,
   resetMyProgress,
 } from "~/lib/manager";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/profile")({
   component: ProfileDashboard,

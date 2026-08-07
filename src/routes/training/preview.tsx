@@ -3,6 +3,7 @@ import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { courses } from "~/content/courses";
 import { QuizQuestion } from "~/components/quiz-question";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/training/preview")({
   component: TrainingPreview,

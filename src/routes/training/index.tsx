@@ -6,6 +6,7 @@ import { courses } from "~/content/courses";
 import { getAuthInfo } from "~/lib/auth-guard";
 import { getMyAssignments, getMyProgress } from "~/lib/manager";
 import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/training/")({
   component: TrainingCatalog,

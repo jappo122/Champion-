@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
 import { getMyAssignments, getMyAppointments, getMyMessages } from "~/lib/manager";
 import { courses } from "~/content/courses";
+import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/planner")({
   component: PlannerPage,
