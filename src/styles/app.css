@@ -5,7 +5,26 @@
   body {
     @apply bg-[#0a1628] text-gray-100 antialiased;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
-    scroll-behavior: smooth;
+    /* App-shell scrolling: the document itself never scrolls, so the
+       browser never collapses its URL bar and overscroll bounce cannot
+       drag the page — the fixed header is glued to the top in every
+       browser (desktop and mobile), and the logo can never move. */
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  /* The ONLY scrollable region on the site lives here. */
+  #app-scroll {
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Anchored sections (e.g. #features, #pricing) clear the fixed header */
+  [id] {
+    scroll-margin-top: 176px;
   }
 }
 

@@ -86,10 +86,16 @@ function Navbar({ t }: { t: (k: string) => string }) {
 function Hero({ t }: { t: (k: string) => string }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 500);
+    const el = document.getElementById("app-scroll");
+    const onScroll = () =>
+      setScrolled((el ? el.scrollTop : window.scrollY) > 500);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    el?.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      el?.removeEventListener("scroll", onScroll);
+    };
+  }, []);
     return (
     <section className="relative overflow-hidden pt-[184px] sm:pt-[192px] pb-28 sm:pb-36">
       {/* Background glow — enhanced depth */}

@@ -3,12 +3,13 @@ import {
   Outlet,
   Scripts,
   createRootRoute,
+  useLocation,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { I18nProvider, LanguageSwitcher } from "~/i18n/index";
 import { MobileNav } from "~/components/mobile-nav";
 import { logError } from "~/lib/support";
-import { Component } from "react";
+import { Component, useEffect } from "react";
 
 // ── Error Boundary ──────────────────────────────────────────────────────────
 class ErrorBoundary extends Component<
@@ -120,9 +121,62 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <ScrollManager />
+      <div id="app-scroll">
+        <Outlet />
+      </div>
     </RootDocument>
   );
+}
+// ── Scroll Manager ─────────────────────────────────────────────────────────
+// The document never scrolls (html/body overflow hidden) — #app-scroll is the
+// only scrollable region, so the fixed header can never move. This component
+// keeps navigation, hash anchors (#features, #pricing) and scroll-to-top
+// working against that container instead of the window.
+function scrollAppToTop() {
+  const el = document.getElementById("app-scroll");
+  if (el) el.scrollTop = 0;
+}
+function scrollToHash(hash: string) {
+  const id = (hash || "").replace(/^#/, "");
+  const el = document.getElementById("app-scroll");
+  if (!el) return;
+  if (!id) {
+    el.scrollTop = 0;
+    return;
+  }
+  // Wait a frame so the routed page has rendered its sections
+  requestAnimationFrame(() => {
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    else el.scrollTop = 0;
+  });
+}
+function ScrollManager() {
+  const location = useLocation();
+  // Route changes: jump to top, or to the section named in the hash
+  useEffect(() => {
+    if (location.hash) scrollToHash(location.hash);
+    else scrollAppToTop();
+  }, [location.pathname, location.hash]);
+  // Same-page hash links (<a href="#features">): the browser cannot scroll
+  // the window (overflow hidden), so scroll the app container instead.
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+      const id = href.replace(/^#/, "");
+      if (!id) return;
+      e.preventDefault();
+      scrollToHash(id);
+      history.replaceState(null, "", "#" + id);
+    }
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+  return null;
 }
 
 function RootDocument({ children }: { children: ReactNode }) {
