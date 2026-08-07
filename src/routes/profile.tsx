@@ -394,19 +394,7 @@ function ProfileDashboard() {
   // ══════════════════════════════════════════════════════════════════════════
 
   const Header = () => (
-    <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2">
-<img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-        </a>
-        <div className="flex items-center gap-4">
-          <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
-          {isManagement && <a href="/manager" className="text-sm text-gray-400 hover:text-white">Dashboard</a>}
-          <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 hover:text-[#e63946]">Sign Out</button>
-          <LanguageSwitcher />
-        </div>
-      </div>
-    </header>
+    <SiteHeader />
   );
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -775,7 +763,7 @@ function ProfileDashboard() {
     return (
       <div className="min-h-dvh bg-[#0a1628]">
         <Header />
-        <main className="mx-auto max-w-5xl px-6 py-12">
+        <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
           {message && (
             <div className={`mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`}>
               {message.text}
@@ -987,7 +975,7 @@ function ProfileDashboard() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       <Header />
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
         {message && (
           <div className={`mb-6 rounded-lg p-4 text-sm ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-[#e63946]/10 text-[#e63946]"}`}>
             {message.text}

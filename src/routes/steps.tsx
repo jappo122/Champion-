@@ -19,19 +19,9 @@ function StepsPage() {
 
   return (
     <div className="min-h-dvh bg-[#0a1628]">
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <nav className="flex items-center gap-6">
-            <a href="/training" className="text-sm text-gray-400 hover:text-white">{t('nav.training')}</a>
-            <LanguageSwitcher />
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
         {/* Hero */}
         <div className="text-center mb-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">

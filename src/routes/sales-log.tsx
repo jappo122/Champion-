@@ -8,20 +8,9 @@ export const Route = createFileRoute("/sales-log")({
 function SalesLogPage() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <nav className="flex items-center gap-6">
-            <a href="/manager" className="text-sm text-gray-400 hover:text-white">Manager Dashboard</a>
-            <a href="/profile" className="text-sm text-gray-400 hover:text-white">Profile</a>
-            <LanguageSwitcher />
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8 text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20">
             <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">

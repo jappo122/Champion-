@@ -164,22 +164,9 @@ function CourseDetail() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-<img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <nav className="hidden items-center gap-8 md:flex">
-            <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('training.backToCourses')}</a>
-            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
-            <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">Profile</a>
-            <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
-            <LanguageSwitcher />
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
       {/* Main content */}
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-6 pt-[184px] pb-8">
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Lesson list sidebar */}
           <div className="order-2 lg:order-1 lg:col-span-1">

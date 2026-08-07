@@ -54,18 +54,8 @@ function AdminPage() {
   if (initializing) {
     return (
       <div className="min-h-screen bg-[#0a1628]">
-        <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-            <a href="/" className="flex items-center gap-2">
-              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-            </a>
-            <nav className="flex items-center gap-6">
-              <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
-              <LanguageSwitcher />
-            </nav>
-          </div>
-        </header>
-        <div className="flex items-center justify-center py-12">
+        <SiteHeader />
+        <div className="flex items-center justify-center pt-[184px] pb-12">
           <p className="text-slate-400">Loading...</p>
         </div>
       </div>
@@ -75,18 +65,8 @@ function AdminPage() {
   if (!token) {
     return (
       <div className="min-h-screen bg-[#0a1628]">
-        <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-            <a href="/" className="flex items-center gap-2">
-              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-            </a>
-            <nav className="flex items-center gap-6">
-              <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
-              <LanguageSwitcher />
-            </nav>
-          </div>
-        </header>
-        <div className="flex items-center justify-center py-12">
+        <SiteHeader />
+        <div className="flex items-center justify-center pt-[184px] pb-12">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">Admin</h1>
             <p className="text-slate-400 mb-6">Please sign in to access the admin panel.</p>
@@ -102,18 +82,8 @@ function AdminPage() {
   if (!isAdmin) {
     return (
       <div className="min-h-screen bg-[#0a1628]">
-        <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-            <a href="/" className="flex items-center gap-2">
-              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-            </a>
-            <nav className="flex items-center gap-6">
-              <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
-              <LanguageSwitcher />
-            </nav>
-          </div>
-        </header>
-        <div className="flex items-center justify-center py-12">
+        <SiteHeader />
+        <div className="flex items-center justify-center pt-[184px] pb-12">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-white mb-4">Access Denied</h1>
             <p className="text-slate-400">This page is restricted to owner accounts.</p>
@@ -125,17 +95,7 @@ function AdminPage() {
 
   return (
     <div className="min-h-screen bg-[#0a1628]">
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <nav className="flex items-center gap-6">
-            <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
-            <LanguageSwitcher />
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <div className="max-w-2xl mx-auto p-8">
         <h1 className="text-3xl font-bold text-white mb-2">Admin Panel</h1>

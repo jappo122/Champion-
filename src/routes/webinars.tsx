@@ -33,23 +33,10 @@ function WebinarsPage() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <nav className="hidden items-center gap-6 md:flex">
-            <a href="/training" className="text-sm text-gray-400 hover:text-white">Training</a>
-            <a href="/blog" className="text-sm text-gray-400 hover:text-white">Blog</a>
-            <a href="/#pricing" className="text-sm text-gray-400 hover:text-white">Pricing</a>
-            <a href="/login" className="text-sm text-gray-400 hover:text-white">Sign In</a>
-            <LanguageSwitcher />
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-20">
+      <section className="relative overflow-hidden pt-[184px] pb-16 sm:pt-[200px] sm:pb-20">
         <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#e63946]/8 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 right-0 h-[300px] w-[300px] rounded-full bg-[#1a2d4a]/40 blur-3xl" />
 

@@ -68,16 +68,9 @@ function CheckoutPage() {
 
   return (
     <div className="min-h-dvh bg-[#0a1628]">
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <LanguageSwitcher />
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="mx-auto max-w-2xl px-6 py-12">
+      <main className="mx-auto max-w-2xl px-6 pt-[184px] pb-12">
         <h1 className="text-3xl font-bold text-white">Management Account Setup</h1>
         <p className="mt-2 text-gray-400">Choose your plan and start building your sales team.</p>
 
