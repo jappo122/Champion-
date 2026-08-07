@@ -35,20 +35,20 @@ function Navbar({ t }: { t: (k: string) => string }) {
   }, []);
   return (
     <header className="relative z-50 w-full bg-transparent">
-      <div className="mx-auto flex max-w-7xl items-start justify-between px-3 md:px-6 pt-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 md:px-6 pt-3">
         {/* Logo — full size, sits in the page flow */}
         <a href="/" className="block shrink-0">
           <img
             src="/fb-logo.png"
             alt="Champion Sales Training & Events"
-            className="h-[219px] w-auto object-contain"
+            className="h-[91px] w-auto object-contain"
           />
         </a>
 
         {/* Hamburger — mobile only */}
         <button
           onClick={() => (window as any).__toggleMobileNav?.()}
-          className="mt-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
+          className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
           aria-label="Menu"
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,7 +57,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
         </button>
 
         {/* Desktop nav — in flow, right-aligned */}
-        <nav className="hidden items-center gap-6 pt-10 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
         {loggedIn ? (
           <>
             <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
@@ -622,7 +622,7 @@ function Footer({ t }: { t: (k: string) => string }) {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2">
-              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[168px] w-auto -my-[52px]" />
+              <img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-[70px] w-auto" />
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-500">
               The complete automotive sales training platform. Master the proven sales process, close more deals, and grow your career.
