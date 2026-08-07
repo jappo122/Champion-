@@ -47,20 +47,9 @@ function EmailPage() {
   return (
     <div className="min-h-screen bg-[#0a1628]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a] bg-[#0d1f35]/60 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="/" className="text-xl font-bold text-white">
-            Champion<span className="text-[#e63946]">Sales</span>
-          </a>
-          <nav className="flex items-center gap-6 text-sm">
-            <a href="/training" className="text-gray-400 transition-colors hover:text-white">Training</a>
-            <a href="/profile" className="text-gray-400 transition-colors hover:text-white">Profile</a>
-            <a href="/email" className="font-medium text-[#e63946]">Email</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+      <main className="mx-auto max-w-3xl px-4 pt-[184px] pb-12 sm:px-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white sm:text-4xl">Send Email</h1>
           <p className="mt-2 text-gray-400">Compose and send emails to your contacts.</p>

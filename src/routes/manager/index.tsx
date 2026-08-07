@@ -323,24 +323,7 @@ function ManagerDashboard() {
   // ── Header ───────────────────────────────────────────────────────────────
 
   const Header = () => (
-    <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2">
-<img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-        </a>
-        <nav className="flex items-center gap-6">
-          <div className="flex items-center gap-1.5 rounded-full bg-[#e63946]/10 px-3 py-1 text-xs font-medium text-[#e63946]">
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Manager Dashboard
-          </div>
-          <button onClick={handleLogout} className="text-sm text-gray-400 transition-colors hover:text-[#e63946]">
-                        {t('account.signOut')}
-                      </button>
-                      <LanguageSwitcher /></nav>
-      </div>
-    </header>
+    <SiteHeader />
   );
 
   // ── Progress Bar ─────────────────────────────────────────────────────────
@@ -652,7 +635,7 @@ function ManagerDashboard() {
       <Header />
 
       {error && (
-        <div className="mx-auto max-w-7xl px-6 pt-8">
+        <div className="mx-auto max-w-7xl px-6 pt-[184px]">
           <div className="rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-4 text-sm text-[#e63946]">
             {error}
           </div>

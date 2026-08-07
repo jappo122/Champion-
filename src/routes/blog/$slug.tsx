@@ -34,24 +34,10 @@ function BlogPostPage() {
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[#1a2d4a]/50 bg-[#0a1628]/90">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <a href="/" className="flex items-center gap-2">
-<img src="/fb-logo.png" alt="Champion Sales Training & Events" className="h-10 w-auto" />
-          </a>
-          <nav className="hidden items-center gap-8 md:flex">
-            <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">Training</a>
-            <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
-            <a href="/#pricing" className="text-sm text-gray-400 transition-colors hover:text-white">Pricing</a>
-            <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">Sign In</a>
-            <a href="/signup" className="btn-primary text-sm">Get Started</a>
-            <LanguageSwitcher />
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Blog Post */}
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-5xl px-6 pt-[184px] pb-12">
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Main content */}
           <article className="lg:col-span-2">
