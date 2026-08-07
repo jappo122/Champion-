@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { sql } from "~/db";
 import { createHash, randomBytes } from "node:crypto";
+import { courses as catalogCourses } from "~/content/courses";
 
 // ── Token verification (inlined to avoid build issues with shared imports) ──
 
@@ -164,20 +165,8 @@ export const getTeamProgress = createServerFn({ method: "POST" }).handler(
       SELECT id, email, name, created_at FROM users WHERE role = 'user' ORDER BY name ASC, email ASC
     ` as Array<{ id: number; email: string; name: string | null; created_at: string }>;
 
-    // Total lessons across all courses
-    const courses = [
-      { id: "10-steps-part-1", count: 10 },
-      { id: "10-steps-part-2", count: 10 },
-      { id: "advanced-closing", count: 5 },
-      { id: "digital-marketing", count: 4 },
-      { id: "customer-experience", count: 4 },
-      { id: "sales-drills", count: 10 },
-      { id: "senior-sales", count: 5 },
-      { id: "closing-objections", count: 5 },
-      { id: "needs-assessment-2", count: 5 },
-      { id: "advanced-closing-part2", count: 4 },
-      { id: "heart-method", count: 6 },
-    ];
+    // Total lessons across all courses (derived from the live catalog so it stays accurate)
+    const courses = catalogCourses.map((c) => ({ id: c.id, count: c.lessons }));
     const totalLessonCount = courses.reduce((s, c) => s + c.count, 0);
 
     // For each salesperson, get their completed lesson count
@@ -740,7 +729,7 @@ export const getTeamMembers = createServerFn({ method: "POST" }).handler(
         const progress = await db`
           SELECT COUNT(*) as count FROM lesson_progress WHERE user_id = ${m.id}
         ` as Array<{ count: number }>;
-        const totalLessons = 68; // Total lessons across all 11 courses
+        const totalLessons = catalogCourses.reduce((s, c) => s + c.lessons, 0); // Total lessons across all courses
         const completed = progress[0]?.count ?? 0;
         return {
           ...m,
