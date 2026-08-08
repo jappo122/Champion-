@@ -30,6 +30,9 @@ function PlannerPage() {
       if (apRes.success) setAppointments(apRes.appointments);
       if (mRes.success) setMessages(mRes.messages);
       setLoading(false);
+    }).catch(() => {
+      // Never let the page sit on a spinner forever if an API call fails.
+      setLoading(false);
     });
   }, []);
 
@@ -40,8 +43,11 @@ function PlannerPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
+      <div className="min-h-dvh bg-[#0a1628]">
+        <SiteHeader />
+        <div className="flex items-center justify-center pt-24">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
+        </div>
       </div>
     );
   }
