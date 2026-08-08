@@ -63,7 +63,7 @@ export function MobileNav() {
             <div className="flex justify-end"><LanguageSwitcher /></div>
             <a href="/" className="text-sm text-gray-400 hover:text-white" onClick={close}>Home</a>
             <a href="/training" className="text-sm text-gray-400 hover:text-white" onClick={close}>Training</a>
-            <a href="/steps" className="text-sm text-gray-400 hover:text-white" onClick={close}>Steps of the Sale</a>
+            <a href="/steps" className="text-sm text-gray-400 hover:text-white" onClick={close}>Road to the Sale</a>
             <a href="/profile" className="text-sm text-gray-400 hover:text-white" onClick={close}>Profile</a>
             <a href="/blog" className="text-sm text-gray-400 hover:text-white" onClick={close}>Blog</a>
             <a href="/webinars" className="text-sm text-gray-400 hover:text-white" onClick={close}>Webinars</a>

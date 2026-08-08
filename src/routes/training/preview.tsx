@@ -12,7 +12,7 @@ export const Route = createFileRoute("/training/preview")({
 // One sample quiz question from each course
 const previewQuestions: { courseName: string; question: string }[] = [
   {
-    courseName: "10 Steps to the Sale",
+    courseName: "Road to the Sale",
     question: `**Q1:** What is the most important goal of the greeting?
 A) To qualify the customer's budget immediately
 B) To build trust and make a positive first impression
@@ -21,7 +21,7 @@ D) To get the customer's contact information
 *Answer: B — The greeting is about building trust and making a positive first impression. Qualifying, showing vehicles, and gathering contact info come later in the process.*`,
   },
   {
-    courseName: "10 Steps of the Sale — Part 2",
+    courseName: "Road to the Sale — Part 2",
     question: `**Q1:** What percentage of customers who take a test drive are more likely to buy?
 A) 50%
 B) 70%
