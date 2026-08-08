@@ -151,6 +151,41 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
     }
   }
 
+  // ── My progress (authenticated POST — completed lessons for the user) ──
+  if (url.pathname === "/api/my-progress" && req.method === "POST") {
+    try {
+      const { token } = await req.json();
+      if (!token) {
+        return Response.json({ success: false, error: "Authentication required." }, { status: 401 });
+      }
+      const parts = token.split(".");
+      if (parts.length !== 3) {
+        return Response.json({ success: false, error: "Invalid or expired token." }, { status: 401 });
+      }
+      const [headerB64, bodyB64, signature] = parts;
+      const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
+      const expected = createHash("sha256").update(`${headerB64}.${bodyB64}.${secret}`).digest("hex");
+      if (signature !== expected) {
+        return Response.json({ success: false, error: "Invalid or expired token." }, { status: 401 });
+      }
+      const payload = JSON.parse(Buffer.from(bodyB64, "base64url").toString());
+      if (payload.exp && payload.exp < Date.now()) {
+        return Response.json({ success: false, error: "Invalid or expired token." }, { status: 401 });
+      }
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL!);
+      const rows = await sql`
+        SELECT course_id, lesson_id, completed_at
+        FROM lesson_progress
+        WHERE user_id = ${payload.userId as number}
+        ORDER BY completed_at DESC
+      `;
+      return Response.json({ success: true, completedLessons: rows });
+    } catch (err: any) {
+      console.error("API my-progress POST error:", err.message);
+      return Response.json({ success: false, error: "Server error" }, { status: 500 });
+    }
+  }
   return null; // Not an API route
 }
 
