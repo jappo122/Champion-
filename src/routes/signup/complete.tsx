@@ -62,7 +62,7 @@ const completeSignupAfterPayment = createServerFn({ method: "POST" }).handler(
       await sendEmail({
         to: [email],
         subject: `Welcome to Champion Sales Training — Your ${accountType} Account is Ready`,
-        body: `Hi ${name || "there"},\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} account has been created.\n\n─── Your Login ───\nSite: https://championsalestrainingandevents.com/login\nEmail: ${email}\nTemporary Password: ${finalPassword}\n\nPlease log in and change your password from your profile page.\n\n${data.type === "management" ? "─── Next Steps ───\n- Add your sales team from your manager dashboard\n- Assign training modules based on skill gaps\n- Track team progress and sales performance\n\n" : ""}Get started now!\n\n- Champion Sales Training Team`,
+        body: `Hi ${name || "there"},\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} account has been created.\n\n─── Your Login ───\nSite: https://www.championsalestrainingandevents.com/login\nEmail: ${email}\nTemporary Password: ${finalPassword}\n\nPlease log in and change your password from your profile page.\n\n${data.type === "management" ? "─── Next Steps ───\n- Add your sales team from your manager dashboard\n- Assign training modules based on skill gaps\n- Track team progress and sales performance\n\n" : ""}Get started now!\n\n- Champion Sales Training Team`,
       });
     } catch {}
 

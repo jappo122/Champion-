@@ -118,7 +118,7 @@ export const markMyLessonComplete = createServerFn({ method: "POST" }).handler(
                 from: "Sales@championsalestrainingandevents.com",
                 to: [managerEmail],
                 subject: `${spName} completed a training module`,
-                text: `${spName} has completed the module "${assignment.course_id}"${assignment.lesson_id ? ` / "${assignment.lesson_id}"` : ""}.\n\nView progress: https://championsalestrainingandevents.com/manager`,
+                text: `${spName} has completed the module "${assignment.course_id}"${assignment.lesson_id ? ` / "${assignment.lesson_id}"` : ""}.\n\nView progress: https://www.championsalestrainingandevents.com/manager`,
               }),
             });
           } else {
@@ -411,7 +411,7 @@ export const addSalesperson = createServerFn({ method: "POST" }).handler(
       await sendEmail({
         to: [data.email],
         subject: "Welcome to Champion Sales Training — Your Account is Ready",
-        body: `Hi ${data.name || "there"},\n\nWelcome to Champion Sales Training & Events! Your ${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} account has been created by your manager.\n\n─── Your Login ───\nSite: https://championsalestrainingandevents.com/login\nEmail: ${data.email}\nTemporary Password: ${finalPassword}\n\nPlease log in and change your password from your profile page.\n\n─── What You Get ───\n- Complete training library\n- Interactive quizzes & assessments\n- Sales process mastery (10-step method)\n- Objection handling & closing techniques\n\nGet started now and take your sales career to the next level!\n\n- Champion Sales Training Team`,
+        body: `Hi ${data.name || "there"},\n\nWelcome to Champion Sales Training & Events! Your ${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} account has been created by your manager.\n\n─── Your Login ───\nSite: https://www.championsalestrainingandevents.com/login\nEmail: ${data.email}\nTemporary Password: ${finalPassword}\n\nPlease log in and change your password from your profile page.\n\n─── What You Get ───\n- Complete training library\n- Interactive quizzes & assessments\n- Sales process mastery (10-step method)\n- Objection handling & closing techniques\n\nGet started now and take your sales career to the next level!\n\n- Champion Sales Training Team`,
       });
     } catch {}
 

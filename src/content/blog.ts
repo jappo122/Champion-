@@ -677,7 +677,7 @@ Protecting your gross protects your paycheck. Not every customer is your custome
 
 Champion Sales Training's **negotiation module** includes detailed breakdowns of every technique in this article, plus interactive drills so you can practice until the responses feel natural.
 
-**[Start Training Today →](https://championsalestrainingandevents.com)**
+**[Start Training Today →](https://www.championsalestrainingandevents.com)**
 
 ---
 
@@ -815,7 +815,7 @@ The salespeople who score highest on trust don't need closing tricks. Their cust
 
 Champion Sales Training's entire 10-step process is built on trust-first selling — from the greeting to the follow-up. Module 1 (Greeting & Rapport) alone can transform how customers perceive you in the first 30 seconds.
 
-**[Start Training Now →](https://championsalestrainingandevents.com)**
+**[Start Training Now →](https://www.championsalestrainingandevents.com)**
 
 ---
 
@@ -969,7 +969,7 @@ At $400 commission per deal, that's an extra **$1,200/week** — just from follo
 
 Champion Sales Training's **Follow-Up & Referrals module** (Module 10) gives you word-for-word scripts for every follow-up scenario. Plus, the Premium tier includes a digital daily planner that tracks your entire follow-up schedule.
 
-**[Start Training Today →](https://championsalestrainingandevents.com)**
+**[Start Training Today →](https://www.championsalestrainingandevents.com)**
 
 ---
 
@@ -1104,7 +1104,7 @@ When you genuinely prioritize the customer's best interest over your commission,
 
 Our Advanced Closing course includes detailed breakdowns of every technique above, complete with role-play scenarios so you can practice in a safe environment.
 
-**[Start Training →](https://championsalestrainingandevents.com)**
+**[Start Training →](https://www.championsalestrainingandevents.com)**
 
 ---
 
@@ -1246,7 +1246,7 @@ Every month without standardized training costs your dealership money — in los
 
 The math is clear. The solution is available. The only question is: when do you start?
 
-**[Explore Training Plans →](https://championsalestrainingandevents.com)**
+**[Explore Training Plans →](https://www.championsalestrainingandevents.com)**
 
 ---
 

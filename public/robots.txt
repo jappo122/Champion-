@@ -17,4 +17,4 @@ Disallow: /checkout
 Disallow: /signup/complete
 Disallow: /purchase/
 
-Sitemap: https://championsalestrainingandevents.com/sitemap.xml
+Sitemap: https://www.championsalestrainingandevents.com/sitemap.xml

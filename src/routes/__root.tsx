@@ -66,7 +66,7 @@ class ErrorBoundary extends Component<
 import appCss from "~/styles/app.css?url";
 
 export const Route = createRootRoute({
-  head: () => ({
+  head: (ctx) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -93,7 +93,7 @@ export const Route = createRootRoute({
       { "http-equiv": "Permissions-Policy", content: "camera=(), microphone=(), geolocation=()" },
     ],
     links: [
-      { rel: "canonical", href: "https://championsalestrainingandevents.com" },
+      { rel: "canonical", href: `https://www.championsalestrainingandevents.com${ctx.matches[ctx.matches.length - 1].pathname}` },
       { rel: "stylesheet", href: appCss },
       {
         rel: "preconnect",
