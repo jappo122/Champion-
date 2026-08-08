@@ -48,10 +48,9 @@ export function SiteHeader() {
             </>
           ) : (
             <>
-              <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-              <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Road to the Sale</a>
               <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
               <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
+              <a href="/pricing" className="text-sm text-gray-400 transition-colors hover:text-white">Pricing</a>
               <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>
             </>
           )}
