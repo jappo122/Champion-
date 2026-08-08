@@ -1,4 +1,3 @@
-import { LanguageSwitcher } from '../i18n';
 import { useTranslation } from '../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
@@ -46,7 +45,6 @@ function LoginPage() {
       <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="w-full max-w-md">
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-          <LanguageSwitcher />
           <h1 className="text-2xl font-bold text-white">{t('auth.signIn')}</h1>
           <p className="mt-2 text-sm text-gray-400">Sign in to your account to continue.</p>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">

@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
 import { mobileNavStore } from "~/lib/mobile-nav-store";
+import { LanguageSwitcher } from "~/i18n";
 
 export function MobileNav() {
   const open = useSyncExternalStore(
@@ -50,6 +51,7 @@ export function MobileNav() {
               </button>
             </div>
             <nav className="flex flex-col gap-4 overflow-y-auto px-6 pb-8">
+              <div className="flex justify-end"><LanguageSwitcher /></div>
               <a href="/" className="text-sm text-gray-400 hover:text-white" onClick={close}>Home</a>
               <a href="/training" className="text-sm text-gray-400 hover:text-white" onClick={close}>Training</a>
               <a href="/steps" className="text-sm text-gray-400 hover:text-white" onClick={close}>Steps of the Sale</a>
