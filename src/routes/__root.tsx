@@ -93,7 +93,15 @@ export const Route = createRootRoute({
       { "http-equiv": "Permissions-Policy", content: "camera=(), microphone=(), geolocation=()" },
     ],
     links: [
-      { rel: "canonical", href: `https://www.championsalestrainingandevents.com${ctx.matches[ctx.matches.length - 1].pathname}` },
+      {
+        rel: "canonical",
+        href: `https://www.championsalestrainingandevents.com${
+          (() => {
+            const path = ctx.matches[ctx.matches.length - 1].pathname;
+            return path === "/" ? "/" : path.replace(/\/+$/, "");
+          })()
+        }`,
+      },
       { rel: "stylesheet", href: appCss },
       {
         rel: "preconnect",

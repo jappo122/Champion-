@@ -1,37 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
-import { LanguageSwitcher } from "~/i18n";
-import { getBlogPost, getBlogPosts, type BlogPost, type BlogSection } from "~/content/blog";
+import { createFileRoute, notFound } from "@tanstack/react-router";
+import { getBlogPost, getBlogPosts, type BlogSection } from "~/content/blog";
 import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/blog/$slug")({
+  // Load the post server-side so SSR emits the real article HTML (Google
+  // indexes the rendered markup; a client-only useEffect rendered an empty
+  // "Post not found" shell on every post URL). Unknown slugs get a real 404.
+  loader: ({ params }) => {
+    const post = getBlogPost(params.slug);
+    if (!post) throw notFound();
+    return { post, recentPosts: getBlogPosts().filter((bp) => bp.slug !== params.slug) };
+  },
   component: BlogPostPage,
+  notFoundComponent: () => (
+    <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold text-white">Post not found</h1>
+        <a href="/blog" className="mt-4 inline-block text-[#e63946] hover:underline">Back to Blog</a>
+      </div>
+    </div>
+  ),
 });
 
 function BlogPostPage() {
-  const params = Route.useParams();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
-
-  useEffect(() => {
-    const p = getBlogPost(params.slug);
-    setPost(p);
-    // Get other posts for sidebar
-    const all = getBlogPosts().filter((bp) => bp.slug !== params.slug);
-    setRecentPosts(all);
-  }, [params.slug]);
-
-  if (!post) {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white">Post not found</h1>
-          <a href="/blog" className="mt-4 inline-block text-[#e63946] hover:underline">Back to Blog</a>
-        </div>
-      </div>
-    );
-  }
-
+  const { post, recentPosts } = Route.useLoaderData();
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       {/* Header */}
