@@ -1,4 +1,4 @@
-import { useSyncExternalStore, useEffect } from "react";
+import { useSyncExternalStore, useEffect, useState } from "react";
 import { mobileNavStore } from "~/lib/mobile-nav-store";
 import { LanguageSwitcher } from "~/i18n";
 
@@ -9,7 +9,13 @@ export function MobileNav() {
     // getServerSnapshot — required for SSR; the drawer is always closed on the server
     () => false,
   );
-  const loggedIn = typeof window !== "undefined" && !!localStorage.getItem("salesdrive_token");
+  // Read the token in an effect, NOT during render: SSR renders the logged-out
+  // nav, so the first client render must match it (reading localStorage during
+  // render made logged-in pages throw React hydration error #418).
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    setLoggedIn(!!localStorage.getItem("salesdrive_token"));
+  }, []);
   const close = () => mobileNavStore.close();
 
   // Tell the pre-hydration inline script (in __root.tsx) that React is in
@@ -60,7 +66,10 @@ export function MobileNav() {
             </button>
           </div>
           <nav className="flex flex-col gap-4 overflow-y-auto px-6 pb-8">
-            <div className="flex justify-end"><LanguageSwitcher /></div>
+            {/* Render the language switcher only when the drawer is open — a
+                permanently-mounted duplicate here caused a server/client text
+                mismatch (React hydration error #418) on /login and /signup. */}
+            {open && <div className="flex justify-end"><LanguageSwitcher /></div>}
             <a href="/" className="text-sm text-gray-400 hover:text-white" onClick={close}>Home</a>
             {loggedIn && (
               <>
