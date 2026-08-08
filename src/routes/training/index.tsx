@@ -87,54 +87,16 @@ function TrainingCatalog() {
         <SiteHeader />
 
         <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
-          {/* Hero CTA */}
+          {/* Sign-in prompt — the training catalog is behind login */}
           <div className="mb-12 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
               <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />Professional Sales Training
             </span>
             <h1 className="mt-4 text-4xl font-extrabold text-white sm:text-5xl">Automotive Sales <span className="text-[#e63946]">Training</span></h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">Master the complete 10-step automotive sales process — from the initial greeting to follow-up referrals. 11 courses, 68 lessons, 200+ quiz questions with 80% mastery threshold required to mark complete.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">The full training catalog — courses, lessons, and quizzes — is part of the Champion Sales Training platform. Sign in to access your training.</p>
             <div className="mt-8 flex justify-center gap-4">
               <a href="/signup" className="rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Start Free</a>
               <a href="/login" className="rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>
-            </div>
-          </div>
-
-          {/* Course teasers */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course) => {
-              const isGated = course.requiredTier && course.requiredTier !== "basic";
-              return (
-              <div key={course.id} className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 transition-all duration-200 hover:border-[#e63946]/30">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${levelColors[course.levels]}`}>{course.levels}</span>
-                  <span className="text-xs text-gray-500">{course.lessons} lessons</span>
-                  {isGated && (
-                    <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-400">Plus+</span>
-                  )}
-                  {!isGated && (
-                    <span className="rounded-full bg-green-500/20 px-2 py-0.5 text-[10px] font-medium text-green-400">All Plans</span>
-                  )}
-                </div>
-                <h3 className="text-base font-bold text-white">{course.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-400">{course.description.length > 140 ? course.description.slice(0, 140) + "..." : course.description}</p>
-                <div className="mt-4 flex items-center gap-2 text-xs text-gray-500">
-                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  {course.duration}
-                </div>
-              </div>
-              );
-            })}
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="mt-12 text-center rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-8">
-            <h2 className="text-xl font-bold text-white">Ready to close more deals?</h2>
-            <p className="mt-2 text-gray-400">Join hundreds of automotive sales professionals who use Champion Sales Training every day.</p>
-            <div className="mt-6 flex justify-center gap-4">
-              <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors">Get Started</a>
             </div>
           </div>
         </main>
