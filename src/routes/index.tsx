@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
-import { mobileNavStore } from "~/lib/mobile-nav-store";
 
 // ── Route configuration ────────────────────────────────────────────────────
 export const Route = createFileRoute("/")({
@@ -48,7 +47,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
 
         {/* Hamburger — mobile only, always visible & same size, never moves */}
         <button
-          onClick={() => mobileNavStore.toggle()}
+          onClick={() => window.dispatchEvent(new CustomEvent("mobile-nav:toggle"))}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
           aria-label="Menu"
         >

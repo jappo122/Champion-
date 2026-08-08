@@ -1,14 +1,12 @@
-import { useSyncExternalStore, useEffect, useState } from "react";
-import { mobileNavStore } from "~/lib/mobile-nav-store";
+import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "~/i18n";
 
 export function MobileNav() {
-  const open = useSyncExternalStore(
-    mobileNavStore.subscribe,
-    mobileNavStore.getSnapshot,
-    // getServerSnapshot — required for SSR; the drawer is always closed on the server
-    () => false,
-  );
+  // Drawer open state is local React state, driven by window events dispatched
+  // by the header/hamburger buttons (mobile-nav:toggle / :open / :close).
+  // The previous useSyncExternalStore + module-store mechanism never re-rendered
+  // React when the store changed, leaving the hamburger dead on every page.
+  const [open, setOpen] = useState(false);
   // Read the token in an effect, NOT during render: SSR renders the logged-out
   // nav, so the first client render must match it (reading localStorage during
   // render made logged-in pages throw React hydration error #418).
@@ -16,12 +14,24 @@ export function MobileNav() {
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
   }, []);
-  const close = () => mobileNavStore.close();
+  const close = () => setOpen(false);
 
   // Tell the pre-hydration inline script (in __root.tsx) that React is in
   // control now — the script stops toggling the drawer's hidden attribute.
+  // Also wire the hamburger events to local state.
   useEffect(() => {
     (window as any).__mobileNavHydrated = true;
+    const onToggle = () => setOpen((o) => !o);
+    const onOpen = () => setOpen(true);
+    const onClose = () => setOpen(false);
+    window.addEventListener("mobile-nav:toggle", onToggle);
+    window.addEventListener("mobile-nav:open", onOpen);
+    window.addEventListener("mobile-nav:close", onClose);
+    return () => {
+      window.removeEventListener("mobile-nav:toggle", onToggle);
+      window.removeEventListener("mobile-nav:open", onOpen);
+      window.removeEventListener("mobile-nav:close", onClose);
+    };
   }, []);
 
   return (
