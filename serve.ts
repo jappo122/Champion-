@@ -187,8 +187,16 @@ for (let attempt = 1; ; attempt++) {
         // Check API routes first
         const apiResponse = await handleApiRequest(req);
         if (apiResponse) return apiResponse;
-        
+
         const { pathname } = new URL(req.url);
+        // SEO: 301 (permanent) redirect for trailing-slash URLs so Google sees
+        // exactly one URL per page. TanStack's default was a 307 (temporary),
+        // which keeps both variants alive and causes duplicate-content flags.
+        if (pathname !== "/" && pathname.endsWith("/") && !pathname.includes(".")) {
+          const clean = pathname.replace(/\/+$/, "") || "/";
+          const urlObj = new URL(req.url);
+          return Response.redirect(urlObj.origin + clean + (urlObj.search || ""), 301);
+        }
         if (pathname !== "/") {
           const file = Bun.file(CLIENT_DIR + pathname);
           if (await file.exists()) return new Response(file);
