@@ -90,6 +90,9 @@ function Hero({ t }: { t: (k: string) => string }) {
     const el = document.getElementById("app-scroll");
     const onScroll = () =>
       setScrolled((el ? el.scrollTop : window.scrollY) > 500);
+    // Cover browsers that restore scroll position on reload — start faded if
+    // the page loads already scrolled past the hero.
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     el?.addEventListener("scroll", onScroll, { passive: true });
     return () => {

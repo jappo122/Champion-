@@ -125,6 +125,15 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
+    scripts: [
+      {
+        // Instant hamburger response BEFORE the JS bundle hydrates: toggles the
+        // server-rendered drawer's hidden attribute on tap. Stops as soon as
+        // MobileNav's effect sets __mobileNavHydrated (React takes over).
+        children:
+          '(function(){function t(){var d=document.getElementById("mobile-nav-drawer");if(d)d.hidden=!d.hidden;}document.addEventListener("click",function(e){if(window.__mobileNavHydrated)return;var b=e.target&&e.target.closest?e.target.closest("button[aria-label=Menu]"):null;if(b)t();},true);})();',
+      },
+    ],
     };
   },
   notFoundComponent: () => (

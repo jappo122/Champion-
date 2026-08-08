@@ -1,4 +1,3 @@
-import { LanguageSwitcher } from '../../i18n';
 import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
@@ -99,7 +98,6 @@ function SignupPage() {
       <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="w-full max-w-md">
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-          <LanguageSwitcher />
           <h1 className="text-2xl font-bold text-white">{t('auth.signUp')}</h1>
           <p className="mt-2 text-sm text-gray-400">{t('auth.join')}</p>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
