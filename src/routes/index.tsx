@@ -42,7 +42,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
           <img
             src="/fb-logo.png"
             alt="Champion Sales Training & Events"
-            className="h-[140px] w-auto object-contain"
+            className="h-[112px] w-auto object-contain"
           />
         </a>
 
