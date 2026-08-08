@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
 import { courses } from "~/content/courses";
 import { detailedSteps } from "~/content/steps-content";
