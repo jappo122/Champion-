@@ -54,13 +54,13 @@ export interface Course {
 }
 
 export const courses: Course[] = [
-  // ===== Course 1: 10 Steps to the Sale (Part 1 - Descriptions) =====
+  // ===== Course 1: Road to the Sale (Part 1 - Descriptions) =====
   {
     id: "10-steps-part-1",
-    title: "10 Steps to the Sale",
-    subtitle: "Master every step of the automotive sales process",
+    title: "Road to the Sale",
+    subtitle: "Master every step of the Road to the Sale",
     description:
-      "An in-depth exploration of the complete 10-step automotive sales process. Each lesson includes detailed explanations, key principles, common mistakes, and pro tips. Perfect for new and experienced salespeople alike. Read through each step and mark it complete as you go.",
+      "An in-depth exploration of the complete Road to the Sale — the 10-step automotive sales process. Each lesson includes detailed explanations, key principles, common mistakes, and pro tips. Perfect for new and experienced salespeople alike. Read through each step of the road and mark it complete as you go.",
     levels: "Beginner",
     duration: "3 hours",
     lessons: 10,
@@ -497,13 +497,13 @@ The delivery experience determines whether the customer becomes a repeat buyer a
     ],
   },
 
-  // ===== Course 2: 10 Steps of the Sale Part 2 (Quiz) =====
+  // ===== Course 2: Road to the Sale Part 2 (Quiz) =====
   {
     id: "10-steps-part-2",
-    title: "10 Steps of the Sale Part 2",
-    subtitle: "Test your knowledge with scenario-based quiz questions",
+    title: "Road to the Sale Part 2",
+    subtitle: "Test your knowledge of the Road to the Sale with scenario-based quiz questions",
     description:
-      "Put your knowledge to the test with 40 scenario-based quiz questions covering every step of the 10-step automotive sales process. Each lesson contains 4 multiple-choice questions with instant feedback and detailed explanations. No reading required — just jump in and test yourself.",
+      "Put your knowledge to the test with 40 scenario-based quiz questions covering every step of the Road to the Sale. Each lesson contains 4 multiple-choice questions with instant feedback and detailed explanations. No reading required — just jump in and test yourself.",
     levels: "Beginner",
     duration: "1.5 hours",
     lessons: 10,

@@ -758,7 +758,7 @@ function ManagerDashboard() {
                   mainTab === "process" ? "bg-[#e63946] text-white" : "text-gray-400 hover:text-white"
                 }`}
               >
-                Steps of the Sale
+                Road to the Sale
               </button>
               <button
                 onClick={() => setMainTab("planner")}
@@ -979,7 +979,7 @@ function ManagerDashboard() {
 
             {mainTab === "process" && (
               <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-                <h3 className="text-lg font-bold text-white mb-4">Steps of the Sales Process</h3>
+                <h3 className="text-lg font-bold text-white mb-4">Road to the Sales Process</h3>
                 <p className="text-sm text-gray-400 mb-6">The complete automotive sales process. Available on all tiers — refer to it throughout training.</p>
                 <ol className="space-y-4">
                   {[

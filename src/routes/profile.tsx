@@ -884,7 +884,7 @@ function ProfileDashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
               </div>
-              <span className="font-medium text-white group-hover:text-[#e63946] transition-colors">Steps of the Sale</span>
+              <span className="font-medium text-white group-hover:text-[#e63946] transition-colors">Road to the Sale</span>
             </a>
             <a href="/account" className="flex items-center gap-4 rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-5 transition-all duration-200 hover:border-[#e63946]/50 hover:shadow-lg hover:shadow-[#e63946]/5 group">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] group-hover:bg-[#e63946]/20">

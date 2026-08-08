@@ -62,7 +62,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
         {loggedIn ? (
           <>
             <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Road to the Sale</a>
             <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
             <a href="/profile" className="text-sm text-gray-400 transition-colors hover:text-white">{t('profile.title')}</a>
             <button onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }} className="text-sm text-gray-400 transition-colors hover:text-white">Sign Out</button>
@@ -70,7 +70,7 @@ function Navbar({ t }: { t: (k: string) => string }) {
         ) : (
           <>
             <a href="/training" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.training')}</a>
-            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Steps of the Sale</a>
+            <a href="/steps" className="text-sm text-gray-400 transition-colors hover:text-white">Road to the Sale</a>
             <a href="/webinars" className="text-sm text-gray-400 transition-colors hover:text-white">Webinars</a>
             <a href="/blog" className="text-sm text-gray-400 transition-colors hover:text-white">Blog</a>
             <a href="/login" className="text-sm text-gray-400 transition-colors hover:text-white">{t('nav.signIn')}</a>

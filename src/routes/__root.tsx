@@ -69,12 +69,13 @@ export const Route = createRootRoute({
   head: (ctx) => {
     const path = ctx.matches[ctx.matches.length - 1].pathname;
     // Auth-gated / transactional pages that are publicly linked (buy buttons,
-    // Steps → course links) must stay crawlable so Google sees the noindex tag
+    // Road → course links) must stay crawlable so Google sees the noindex tag
     // instead of reporting them as "Blocked by robots.txt". /training/preview
     // is the public sample and stays indexable.
     const noindex =
       path === "/training" ||
       (path.startsWith("/training/") && path !== "/training/preview") ||
+      path === "/steps" ||
       path.startsWith("/checkout");
     return {
     meta: [

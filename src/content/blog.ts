@@ -1559,8 +1559,8 @@ We built Champion Sales Training to solve all four.
 
 From greeting to follow-up, every step of the automotive sales process is covered in focused, 2-minute video modules. No fluff. No filler. Just the techniques that work.
 
-- Course 1: 10 Steps to the Sale
-- Course 2: 10 Steps of the Sale Part 2 (interactive quizzes)
+- Course 1: Road to the Sale
+- Course 2: Road to the Sale Part 2 (interactive quizzes)
 - Course 3: Advanced Closing Techniques
 - Course 4: Digital Marketing for Car Sales
 - Course 5: Customer Experience & Retention
@@ -1698,11 +1698,11 @@ Here's what a typical Champion Sales Training session looks like for a salespers
 
 ### Onboarding (Week 1-2)
 
-New salespeople start with Course 1 — "10 Steps to the Sale." Each module covers one step of the automotive sales process. By the end of week two, they've learned a complete, repeatable system.
+New salespeople start with Course 1 — "Road to the Sale." Each module covers one step of the automotive sales process. By the end of week two, they've learned a complete, repeatable system.
 
 ### Core Skills (Week 3-4)
 
-They move to Course 2 — "10 Steps of the Sale Part 2" — with interactive quizzes that test real decision-making. Each quiz question simulates a showroom scenario and requires them to choose the correct response.
+They move to Course 2 — "Road to the Sale Part 2" — with interactive quizzes that test real decision-making. Each quiz question simulates a showroom scenario and requires them to choose the correct response.
 
 ### Advanced Techniques (Month 2+)
 

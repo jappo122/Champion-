@@ -887,7 +887,7 @@ export const getSkillGaps = createServerFn({ method: "POST" }).handler(
     ` as Array<{ course_id: string; completed: number }>;
 
     const courses = [
-      { id: "10-steps-part-1", name: "10 Steps to the Sale", total: 10 },
+      { id: "10-steps-part-1", name: "Road to the Sale", total: 10 },
       { id: "10-steps-part-2", name: "10 Steps Part 2 (Quiz)", total: 10 },
       { id: "advanced-closing", name: "Advanced Closing", total: 5 },
       { id: "digital-marketing", name: "Digital Marketing", total: 4 },
