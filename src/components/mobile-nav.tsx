@@ -1,17 +1,19 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+import { mobileNavStore } from "~/lib/mobile-nav-store";
 
 export function MobileNav() {
-  const [open, setOpen] = useState(false);
+  const open = useSyncExternalStore(
+    mobileNavStore.subscribe,
+    mobileNavStore.getSnapshot,
+    // getServerSnapshot — required for SSR; the drawer is always closed on the server
+    () => false,
+  );
   const loggedIn = typeof window !== "undefined" && !!localStorage.getItem("salesdrive_token");
-
-  useEffect(() => {
-    (window as any).__toggleMobileNav = () => setOpen((prev) => !prev);
-    return () => { delete (window as any).__toggleMobileNav; };
-  }, []);
+  const close = () => mobileNavStore.close();
 
   return (
     <>
-      {/* Mobile slide-out menu — inline z-index so it can never sit under the fixed header */}
+      {/* Mobile slide-out menu — inline z-index so it can never sit under the header */}
       {open && (
         <div
           className="fixed inset-0 md:hidden"
@@ -24,7 +26,7 @@ export function MobileNav() {
           <div
             className="absolute inset-0 bg-black/60"
             style={{ zIndex: 1 }}
-            onClick={() => setOpen(false)}
+            onClick={close}
             aria-hidden="true"
           />
           {/* Panel — opaque, full height, always above header */}
@@ -38,7 +40,7 @@ export function MobileNav() {
                 Menu
               </span>
               <button
-                onClick={() => setOpen(false)}
+                onClick={close}
                 aria-label="Close menu"
                 className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1a2d4a] text-gray-300 transition-colors hover:bg-[#24395c] hover:text-white"
               >
@@ -48,16 +50,16 @@ export function MobileNav() {
               </button>
             </div>
             <nav className="flex flex-col gap-4 overflow-y-auto px-6 pb-8">
-              <a href="/" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Home</a>
-              <a href="/training" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Training</a>
-              <a href="/steps" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Steps of the Sale</a>
-              <a href="/profile" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Profile</a>
-              <a href="/blog" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Blog</a>
-              <a href="/webinars" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Webinars</a>
-              <a href="/contact" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Contact Us</a>
-              <a href="/support" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Support</a>
+              <a href="/" className="text-sm text-gray-400 hover:text-white" onClick={close}>Home</a>
+              <a href="/training" className="text-sm text-gray-400 hover:text-white" onClick={close}>Training</a>
+              <a href="/steps" className="text-sm text-gray-400 hover:text-white" onClick={close}>Steps of the Sale</a>
+              <a href="/profile" className="text-sm text-gray-400 hover:text-white" onClick={close}>Profile</a>
+              <a href="/blog" className="text-sm text-gray-400 hover:text-white" onClick={close}>Blog</a>
+              <a href="/webinars" className="text-sm text-gray-400 hover:text-white" onClick={close}>Webinars</a>
+              <a href="/contact" className="text-sm text-gray-400 hover:text-white" onClick={close}>Contact Us</a>
+              <a href="/support" className="text-sm text-gray-400 hover:text-white" onClick={close}>Support</a>
               <hr className="border-[#1a2d4a]" />
-              <a href="/pricing" className="rounded-lg bg-[#e63946] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#c1121f]" onClick={() => setOpen(false)}>PLANS AND PRICING</a>
+              <a href="/pricing" className="rounded-lg bg-[#e63946] px-4 py-2 text-center text-sm font-semibold text-white hover:bg-[#c1121f]" onClick={close}>PLANS AND PRICING</a>
               {loggedIn ? (
                 <button
                   onClick={() => { localStorage.removeItem("salesdrive_token"); window.location.href = "/"; }}
@@ -66,7 +68,7 @@ export function MobileNav() {
                   Sign Out
                 </button>
               ) : (
-                <a href="/login" className="text-sm text-gray-400 hover:text-white" onClick={() => setOpen(false)}>Sign In</a>
+                <a href="/login" className="text-sm text-gray-400 hover:text-white" onClick={close}>Sign In</a>
               )}
             </nav>
           </div>
