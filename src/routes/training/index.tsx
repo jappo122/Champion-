@@ -98,10 +98,6 @@ function TrainingCatalog() {
               <a href="/signup" className="rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Start Free</a>
               <a href="/login" className="rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>
             </div>
-            <p className="mt-4 text-sm text-gray-500">
-              <a href="/training/preview" className="text-[#e63946] hover:underline">Try a sample quiz →</a>
-              {" "}No account required
-            </p>
           </div>
 
           {/* Course teasers */}
@@ -139,7 +135,6 @@ function TrainingCatalog() {
             <p className="mt-2 text-gray-400">Join hundreds of automotive sales professionals who use Champion Sales Training every day.</p>
             <div className="mt-6 flex justify-center gap-4">
               <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors">Get Started</a>
-              <a href="/training/preview" className="rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Try a Free Preview</a>
             </div>
           </div>
         </main>

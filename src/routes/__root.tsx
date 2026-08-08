@@ -74,7 +74,7 @@ export const Route = createRootRoute({
     // is the public sample and stays indexable.
     const noindex =
       path === "/training" ||
-      (path.startsWith("/training/") && path !== "/training/preview") ||
+      path.startsWith("/training/") ||
       path === "/steps" ||
       path.startsWith("/checkout");
     return {
