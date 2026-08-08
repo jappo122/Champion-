@@ -1,10 +1,10 @@
 User-agent: *
 Allow: /
-
-# Private / auth-gated routes
+# Private / auth-gated routes.
+# Publicly-linked private pages (/training, /training/*, /checkout) stay crawlable
+# but carry a noindex tag, so Google never reports them as "Blocked by robots.txt".
+# Never-linked private routes stay disallowed below.
 Disallow: /profile
-Disallow: /training/
-Allow: /training/preview
 Disallow: /manager
 Disallow: /email
 Disallow: /inbox
@@ -13,8 +13,6 @@ Disallow: /planner
 Disallow: /sales-log
 Disallow: /account
 Disallow: /admin
-Disallow: /checkout
 Disallow: /signup/complete
 Disallow: /purchase/
-
 Sitemap: https://www.championsalestrainingandevents.com/sitemap.xml

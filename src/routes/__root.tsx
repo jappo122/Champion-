@@ -66,11 +66,22 @@ class ErrorBoundary extends Component<
 import appCss from "~/styles/app.css?url";
 
 export const Route = createRootRoute({
-  head: (ctx) => ({
+  head: (ctx) => {
+    const path = ctx.matches[ctx.matches.length - 1].pathname;
+    // Auth-gated / transactional pages that are publicly linked (buy buttons,
+    // Steps → course links) must stay crawlable so Google sees the noindex tag
+    // instead of reporting them as "Blocked by robots.txt". /training/preview
+    // is the public sample and stays indexable.
+    const noindex =
+      path === "/training" ||
+      (path.startsWith("/training/") && path !== "/training/preview") ||
+      path.startsWith("/checkout");
+    return {
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Champion Sales Training & Events — Sales Training for Auto Dealers" },
+      ...(noindex ? [{ name: "robots", content: "noindex, follow" }] : []),
       {
         name: "description",
         content:
@@ -96,10 +107,7 @@ export const Route = createRootRoute({
       {
         rel: "canonical",
         href: `https://www.championsalestrainingandevents.com${
-          (() => {
-            const path = ctx.matches[ctx.matches.length - 1].pathname;
-            return path === "/" ? "/" : path.replace(/\/+$/, "");
-          })()
+          path === "/" ? "/" : path.replace(/\/+$/, "")
         }`,
       },
       { rel: "stylesheet", href: appCss },
@@ -117,7 +125,8 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
-  }),
+    };
+  },
   notFoundComponent: () => (
     <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
       <p className="text-xl text-gray-400">Page not found</p>
