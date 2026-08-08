@@ -47,14 +47,10 @@ function Navbar({ t }: { t: (k: string) => string }) {
 
         {/* Hamburger — mobile only, always visible & same size, never moves */}
         <button
-          onClick={() => {
-            const d = document.getElementById("mobile-nav-drawer");
-            if (d) d.hidden = !d.hidden; // immediate, always works
-            window.dispatchEvent(new CustomEvent("mobile-nav:toggle")); // keeps React mirror in sync
-          }}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
           aria-label="Menu"
         >
+          {/* Click handled by the native inline script in __root.tsx (works even if React's event pipeline is dead) */}
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>

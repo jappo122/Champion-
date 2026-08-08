@@ -144,11 +144,16 @@ export const Route = createRootRoute({
     ],
     scripts: [
       {
-        // Instant hamburger response BEFORE the JS bundle hydrates: toggles the
-        // server-rendered drawer's hidden attribute on tap. Stops as soon as
-        // MobileNav's effect sets __mobileNavHydrated (React takes over).
+        // ALWAYS-ON native hamburger handler. Document-level capture listener
+        // that flips the drawer's hidden attribute directly, then dispatches
+        // mobile-nav:toggle so MobileNav's mirror listener (setOpen(!d.hidden),
+        // idempotent) keeps React state in sync. Deliberately has NO
+        // __mobileNavHydrated bail and the hamburger buttons have NO React
+        // onClick: React's event pipeline intermittently dies on some page
+        // loads (proven live), so this native listener is the SINGLE click
+        // handler and there is no path where a tap fails or double-toggles.
         children:
-          '(function(){function t(){var d=document.getElementById("mobile-nav-drawer");if(d)d.hidden=!d.hidden;}document.addEventListener("click",function(e){if(window.__mobileNavHydrated)return;var b=e.target&&e.target.closest?e.target.closest("button[aria-label=Menu]"):null;if(b)t();},true);})();',
+          '(function(){document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("button[aria-label=Menu]"):null;if(!b)return;var d=document.getElementById("mobile-nav-drawer");if(!d)return;d.hidden=!d.hidden;try{window.dispatchEvent(new CustomEvent("mobile-nav:toggle"))}catch(_){}},true);})();',
       },
     ],
     };
