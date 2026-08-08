@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
+import { mobileNavStore } from "~/lib/mobile-nav-store";
 
 // ── Shared Site Header ─────────────────────────────────────────────────────
 // One header for every page: fixed (never moves), same logo size everywhere.
@@ -26,7 +27,7 @@ export function SiteHeader() {
 
         {/* Hamburger — mobile only, always visible & same size */}
         <button
-          onClick={() => (window as any).__toggleMobileNav?.()}
+          onClick={() => mobileNavStore.toggle()}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
           aria-label="Menu"
         >
