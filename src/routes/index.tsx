@@ -47,7 +47,11 @@ function Navbar({ t }: { t: (k: string) => string }) {
 
         {/* Hamburger — mobile only, always visible & same size, never moves */}
         <button
-          onClick={() => window.dispatchEvent(new CustomEvent("mobile-nav:toggle"))}
+          onClick={() => {
+            const d = document.getElementById("mobile-nav-drawer");
+            if (d) d.hidden = !d.hidden; // immediate, always works
+            window.dispatchEvent(new CustomEvent("mobile-nav:toggle")); // keeps React mirror in sync
+          }}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#1a2d4a] text-white md:hidden"
           aria-label="Menu"
         >

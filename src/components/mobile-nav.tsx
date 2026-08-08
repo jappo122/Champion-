@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "~/i18n";
 
+function drawerEl(): HTMLElement | null {
+  return document.getElementById("mobile-nav-drawer");
+}
+
 export function MobileNav() {
-  // Drawer open state is local React state, driven by window events dispatched
-  // by the header/hamburger buttons (mobile-nav:toggle / :open / :close).
-  // The previous useSyncExternalStore + module-store mechanism never re-rendered
-  // React when the store changed, leaving the hamburger dead on every page.
+  // Drawer visibility is controlled DIRECTLY on the DOM (hidden attribute) —
+  // immune to React re-render failure (this app's MobileNav can become a ghost
+  // component React never re-renders, which killed both the useSyncExternalStore
+  // and the useState-from-event versions). `open` is a passive mirror of the DOM,
+  // used only for the {open && <LanguageSwitcher/>} conditional.
   const [open, setOpen] = useState(false);
   // Read the token in an effect, NOT during render: SSR renders the logged-out
   // nav, so the first client render must match it (reading localStorage during
@@ -14,16 +19,39 @@ export function MobileNav() {
   useEffect(() => {
     setLoggedIn(!!localStorage.getItem("salesdrive_token"));
   }, []);
-  const close = () => setOpen(false);
+  const close = () => {
+    const d = drawerEl();
+    if (d) d.hidden = true;
+    setOpen(false);
+  };
 
   // Tell the pre-hydration inline script (in __root.tsx) that React is in
   // control now — the script stops toggling the drawer's hidden attribute.
-  // Also wire the hamburger events to local state.
+  // Hamburger events toggle the DOM directly; setOpen only mirrors the DOM.
   useEffect(() => {
     (window as any).__mobileNavHydrated = true;
-    const onToggle = () => setOpen((o) => !o);
-    const onOpen = () => setOpen(true);
-    const onClose = () => setOpen(false);
+    // onToggle must NOT flip the DOM again: the hamburger buttons already flip
+    // d.hidden directly (belt-and-braces) and then dispatch this event. If we
+    // flipped here too, every click would double-toggle (open then instantly
+    // close) whenever the listener is live. It only syncs the React mirror to
+    // the already-flipped DOM value — idempotent.
+    const onToggle = () => {
+      const d = drawerEl();
+      if (!d) return;
+      setOpen(!d.hidden);
+    };
+    const onOpen = () => {
+      const d = drawerEl();
+      if (!d) return;
+      d.hidden = false;
+      setOpen(true);
+    };
+    const onClose = () => {
+      const d = drawerEl();
+      if (!d) return;
+      d.hidden = true;
+      setOpen(false);
+    };
     window.addEventListener("mobile-nav:toggle", onToggle);
     window.addEventListener("mobile-nav:open", onOpen);
     window.addEventListener("mobile-nav:close", onClose);
