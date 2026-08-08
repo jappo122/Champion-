@@ -219,6 +219,10 @@ function Features({ t }: { t: (k: string) => string }) {
             <a href="/training" className="btn-primary mt-6 text-sm">
               {t('features.sales.cta')}
             </a>
+            <p className="mt-3 text-sm text-gray-500">
+              <a href="/training/preview" className="text-[#e63946] hover:underline">Try a sample quiz →</a>
+              {" "}No account required
+            </p>
           </div>
         </div>
         {/* Scroll down indicator — bottom right of features section */}
