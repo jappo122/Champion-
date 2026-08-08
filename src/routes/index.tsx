@@ -651,7 +651,6 @@ function Footer({ t }: { t: (k: string) => string }) {
             <ul className="space-y-3">
               <li><a href="/login" className="text-sm text-gray-500 transition-colors hover:text-white">{t('nav.signIn')}</a></li>
               <li><a href="/signup" className="text-sm text-gray-500 transition-colors hover:text-white">{t('nav.getStarted')}</a></li>
-              <li><a href="/manager" className="text-sm text-gray-500 transition-colors hover:text-white">{t('nav.manager')}</a></li>
               <li><a href="/support" className="text-sm text-gray-500 transition-colors hover:text-white">{t('footer.support')}</a></li>
             </ul>
           </div>
