@@ -3,10 +3,32 @@
   "installCommand": "npm install",
   "outputDirectory": "dist/client",
   "rewrites": [
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/api/mark-complete", "destination": "/api/mark-complete" },
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/(.*)", "destination": "/api/ssr" }
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/api/mark-complete",
+      "destination": "/api/mark-complete"
+    },
+    {
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/ssr"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*/",
+      "destination": "/:path*",
+      "statusCode": 301
+    }
   ]
 }
