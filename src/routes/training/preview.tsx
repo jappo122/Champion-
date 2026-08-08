@@ -1,8 +1,6 @@
 import { LanguageSwitcher } from '../../i18n';
 import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
-import { isTokenValid } from "~/lib/client-auth";
 import { courses } from "~/content/courses";
 import { QuizQuestion } from "~/components/quiz-question";
 import { SiteHeader } from "~/components/site-header";
@@ -92,45 +90,7 @@ const totalQuizQuestions = courses.reduce(
 
 function TrainingPreview() {
   const { t } = useTranslation();
-  const [authState, setAuthState] = useState<"loading" | "authenticated" | "unauthenticated">("loading");
-  useEffect(() => {
-    const token = localStorage.getItem("salesdrive_token");
-    if (!token || !isTokenValid(token)) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    setAuthState("authenticated");
-  }, []);
-  if (authState === "loading") {
-    return (
-      <div className="min-h-dvh bg-[#0a1628]">
-        <SiteHeader />
-        <div className="flex items-center justify-center pt-24">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
-        </div>
-      </div>
-    );
-  }
-  if (authState === "unauthenticated") {
-    return (
-      <div className="min-h-dvh bg-[#0a1628]">
-        <SiteHeader />
-        <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
-          <div className="text-center mb-10">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
-              <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />Training Preview
-            </span>
-            <h1 className="mt-4 text-4xl font-extrabold text-white sm:text-5xl">Training <span className="text-[#e63946]">Preview</span></h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">Sample lessons and quizzes are part of the Champion Sales Training platform — sign in to view the training preview and full course catalog.</p>
-            <div className="mt-8 flex justify-center gap-4">
-              <a href="/signup" className="rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Start Free</a>
-              <a href="/login" className="rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
+
   return (
     <div className="min-h-dvh bg-[#0a1628]">
       {/* Header */}
