@@ -30,7 +30,7 @@ function verifyManager(token) {
 }
 
 // Total lessons across the live catalog (10 courses, 62 lessons).
-const TOTAL_LESSONS = 62;
+const TOTAL_LESSONS = 88;
 
 const TIER_INFO = {
   basic: { label: "Basic", price: 149 },
