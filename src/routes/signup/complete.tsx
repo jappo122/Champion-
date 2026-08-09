@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
