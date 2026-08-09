@@ -186,9 +186,9 @@ const BLOG_FILES: Record<string, { file: string; slug: string }> = {
     file: "45-trade-in-conversation-guide.md",
     slug: "trade-in-conversation-guide",
   },
-  "46-f&i-handoff-sales-finance": {
-    file: "46-f&i-handoff-sales-finance.md",
-    slug: "f&i-handoff-sales-finance",
+  "46-f-and-i-handoff-sales-finance": {
+    file: "46-f-and-i-handoff-sales-finance.md",
+    slug: "f-and-i-handoff-sales-finance",
   },
   "47-car-buyer-personalities-guide": {
     file: "47-car-buyer-personalities-guide.md",
@@ -3968,7 +3968,7 @@ Sometimes the appraisal is genuinely low and the deal is on the line over five h
 The trade-in conversation is won before the appraisal — with expectation-setting, respect, and honesty. Prepare the customer, preview the factors, separate the numbers, and tell the truth early. The customer who trusts the trade-in process is the customer who closes.
 **[Learn to Sell Any Vehicle →](/training)**
 **[Start Training →](/signup)**`,
-  "f&i-handoff-sales-finance": `# The Sales-to-F&I Handoff: Set Up the Finance Office to Win
+  "f-and-i-handoff-sales-finance": `# The Sales-to-F&I Handoff: Set Up the Finance Office to Win
 **By Champion Sales Training & Events | August 2026**
 ---
 The deal is not done when the customer says yes to the car. It is done when they say yes to the financing, the protection products, and the delivery. The handoff from the sales floor to the finance office is where gross profit is made or given away — and it is a skill most salespeople never get trained on. A great handoff protects the deal, grows the front-end gross, and turns the finance office from a place customers dread into a place that adds value.
