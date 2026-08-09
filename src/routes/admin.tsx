@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { upgradeDemoAccounts } from "~/lib/admin";
-import { getAuthInfo } from "~/lib/auth-guard";
+import { upgradeDemoAccounts } from "~/lib/api-client";
+import { getAuthInfo } from "~/lib/api-client";
 import { LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
 

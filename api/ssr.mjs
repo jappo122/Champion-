@@ -3,6 +3,7 @@ import { createRequire } from "module";
 globalThis.require = createRequire(import.meta.url);
 
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { apiImpl } from "./handlers.mjs";
 
 // ── Helpers ──
 function generateToken(payload) {
@@ -361,6 +362,23 @@ async function handleApiRequest(req) {
     } catch (err) {
       console.error("API auth-info POST error:", err.message);
       return new Response(JSON.stringify({ authenticated: false, user: null }), { status: 500, headers: { "Content-Type": "application/json" } });
+    }
+  }
+
+  // ── Shared handler dispatcher (api/handlers.mjs — same source as serve.ts) ──
+  // POST /api/<name> with { data: {...} } → apiImpl[name](data). No overlap with
+  // the explicit handlers above; placed before the remaining handlers for clarity.
+  if (url.pathname.startsWith("/api/") && req.method === "POST") {
+    const name = url.pathname.slice("/api/".length);
+    if (apiImpl && typeof apiImpl[name] === "function") {
+      try {
+        const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+        const result = await apiImpl[name](body?.data ?? body);
+        return new Response(JSON.stringify(result), { headers: { "Content-Type": "application/json" } });
+      } catch (err) {
+        console.error(`API ${name} error:`, err.message);
+        return new Response(JSON.stringify({ success: false, error: "Server error" }), { status: 500, headers: { "Content-Type": "application/json" } });
+      }
     }
   }
 

@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { getTeamProgress, getUserProgress, sendMessage, markLessonComplete, removeLessonComplete, addSalesperson, removeSalesperson, changeSalespersonTier, getTeamCost, checkDailyLimit, getSkillGaps, resetUserProgress } from "~/lib/manager";
-import { getAppointments, createAppointment, deleteAppointment } from "~/lib/planner";
+import { getTeamProgress, getUserProgress, sendMessage, markLessonComplete, removeLessonComplete, addSalesperson, removeSalesperson, changeSalespersonTier, getTeamCost, checkDailyLimit, getSkillGaps, resetUserProgress } from "~/lib/api-client";
+import { getAppointments, createAppointment, deleteAppointment } from "~/lib/api-client";
 import { courses } from "~/content/courses";
 import { LanguageSwitcher } from '../../i18n';
 import { useTranslation } from '../../i18n';
-import { getAuthInfo } from "~/lib/auth-guard";
+import { getAuthInfo } from "~/lib/api-client";
 import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/manager/")({
