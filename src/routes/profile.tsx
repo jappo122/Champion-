@@ -17,7 +17,7 @@ import {
   getMyAppointments,
   getMyMessages,
   resetMyProgress,
-} from "~/lib/manager";
+} from "~/lib/api-client";
 import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/profile")({
@@ -142,7 +142,7 @@ function ProfileDashboard() {
         if (isDemoUser) setTier("premium-demo");
         // Fetch subscription
         try {
-          const { getUserSubscription } = await import("~/lib/billing");
+          const { getUserSubscription } = await import("~/lib/api-client");
           const subRes = await getUserSubscription({ data: { token } });
           if (subRes.success && subRes.subscription) {
             setSubscription(subRes.subscription);
@@ -240,7 +240,7 @@ function ProfileDashboard() {
     setCancelling(true);
     setMessage(null);
     try {
-      const { cancelSubscription } = await import("~/lib/billing");
+      const { cancelSubscription } = await import("~/lib/api-client");
       const token = localStorage.getItem("salesdrive_token");
       if (!token) return;
       const result = await cancelSubscription({ data: { token } });
@@ -261,7 +261,7 @@ function ProfileDashboard() {
     setChangingTier(true);
     setMessage(null);
     try {
-      const { changeTier, getUserSubscription } = await import("~/lib/billing");
+      const { changeTier, getUserSubscription } = await import("~/lib/api-client");
       const token = localStorage.getItem("salesdrive_token");
       if (!token) return;
       const result = await changeTier({ data: { token, newTier } });

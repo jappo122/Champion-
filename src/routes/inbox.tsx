@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { getAuthInfo } from "~/lib/auth-guard";
-import { getInboxEmails, getInboxEmail, markInboxRead } from "~/lib/inbox";
+import { getAuthInfo } from "~/lib/api-client";
+import { getInboxEmails, getInboxEmail, markInboxRead } from "~/lib/api-client";
 import { LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
 

@@ -3,8 +3,8 @@ import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { courses } from "~/content/courses";
-import { getAuthInfo } from "~/lib/auth-guard";
-import { getMyAssignments, getMyProgress } from "~/lib/manager";
+import { getAuthInfo } from "~/lib/api-client";
+import { getMyAssignments, getMyProgress } from "~/lib/api-client";
 import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
 import { SiteHeader } from "~/components/site-header";
 

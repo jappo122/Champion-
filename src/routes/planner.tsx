@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
-import { getMyAssignments, getMyAppointments, getMyMessages } from "~/lib/manager";
+import { getMyAssignments, getMyAppointments, getMyMessages } from "~/lib/api-client";
 import { courses } from "~/content/courses";
 import { SiteHeader } from "~/components/site-header";
 
