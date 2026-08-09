@@ -81,3 +81,19 @@
     @apply flex h-2 w-2 rounded-full bg-[#e63946] animate-pulse;
   }
 }
+/* Mobile nav drawer — visibility is 100% native/CSS-driven.
+   Closed by default on SSR paint (no flash on load), open only via the
+   .is-open class toggled by the document-capture listener. React never
+   renders the hidden attribute or a dynamic class for the drawer, so React
+   re-renders can never undo the native toggle. Never visible on desktop. */
+#mobile-nav-drawer {
+  display: none;
+}
+#mobile-nav-drawer.is-open {
+  display: block;
+}
+@media (min-width: 768px) {
+  #mobile-nav-drawer {
+    display: none !important;
+  }
+}

@@ -21,7 +21,7 @@ export function MobileNav() {
   }, []);
   const close = () => {
     const d = drawerEl();
-    if (d) d.hidden = true;
+    if (d) d.classList.remove("is-open");
     setOpen(false);
   };
 
@@ -31,25 +31,25 @@ export function MobileNav() {
   useEffect(() => {
     (window as any).__mobileNavHydrated = true;
     // onToggle must NOT flip the DOM again: the hamburger buttons already flip
-    // d.hidden directly (belt-and-braces) and then dispatch this event. If we
-    // flipped here too, every click would double-toggle (open then instantly
-    // close) whenever the listener is live. It only syncs the React mirror to
-    // the already-flipped DOM value — idempotent.
+    // the .is-open class directly (belt-and-braces) and then dispatch this
+    // event. If we flipped here too, every click would double-toggle (open then
+    // instantly close) whenever the listener is live. It only syncs the React
+    // mirror to the already-flipped DOM value — idempotent.
     const onToggle = () => {
       const d = drawerEl();
       if (!d) return;
-      setOpen(!d.hidden);
+      setOpen(d.classList.contains("is-open"));
     };
     const onOpen = () => {
       const d = drawerEl();
       if (!d) return;
-      d.hidden = false;
+      d.classList.add("is-open");
       setOpen(true);
     };
     const onClose = () => {
       const d = drawerEl();
       if (!d) return;
-      d.hidden = true;
+      d.classList.remove("is-open");
       setOpen(false);
     };
     window.addEventListener("mobile-nav:toggle", onToggle);
@@ -65,11 +65,13 @@ export function MobileNav() {
   return (
     <>
       {/* Mobile slide-out menu — inline z-index so it can never sit under the header.
-          Rendered on the server too (hidden when closed) so the pre-hydration
-          inline script can open it instantly on tap. */}
+          Visibility is 100% native/CSS-driven: closed by default via
+          #mobile-nav-drawer { display:none }, opened by the document-capture
+          listener toggling the .is-open class. React does NOT render the
+          hidden attribute or any class/style for it (no attribute = React
+          can never re-apply a stale value and undo the native toggle). */}
       <div
         id="mobile-nav-drawer"
-        hidden={!open}
         className="fixed inset-0 md:hidden"
         style={{ zIndex: 9999 }}
         role="dialog"
@@ -78,7 +80,7 @@ export function MobileNav() {
       >
         {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/60"
+          className="nav-backdrop absolute inset-0 bg-black/60"
           style={{ zIndex: 1 }}
           onClick={close}
           aria-hidden="true"
