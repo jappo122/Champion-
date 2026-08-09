@@ -214,10 +214,6 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
         return Response.json({ success: false, error: "All fields are required" }, { status: 400 });
       }
       const RESEND_API_KEY = process.env.RESEND_API_KEY;
-      if (!RESEND_API_KEY) {
-        console.error("API contact error: RESEND_API_KEY not set");
-        return Response.json({ success: false, error: "Server error" }, { status: 500 });
-      }
       const FROM_EMAIL = "Sales@championsalestrainingandevents.com";
       const body = `New Contact Form Submission\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\nCall Back Requested: ${wantsCallback ? "YES — Call this person back" : "No"}\nSubject: ${subject}\n\nDescription/Question/Concern:\n${description}\n`;
       const sendMail = (to: string[], subj: string, text: string) =>
@@ -226,18 +222,23 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
           headers: { "Content-Type": "application/json", "Authorization": `Bearer ${RESEND_API_KEY}` },
           body: JSON.stringify({ from: FROM_EMAIL, to, subject: subj, text }),
         });
-      // 1. Notify sales department
-      const salesRes = await sendMail(["cstrainingpros@yahoo.com"], `Contact Form: ${subject}`, body);
-      if (!salesRes.ok) {
-        console.error("API contact error: Resend failed", await salesRes.text());
-        return Response.json({ success: false, error: "Server error" }, { status: 500 });
+      // 1. Notify sales department (failure logged, never blocks the customer)
+      try {
+        const salesRes = await sendMail(["cstrainingpros@yahoo.com"], `Contact Form: ${subject}`, body);
+        if (!salesRes.ok) console.error("API contact: Resend sales notify failed", await salesRes.text());
+      } catch (err: any) {
+        console.error("API contact: Resend sales notify error:", err.message);
       }
       // 2. Auto-confirmation to the submitter
-      const confirmBody =
-        `Hi ${name},\n\nThank you for contacting Champion Sales Training & Events. We've received your message and will respond within 48 hours.\n\nSubject: ${subject}\n\n` +
-        (wantsCallback ? `You've requested a call back, so a sales representative will reach out to you at ${phone}.\n\n` : "") +
-        `If you need immediate assistance, you can also reach our sales department at cstrainingpros@yahoo.com.\n\n- Champion Sales Training & Events Team`;
-      await sendMail([email], "We received your message — Champion Sales Training & Events", confirmBody);
+      try {
+        const confirmBody =
+          `Hi ${name},\n\nThank you for contacting Champion Sales Training & Events. We've received your message and will respond within 48 hours.\n\nSubject: ${subject}\n\n` +
+          (wantsCallback ? `You've requested a call back, so a sales representative will reach out to you at ${phone}.\n\n` : "") +
+          `If you need immediate assistance, you can also reach our sales department at cstrainingpros@yahoo.com.\n\n- Champion Sales Training & Events Team`;
+        await sendMail([email], "We received your message — Champion Sales Training & Events", confirmBody);
+      } catch (err: any) {
+        console.error("API contact: Resend confirmation error:", err.message);
+      }
       return Response.json({ success: true });
     } catch (err: any) {
       console.error("API contact POST error:", err.message);
