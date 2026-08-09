@@ -178,6 +178,54 @@ const BLOG_FILES: Record<string, { file: string; slug: string }> = {
     file: "43-sell-electric-vehicles-skeptical-buyers.md",
     slug: "sell-electric-vehicles-skeptical-buyers",
   },
+  "44-test-drive-techniques-car-sales": {
+    file: "44-test-drive-techniques-car-sales.md",
+    slug: "test-drive-techniques-car-sales",
+  },
+  "45-trade-in-conversation-guide": {
+    file: "45-trade-in-conversation-guide.md",
+    slug: "trade-in-conversation-guide",
+  },
+  "46-f&i-handoff-sales-finance": {
+    file: "46-f&i-handoff-sales-finance.md",
+    slug: "f&i-handoff-sales-finance",
+  },
+  "47-car-buyer-personalities-guide": {
+    file: "47-car-buyer-personalities-guide.md",
+    slug: "car-buyer-personalities-guide",
+  },
+  "48-sales-goal-setting-dealership": {
+    file: "48-sales-goal-setting-dealership.md",
+    slug: "sales-goal-setting-dealership",
+  },
+  "49-online-lead-response-time": {
+    file: "49-online-lead-response-time.md",
+    slug: "online-lead-response-time",
+  },
+  "50-dealership-daily-huddle-coaching": {
+    file: "50-dealership-daily-huddle-coaching.md",
+    slug: "dealership-daily-huddle-coaching",
+  },
+  "51-car-sales-morning-routine": {
+    file: "51-car-sales-morning-routine.md",
+    slug: "car-sales-morning-routine",
+  },
+  "52-dealership-online-reviews-sales": {
+    file: "52-dealership-online-reviews-sales.md",
+    slug: "dealership-online-reviews-sales",
+  },
+  "53-car-sales-crm-habits": {
+    file: "53-car-sales-crm-habits.md",
+    slug: "car-sales-crm-habits",
+  },
+  "54-car-sales-payment-presentation": {
+    file: "54-car-sales-payment-presentation.md",
+    slug: "car-sales-payment-presentation",
+  },
+  "55-car-sales-win-win-negotiation": {
+    file: "55-car-sales-win-win-negotiation.md",
+    slug: "car-sales-win-win-negotiation",
+  },
 };
 
 // Raw markdown content embedded directly for build-time availability
