@@ -186,6 +186,26 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       return Response.json({ success: false, error: "Server error" }, { status: 500 });
     }
   }
+  // ── Support ticket (public POST — contact form) ──
+  if (url.pathname === "/api/support-ticket" && req.method === "POST") {
+    try {
+      const { name, email, subject, message } = await req.json();
+      if (!name || !email || !subject || !message) {
+        return Response.json({ success: false, error: "All fields are required" }, { status: 400 });
+      }
+      const { neon } = await import("@neondatabase/serverless");
+      const sql = neon(process.env.DATABASE_URL!);
+      await sql`
+        INSERT INTO support_tickets (name, email, subject, message)
+        VALUES (${name}, ${email}, ${subject}, ${message})
+      `;
+      return Response.json({ success: true });
+    } catch (err: any) {
+      console.error("API support-ticket POST error:", err.message);
+      return Response.json({ success: false, error: "Server error" }, { status: 500 });
+    }
+  }
+
   return null; // Not an API route
 }
 
