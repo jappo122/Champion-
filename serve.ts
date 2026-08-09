@@ -421,7 +421,7 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
   // ── Mark lesson complete (authenticated POST — persist progress + assignments) ──
   if (url.pathname === "/api/mark-complete" && req.method === "POST") {
     try {
-      const { token, courseId, lessonId } = await req.json();
+      const { token, courseId, lessonId, quizResults } = await req.json();
       if (!token) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
       const parts = token.split(".");
       if (parts.length !== 3) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
@@ -432,6 +432,13 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       const payload = JSON.parse(Buffer.from(bodyB64, "base64url").toString());
       if (payload.exp && payload.exp < Date.now()) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
       const userId = payload.userId as number;
+      // Quiz threshold check: if lesson has quiz content, require score >= 80%
+      if (quizResults && quizResults.total > 0) {
+        const percent = Math.round((quizResults.correct / quizResults.total) * 100);
+        if (percent < 80) {
+          return Response.json({ success: false, error: `Score ${percent}% — need 80% or higher to mark complete`, scoreNeeded: 80 });
+        }
+      }
       const { neon } = await import("@neondatabase/serverless");
       const sql = neon(process.env.DATABASE_URL!);
       // 1. Persist to lesson_progress
