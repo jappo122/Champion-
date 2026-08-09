@@ -10,6 +10,7 @@
 // the takeover works across user boundaries.
 import handler from "./dist/server/server.js";
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { apiImpl } from "./api/handlers.mjs";
 
 // ── Direct API handlers (bypass broken TanStack server function manifest) ──
 
@@ -487,6 +488,22 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
     } catch (err: any) {
       console.error("API mark-complete POST error:", err.message);
       return Response.json({ success: false, error: "Server error" }, { status: 500 });
+    }
+  }
+
+  // ── Shared handler dispatcher (api/handlers.mjs — same source as api/ssr.mjs) ──
+  // POST /api/<name> with { data: {...} } → apiImpl[name](data)
+  if (url.pathname.startsWith("/api/") && req.method === "POST") {
+    const name = url.pathname.slice("/api/".length);
+    if (apiImpl && typeof apiImpl[name] === "function") {
+      try {
+        const body = await req.json();
+        const result = await apiImpl[name](body?.data ?? body);
+        return Response.json(result);
+      } catch (err: any) {
+        console.error(`API ${name} error:`, err.message);
+        return Response.json({ success: false, error: "Server error" }, { status: 500 });
+      }
     }
   }
 
