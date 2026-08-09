@@ -1,25 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { sql } from "~/db";
 import { useTranslation } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
 
-const submitTicket = createServerFn({ method: "POST" }).handler(
-  async ({ data }: { data: { name: string; email: string; subject: string; message: string } }) => {
-    const db = sql();
-    try {
-      await db`
-        INSERT INTO support_tickets (name, email, subject, message)
-        VALUES (${data.name}, ${data.email}, ${data.subject}, ${data.message})
-      `;
-      return { success: true };
-    } catch (err) {
-      console.error("[Support] Error submitting ticket:", err);
-      return { success: false };
-    }
-  },
-);
+// Support tickets go through the direct /api/support-ticket handler in serve.ts
+// (server functions are bypassed site-wide — see serve.ts "Direct API handlers").
+async function submitTicket(data: { name: string; email: string; subject: string; message: string }) {
+  const res = await fetch("/api/support-ticket", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.json() as Promise<{ success: boolean }>;
+}
 
 export const Route = createFileRoute("/support")({
   component: SupportPage,
@@ -43,7 +36,7 @@ function SupportPage() {
 
     setStatus("loading");
     try {
-      const result = await submitTicket({ data: { name, email, subject, message } });
+      const result = await submitTicket({ name, email, subject, message });
       if (result.success) {
         setStatus("success");
         setName("");

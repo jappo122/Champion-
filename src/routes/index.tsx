@@ -442,7 +442,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
         t('pricing.basic.feature3'), t('pricing.basic.feature4'),
       ],
       cta: t('pricing.cta'),
-      href: "https://buy.stripe.com/00wfZh2aq7eY02S7fF8Vi0c",
+      href: "/signup?tier=basic&type=individual",
       featured: false,
     },
     {
@@ -456,7 +456,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
         t('pricing.plus.feature3'), t('pricing.plus.feature4'),
       ],
       cta: t('pricing.cta'),
-      href: "https://buy.stripe.com/fZudR95mC7eYbLAarR8Vi0d",
+      href: "/signup?tier=plus&type=individual",
       featured: true,
     },
     {
@@ -472,7 +472,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
         t('pricing.premium.feature7'),
       ],
       cta: t('pricing.cta'),
-      href: "https://buy.stripe.com/8x2dR96qGdDm6rggQf8Vi0e",
+      href: "/signup?tier=premium&type=individual",
       featured: false,
     },
   ];
