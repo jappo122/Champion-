@@ -40,7 +40,7 @@ function hashPassword(password) {
 
 function authPayload(req) {
   const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-  const { token } = body || {};
+  const { token } = { ...(body?.data ?? {}), ...(body ?? {}) };
   if (!token) return null;
   const parts = token.split(".");
   if (parts.length !== 3) return null;
@@ -85,7 +85,7 @@ async function handleApiRequest(req) {
   if (url.pathname === "/api/session" && req.method === "POST") {
     try {
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-      const { token } = body || {};
+      const { token } = { ...(body?.data ?? {}), ...(body ?? {}) };
       if (!token) return new Response(JSON.stringify({ user: null }), { headers: { "Content-Type": "application/json" } });
       const parts = token.split(".");
       if (parts.length !== 3) return new Response(JSON.stringify({ user: null }), { headers: { "Content-Type": "application/json" } });
@@ -110,7 +110,7 @@ async function handleApiRequest(req) {
   if (url.pathname === "/api/mark-complete" && req.method === "POST") {
     try {
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-      const { token, courseId, lessonId, quizResults } = body || {};
+      const { token, courseId, lessonId, quizResults } = { ...(body?.data ?? {}), ...(body ?? {}) };
       const parts = token.split(".");
       if (parts.length !== 3) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
       const [header, bodyPart, signature] = parts;
@@ -386,7 +386,7 @@ async function handleApiRequest(req) {
   if (url.pathname === "/api/my-progress" && req.method === "POST") {
     try {
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-      const { token } = body || {};
+      const { token } = { ...(body?.data ?? {}), ...(body ?? {}) };
       const parts = token.split(".");
       if (parts.length !== 3) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
       const [header, bodyPart, signature] = parts;

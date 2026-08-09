@@ -79,7 +79,7 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
   
   if (url.pathname === "/api/session" && req.method === "POST") {
     try {
-      const { token } = await req.json();
+      const _b = await req.json(); const { token } = { ...(_b?.data ?? {}), ...(_b ?? {}) };
       if (!token) return Response.json({ user: null });
       
       // Verify token
@@ -155,7 +155,7 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
   // ── My progress (authenticated POST — completed lessons for the user) ──
   if (url.pathname === "/api/my-progress" && req.method === "POST") {
     try {
-      const { token } = await req.json();
+      const _b = await req.json(); const { token } = { ...(_b?.data ?? {}), ...(_b ?? {}) };
       if (!token) {
         return Response.json({ success: false, error: "Authentication required." }, { status: 401 });
       }
@@ -384,7 +384,7 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
   // ── Auth info (POST — validate token, return user + effective tier) ──
   if (url.pathname === "/api/auth-info" && req.method === "POST") {
     try {
-      const { token } = await req.json();
+      const _b = await req.json(); const { token } = { ...(_b?.data ?? {}), ...(_b ?? {}) };
       if (!token) return Response.json({ authenticated: false, user: null });
       const parts = token.split(".");
       if (parts.length !== 3) return Response.json({ authenticated: false, user: null });
@@ -422,7 +422,7 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
   // ── Mark lesson complete (authenticated POST — persist progress + assignments) ──
   if (url.pathname === "/api/mark-complete" && req.method === "POST") {
     try {
-      const { token, courseId, lessonId, quizResults } = await req.json();
+      const _b = await req.json(); const { token, courseId, lessonId, quizResults } = { ...(_b?.data ?? {}), ...(_b ?? {}) };
       if (!token) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
       const parts = token.split(".");
       if (parts.length !== 3) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
