@@ -17,7 +17,7 @@ function AdminPage() {
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem("auth-token");
+    const stored = localStorage.getItem("salesdrive_token") ?? localStorage.getItem("auth-token");
     if (stored) {
       setToken(stored);
       getAuthInfo({ data: { token: stored } }).then((res) => {

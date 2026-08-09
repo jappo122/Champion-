@@ -40,7 +40,7 @@ function InboxPage() {
 
   // Auth check
   useEffect(() => {
-    const stored = localStorage.getItem("auth-token");
+    const stored = localStorage.getItem("salesdrive_token") ?? localStorage.getItem("auth-token");
     if (!stored) {
       setInitializing(false);
       return;
