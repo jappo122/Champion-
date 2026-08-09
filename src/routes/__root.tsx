@@ -21,14 +21,30 @@ if (typeof window !== "undefined" && !(window as any).__mobileNavNative) {
     "click",
     (e: Event) => {
       const target = e.target as Element | null;
-      const btn = target && target.closest ? target.closest('button[aria-label="Menu"]') : null;
-      if (!btn) return;
+      if (!target || !target.closest) return;
       const d = document.getElementById("mobile-nav-drawer");
       if (!d) return;
-      d.hidden = !d.hidden;
-      try {
-        window.dispatchEvent(new CustomEvent("mobile-nav:toggle"));
-      } catch (_) {}
+      const toggle = () => {
+        d.classList.toggle("is-open");
+        try {
+          window.dispatchEvent(new CustomEvent("mobile-nav:toggle"));
+        } catch (_) {}
+      };
+      if (target.closest('button[aria-label="Menu"]')) {
+        toggle();
+        return;
+      }
+      // Native close for the X button and backdrop — works even if React's
+      // event pipeline is dead, so the drawer can never get stuck open.
+      if (
+        target.closest('button[aria-label="Close menu"]') ||
+        target.closest(".nav-backdrop")
+      ) {
+        d.classList.remove("is-open");
+        try {
+          window.dispatchEvent(new CustomEvent("mobile-nav:toggle"));
+        } catch (_) {}
+      }
     },
     true,
   );
@@ -195,18 +211,23 @@ export const Route = createRootRoute({
     scripts: [
       {
         // ALWAYS-ON native hamburger handler. Document-level capture listener
-        // that flips the drawer's hidden attribute directly, then dispatches
-        // mobile-nav:toggle so MobileNav's mirror listener (setOpen(!d.hidden),
-        // idempotent) keeps React state in sync. Deliberately has NO
-        // __mobileNavHydrated bail and the hamburger buttons have NO React
-        // onClick: React's event pipeline intermittently dies on some page
-        // loads (proven live), so this native listener is the SINGLE click
-        // handler and there is no path where a tap fails or double-toggles.
+        // that toggles the drawer's .is-open class directly (visibility is
+        // CSS-driven: #mobile-nav-drawer { display:none }, .is-open { display:
+        // block }), then dispatches mobile-nav:toggle so MobileNav's mirror
+        // listener (setOpen(classList.contains("is-open")), idempotent) keeps
+        // React state in sync. Deliberately has NO __mobileNavHydrated bail and
+        // the hamburger buttons have NO React onClick: React's event pipeline
+        // intermittently dies on some page loads (proven live), so this native
+        // listener is the SINGLE click handler and there is no path where a tap
+        // fails or double-toggles. It also closes the drawer natively on the X
+        // button and backdrop. React NEVER renders the hidden attribute or a
+        // dynamic class for the drawer, so React re-renders cannot undo the
+        // native toggle (the old hidden={!open} fight is gone).
         // window.__mobileNavNative tells the client-bundle fallback (module
         // scope below) that this inline handler is already active, so the
         // bundle never registers a duplicate listener on full SSR renders.
         children:
-          '(function(){window.__mobileNavNative=true;document.addEventListener("click",function(e){var b=e.target&&e.target.closest?e.target.closest("button[aria-label=Menu]"):null;if(!b)return;var d=document.getElementById("mobile-nav-drawer");if(!d)return;d.hidden=!d.hidden;try{window.dispatchEvent(new CustomEvent("mobile-nav:toggle"))}catch(_){}},true);})();',
+          '(function(){window.__mobileNavNative=true;document.addEventListener("click",function(e){var t=e.target;if(!t||!t.closest)return;var d=document.getElementById("mobile-nav-drawer");if(!d)return;var f=function(){d.classList.toggle("is-open");try{window.dispatchEvent(new CustomEvent("mobile-nav:toggle"))}catch(_){}};if(t.closest("button[aria-label=Menu]")){f();return}if(t.closest("button[aria-label=\\"Close menu\\"]")||t.closest(".nav-backdrop")){d.classList.remove("is-open");try{window.dispatchEvent(new CustomEvent("mobile-nav:toggle"))}catch(_){}}},true);})();',
       },
     ],
     };
