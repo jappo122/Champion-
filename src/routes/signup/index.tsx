@@ -1,7 +1,16 @@
 import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { signup } from "~/lib/auth";
+// Direct API call — the TanStack server-function transport is broken site-wide,
+// so signup POSTs to the direct /api/signup handler in serve.ts instead.
+async function signupCall(data: { email: string; password: string; name: string; role: string }) {
+  const res = await fetch("/api/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
 import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/signup/")({
@@ -58,7 +67,7 @@ function SignupPage() {
 
     // Create the account FIRST so the user can log in immediately
     try {
-      const result = await signup({ data: { email: emailClean, password, name: name.trim(), role: accountType } });
+      const result = await signupCall({ email: emailClean, password, name: name.trim(), role: accountType });
       if (!result.success) {
         setError(result.error || "Could not create account");
         setLoading(false);

@@ -3,7 +3,6 @@ import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { courses, type Lesson } from "~/content/courses";
-import { getAuthInfo } from "~/lib/auth-guard";
 import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
 import { renderMarkdown } from "~/lib/renderer";
 import { SiteHeader } from "~/components/site-header";
@@ -38,8 +37,12 @@ function CourseDetail() {
     if (course) {
       const fetchProgress = async () => {
         try {
-          const { getMyProgress } = await import("~/lib/manager");
-          const result = await getMyProgress({ data: { token } });
+          const res = await fetch("/api/my-progress", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+          });
+          const result = await res.json();
           if (result.success) {
             const completed = new Set(result.completedLessons.map((cl) => cl.lesson_id));
             setCompletedLessons(completed);
@@ -49,7 +52,11 @@ function CourseDetail() {
       fetchProgress();
     }
     // Background: get tier info (non-blocking)
-    getAuthInfo({ data: { token } }).then((result) => {
+    fetch("/api/auth-info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    }).then((r) => r.json()).then((result) => {
       if (result.authenticated && result.user) {
         setUserTier(result.user.tier);
       }
