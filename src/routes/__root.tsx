@@ -9,6 +9,7 @@ import type { ReactNode } from "react";
 import { I18nProvider, LanguageSwitcher } from "~/i18n/index";
 import { MobileNav } from "~/components/mobile-nav";
 import { logError } from "~/lib/support";
+import { getBlogPost } from "~/content/blog";
 import { Component, useEffect } from "react";
 
 // Native hamburger handler fallback — registered from the client bundle when the
@@ -90,6 +91,31 @@ import appCss from "~/styles/app.css?url";
 export const Route = createRootRoute({
   head: (ctx) => {
     const path = ctx.matches[ctx.matches.length - 1].pathname;
+    // Per-page <title> (SEO): every page gets a unique, descriptive title instead
+    // of one identical title across the whole site (was "Duplicate titles" across
+    // all 52 blog posts + every public page).
+    const SITE = "Champion Sales Training & Events";
+    let pageTitle = `${SITE} — Sales Training for Auto Dealers`;
+    const blogSlug = path.match(/^\/blog\/([^/]+)\/?$/)?.[1];
+    if (blogSlug) {
+      const post = getBlogPost(decodeURIComponent(blogSlug));
+      pageTitle = post
+        ? `${post.title} — ${SITE}`
+        : `Blog — ${SITE}`;
+    } else if (path === "/blog") pageTitle = `Sales Training Blog — ${SITE}`;
+    else if (path === "/pricing") pageTitle = `Pricing & Plans — ${SITE}`;
+    else if (path === "/webinars") pageTitle = `Live Webinars — ${SITE}`;
+    else if (path === "/support") pageTitle = `Support — ${SITE}`;
+    else if (path === "/contact") pageTitle = `Contact — ${SITE}`;
+    else if (path === "/login") pageTitle = `Sign In — ${SITE}`;
+    else if (path === "/signup") pageTitle = `Create Account — ${SITE}`;
+    else if (path === "/steps") pageTitle = `Road to the Sale — ${SITE}`;
+    else if (path === "/training/preview") pageTitle = `Try a Sample Quiz — ${SITE}`;
+    else if (path === "/training") pageTitle = `Training Courses — ${SITE}`;
+    else if (path === "/planner") pageTitle = `Daily Planner — ${SITE}`;
+    else if (path === "/profile") pageTitle = `Profile — ${SITE}`;
+    else if (path === "/manager") pageTitle = `Manager Dashboard — ${SITE}`;
+    else if (path === "/sales-log") pageTitle = `Sales Log — ${SITE}`;
     // Auth-gated / transactional pages that are publicly linked (buy buttons,
     // Road → course links) must stay crawlable so Google sees the noindex tag
     // instead of reporting them as "Blocked by robots.txt". /training/preview
@@ -103,14 +129,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Champion Sales Training & Events — Sales Training for Auto Dealers" },
+      { title: pageTitle },
       ...(noindex ? [{ name: "robots", content: "noindex, follow" }] : []),
       {
         name: "description",
         content:
           "Sales training that actually closes deals. A complete sales process training platform for automotive salespeople with text-based lessons, assessments, and manager coaching.",
       },
-      { name: "og:title", content: "Champion Sales Training & Events — Sales Training" },
+      { name: "og:title", content: pageTitle },
       {
         name: "og:description",
         content:
