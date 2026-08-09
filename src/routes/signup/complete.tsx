@@ -1,83 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { sql } from "~/db";
-import { randomBytes, createHash } from "node:crypto";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
 
-// ── Server function: create account after Stripe payment ───────────────────
-
-const completeSignupAfterPayment = createServerFn({ method: "POST" }).handler(
-  async ({ data }: { data: { email: string; name?: string; tier: string; type: string } }) => {
-    const db = sql();
-    const email = data.email.trim().toLowerCase();
-
-    // Check if email already exists
-    const existing = await db`SELECT id FROM users WHERE email = ${email}`;
-    if (existing.length > 0) {
-      return { success: true, alreadyExists: true };
-    }
-
-    // Generate random password
-    const tempPassword = randomBytes(12).toString("hex");
-    const salt = randomBytes(16).toString("hex");
-    let key = tempPassword + salt;
-    for (let i = 0; i < 1000; i++) {
-      key = createHash("sha256").update(key).digest("hex");
-    }
-    const passwordHash = `${salt}:${key}`;
-    const sessionToken = randomBytes(32).toString("hex");
-
-    const role = data.type === "management" ? "management" : "individual";
-    const name = (data.name || "").trim().slice(0, 100) || null;
-
-    const result = await db`
-      INSERT INTO users (email, name, password_hash, role, session_token)
-      VALUES (${email}, ${name}, ${passwordHash}, ${role}, ${sessionToken})
-      RETURNING id, email, name, role
-    `;
-    const user = result[0] as { id: number; email: string; name: string | null; role: string };
-
-    // Create subscription
-    const billingDay = new Date().getDate();
-    const nextBilling = new Date();
-    nextBilling.setDate(nextBilling.getDate() + 30);
-    await db`
-      INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual)
-      VALUES (${user.id}, ${data.tier}, ${data.tier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, ${data.type !== "management"})
-    `;
-
-    // Verify login credentials work before sending welcome email
-    // (read-only — never modifies the stored password)
-    const { verifyAndEnsureLogin } = await import("~/lib/verify-login");
-    const verifyResult = await verifyAndEnsureLogin(email, tempPassword);
-    const finalPassword = verifyResult.password; // Always the tempPassword we stored
-
-    // Send welcome email with verified login credentials
-    const tierLabel = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
-    const accountType = data.type === "management" ? "Management" : "Individual";
-    try {
-      const { sendEmail } = await import("~/lib/email");
-      await sendEmail({
-        to: [email],
-        subject: `Welcome to Champion Sales Training — Your ${accountType} Account is Ready`,
-        body: `Hi ${name || "there"},\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} account has been created.\n\n─── Your Login ───\nSite: https://www.championsalestrainingandevents.com/login\nEmail: ${email}\nTemporary Password: ${finalPassword}\n\nPlease log in and change your password from your profile page.\n\n${data.type === "management" ? "─── Next Steps ───\n- Add your sales team from your manager dashboard\n- Assign training modules based on skill gaps\n- Track team progress and sales performance\n\n" : ""}Get started now!\n\n- Champion Sales Training Team`,
-      });
-    } catch {}
-
-    // Generate auth token
-    const getSecret = () => process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
-    const header = Buffer.from(JSON.stringify({ alg: "HS256", typ: "JWT" })).toString("base64url");
-    const body = Buffer.from(
-      JSON.stringify({ userId: user.id, email: user.email, sessionToken, role: user.role, iat: Date.now(), exp: Date.now() + 7 * 24 * 60 * 60 * 1000 }),
-    ).toString("base64url");
-    const signature = createHash("sha256").update(`${header}.${body}.${getSecret()}`).digest("hex");
-    const token = `${header}.${body}.${signature}`;
-
-    return { success: true, token, user: { id: user.id, email: user.email, name: user.name, role: user.role } };
-  },
-);
+// ── Direct API call: create account after Stripe payment ───────────────────
+// The TanStack server-function transport is broken site-wide, so the post-payment
+// account creation (user row + subscription + welcome email + JWT) runs through
+// the direct /api/signup-complete handler in serve.ts instead.
+async function completeSignupAfterPayment(data: { email: string; name?: string; tier: string; type: string }) {
+  const res = await fetch("/api/signup-complete", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
 
 export const Route = createFileRoute("/signup/complete")({
   component: SignupCompletePage,
@@ -102,7 +40,7 @@ function SignupCompletePage() {
       return;
     }
 
-    completeSignupAfterPayment({ data: { email, name: name || undefined, tier, type } }).then((res) => {
+    completeSignupAfterPayment({ email, name: name || undefined, tier, type }).then((res) => {
       if (res.success && res.token) {
         localStorage.setItem("salesdrive_token", res.token);
         setRedirectPath(res.user?.role === "management" ? "/manager" : "/training");

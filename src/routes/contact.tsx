@@ -1,55 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { sendEmail } from "~/lib/email";
 import { SiteHeader } from "~/components/site-header";
 
-const submitContactForm = createServerFn({ method: "POST" }).handler(
-  async ({ data }: { data: {
-    name: string;
-    email: string;
-    phone: string;
-    wantsCallback: boolean;
-    subject: string;
-    description: string;
-  } }) => {
-    try {
-      const body = `New Contact Form Submission
-
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone || "Not provided"}
-Call Back Requested: ${data.wantsCallback ? "YES — Call this person back" : "No"}
-Subject: ${data.subject}
-
-Description/Question/Concern:
-${data.description}
-`;
-
-      await sendEmail({
-        data: {
-          to: ["cstrainingpros@yahoo.com"],
-          subject: `Contact Form: ${data.subject}`,
-          body,
-        },
-      });
-
-      // Send auto-confirmation to the user
-      await sendEmail({
-        data: {
-          to: [data.email],
-          subject: "We received your message — Champion Sales Training & Events",
-          body: `Hi ${data.name},\n\nThank you for contacting Champion Sales Training & Events. We've received your message and will respond within 48 hours.\n\nSubject: ${data.subject}\n\n${data.wantsCallback ? "You've requested a call back, so a sales representative will reach out to you at ${data.phone}.\n\n" : ""}If you need immediate assistance, you can also reach our sales department at cstrainingpros@yahoo.com.\n\n- Champion Sales Training & Events Team`,
-        },
-      });
-
-      return { success: true };
-    } catch (err) {
-      console.error("[Contact] Error submitting form:", err);
-      return { success: false };
-    }
-  },
-);
+// Direct API call — the TanStack server-function transport is broken site-wide,
+// so forms POST to a direct /api handler in serve.ts instead.
+async function submitContactForm(data: {
+  name: string;
+  email: string;
+  phone: string;
+  wantsCallback: boolean;
+  subject: string;
+  description: string;
+}) {
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -70,9 +39,7 @@ function ContactPage() {
 
     setStatus("loading");
     try {
-      const result = await submitContactForm({
-        data: { name, email, phone, wantsCallback, subject, description },
-      });
+      const result = await submitContactForm({ name, email, phone, wantsCallback, subject, description });
       if (result.success) {
         setStatus("success");
         setName("");
