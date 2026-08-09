@@ -91,40 +91,42 @@ import appCss from "~/styles/app.css?url";
 export const Route = createRootRoute({
   head: (ctx) => {
     const path = ctx.matches[ctx.matches.length - 1].pathname;
+    // Normalize: some routes match with a trailing slash (e.g. "/blog/").
+    const p = path.length > 1 ? path.replace(/\/+$/, "") : path;
     // Per-page <title> (SEO): every page gets a unique, descriptive title instead
     // of one identical title across the whole site (was "Duplicate titles" across
     // all 52 blog posts + every public page).
     const SITE = "Champion Sales Training & Events";
     let pageTitle = `${SITE} — Sales Training for Auto Dealers`;
-    const blogSlug = path.match(/^\/blog\/([^/]+)\/?$/)?.[1];
+    const blogSlug = p.match(/^\/blog\/([^/]+)$/)?.[1];
     if (blogSlug) {
       const post = getBlogPost(decodeURIComponent(blogSlug));
       pageTitle = post
         ? `${post.title} — ${SITE}`
         : `Blog — ${SITE}`;
-    } else if (path === "/blog") pageTitle = `Sales Training Blog — ${SITE}`;
-    else if (path === "/pricing") pageTitle = `Pricing & Plans — ${SITE}`;
-    else if (path === "/webinars") pageTitle = `Live Webinars — ${SITE}`;
-    else if (path === "/support") pageTitle = `Support — ${SITE}`;
-    else if (path === "/contact") pageTitle = `Contact — ${SITE}`;
-    else if (path === "/login") pageTitle = `Sign In — ${SITE}`;
-    else if (path === "/signup") pageTitle = `Create Account — ${SITE}`;
-    else if (path === "/steps") pageTitle = `Road to the Sale — ${SITE}`;
-    else if (path === "/training/preview") pageTitle = `Try a Sample Quiz — ${SITE}`;
-    else if (path === "/training") pageTitle = `Training Courses — ${SITE}`;
-    else if (path === "/planner") pageTitle = `Daily Planner — ${SITE}`;
-    else if (path === "/profile") pageTitle = `Profile — ${SITE}`;
-    else if (path === "/manager") pageTitle = `Manager Dashboard — ${SITE}`;
-    else if (path === "/sales-log") pageTitle = `Sales Log — ${SITE}`;
+    } else if (p === "/blog") pageTitle = `Sales Training Blog — ${SITE}`;
+    else if (p === "/pricing") pageTitle = `Pricing & Plans — ${SITE}`;
+    else if (p === "/webinars") pageTitle = `Live Webinars — ${SITE}`;
+    else if (p === "/support") pageTitle = `Support — ${SITE}`;
+    else if (p === "/contact") pageTitle = `Contact — ${SITE}`;
+    else if (p === "/login") pageTitle = `Sign In — ${SITE}`;
+    else if (p === "/signup") pageTitle = `Create Account — ${SITE}`;
+    else if (p === "/steps") pageTitle = `Road to the Sale — ${SITE}`;
+    else if (p === "/training/preview") pageTitle = `Try a Sample Quiz — ${SITE}`;
+    else if (p === "/training") pageTitle = `Training Courses — ${SITE}`;
+    else if (p === "/planner") pageTitle = `Daily Planner — ${SITE}`;
+    else if (p === "/profile") pageTitle = `Profile — ${SITE}`;
+    else if (p === "/manager") pageTitle = `Manager Dashboard — ${SITE}`;
+    else if (p === "/sales-log") pageTitle = `Sales Log — ${SITE}`;
     // Auth-gated / transactional pages that are publicly linked (buy buttons,
     // Road → course links) must stay crawlable so Google sees the noindex tag
     // instead of reporting them as "Blocked by robots.txt". /training/preview
     // is the public sample and stays indexable.
     const noindex =
-      path === "/training" ||
-      (path.startsWith("/training/") && path !== "/training/preview") ||
-      path === "/steps" ||
-      path.startsWith("/checkout");
+      p === "/training" ||
+      (p.startsWith("/training/") && p !== "/training/preview") ||
+      p === "/steps" ||
+      p.startsWith("/checkout");
     return {
     meta: [
       { charSet: "utf-8" },
