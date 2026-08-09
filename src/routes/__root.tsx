@@ -120,11 +120,11 @@ export const Route = createRootRoute({
       { name: "trustpilot-one-time-verification-id", content: "62945537-9b3b-4a29-b0af-543f0c520c06" },
       { name: "trustpilot-one-time-domain-verification-id", content: "f0d6dc8c-dbdd-4479-a7c2-d4fd284fe839" },
       // Security headers
-      { "http-equiv": "Content-Security-Policy", content: "default-src 'self'; script-src 'self' 'unsafe-inline' https://buy.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com; frame-src https://buy.stripe.com https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self';" },
-      { "http-equiv": "X-Content-Type-Options", content: "nosniff" },
-      { "http-equiv": "X-Frame-Options", content: "DENY" },
-      { "http-equiv": "Referrer-Policy", content: "strict-origin-when-cross-origin" },
-      { "http-equiv": "Permissions-Policy", content: "camera=(), microphone=(), geolocation=()" },
+      { httpEquiv: "Content-Security-Policy", content: "default-src 'self'; script-src 'self' 'unsafe-inline' https://buy.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com; frame-src https://buy.stripe.com https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self';" },
+      { httpEquiv: "X-Content-Type-Options", content: "nosniff" },
+      { httpEquiv: "X-Frame-Options", content: "DENY" },
+      { httpEquiv: "Referrer-Policy", content: "strict-origin-when-cross-origin" },
+      { httpEquiv: "Permissions-Policy", content: "camera=(), microphone=(), geolocation=()" },
     ],
     links: [
       {
