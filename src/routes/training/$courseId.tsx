@@ -3,8 +3,9 @@ import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { courses, type Lesson } from "~/content/courses";
-import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
 import { renderMarkdown } from "~/lib/renderer";
+import { useTrainingAccess } from "~/lib/use-training-access";
+import { TrainingGate } from "~/components/training-gate";
 import { SiteHeader } from "~/components/site-header";
 export const Route = createFileRoute("/training/$courseId")({
   component: CourseDetail,
@@ -13,58 +14,37 @@ function CourseDetail() {
   const { t } = useTranslation();
   const params = Route.useParams();
   const course = courses.find((c) => c.id === params.courseId);
+  // Owner rule (2026-10): an ACTIVE subscription is required — a login alone is
+  // not enough. Nothing below (lesson list, lesson body, quizzes) renders until
+  // the server has confirmed the subscription.
+  const access = useTrainingAccess();
+  const userTier = access.tier;
   const [currentLessonIdx, setCurrentLessonIdx] = useState(0);
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
-  const [authToken, setAuthToken] = useState<string | null>(null);
-  const [authState, setAuthState] = useState<"loading" | "authenticated" | "unauthenticated">("loading");
-    const [userTier, setUserTier] = useState<string>("basic");
-  useEffect(() => {
-    const token = localStorage.getItem("salesdrive_token");
-    if (!token) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    // Client-side JWT check — instant, no server call
-    if (!isTokenValid(token)) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    const payload = getTokenPayload(token);
-    setAuthToken(token);
-    setAuthState("authenticated");
-    setUserTier(payload.role === "management" ? "premium" : "basic");
-    // Background: fetch progress (non-blocking)
-    if (course) {
-      const fetchProgress = async () => {
-        try {
-          const res = await fetch("/api/my-progress", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token }),
-          });
-          const result = await res.json();
-          if (result.success) {
-            const completed = new Set(result.completedLessons.map((cl) => cl.lesson_id));
-            setCompletedLessons(completed);
-          }
-        } catch {}
-      };
-      fetchProgress();
-    }
-    // Background: get tier info (non-blocking)
-    fetch("/api/auth-info", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token }),
-    }).then((r) => r.json()).then((result) => {
-      if (result.authenticated && result.user) {
-        setUserTier(result.user.tier);
-      }
-    }).catch(() => {});
-  }, [course]);
   const [markError, setMarkError] = useState("");
+  useEffect(() => {
+    if (access.state !== "subscribed" || !access.token || !course) return;
+    const token = access.token;
+    // Background: fetch progress (non-blocking, subscribed only)
+    const fetchProgress = async () => {
+      try {
+        const res = await fetch("/api/my-progress", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+        const result = await res.json();
+        if (result.success) {
+          const completed = new Set(result.completedLessons.map((cl) => cl.lesson_id));
+          setCompletedLessons(completed);
+        }
+      } catch {}
+    };
+    fetchProgress();
+  }, [access.state, access.token, course]);
   const markComplete = async (lessonId: string) => {
     setMarkError("");
+    const authToken = access.token;
     if (!authToken || !course) return;
 
     // Get quiz scores from window global (set by quiz component)
@@ -108,32 +88,10 @@ function CourseDetail() {
     } catch {}
   };
   const currentLesson = course?.lessonsList?.[currentLessonIdx];
-  // Auth check
-  if (authState === "loading") {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
-      </div>
-    );
-  }
-  if (authState === "unauthenticated") {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628] px-6">
-        <div className="w-full max-w-md text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/20">
-            <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-          </div>
-          <h1 className="mt-6 text-2xl font-bold text-white">Sign in to access training</h1>
-          <p className="mt-3 text-gray-400">Please sign in to view this course content.</p>
-          <div className="mt-8 flex justify-center gap-4">
-            <a href="/login" className="btn-primary text-sm">Sign In</a>
-            <a href="/signup" className="btn-secondary text-sm">Create Account</a>
-          </div>
-        </div>
-      </div>
-    );
+  // Subscription gate: loading → spinner, signed out → sign-in prompt,
+  // signed in without an active subscription → subscribe-to-unlock.
+  if (access.state !== "subscribed") {
+    return <TrainingGate state={access.state} />;
   }
   if (!course) {
     return (

@@ -4,6 +4,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { courses } from "~/content/courses";
 import { QuizQuestion } from "~/components/quiz-question";
 import { SiteHeader } from "~/components/site-header";
+import { useTrainingAccess } from "~/lib/use-training-access";
+import { TrainingGate } from "~/components/training-gate";
 
 export const Route = createFileRoute("/training/preview")({
   component: TrainingPreview,
@@ -90,6 +92,12 @@ const totalQuizQuestions = courses.reduce(
 
 function TrainingPreview() {
   const { t } = useTranslation();
+  // Owner rule (2026-10): the sample preview is training content too, so it now
+  // requires an ACTIVE subscription (previously anyone could read it).
+  const access = useTrainingAccess();
+  if (access.state !== "subscribed") {
+    return <TrainingGate state={access.state} />;
+  }
 
   return (
     <div className="min-h-dvh bg-[#0a1628]">

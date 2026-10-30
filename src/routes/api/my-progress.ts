@@ -1,6 +1,7 @@
 import { createAPIFileRoute } from "@tanstack/react-start/api";
 import { sql } from "~/db";
 import { createHash } from "node:crypto";
+import { getSubscriptionState, subscriptionRequiredResponse } from "~/lib/subscription-server";
 
 // ── JWT verification (matches webinar-url.ts / signup format) ─────────────
 function getSecret() {
@@ -41,6 +42,12 @@ export const POST = createAPIFileRoute("/api/my-progress")({
           status: 401,
           headers: { "Content-Type": "application/json" },
         });
+      }
+      // Training progress is subscription-gated (owner rule): an authenticated
+      // user with no ACTIVE subscription gets 403, not their lesson data.
+      const sub = await getSubscriptionState({ id: user.userId, email: user.email });
+      if (!sub.subscribed) {
+        return subscriptionRequiredResponse();
       }
       const db = sql();
       const rows = (await db`

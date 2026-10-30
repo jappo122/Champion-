@@ -5,7 +5,7 @@ import { getAuthInfo } from "~/lib/auth-guard";
 
 export function useAuth() {
   const [state, setState] = useState<"loading" | "authenticated" | "unauthenticated">("loading");
-  const [tier, setTier] = useState<string>("basic");
+  const [tier, setTier] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -22,11 +22,12 @@ export function useAuth() {
     const payload = getTokenPayload(t)!;
     setToken(t);
     setState("authenticated");
-    setTier(payload.role === "management" ? "premium" : "basic");
+    // Tier is only real once the server confirms an ACTIVE subscription.
+    setTier(null);
     // Background: get actual tier from server (non-blocking)
     getAuthInfo({ data: { token: t } }).then((result) => {
       if (result.authenticated && result.user) {
-        setTier(result.user.tier);
+        setTier((result.user as { tier?: string | null }).tier ?? null);
       }
     }).catch(() => {});
   }, []);

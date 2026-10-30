@@ -10,7 +10,12 @@
 // the takeover works across user boundaries.
 import handler from "./dist/server/server.js";
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
-import { apiImpl } from "./api/handlers.mjs";
+import {
+  apiImpl,
+  getSubscriptionState,
+  requireTrainingAccess,
+  httpStatusFor,
+} from "./api/handlers.mjs";
 
 // ── Direct API handlers (bypass broken TanStack server function manifest) ──
 
@@ -173,12 +178,18 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       if (payload.exp && payload.exp < Date.now()) {
         return Response.json({ success: false, error: "Invalid or expired token." }, { status: 401 });
       }
+      // Training progress is subscription-gated (owner rule): an authenticated
+      // user with no ACTIVE subscription gets 403, not their lesson data.
+      const access = await requireTrainingAccess(token);
+      if (!access.ok) {
+        return Response.json(access.response, { status: access.status });
+      }
       const { neon } = await import("@neondatabase/serverless");
       const sql = neon(process.env.DATABASE_URL!);
       const rows = await sql`
         SELECT course_id, lesson_id, completed_at
         FROM lesson_progress
-        WHERE user_id = ${payload.userId as number}
+        WHERE user_id = ${access.userId as number}
         ORDER BY completed_at DESC
       `;
       return Response.json({ success: true, completedLessons: rows });
@@ -401,17 +412,21 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       ` as Array<{ id: number; email: string; name: string | null; role: string; session_token: string }>;
       if (userResult.length === 0) return Response.json({ authenticated: false, user: null });
       const user = userResult[0];
-      const subResult = await sql`
-        SELECT tier, status FROM subscriptions
-        WHERE user_id = ${user.id} AND status = 'active'
-        ORDER BY id DESC LIMIT 1
-      ` as Array<{ tier: string; status: string }>;
-      const tier = subResult.length > 0 ? subResult[0].tier : "basic";
-      const DEMO_EMAILS = ["owner@champion.com", "jappo122@gmail.com", "floydsandersjr@yahoo.com"];
-      const effectiveTier = (user.id === 1 || DEMO_EMAILS.includes(user.email.toLowerCase())) ? "premium" : tier;
+      // Subscription is the gate for training (owner rule). Report the truth:
+      // tier is the real tier from an ACTIVE subscription, or null when the user
+      // has none — never a defaulted "basic". Demo/owner accounts always pass.
+      const sub = await getSubscriptionState(user);
       return Response.json({
         authenticated: true,
-        user: { id: user.id, email: user.email, name: user.name, role: user.role, tier: effectiveTier },
+        subscribed: sub.subscribed,
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+          tier: sub.tier,
+          subscribed: sub.subscribed,
+        },
       });
     } catch (err: any) {
       console.error("API auth-info POST error:", err.message);
@@ -432,7 +447,12 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       if (signature !== expected) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
       const payload = JSON.parse(Buffer.from(bodyB64, "base64url").toString());
       if (payload.exp && payload.exp < Date.now()) return Response.json({ success: false, error: "Not authenticated" }, { status: 401 });
-      const userId = payload.userId as number;
+      // Writing lesson progress / quiz results requires an active subscription.
+      const access = await requireTrainingAccess(token);
+      if (!access.ok) {
+        return Response.json(access.response, { status: access.status });
+      }
+      const userId = access.userId as number;
       // Quiz threshold check: if lesson has quiz content, require score >= 80%
       if (quizResults && quizResults.total > 0) {
         const percent = Math.round((quizResults.correct / quizResults.total) * 100);
@@ -499,7 +519,9 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       try {
         const body = await req.json();
         const result = await apiImpl[name](body?.data ?? body);
-        return Response.json(result);
+        // Subscription-gated handlers return 403 so the gate holds for direct
+        // API calls (see httpStatusFor in api/handlers.mjs).
+        return Response.json(result, { status: httpStatusFor(result) });
       } catch (err: any) {
         console.error(`API ${name} error:`, err.message);
         return Response.json({ success: false, error: "Server error" }, { status: 500 });

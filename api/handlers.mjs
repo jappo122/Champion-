@@ -29,6 +29,79 @@ function verifyManager(token) {
   return { userId: payload.userId, email: payload.email };
 }
 
+// ── Subscription gate ───────────────────────────────────────────────────────
+// Owner rule (2026-10): the blog is public to everyone; ALL training content
+// (courses, lessons, quizzes, Road to the Sale, progress) requires an ACTIVE
+// subscription. Login alone is not enough.
+// Source of truth: a row in `subscriptions` with status = 'active' for that
+// user. Demo/owner accounts bypass the row requirement so the owner can always
+// review the product.
+export const DEMO_EMAILS = ["owner@champion.com", "jappo122@gmail.com", "floydsandersjr@yahoo.com"];
+export const DEMO_USER_IDS = [1];
+
+export function isDemoAccount(user) {
+  if (!user) return false;
+  const id = Number(user.id ?? user.userId);
+  const email = String(user.email || "").trim().toLowerCase();
+  return DEMO_USER_IDS.includes(id) || DEMO_EMAILS.includes(email);
+}
+
+/**
+ * Resolve a user's training entitlement from the database.
+ * Returns { subscribed, tier, demo } — tier is the REAL tier from an active
+ * subscription, or null when there is none (never a defaulted "basic").
+ */
+export async function getSubscriptionState(user) {
+  if (!user) return { subscribed: false, tier: null, demo: false };
+  if (isDemoAccount(user)) return { subscribed: true, tier: "premium", demo: true };
+  const sql = db();
+  const rows = await sql`
+    SELECT tier FROM subscriptions
+    WHERE user_id = ${Number(user.id ?? user.userId)} AND status = 'active'
+    ORDER BY id DESC LIMIT 1
+  `;
+  if (rows.length === 0) return { subscribed: false, tier: null, demo: false };
+  return { subscribed: true, tier: rows[0].tier, demo: false };
+}
+
+export const SUBSCRIPTION_REQUIRED_ERROR = "An active subscription is required to access training.";
+
+/**
+ * Server-side gate for any endpoint that serves training content or reads/
+ * writes training progress or quiz results.
+ * Returns { ok: true, userId, tier, demo } or { ok: false, status, response }.
+ * `allowManager` lets management accounts act on their team (manager dashboard);
+ * learners always need an active subscription.
+ */
+export async function requireTrainingAccess(token, { allowManager = false } = {}) {
+  const payload = verifyToken(token);
+  if (!payload) return { ok: false, status: 401, response: { success: false, error: "Not authenticated" } };
+  const sql = db();
+  const rows = await sql`SELECT id, email, role FROM users WHERE id = ${Number(payload.userId)}`;
+  if (rows.length === 0) return { ok: false, status: 401, response: { success: false, error: "Not authenticated" } };
+  const user = rows[0];
+  if (allowManager && user.role === "management") {
+    return { ok: true, userId: Number(user.id), tier: "management", demo: isDemoAccount(user) };
+  }
+  const sub = await getSubscriptionState(user);
+  if (!sub.subscribed) {
+    return {
+      ok: false,
+      status: 403,
+      response: { success: false, error: SUBSCRIPTION_REQUIRED_ERROR, subscriptionRequired: true },
+    };
+  }
+  return { ok: true, userId: Number(user.id), tier: sub.tier, demo: sub.demo };
+}
+
+/** HTTP status for a shared-handler result (both API layers use this). */
+export function httpStatusFor(result) {
+  if (!result || typeof result !== "object") return 200;
+  if (result.subscriptionRequired) return 403;
+  if (result.notAuthenticated) return 401;
+  return 200;
+}
+
 // Total lessons across the live catalog (10 courses, 62 lessons).
 const TOTAL_LESSONS = 88;
 
@@ -137,16 +210,16 @@ export const apiImpl = {
   },
 
   async markLessonComplete({ token, userId, courseId, lessonId }) {
-    const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    const access = await requireTrainingAccess(token, { allowManager: true });
+    if (!access.ok) return access.response;
     const sql = db();
     await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
     return { success: true };
   },
 
   async removeLessonComplete({ token, userId, lessonId }) {
-    const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    const access = await requireTrainingAccess(token, { allowManager: true });
+    if (!access.ok) return access.response;
     const sql = db();
     await sql`DELETE FROM lesson_progress WHERE user_id = ${userId} AND lesson_id = ${lessonId}`;
     return { success: true };
@@ -334,10 +407,10 @@ export const apiImpl = {
 
   // ── Salesperson-facing ───────────────────────────────────────────────────
   async getMyAssignments({ token }) {
-    const payload = verifyToken(token);
-    if (!payload) return { success: false, error: "Not authenticated" };
+    const access = await requireTrainingAccess(token);
+    if (!access.ok) return access.response;
     const sql = db();
-    const userId = payload.userId;
+    const userId = access.userId;
     const assignments = await sql`SELECT ma.*, u.name as manager_name, u.email as manager_email FROM module_assignments ma JOIN users u ON u.id = ma.manager_id WHERE ma.salesperson_id = ${userId} ORDER BY ma.assigned_at DESC LIMIT 50`;
     return { success: true, assignments: assignments.map((a) => ({ ...a, assigned_at: String(a.assigned_at), completed_at: a.completed_at ? String(a.completed_at) : null })) };
   },
@@ -382,8 +455,8 @@ export const apiImpl = {
   },
 
   async getSkillGaps({ token, userId }) {
-    const payload = verifyToken(token);
-    if (!payload) return { success: false, error: "Not authenticated" };
+    const access = await requireTrainingAccess(token, { allowManager: true });
+    if (!access.ok) return access.response;
     const sql = db();
     const progress = await sql`SELECT course_id, COUNT(*) as completed FROM lesson_progress WHERE user_id = ${userId} GROUP BY course_id`;
     const courses = [
@@ -407,10 +480,10 @@ export const apiImpl = {
   },
 
   async resetMyProgress({ token }) {
-    const payload = verifyToken(token);
-    if (!payload) return { success: false, error: "Not authenticated" };
+    const access = await requireTrainingAccess(token);
+    if (!access.ok) return access.response;
     const sql = db();
-    const userId = payload.userId;
+    const userId = access.userId;
     await sql`DELETE FROM lesson_progress WHERE user_id = ${userId}`;
     await sql`UPDATE module_assignments SET completed_at = NULL WHERE salesperson_id = ${userId}`;
     return { success: true };
