@@ -144,7 +144,9 @@ export const Route = createRootRoute({
       p === "/training" ||
       p.startsWith("/training/") ||
       p === "/steps" ||
-      p.startsWith("/checkout");
+      p.startsWith("/checkout") ||
+      // Owner-only admin surfaces (manual activation): never indexable.
+      p.startsWith("/admin");
     return {
     meta: [
       { charSet: "utf-8" },

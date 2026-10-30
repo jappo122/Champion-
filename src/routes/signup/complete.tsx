@@ -31,7 +31,7 @@ export const Route = createFileRoute("/signup/complete")({
 });
 
 function SignupCompletePage() {
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+  const [status, setStatus] = useState<"loading" | "success" | "pending" | "error">("loading");
   const [message, setMessage] = useState("");
   const [redirectPath, setRedirectPath] = useState("/training");
 
@@ -54,6 +54,15 @@ function SignupCompletePage() {
         localStorage.setItem("salesdrive_token", res.token);
         setRedirectPath(res.user?.role === "management" ? "/manager" : "/training");
         setStatus("success");
+      } else if (res.pendingConfirmation) {
+        // Payment could not be verified automatically (no Stripe key on this
+        // deployment). The owner has been notified and will switch the term on.
+        // This is a calm confirmation, never a raw error.
+        setStatus("pending");
+        setMessage(
+          res.message ||
+            "Thanks — we're confirming your payment. Your 90 days of access will be switched on shortly.",
+        );
       } else {
         setStatus("error");
         setMessage(res.error || "We couldn't verify that payment. Please contact support.");
@@ -93,6 +102,36 @@ function SignupCompletePage() {
             >
               Go to Your Dashboard →
             </a>
+          </>
+        )}
+
+        {status === "pending" && (
+          <>
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#e63946]/15">
+              <svg className="h-8 w-8 text-[#e63946]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h1 className="mt-6 text-3xl font-bold text-white">Thanks — we're confirming your payment</h1>
+            <p className="mt-3 text-sm text-gray-400">{message}</p>
+            <p className="mt-3 text-sm text-gray-400">
+              You don't need to pay again. You'll be able to sign in and start training as soon as
+              your 90 days are switched on.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href="/login"
+                className="rounded-lg bg-[#e63946] px-6 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20"
+              >
+                Sign in
+              </a>
+              <a href="/blog" className="rounded-lg border border-[#2a4a6a] px-6 py-3 text-sm font-semibold text-gray-300 hover:border-[#e63946] hover:text-white transition">
+                Read the free blog
+              </a>
+            </div>
+            <p className="mt-6 text-xs text-gray-600">
+              Questions about your payment? Use the support page and quote your checkout reference.
+            </p>
           </>
         )}
 

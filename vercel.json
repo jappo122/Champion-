@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx esbuild src/lib/pricing.ts --format=esm --outfile=api/pricing.mjs --log-level=warning && npm run build && npx esbuild dist/server/server.js --bundle --platform=node --format=esm --outfile=api/ssr-bundled.mjs --external:node:*",
+  "buildCommand": "npx esbuild src/lib/pricing.ts --format=esm --outfile=api/pricing.mjs --log-level=warning && npx esbuild src/lib/owner-alerts.ts --format=esm --outfile=api/owner-alerts.mjs --log-level=warning && npm run build && npx esbuild dist/server/server.js --bundle --platform=node --format=esm --outfile=api/ssr-bundled.mjs --external:node:*",
   "installCommand": "npm install",
   "outputDirectory": "dist/client",
   "rewrites": [
