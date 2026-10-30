@@ -24,6 +24,22 @@ import {
   priceForTier,
   stripeLinkForTier,
 } from "./pricing.mjs";
+// Owner alerts + owner-account config. api/owner-alerts.mjs is src/lib/
+// owner-alerts.ts transpiled by the build (same reason as pricing.mjs above:
+// Vercel does not ship src/**/*.ts inside the function bundle). The owner's
+// alert address is defined ONCE, in src/lib/owner-alerts.ts.
+import {
+  ADMIN_NOTIFY_EMAILS,
+  OWNER_ACCOUNT_IDS,
+  ownerAlertRecipients,
+  ownerAlertRedirect,
+  sendOwnerAlert,
+  buildUnverifiedCheckoutAlert,
+  buildManualActivationAlert,
+  formatDateWords,
+  formatTimestampUtc,
+  daysRemaining,
+} from "./owner-alerts.mjs";
 
 const getSecret = () => process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
 
@@ -130,8 +146,114 @@ export async function requireTrainingAccess(token, { allowManager = false } = {}
 export function httpStatusFor(result) {
   if (!result || typeof result !== "object") return 200;
   if (result.subscriptionRequired) return 403;
+  // Owner-only admin API (see ownerGuard below): a non-owner caller gets a real
+  // 403 over HTTP, from BOTH API layers, not just a hidden button.
+  if (result.forbidden) return 403;
   if (result.notAuthenticated) return 401;
+  if (result.notFound) return 404;
   return 200;
+}
+
+// ── Owner-only admin: manual activation ─────────────────────────────────────
+// Owner decision (2026-10-30): the owner can switch a paid 90-day term on by
+// hand, because Stripe cannot call the site back (no API key, no webhook), so a
+// real payment can otherwise never unlock an account.
+//
+// Rules enforced here, server-side, for BOTH API layers:
+//   • only owner accounts (OWNER_ACCOUNT_IDS / DEMO_EMAILS) may call it — every
+//     other caller gets a 403 body flagged `forbidden`;
+//   • the account must already exist (signup creates it) — we never invent an
+//     account with an unknown password;
+//   • the term is always exactly TERM_DAYS from the LATER of now and the current
+//     expiry, so activating twice never shortens anyone's access;
+//   • the row is stamped source = 'manual-owner-activation' (+ who and when), so
+//     a manual grant is always distinguishable from a Stripe-verified one;
+//   • the owner gets an email recording what was switched on.
+export const MANUAL_ACTIVATION_SOURCE = "manual-owner-activation";
+export const STRIPE_VERIFIED_SOURCE = "stripe-verified";
+
+export function isOwnerAccount(user) {
+  if (!user) return false;
+  const id = Number(user.id ?? user.userId);
+  const email = String(user.email || "").trim().toLowerCase();
+  return OWNER_ACCOUNT_IDS.includes(id) || DEMO_EMAILS.includes(email);
+}
+
+/** Resolve the caller and require an owner account. Never trusts the client. */
+async function ownerGuard(token) {
+  const payload = verifyToken(token);
+  if (!payload) {
+    return {
+      ok: false,
+      status: 401,
+      body: { success: false, notAuthenticated: true, error: "Please sign in as the account owner." },
+    };
+  }
+  const sql = db();
+  const rows = await sql`SELECT id, email, name, role FROM users WHERE id = ${Number(payload.userId)}`;
+  if (rows.length === 0 || !isOwnerAccount(rows[0])) {
+    return {
+      ok: false,
+      status: 403,
+      body: {
+        success: false,
+        forbidden: true,
+        notAuthorised: true,
+        error: "Not authorised. This page is for the account owner only.",
+      },
+    };
+  }
+  return { ok: true, status: 200, user: rows[0] };
+}
+
+// Idempotent DDL for the two tables this feature needs plus the manual-source
+// marker on subscriptions. Cached per process so it costs one round trip.
+let activationSchemaReady = null;
+async function ensureActivationSchema() {
+  if (!activationSchemaReady) {
+    activationSchemaReady = (async () => {
+      const sql = db();
+      // How a subscription row came to exist. NULL on the pre-existing rows;
+      // every path from here on writes either 'manual-owner-activation' or
+      // 'stripe-verified'.
+      await sql`ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS source text`;
+      await sql`ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS activated_by integer`;
+      await sql`ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS activated_at timestamptz`;
+      // What the customer chose on the way OUT to Stripe. Stripe's return URL
+      // only carries the session id, so this is how the owner's alert can name
+      // the customer and the tier without asking Stripe anything.
+      await sql`CREATE TABLE IF NOT EXISTS pending_purchases (
+        id serial PRIMARY KEY,
+        email text,
+        tier text,
+        amount_cents integer,
+        created_at timestamptz NOT NULL DEFAULT now(),
+        claimed_at timestamptz,
+        claimed_session_id text
+      )`;
+      // One row per Stripe checkout session id = the idempotency ledger. The
+      // PRIMARY KEY is what makes a refreshed/retried return page silent.
+      await sql`CREATE TABLE IF NOT EXISTS checkout_notifications (
+        session_id text PRIMARY KEY,
+        email text,
+        tier text,
+        amount_cents integer,
+        created_at timestamptz NOT NULL DEFAULT now(),
+        notified_at timestamptz,
+        notify_ok boolean,
+        notify_id text,
+        notify_error text
+      )`;
+    })().catch((err) => {
+      activationSchemaReady = null;
+      throw err;
+    });
+  }
+  return activationSchemaReady;
+}
+
+function siteUrl() {
+  return process.env.PUBLIC_SITE_URL || "https://www.championsalestrainingandevents.com";
 }
 
 // ── Signup + payment verification ───────────────────────────────────────────
@@ -339,6 +461,127 @@ function sessionEmail(session) {
   return cleanEmail(session?.customer_details?.email ?? session?.customer_email ?? "");
 }
 
+// ── The "we cannot verify this payment" return trip ────────────────────────
+// Stripe cannot call the site back: there is no API key and no webhook on this
+// account, so /api/signup-complete can never ask Stripe whether a checkout was
+// paid. Instead of showing the customer a raw 503, this:
+//   1. records the return against the checkout session id (PRIMARY KEY — the
+//      same session can only ever produce ONE owner email, so a refresh or a
+//      retry is silent);
+//   2. matches the most recent pending_purchases row (written when the customer
+//      left for Stripe) to name the customer, tier and amount;
+//   3. emails the owner an explicitly UNVERIFIED "confirm this in Stripe" alert;
+//   4. shows the customer a calm "we're confirming your payment" page.
+// It grants NOTHING: no subscription row is created or touched here, and the
+// response is success:false so no client can mistake it for an activation.
+const CHECKOUT_PENDING_MESSAGE =
+  "Thanks — we're confirming your payment. Your 90 days of access will be switched on shortly.";
+
+async function unverifiedCheckoutReturn(sessionId) {
+  const ref = String(sessionId || "").trim();
+  if (!CHECKOUT_SESSION_ID_RE.test(ref)) {
+    return {
+      status: 400,
+      body: { success: false, error: "A valid Stripe checkout session id is required." },
+    };
+  }
+  await ensureActivationSchema();
+  const sql = db();
+  const now = new Date();
+
+  // Idempotency gate. The INSERT ... ON CONFLICT DO NOTHING RETURNING pattern is
+  // atomic, so two simultaneous returns for one session cannot both email.
+  const claim = await sql`
+    INSERT INTO checkout_notifications (session_id) VALUES (${ref})
+    ON CONFLICT (session_id) DO NOTHING
+    RETURNING session_id
+  `;
+  if (claim.length === 0) {
+    console.log("signup-complete: return already notified for", ref, "— no second email.");
+    return {
+      status: 200,
+      body: {
+        success: false,
+        pendingConfirmation: true,
+        alreadyNotified: true,
+        message: CHECKOUT_PENDING_MESSAGE,
+        reference: ref,
+      },
+    };
+  }
+
+  // Name the customer from the pending record written when they left for Stripe.
+  let pending = null;
+  try {
+    const rows = await sql`
+      SELECT id, email, tier, amount_cents, created_at FROM pending_purchases
+      WHERE claimed_session_id IS NULL AND created_at > NOW() - INTERVAL '24 hours'
+      ORDER BY created_at DESC LIMIT 1
+    `;
+    pending = rows[0] ?? null;
+    if (pending) {
+      await sql`
+        UPDATE pending_purchases SET claimed_at = NOW(), claimed_session_id = ${ref}
+        WHERE id = ${pending.id}
+      `;
+    }
+  } catch (err) {
+    console.error("signup-complete: pending-purchase lookup failed:", err?.message);
+  }
+
+  const tier = normalizeTier(pending?.tier) || null;
+  const alert = buildUnverifiedCheckoutAlert({
+    customerEmail: pending?.email || null,
+    tier,
+    tierLabel: tier ? TIER_LABELS[tier] : null,
+    amountCents: pending?.amount_cents ?? null,
+    sessionId: ref,
+    receivedAt: now,
+    matchedPending: !!pending,
+    pendingRecordedAt: pending?.created_at ?? null,
+    siteUrl: siteUrl(),
+  });
+  const sent = await sendOwnerAlert({ subject: alert.subject, body: alert.body, replyTo: pending?.email || null });
+
+  try {
+    await sql`
+      UPDATE checkout_notifications
+      SET email = ${pending?.email || null},
+          tier = ${tier},
+          amount_cents = ${pending?.amount_cents ?? null},
+          notified_at = NOW(),
+          notify_ok = ${sent.ok},
+          notify_id = ${sent.id},
+          notify_error = ${sent.error}
+      WHERE session_id = ${ref}
+    `;
+  } catch (err) {
+    console.error("signup-complete: could not record the owner notification:", err?.message);
+  }
+
+  console.log(
+    "signup-complete: UNVERIFIED checkout return",
+    ref,
+    "| customer:",
+    pending?.email || "(unknown)",
+    "| tier:",
+    tier || "(unknown)",
+    "| owner alert:",
+    sent.ok ? `sent ${sent.id}` : `FAILED ${sent.error}`,
+  );
+
+  return {
+    status: 200,
+    body: {
+      success: false,
+      pendingConfirmation: true,
+      message: CHECKOUT_PENDING_MESSAGE,
+      reference: ref,
+      ownerAlertSent: sent.ok,
+    },
+  };
+}
+
 // ── POST /api/signup-complete ──────────────────────────────────────────────
 // Activates an account after a VERIFIED Stripe payment. Idempotent: replaying
 // the same checkout session never creates a second user or a second active
@@ -357,6 +600,14 @@ export async function signupComplete(rawBody, searchParams) {
         error: "A Stripe checkout session id is required to activate an account.",
       },
     };
+  }
+
+  // No Stripe key = we cannot verify anything. Take the notification path
+  // instead of failing the customer with a raw 503. This branch grants no
+  // access whatsoever; the verification path below is left exactly as it was
+  // for the day a key exists.
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return await unverifiedCheckoutReturn(sessionId);
   }
 
   const verified = await fetchCheckoutSession(sessionId);
@@ -1131,5 +1382,226 @@ export const apiImpl = {
     const sql = db();
     await sql`UPDATE inbox_emails SET is_read = true WHERE id = ${id}`;
     return { success: true };
+  },
+
+  // ── Owner-only: manual activation (/admin/activate) ──────────────────────
+  /**
+   * Every account, with the truth about its access. The owner's at-a-glance
+   * view of who has paid and who is lapsing. Owner accounts only — 403 for
+   * everyone else, from both API layers.
+   */
+  async ownerListAccounts({ token }) {
+    const guard = await ownerGuard(token);
+    if (!guard.ok) return guard.body;
+    await ensureActivationSchema();
+    const sql = db();
+    const rows = await sql`
+      SELECT u.id, u.email, u.name, u.role,
+             s.tier, s.status, s.expires_at, s.source, s.activated_at
+      FROM users u
+      LEFT JOIN LATERAL (
+        SELECT tier, status, expires_at, source, activated_at
+        FROM subscriptions
+        WHERE user_id = u.id
+        ORDER BY id DESC LIMIT 1
+      ) s ON TRUE
+      ORDER BY u.id ASC
+    `;
+    const accounts = rows.map((r) => {
+      const demo = isDemoAccount({ id: r.id, email: r.email });
+      const expiresAt = r.expires_at ? new Date(r.expires_at) : null;
+      const live =
+        demo || (r.status === "active" && (expiresAt === null || expiresAt.getTime() > Date.now()));
+      return {
+        id: r.id,
+        email: r.email,
+        name: r.name,
+        role: r.role,
+        tier: demo ? "premium" : (r.tier ?? null),
+        status: demo ? "owner-demo" : (r.status ?? null),
+        active: live,
+        demo,
+        expiresAt: expiresAt ? expiresAt.toISOString() : null,
+        expiresAtWords: expiresAt ? formatDateWords(expiresAt) : null,
+        daysRemaining: demo ? null : daysRemaining(expiresAt),
+        source: r.source ?? null,
+        manual: r.source === MANUAL_ACTIVATION_SOURCE,
+      };
+    });
+    return {
+      success: true,
+      accounts,
+      termDays: TERM_DAYS,
+      tiers: ["basic", "plus", "premium"].map((t) => ({ id: t, label: TIER_LABELS[t], price: TIER_PRICES[t] })),
+      alertRecipients: ownerAlertRecipients(),
+    };
+  },
+
+  /**
+   * Switch on a 90-day term for an existing account, by hand.
+   *
+   * • owner accounts only (403 otherwise);
+   * • the account must already exist — signup creates it, we never invent an
+   *   account with a password nobody knows;
+   * • the new expiry is TERM_DAYS from the LATER of now and the current expiry,
+   *   so a second activation extends and never shortens;
+   * • the row is stamped source = 'manual-owner-activation' + activated_by/at;
+   * • the owner is emailed a record of the switch-on.
+   */
+  async ownerActivate({ token, email, tier }) {
+    const guard = await ownerGuard(token);
+    if (!guard.ok) return guard.body;
+
+    const cleanTier = normalizeTier(tier);
+    if (!cleanTier) {
+      return { success: false, error: "Choose a tier: Basic, Plus or Premium." };
+    }
+    const target = cleanEmail(email);
+    if (!isValidEmail(target)) {
+      return { success: false, error: "Enter the customer's email address." };
+    }
+
+    await ensureActivationSchema();
+    const sql = db();
+    const found = await sql`SELECT id, email, name, role FROM users WHERE LOWER(email) = ${target} LIMIT 1`;
+    if (found.length === 0) {
+      // Never create an account here: signup creates the account the customer
+      // can actually log into. Silently inventing one would strand them.
+      return {
+        success: false,
+        notFound: true,
+        mustSignUpFirst: true,
+        error:
+          `No account uses ${target} yet. The customer has to sign up first — that creates the ` +
+          `account they log in with — then activate them here. Nothing was created.`,
+      };
+    }
+    const user = found[0];
+    if (isDemoAccount(user)) {
+      return {
+        success: false,
+        isDemo: true,
+        error: `${user.email} is an owner/demo account with permanent access — there is nothing to activate.`,
+      };
+    }
+
+    const rows = await sql`
+      SELECT id, tier, status, expires_at, started_at, source
+      FROM subscriptions WHERE user_id = ${user.id} ORDER BY id DESC LIMIT 1
+    `;
+    const current = rows[0] ?? null;
+    const now = new Date();
+    const currentExpiry = current?.expires_at ? new Date(current.expires_at) : null;
+    const stillLive =
+      !!current && current.status === "active" && (currentExpiry === null || currentExpiry.getTime() > now.getTime());
+    // Extend from the LATER of now and the current expiry — never shorten.
+    const base = stillLive && currentExpiry && currentExpiry.getTime() > now.getTime() ? currentExpiry : now;
+    const newExpiry = termEndsAt(base);
+    const extended = stillLive && !!currentExpiry;
+
+    if (current) {
+      await sql`
+        UPDATE subscriptions
+        SET status = 'active', tier = ${cleanTier}, plan = ${cleanTier},
+            expires_at = ${newExpiry.toISOString()},
+            started_at = COALESCE(started_at, NOW()),
+            cancelled_at = NULL, ends_at = NULL,
+            source = ${MANUAL_ACTIVATION_SOURCE},
+            activated_by = ${Number(guard.user.id)}, activated_at = NOW()
+        WHERE id = ${current.id}
+      `;
+    } else {
+      await sql`
+        INSERT INTO subscriptions
+          (user_id, plan, tier, status, expires_at, started_at, is_individual, source, activated_by, activated_at)
+        VALUES
+          (${user.id}, ${cleanTier}, ${cleanTier}, 'active', ${newExpiry.toISOString()}, NOW(),
+           ${user.role !== "management"}, ${MANUAL_ACTIVATION_SOURCE}, ${Number(guard.user.id)}, NOW())
+      `;
+    }
+
+    // Confirm what the gate will now see (same function the gate uses).
+    const after = await getSubscriptionState({ id: user.id, email: user.email });
+
+    const alert = buildManualActivationAlert({
+      customerEmail: user.email,
+      tierLabel: TIER_LABELS[cleanTier],
+      price: TIER_PRICES[cleanTier],
+      expiresAt: newExpiry,
+      previousExpiresAt: currentExpiry,
+      extended,
+      termDays: TERM_DAYS,
+      activatedByEmail: guard.user.email,
+      activatedAt: now,
+      siteUrl: siteUrl(),
+    });
+    const sent = await sendOwnerAlert({ subject: alert.subject, body: alert.body });
+
+    const expiryWords = formatDateWords(newExpiry);
+    return {
+      success: true,
+      email: user.email,
+      name: user.name,
+      tier: cleanTier,
+      tierLabel: TIER_LABELS[cleanTier],
+      price: TIER_PRICES[cleanTier],
+      termDays: TERM_DAYS,
+      expiresAt: newExpiry.toISOString(),
+      expiresAtWords: expiryWords,
+      previousExpiresAt: currentExpiry ? currentExpiry.toISOString() : null,
+      previousExpiresAtWords: currentExpiry ? formatDateWords(currentExpiry) : null,
+      extended,
+      source: MANUAL_ACTIVATION_SOURCE,
+      message: extended
+        ? `${TIER_LABELS[cleanTier]} access until ${expiryWords} — moved from ${formatDateWords(currentExpiry)} to ${expiryWords}.`
+        : `${TIER_LABELS[cleanTier]} access until ${expiryWords}.`,
+      subscribedNow: after.subscribed,
+      gateTier: after.tier,
+      ownerAlertSent: sent.ok,
+      ownerAlertId: sent.id,
+      ownerAlertTo: sent.to,
+      ownerAlertError: sent.error,
+    };
+  },
+
+  /**
+   * Record what the customer chose on the way OUT to Stripe. Public: a buyer is
+   * often logged out. The email is taken from the caller's token when there is
+   * one (so a caller cannot record someone else's address while signed in),
+   * else from the form field they just typed.
+   */
+  async recordPendingPurchase({ token, email, tier }) {
+    await ensureActivationSchema();
+    const sql = db();
+    const cleanTier = normalizeTier(tier);
+    let address = cleanEmail(email);
+    const payload = verifyToken(token);
+    if (payload?.userId) {
+      const rows = await sql`SELECT email FROM users WHERE id = ${Number(payload.userId)}`;
+      if (rows.length > 0 && rows[0].email) address = cleanEmail(rows[0].email);
+    }
+    if (!isValidEmail(address)) address = "";
+    const amountCents = cleanTier ? priceForTier(cleanTier) * 100 : null;
+    const inserted = await sql`
+      INSERT INTO pending_purchases (email, tier, amount_cents)
+      VALUES (${address || null}, ${cleanTier}, ${amountCents})
+      RETURNING id
+    `;
+    return { success: true, id: inserted[0].id, email: address || null, tier: cleanTier, amountCents };
+  },
+
+  /** Owner-only diagnostics: what the alert wiring is pointed at. */
+  async ownerAlertConfig({ token }) {
+    const guard = await ownerGuard(token);
+    if (!guard.ok) return guard.body;
+    return {
+      success: true,
+      alertRecipients: ownerAlertRecipients(),
+      configuredAddresses: ADMIN_NOTIFY_EMAILS,
+      testRedirect: ownerAlertRedirect(),
+      resendConfigured: !!process.env.RESEND_API_KEY,
+      stripeKeyConfigured: !!process.env.STRIPE_SECRET_KEY,
+      termDays: TERM_DAYS,
+    };
   },
 };

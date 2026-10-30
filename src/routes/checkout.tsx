@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
 import { TERM_DAYS, TIER_PRICES, stripeLinkForTier } from "~/lib/pricing";
+import { recordPendingPurchase } from "~/lib/pending-purchase";
 
 // ── Stripe payment links for management tiers ──────────────────────────────
 // ONE-TIME 90-DAY TERMS. The links live in src/lib/pricing.ts (single source of
@@ -49,6 +50,9 @@ function CheckoutPage() {
   const { t } = useTranslation();
   const search = useSearch({ from: Route.id as any });
   const initialTier = (search as any)?.tier || "mgmt-plus";
+  // The buyer's email, carried over from /signup so the owner's payment alert can
+  // name the customer. Editable, because a manager may pay for someone else.
+  const [buyerEmail, setBuyerEmail] = useState(String((search as any)?.email || ""));
 
   const [step, setStep] = useState(1);
   const [mgtTier, setMgtTier] = useState(initialTier);
@@ -58,6 +62,10 @@ function CheckoutPage() {
   const stripeLink = stripeLinkForTier(mgtTier.replace(/^mgmt-/, ""));
 
   const handleProceedToCheckout = () => {
+    // Record what they chose BEFORE we hand them to Stripe: the return trip only
+    // carries the checkout session id, so this is the only chance to know who is
+    // paying and for which tier (the owner's payment alert uses it).
+    recordPendingPurchase(buyerEmail, mgtTier.replace(/^mgmt-/, ""));
     // Return URL for post-payment activation. Stripe substitutes the real
     // checkout session id for {CHECKOUT_SESSION_ID}; /signup/complete sends that
     // id to the server, which verifies the payment with Stripe before activating
@@ -200,6 +208,24 @@ function CheckoutPage() {
                 Covers {TERM_DAYS} days of access from the day your payment clears. Additional salespeople are ${TIER_PRICES.basic}–${TIER_PRICES.premium} one-time each for their own {TERM_DAYS}-day term (added after signup from your dashboard). Nothing renews automatically.
               </p>
             </div>
+
+            {/* Buyer email — used to identify the payment when you return from Stripe */}
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-gray-500">
+                Email for this account
+              </span>
+              <input
+                type="email"
+                value={buyerEmail}
+                onChange={(e) => setBuyerEmail(e.target.value)}
+                placeholder="you@dealership.com"
+                autoComplete="email"
+                className="w-full rounded-lg border border-[#2a4a6a] bg-[#0a1628] px-3 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-[#e63946] focus:outline-none"
+              />
+              <span className="mt-1 block text-xs text-gray-600">
+                We use this to match your payment to your account after checkout.
+              </span>
+            </label>
 
             {/* Billing agreement */}
             <label className="flex items-start gap-3 rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4 cursor-pointer">

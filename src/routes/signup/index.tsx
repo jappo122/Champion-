@@ -14,6 +14,7 @@ async function signupCall(data: { email: string; password: string; name: string;
 import { SiteHeader } from "~/components/site-header";
 import { isTokenValid, decodeToken } from "~/lib/client-auth";
 import { TERM_DAYS, TIER_PRICES, stripeLinkForTier } from "~/lib/pricing";
+import { recordPendingPurchase } from "~/lib/pending-purchase";
 
 // Owner rule (2026-10-30): there is no free signup. Submitting this form creates
 // the account RECORD only — it carries no subscription and therefore no training
@@ -111,6 +112,10 @@ function SignupPage() {
     const successUrl = encodeURIComponent(returnUrl).replace(/%7BCHECKOUT_SESSION_ID%7D/gi, "{CHECKOUT_SESSION_ID}");
 
     if (accountType === "individual") {
+      // Record what they chose BEFORE we hand them to Stripe. The return trip
+      // only carries the checkout session id, so this is the only chance to know
+      // who is paying and for which tier (used by the owner's payment alert).
+      recordPendingPurchase(emailClean, selectedTier);
       // Individual flow: redirect to Stripe payment
       const stripeLink = stripeLinkForTier(selectedTier);
       window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(emailClean)}&success_url=${successUrl}`;
