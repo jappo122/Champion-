@@ -3,17 +3,27 @@ import { useState, useEffect } from "react";
 import { LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
 
-// ── Direct API call: create account after Stripe payment ───────────────────
-// The TanStack server-function transport is broken site-wide, so the post-payment
-// account creation (user row + subscription + welcome email + JWT) runs through
-// the direct /api/signup-complete handler in serve.ts instead.
-async function completeSignupAfterPayment(data: { email: string; name?: string; tier: string; type: string }) {
+// ── Direct API call: activate the account after Stripe payment ─────────────
+// The TanStack server-function transport is broken site-wide, so activation runs
+// through the direct /api/signup-complete handler (api/handlers.mjs, shared by
+// serve.ts and api/ssr.mjs).
+//
+// The ONLY thing this page sends is the Stripe checkout session id. The server
+// asks Stripe whether that session was paid and reads the tier, email and account
+// type from Stripe's answer — nothing in this URL can grant access on its own.
+async function activateSubscription(sessionId: string) {
   const res = await fetch("/api/signup-complete", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ session_id: sessionId }),
   });
-  return res.json();
+  let data: any = null;
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
+  }
+  return data ?? { success: false, error: "We couldn't verify that payment. Please contact support." };
 }
 
 export const Route = createFileRoute("/signup/complete")({
@@ -27,30 +37,30 @@ function SignupCompletePage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const payment = params.get("payment");
-    const tier = params.get("tier");
-    const email = params.get("email");
-    const name = params.get("name");
-    const type = params.get("type") || "individual";
+    // Stripe substitutes {CHECKOUT_SESSION_ID} into the return URL. Accept the
+    // standard name and the `checkout_session_id` alias — and nothing else.
+    const sessionId = params.get("session_id") || params.get("checkout_session_id");
 
-    if (payment !== "success" || !tier || !email) {
+    if (!sessionId) {
       setStatus("error");
-      setMessage("Invalid or incomplete payment return URL. Please try signing up again.");
+      setMessage(
+        "We couldn't find a payment to verify, so no account was activated. If you have just paid, contact support with your receipt.",
+      );
       return;
     }
 
-    completeSignupAfterPayment({ email, name: name || undefined, tier, type }).then((res) => {
+    activateSubscription(sessionId).then((res) => {
       if (res.success && res.token) {
         localStorage.setItem("salesdrive_token", res.token);
         setRedirectPath(res.user?.role === "management" ? "/manager" : "/training");
         setStatus("success");
       } else {
         setStatus("error");
-        setMessage("Something went wrong creating your account. Please contact support.");
+        setMessage(res.error || "We couldn't verify that payment. Please contact support.");
       }
     }).catch(() => {
       setStatus("error");
-      setMessage("Something went wrong. Please contact support.");
+      setMessage("Something went wrong verifying your payment. Please contact support.");
     });
   }, []);
 

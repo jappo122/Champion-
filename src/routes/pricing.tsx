@@ -49,7 +49,7 @@ function PricingPage() {
         "Objection handling techniques",
         "Built-in assessments with 80% mastery threshold",
       ],
-      cta: "Get Started",
+      cta: "Subscribe",
       href: "/signup?tier=basic&type=individual",
       featured: false,
       upgradeNote: "Upgrade to Plus: +$20/mo",
@@ -66,7 +66,7 @@ function PricingPage() {
         "Hundreds of scenario questions",
         "Task assignment & tracking",
       ],
-      cta: "Get Started",
+      cta: "Subscribe",
       href: "/signup?tier=plus&type=individual",
       featured: true,
       badge: "Most Popular",
@@ -86,7 +86,7 @@ function PricingPage() {
         "Priority support",
         "Mobile access",
       ],
-      cta: "Get Started",
+      cta: "Subscribe",
       href: "/signup?tier=premium&type=individual",
       featured: false,
     },
@@ -105,7 +105,7 @@ function PricingPage() {
         "Team progress tracking",
         "Per-person add-ons at any tier",
       ],
-      cta: "Get Started",
+      cta: "Subscribe",
       href: "/checkout?tier=mgmt-basic",
       featured: false,
       upgradeNote: "Upgrade to Plus: +$20/mo",
@@ -122,7 +122,7 @@ function PricingPage() {
         "Private daily planner",
         "Per-person add-ons at any tier",
       ],
-      cta: "Get Started",
+      cta: "Subscribe",
       href: "/checkout?tier=mgmt-plus",
       featured: true,
       badge: "Most Popular",
@@ -142,7 +142,7 @@ function PricingPage() {
         "Priority support",
         "Per-person add-ons at any tier",
       ],
-      cta: "Get Started",
+      cta: "Subscribe",
       href: "/checkout?tier=mgmt-premium",
       featured: false,
     },
@@ -409,7 +409,7 @@ function ManagerCostCalculator() {
         href={`/checkout?tier=mgmt-${planTier}`}
         className="block w-full rounded-lg bg-[#e63946] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20"
       >
-        Get Started — ${total}/mo Estimated
+        Subscribe — ${total}/mo Estimated
       </a>
     </div>
   );

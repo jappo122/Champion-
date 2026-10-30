@@ -88,16 +88,9 @@ export const signup = createServerFn({ method: "POST" }).handler(
     `;
     const user = result[0] as { id: number; email: string; name: string | null; role: string };
 
-    // Create a subscription record for the new user (Demo/Free tier)
-    // Individual accounts get is_individual = TRUE
-    const startTier = role === "management" ? "plus" : "basic";
-    const billingDay = new Date().getDate();
-    const nextBilling = new Date();
-    nextBilling.setDate(nextBilling.getDate() + 30);
-    await db`
-      INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual)
-      VALUES (${user.id}, ${startTier}, ${startTier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, ${role !== "management"})
-    `;
+    // NO subscriptions row here (owner rule 2026-10-30): there is no free
+    // signup. The account is inert until a Stripe payment is verified server-side
+    // in /api/signup-complete (api/handlers.mjs → signupComplete).
 
     const token = generateToken({ userId: user.id, email: user.email, sessionToken, role: user.role });
     return { success: true, token, user: { id: user.id, email: user.email, name: user.name, role: user.role } };

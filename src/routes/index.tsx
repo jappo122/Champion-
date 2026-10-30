@@ -275,7 +275,7 @@ function AccountTypes({ t }: { t: (k: string) => string }) {
               ))}
             </ul>
             <a href="/signup" className="btn-primary mt-6 text-sm inline-block">
-              Get Started — Individual
+              Subscribe — Individual
             </a>
           </div>
 
@@ -301,7 +301,7 @@ function AccountTypes({ t }: { t: (k: string) => string }) {
               ))}
             </ul>
             <a href="/signup" className="btn-primary mt-6 text-sm inline-block">
-              Get Started — Management
+              Subscribe — Management
             </a>
           </div>
         </div>

@@ -61,10 +61,14 @@ function CheckoutPage() {
   const billingDay = new Date().getDate();
 
   const handleProceedToCheckout = () => {
-    // Build return URL for post-payment account creation
-    const returnUrl = `${window.location.origin}/signup/complete?payment=success&tier=${mgtTier}&type=management`;
+    // Return URL for post-payment activation. Stripe substitutes the real
+    // checkout session id for {CHECKOUT_SESSION_ID}; /signup/complete sends that
+    // id to the server, which verifies the payment with Stripe before activating
+    // anything. Nothing in this URL can grant access by itself.
+    const returnUrl = `${window.location.origin}/signup/complete?session_id={CHECKOUT_SESSION_ID}`;
+    const successUrl = encodeURIComponent(returnUrl).replace(/%7BCHECKOUT_SESSION_ID%7D/gi, "{CHECKOUT_SESSION_ID}");
     // Redirect to Stripe with return URL
-    window.location.href = `${stripeLink}?success_url=${encodeURIComponent(returnUrl)}`;
+    window.location.href = `${stripeLink}?success_url=${successUrl}`;
   };
 
   return (

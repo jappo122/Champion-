@@ -12,6 +12,16 @@ async function signupCall(data: { email: string; password: string; name: string;
   return res.json();
 }
 import { SiteHeader } from "~/components/site-header";
+import { isTokenValid, decodeToken } from "~/lib/client-auth";
+
+// Owner rule (2026-10-30): there is no free signup. Submitting this form creates
+// the account RECORD only — it carries no subscription and therefore no training
+// access. Access is granted in /signup/complete, and only after the server has
+// verified a paid Stripe checkout session (see api/handlers.mjs → signupComplete).
+//
+// Stripe substitutes {CHECKOUT_SESSION_ID} into the return URL it is configured
+// with; we build the same shape here so the redirect works either way.
+const RETURN_URL = "/signup/complete?session_id={CHECKOUT_SESSION_ID}";
 
 export const Route = createFileRoute("/signup/")({
   component: SignupPage,
@@ -65,30 +75,51 @@ function SignupPage() {
       return;
     }
 
-    // Create the account FIRST so the user can log in immediately
+    // Who is already signed in on this device (if anyone)? Used only to let an
+    // existing, unpaid customer reach Stripe without re-registering.
+    const existingToken = localStorage.getItem("salesdrive_token");
+    const signedInEmail = (() => {
+      if (!existingToken || !isTokenValid(existingToken)) return "";
+      const payload = decodeToken(existingToken) as { email?: string } | null;
+      return String(payload?.email || "").trim().toLowerCase();
+    })();
+
     try {
       const result = await signupCall({ email: emailClean, password, name: name.trim(), role: accountType });
-      if (!result.success) {
+      if (result.success) {
+        // The account record exists so the details they typed are not lost — it
+        // is INERT: no subscription row, so the gate still denies all training.
+        if (result.token) localStorage.setItem("salesdrive_token", result.token);
+      } else if (result.alreadyExists) {
+        // Already registered. Only the owner of that email may continue to pay
+        // for it; otherwise point them at sign-in instead.
+        if (signedInEmail !== emailClean) {
+          setError("An account with this email already exists. Sign in, then choose a plan to subscribe.");
+          setLoading(false);
+          return;
+        }
+      } else {
         setError(result.error || "Could not create account");
         setLoading(false);
         return;
       }
-      // Store the token so they're logged in after payment
-      localStorage.setItem("salesdrive_token", result.token!);
     } catch {
       setError("Something went wrong creating your account");
       setLoading(false);
       return;
     }
 
+    const returnUrl = `${window.location.origin}${RETURN_URL}`;
+    // Keep the {CHECKOUT_SESSION_ID} placeholder literal — Stripe substitutes it.
+    const successUrl = encodeURIComponent(returnUrl).replace(/%7BCHECKOUT_SESSION_ID%7D/gi, "{CHECKOUT_SESSION_ID}");
+
     if (accountType === "individual") {
       // Individual flow: redirect to Stripe payment
       const stripeLink = INDIVIDUAL_STRIPE_LINKS[selectedTier] || INDIVIDUAL_STRIPE_LINKS.basic;
-      const returnUrl = `${window.location.origin}/signup/complete?payment=success&tier=${selectedTier}&email=${encodeURIComponent(emailClean)}&name=${encodeURIComponent(name.trim())}&type=individual`;
-      window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(emailClean)}&success_url=${encodeURIComponent(returnUrl)}`;
+      window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(emailClean)}&success_url=${successUrl}`;
     } else {
       // Management flow: redirect to checkout page with tier pre-selected
-      window.location.href = `/checkout?tier=mgmt-${selectedTier}`;
+      window.location.href = `/checkout?tier=mgmt-${selectedTier}&email=${encodeURIComponent(emailClean)}`;
     }
     setLoading(false);
   };
@@ -107,8 +138,10 @@ function SignupPage() {
       <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="w-full max-w-md">
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-          <h1 className="text-2xl font-bold text-white">{t('auth.signUp')}</h1>
-          <p className="mt-2 text-sm text-gray-400">{t('auth.join')}</p>
+          <h1 className="text-2xl font-bold text-white">Start Your Subscription</h1>
+          <p className="mt-2 text-sm text-gray-400">
+            Create your account, then complete payment. Training access unlocks as soon as Stripe confirms your payment.
+          </p>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* Account Type */}
             <div>
@@ -230,7 +263,7 @@ function SignupPage() {
             )}
             {accountType === "individual" && (
               <p className="text-xs text-gray-600">
-                You'll be redirected to Stripe to complete your {selectedTier} plan payment ({tierPrices[selectedTier]}). Your account will be created after payment.
+                You'll be redirected to Stripe to pay for your {selectedTier} plan ({tierPrices[selectedTier]}). Training access unlocks the moment Stripe confirms the payment — there is no free tier.
               </p>
             )}
             <button

@@ -5,7 +5,7 @@ export const translations: Record<string, string> = {
   "nav.features": "Features",
   "nav.pricing": "Pricing",
   "nav.signIn": "Sign In",
-  "nav.getStarted": "Get Started",
+  "nav.getStarted": "Subscribe",
   "nav.backToCourses": "Back to Courses",
   "nav.signOut": "Sign Out",
 
@@ -103,11 +103,11 @@ export const translations: Record<string, string> = {
   "pricing.basePlus": "base + per person",
 
   // ── Waitlist ──────────────────────────────────────────────────────────────
-  "waitlist.title": "Ready to Get Started?",
+  "waitlist.title": "Ready to Subscribe?",
   "waitlist.desc": "Ready to master the automotive sales process? Whether you're a seasoned pro or just starting out, our proven system will help you close more deals.",
   "waitlist.email": "Enter your email",
-  "waitlist.cta": "Join Now",
-  "waitlist.privacy": "No spam, ever. Start learning immediately.",
+  "waitlist.cta": "Subscribe Now",
+  "waitlist.privacy": "No spam, ever. Cancel anytime.",
   "waitlist.success": "Welcome Aboard! Check your email for login details.",
 
   // ── Footer ────────────────────────────────────────────────────────────────
@@ -116,10 +116,10 @@ export const translations: Record<string, string> = {
   "footer.training": "Training",
   "footer.features": "Features",
   "footer.pricing": "Pricing",
-  "footer.waitlist": "Get Started",
+  "footer.waitlist": "Subscribe",
   "footer.manager": "Manager Dashboard",
   "footer.signIn": "Sign In",
-  "footer.signUp": "Sign Up",
+  "footer.signUp": "Subscribe",
 
   // ── Training ──────────────────────────────────────────────────────────────
   "training.hero.title": "Master the Sales Process",
@@ -153,7 +153,7 @@ export const translations: Record<string, string> = {
 
   // ── Auth ──────────────────────────────────────────────────────────────────
   "auth.signIn": "Sign In",
-  "auth.signUp": "Sign Up",
+  "auth.signUp": "Subscribe",
   "auth.email": "Email",
   "auth.password": "Password",
   "auth.name": "Full name",
