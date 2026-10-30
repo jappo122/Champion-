@@ -4,8 +4,14 @@
 // Each handler: async (data) => result — the wire format is POST {data: {...}},
 // matching the original createServerFn call sites (they sent { data: args }).
 import { createHash, randomBytes } from "node:crypto";
-// Single source of truth for pricing (src/lib/pricing.ts). Both API layers load
-// it too, so the price a customer reads is the price the server enforces.
+// Single source of truth for pricing. The source lives in src/lib/pricing.ts;
+// api/pricing.mjs is that exact file transpiled to plain ESM by the build (see
+// vercel.json buildCommand), so the prices the customer reads and the prices the
+// server enforces cannot drift.
+//
+// IMPORTANT: import the .mjs copy, never the .ts source. Vercel's file tracing
+// does not ship src/**/*.ts inside the function bundle, so importing the .ts
+// path at runtime fails with ERR_MODULE_NOT_FOUND and every route 500s.
 import {
   TERM_DAYS,
   TIER_PRICES,
@@ -17,7 +23,7 @@ import {
   termEndsAt,
   priceForTier,
   stripeLinkForTier,
-} from "../src/lib/pricing.ts";
+} from "./pricing.mjs";
 
 const getSecret = () => process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
 
