@@ -485,7 +485,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
       period: t('pricing.basePlus'),
       description: t('pricing.management.desc'),
       perPerson: t('pricing.perPerson'),
-      range: "$149–$189",
+      range: "$224–$264",
       features: [
         t('pricing.mgmtBasic.feature1'), t('pricing.mgmtBasic.feature2'),
         t('pricing.mgmtBasic.feature3'), t('pricing.mgmtBasic.feature4'),
@@ -502,7 +502,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
       period: t('pricing.basePlus'),
       description: t('pricing.management.desc'),
       perPerson: t('pricing.perPerson'),
-      range: "$149–$189",
+      range: "$224–$264",
       features: [
         t('pricing.mgmtPlus.feature1'), t('pricing.mgmtPlus.feature2'),
         t('pricing.mgmtPlus.feature3'), t('pricing.mgmtPlus.feature4'),
@@ -519,7 +519,7 @@ function Pricing({ t }: { t: (k: string) => string }) {
       period: t('pricing.basePlus'),
       description: t('pricing.management.desc'),
       perPerson: t('pricing.perPerson'),
-      range: "$149–$189",
+      range: "$224–$264",
       features: [
         t('pricing.mgmtPremium.feature1'), t('pricing.mgmtPremium.feature2'),
         t('pricing.mgmtPremium.feature3'), t('pricing.mgmtPremium.feature4'),

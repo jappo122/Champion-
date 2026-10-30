@@ -2,18 +2,16 @@ import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
+import { TERM_DAYS, TIER_PRICES, stripeLinkForTier } from "~/lib/pricing";
 
 // ── Stripe payment links for management tiers ──────────────────────────────
-
-const STRIPE_LINKS: Record<string, string> = {
-  "mgmt-basic": "https://buy.stripe.com/9B6fZhcP4eHqeXM43t8Vi0f",
-  "mgmt-plus": "https://buy.stripe.com/fZu5kDeXc2YIeXM8jJ8Vi0g",
-  "mgmt-premium": "https://buy.stripe.com/8x214n7uKaraaHw9nN8Vi0h",
-};
+// ONE-TIME 90-DAY TERMS. The links live in src/lib/pricing.ts (single source of
+// truth) — the same three links and the same three prices serve individual
+// accounts, management accounts and salesperson seats.
 
 const TIER_DETAILS: Record<string, { price: number; label: string; features: string[] }> = {
   "mgmt-basic": {
-    price: 149,
+    price: TIER_PRICES.basic,
     label: "Management Basic",
     features: [
       "Add & remove salespeople",
@@ -22,7 +20,7 @@ const TIER_DETAILS: Record<string, { price: number; label: string; features: str
     ],
   },
   "mgmt-plus": {
-    price: 169,
+    price: TIER_PRICES.plus,
     label: "Management Plus",
     features: [
       "Everything in Basic",
@@ -31,7 +29,7 @@ const TIER_DETAILS: Record<string, { price: number; label: string; features: str
     ],
   },
   "mgmt-premium": {
-    price: 189,
+    price: TIER_PRICES.premium,
     label: "Management Premium",
     features: [
       "Everything in Plus",
@@ -57,8 +55,7 @@ function CheckoutPage() {
   const [agreeBilling, setAgreeBilling] = useState(false);
 
   const mgtInfo = TIER_DETAILS[mgtTier] || TIER_DETAILS["mgmt-plus"];
-  const stripeLink = STRIPE_LINKS[mgtTier] || STRIPE_LINKS["mgmt-plus"];
-  const billingDay = new Date().getDate();
+  const stripeLink = stripeLinkForTier(mgtTier.replace(/^mgmt-/, ""));
 
   const handleProceedToCheckout = () => {
     // Return URL for post-payment activation. Stripe substitutes the real
@@ -110,7 +107,7 @@ function CheckoutPage() {
                       </div>
                       <div className="text-right">
                         <span className="text-2xl font-extrabold text-white">${info.price}</span>
-                        <span className="text-sm text-gray-500">/mo</span>
+                        <span className="text-sm text-gray-500"> one-time / {TERM_DAYS} days</span>
                       </div>
                     </div>
                     {isSelected && (
@@ -144,10 +141,10 @@ function CheckoutPage() {
             <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="text-sm text-gray-400">{mgtInfo.label} — base fee</p>
-                  <p className="text-xs text-gray-600 mt-0.5">Charged on day {billingDay} of each month</p>
+                  <p className="text-sm text-gray-400">{mgtInfo.label} — one-time base fee</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{TERM_DAYS} days of access from the day your payment clears</p>
                 </div>
-                <span className="text-2xl font-extrabold text-white">${mgtInfo.price}<span className="text-sm text-gray-500">/mo</span></span>
+                <span className="text-2xl font-extrabold text-white">${mgtInfo.price}<span className="text-sm text-gray-500"> one-time</span></span>
               </div>
             </div>
 
@@ -162,12 +159,12 @@ function CheckoutPage() {
                 <div>
                   <h3 className="text-sm font-semibold text-white">Add Salespeople After Signup</h3>
                   <p className="mt-1 text-sm text-gray-400">
-                    After checkout, you'll be able to add salespeople from your manager dashboard. Each salesperson is billed separately at <strong className="text-white">$149–$189/mo</strong> depending on their tier.
+                    After checkout, you'll be able to add salespeople from your manager dashboard. Each seat is a one-time charge for its own {TERM_DAYS}-day term at <strong className="text-white">${TIER_PRICES.basic}–${TIER_PRICES.premium}</strong> depending on their tier.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                    <span className="rounded-full border border-[#1a2d4a] px-2.5 py-1 text-gray-400">Basic: $149/mo</span>
-                    <span className="rounded-full border border-[#1a2d4a] px-2.5 py-1 text-gray-400">Plus: $169/mo</span>
-                    <span className="rounded-full border border-[#1a2d4a] px-2.5 py-1 text-gray-400">Premium: $189/mo</span>
+                    <span className="rounded-full border border-[#1a2d4a] px-2.5 py-1 text-gray-400">Basic: ${TIER_PRICES.basic} one-time</span>
+                    <span className="rounded-full border border-[#1a2d4a] px-2.5 py-1 text-gray-400">Plus: ${TIER_PRICES.plus} one-time</span>
+                    <span className="rounded-full border border-[#1a2d4a] px-2.5 py-1 text-gray-400">Premium: ${TIER_PRICES.premium} one-time</span>
                   </div>
                 </div>
               </div>
@@ -192,15 +189,15 @@ function CheckoutPage() {
             {/* Final summary */}
             <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6 space-y-4">
               <div className="flex justify-between">
-                <span className="text-gray-400">{mgtInfo.label} base plan</span>
-                <span className="text-white font-medium">${mgtInfo.price}/mo</span>
+                <span className="text-gray-400">{mgtInfo.label} base plan (one-time)</span>
+                <span className="text-white font-medium">${mgtInfo.price}</span>
               </div>
               <div className="border-t border-[#1a2d4a] pt-3 flex justify-between">
-                <span className="text-white font-bold">You'll be charged</span>
-                <span className="text-[#e63946] text-xl font-extrabold">${mgtInfo.price}<span className="text-sm">/mo</span></span>
+                <span className="text-white font-bold">You'll be charged today</span>
+                <span className="text-[#e63946] text-xl font-extrabold">${mgtInfo.price}<span className="text-sm"> one-time</span></span>
               </div>
               <p className="text-xs text-gray-600">
-                Additional salespeople: $149–$189/mo each (added after signup from your dashboard). Charged on the same day each month. Cancel anytime.
+                Covers {TERM_DAYS} days of access from the day your payment clears. Additional salespeople are ${TIER_PRICES.basic}–${TIER_PRICES.premium} one-time each for their own {TERM_DAYS}-day term (added after signup from your dashboard). Nothing renews automatically.
               </p>
             </div>
 
@@ -213,7 +210,7 @@ function CheckoutPage() {
                 className="mt-1 h-4 w-4 shrink-0 accent-[#e63946]"
               />
               <span className="text-sm text-gray-400">
-                I agree to be automatically charged ${mgtInfo.price} every 30 days. I understand I can cancel anytime from my profile dashboard after my account is created.
+                I understand this is a one-time payment of ${mgtInfo.price} for {TERM_DAYS} days of access. There is no recurring charge and my access ends when the {TERM_DAYS}-day term ends.
               </span>
             </label>
 
@@ -226,7 +223,7 @@ function CheckoutPage() {
                 disabled={!agreeBilling}
                 className="flex-1 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Proceed to Secure Checkout — ${mgtInfo.price}/mo
+                Proceed to Secure Checkout — ${mgtInfo.price} One-Time
               </button>
             </div>
 

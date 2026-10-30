@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation, LanguageSwitcher } from "~/i18n";
 import { SiteHeader } from "~/components/site-header";
+import { TERM_DAYS, TIER_PRICES, PRICE_RANGE } from "~/lib/pricing";
 
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
@@ -21,44 +22,40 @@ interface Tier {
   upgradeNote?: string;
 }
 
-// Per-salesperson add-on rates for management accounts
-const PER_PERSON_RATES: Record<string, number> = {
-  basic: 149,
-  plus: 169,
-  premium: 189,
-};
+// ONE-TIME 90-DAY TERMS: the same three prices apply to individual accounts,
+// management accounts and every salesperson seat. Nothing is billed monthly.
+// All numbers come from src/lib/pricing.ts.
+const PER_PERSON_RATES: Record<string, number> = TIER_PRICES;
 
-// Base management fees
-const BASE_MGMT_RATES: Record<string, number> = {
-  basic: 149,
-  plus: 169,
-  premium: 189,
-};
+// Base management fees — identical to the individual prices.
+const BASE_MGMT_RATES: Record<string, number> = TIER_PRICES;
+
+const PERIOD_LABEL = `one-time / ${TERM_DAYS} days`;
 
 function PricingPage() {
   const individualTiers: Tier[] = [
     {
       id: "individual-basic",
       name: "Basic",
-      price: 149,
-      period: "/mo per student",
-      description: "Complete training: 5-min modules, objection handling, interactive quizzes with 80% mastery threshold.",
+      price: TIER_PRICES.basic,
+      period: PERIOD_LABEL,
+      description: `Complete training: 5-min modules, objection handling, interactive quizzes with 80% mastery threshold. ${TERM_DAYS} days of access.`,
       features: [
         "Complete training library",
         "5-minute micro-learning modules",
         "Objection handling techniques",
         "Built-in assessments with 80% mastery threshold",
       ],
-      cta: "Subscribe",
+      cta: "Buy 90-day access",
       href: "/signup?tier=basic&type=individual",
       featured: false,
-      upgradeNote: "Upgrade to Plus: +$20/mo",
+      upgradeNote: `Upgrade to Plus: ${TIER_PRICES.plus} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "individual-plus",
       name: "Plus",
-      price: 169,
-      period: "/mo per student",
+      price: TIER_PRICES.plus,
+      period: PERIOD_LABEL,
       description: "Everything in Basic plus manager-level tools and scenario practice.",
       features: [
         "Everything in Basic",
@@ -66,17 +63,17 @@ function PricingPage() {
         "Hundreds of scenario questions",
         "Task assignment & tracking",
       ],
-      cta: "Subscribe",
+      cta: "Buy 90-day access",
       href: "/signup?tier=plus&type=individual",
       featured: true,
       badge: "Most Popular",
-      upgradeNote: "Upgrade to Premium: +$20/mo",
+      upgradeNote: `Upgrade to Premium: ${TIER_PRICES.premium} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "individual-premium",
       name: "Premium",
-      price: 189,
-      period: "/mo per student",
+      price: TIER_PRICES.premium,
+      period: PERIOD_LABEL,
       description: "Everything in Plus plus analytics, goal tracking, and priority support.",
       features: [
         "Everything in Plus",
@@ -86,7 +83,7 @@ function PricingPage() {
         "Priority support",
         "Mobile access",
       ],
-      cta: "Subscribe",
+      cta: "Buy 90-day access",
       href: "/signup?tier=premium&type=individual",
       featured: false,
     },
@@ -96,43 +93,43 @@ function PricingPage() {
     {
       id: "mgmt-basic",
       name: "Management Basic",
-      price: 149,
-      period: "/mo base + per person",
+      price: TIER_PRICES.basic,
+      period: PERIOD_LABEL,
       description: "Add and manage your sales team with progress tracking.",
       features: [
         "Add & remove salespeople",
         "Monitor course completion",
         "Team progress tracking",
-        "Per-person add-ons at any tier",
+        "Salesperson seats at any tier",
       ],
-      cta: "Subscribe",
+      cta: "Buy 90-day access",
       href: "/checkout?tier=mgmt-basic",
       featured: false,
-      upgradeNote: "Upgrade to Plus: +$20/mo",
+      upgradeNote: `Upgrade to Plus: ${TIER_PRICES.plus} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "mgmt-plus",
       name: "Management Plus",
-      price: 169,
-      period: "/mo base + per person",
+      price: TIER_PRICES.plus,
+      period: PERIOD_LABEL,
       description: "Everything in Basic plus task assignments and private daily planner.",
       features: [
         "Everything in Management Basic",
         "Assign tasks & modules by skill gap",
         "Private daily planner",
-        "Per-person add-ons at any tier",
+        "Salesperson seats at any tier",
       ],
-      cta: "Subscribe",
+      cta: "Buy 90-day access",
       href: "/checkout?tier=mgmt-plus",
       featured: true,
       badge: "Most Popular",
-      upgradeNote: "Upgrade to Premium: +$20/mo",
+      upgradeNote: `Upgrade to Premium: ${TIER_PRICES.premium} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "mgmt-premium",
       name: "Management Premium",
-      price: 189,
-      period: "/mo base + per person",
+      price: TIER_PRICES.premium,
+      period: PERIOD_LABEL,
       description: "Everything in Plus plus full planner, goal tracking, and priority support.",
       features: [
         "Everything in Management Plus",
@@ -140,9 +137,9 @@ function PricingPage() {
         "Full team calendar access",
         "Goal tracking & analytics",
         "Priority support",
-        "Per-person add-ons at any tier",
+        "Salesperson seats at any tier",
       ],
-      cta: "Subscribe",
+      cta: "Buy 90-day access",
       href: "/checkout?tier=mgmt-premium",
       featured: false,
     },
@@ -206,7 +203,7 @@ function PricingPage() {
             Simple, Transparent Pricing
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
-            Choose the plan that fits your dealership. Every plan includes full access to the Champion Sales Training platform. Works for both individual salespeople and management accounts.
+            One-time payment, {TERM_DAYS} days of full access ({PRICE_RANGE}). No subscription, no automatic renewal — your access simply ends when your {TERM_DAYS}-day term does. Works for both individual salespeople and management accounts.
           </p>
         </div>
       </section>
@@ -245,33 +242,33 @@ function PricingPage() {
       <section className="px-4 pb-16">
         <div className="mx-auto max-w-3xl">
           <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-            <h2 className="text-xl font-bold text-white text-center mb-2">Per-Salesperson Add-On Rates</h2>
+            <h2 className="text-xl font-bold text-white text-center mb-2">Salesperson Seat Rates</h2>
             <p className="text-sm text-gray-400 text-center mb-6">
-              Management accounts can add salespeople at any tier. Each salesperson gets their own training access.
+              Management accounts can add salespeople at any tier. Each seat is a one-time {TERM_DAYS}-day term of its own — there is no per-month charge.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-[#1a2d4a]">
                     <th className="py-3 pr-4 text-gray-400 font-medium">Tier</th>
-                    <th className="py-3 pr-4 text-gray-400 font-medium">Rate per person</th>
+                    <th className="py-3 pr-4 text-gray-400 font-medium">One-time per seat</th>
                     <th className="py-3 text-gray-400 font-medium">Includes</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-300">
                   <tr className="border-b border-[#1a2d4a]/50">
                     <td className="py-3 pr-4">Basic</td>
-                    <td className="py-3 pr-4 font-semibold text-white">$149/mo</td>
+                    <td className="py-3 pr-4 font-semibold text-white">${TIER_PRICES.basic} / {TERM_DAYS} days</td>
                     <td className="py-3 text-gray-400">Complete training, 5-min modules, quizzes with 80% mastery</td>
                   </tr>
                   <tr className="border-b border-[#1a2d4a]/50">
                     <td className="py-3 pr-4">Plus</td>
-                    <td className="py-3 pr-4 font-semibold text-white">$169/mo</td>
+                    <td className="py-3 pr-4 font-semibold text-white">${TIER_PRICES.plus} / {TERM_DAYS} days</td>
                     <td className="py-3 text-gray-400">Basic + manager modules, scenario questions, task assignment</td>
                   </tr>
                   <tr>
                     <td className="py-3 pr-4">Premium</td>
-                    <td className="py-3 pr-4 font-semibold text-white">$189/mo</td>
+                    <td className="py-3 pr-4 font-semibold text-white">${TIER_PRICES.premium} / {TERM_DAYS} days</td>
                     <td className="py-3 text-gray-400">Plus + sales log, goal tracking, full analytics, mobile access</td>
                   </tr>
                 </tbody>
@@ -285,9 +282,9 @@ function PricingPage() {
       <section className="px-4 pb-16">
         <div className="mx-auto max-w-3xl">
           <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-            <h2 className="text-xl font-bold text-white text-center mb-2">Manager Cost Calculator</h2>
+            <h2 className="text-xl font-bold text-white text-center mb-2">Team Cost Calculator</h2>
             <p className="text-sm text-gray-400 text-center mb-6">
-              Estimate your monthly total based on your plan and team size.
+              Estimate your one-time total for a {TERM_DAYS}-day term based on your plan and team size.
             </p>
             <ManagerCostCalculator />
           </div>
@@ -307,7 +304,7 @@ function PricingPage() {
             <a href="/support" className="text-[#e63946] hover:underline">Support page</a>.
           </p>
           <p className="mt-3 text-xs text-gray-600">
-            All plans auto-renew every 30 days. Cancel anytime from your profile dashboard. Works for any type of account — individual or management.
+            Every plan is a one-time payment for {TERM_DAYS} days of access. There is no automatic renewal and nothing is charged for a 90-day term — when your term ends, buy another term if you want to continue. Works for any type of account — individual or management.
           </p>
         </div>
       </section>
@@ -320,8 +317,8 @@ function ManagerCostCalculator() {
   const [salespersonTier, setSalespersonTier] = useState("basic");
   const [salespeople, setSalespeople] = useState(3);
 
-  const baseFee = BASE_MGMT_RATES[planTier] || 149;
-  const perPersonRate = PER_PERSON_RATES[salespersonTier] || 149;
+  const baseFee = BASE_MGMT_RATES[planTier] || TIER_PRICES.basic;
+  const perPersonRate = PER_PERSON_RATES[salespersonTier] || TIER_PRICES.basic;
   const totalPerPerson = perPersonRate * salespeople;
   const total = baseFee + totalPerPerson;
 
@@ -390,18 +387,18 @@ function ManagerCostCalculator() {
       {/* Calculation breakdown */}
       <div className="rounded-lg bg-[#0a1628] p-5 space-y-3">
         <div className="flex justify-between text-sm">
-          <span className="text-gray-400">Base management fee</span>
-          <span className="text-white font-medium">${baseFee}/mo</span>
+          <span className="text-gray-400">Base management fee (one-time)</span>
+          <span className="text-white font-medium">${baseFee}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-gray-400">
-            {salespeople} salespeople × ${perPersonRate}/mo
+            {salespeople} salespeople × ${perPersonRate} one-time
           </span>
-          <span className="text-white font-medium">${totalPerPerson}/mo</span>
+          <span className="text-white font-medium">${totalPerPerson}</span>
         </div>
         <div className="border-t border-[#1a2d4a] pt-3 flex justify-between">
-          <span className="text-white font-semibold">Estimated Monthly Total</span>
-          <span className="text-[#e63946] text-xl font-extrabold">${total}/mo</span>
+          <span className="text-white font-semibold">One-time total for {TERM_DAYS} days</span>
+          <span className="text-[#e63946] text-xl font-extrabold">${total}</span>
         </div>
       </div>
 
@@ -409,7 +406,7 @@ function ManagerCostCalculator() {
         href={`/checkout?tier=mgmt-${planTier}`}
         className="block w-full rounded-lg bg-[#e63946] px-6 py-3 text-center text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20"
       >
-        Subscribe — ${total}/mo Estimated
+        Buy {TERM_DAYS}-Day Access — ${total} One-Time
       </a>
     </div>
   );

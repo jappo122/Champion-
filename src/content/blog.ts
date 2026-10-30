@@ -284,7 +284,7 @@ Once you know what they need, present the vehicle that fits. Don't show them eve
 - Let them touch, sit in, and explore the vehicle
 - Limit choices to 2-3 vehicles max
 
-**The FAB method:** "This vehicle has X feature (Feature), which means it's more efficient (Advantage), which saves you $50/month on gas (Benefit)."
+**The FAB method:** "This vehicle has X feature (Feature), which means it's more efficient (Advantage), which saves you $50 one-timenth on gas (Benefit)."
 
 ---
 
@@ -608,7 +608,7 @@ Champion Sales Training & Events provides everything a dealership needs to reduc
 - **Interactive assessments** to reinforce learning
 - **Mobile-friendly** — train on any device
 
-**Pricing starts at just $109 per person per month** — less than what you're losing to turnover every single week.
+**Pricing starts at just $109 per person for a 90-day term** — less than what you're losing to turnover every single week.
 
 [See our plans](/signup) and start building a team that stays.`,
 
@@ -679,7 +679,7 @@ Before adjusting price, reinforce value:
 
 Based on what you've learned, offer the right path:
 
-- **Budget reality?** → "Let's look at financing options to get the payment where it needs to be. At 72 months, we're at $X/month."
+- **Budget reality?** → "Let's look at financing options to get the payment where it needs to be. At 72 months, we're at $X one-timenth."
 - **Value gap?** → "Let me show you the total cost of ownership comparison. The cheaper car actually costs more over 5 years."
 - **Negotiation tactic?** → Use the Sharp Angle Close: "If I can get to $X, will you take it home today?"
 - **Smokescreen?** → "It sounds like price isn't the only concern. What else is on your mind?"
@@ -1060,7 +1060,7 @@ This psychologically powerful pattern handles emotional objections by validating
 > "I understand how you **feel**. A lot of my customers have **felt** the same way. But what they **found** was..."
 
 **Example — handling price anxiety:**
-> "I understand how you feel — this is a big financial decision. A lot of my customers have felt the same way when looking at this model. But what they found was that the fuel savings alone offset $80/month, and the resale value after 5 years is the highest in its class. When you look at total cost of ownership, it's actually one of the most affordable options."
+> "I understand how you feel — this is a big financial decision. A lot of my customers have felt the same way when looking at this model. But what they found was that the fuel savings alone offset $80 one-timenth, and the resale value after 5 years is the highest in its class. When you look at total cost of ownership, it's actually one of the most affordable options."
 
 ---
 
@@ -1174,13 +1174,13 @@ Here's why every dealership needs a formal sales training program — and how to
 
 ## The Real Cost of No Training
 
-Let's put numbers to the problem. Assume a mid-size dealership with 10 salespeople, selling 100 units/month at $1,800 average gross.
+Let's put numbers to the problem. Assume a mid-size dealership with 10 salespeople, selling 100 units one-timenth at $1,800 average gross.
 
 | | Without Training | With Training | Difference |
 |---|---|---|---|
 | Avg closing rate | 12% | 19% | +7 points |
 | Avg gross per deal | $1,800 | $2,300 | +$500 |
-| Deals/salesperson/month | 10 | 12 | +2 |
+| Deals/salesperson one-timenth | 10 | 12 | +2 |
 | Monthly gross profit | $180,000 | $276,000 | **+$96,000** |
 | Annual gross profit | $2.16M | $3.31M | **+$1.15M** |
 | Salesperson turnover | 67% | 35% | -32 points |
@@ -1271,8 +1271,8 @@ We built our platform specifically for automotive dealerships:
 - ✅ Task assignment by skill gap
 - ✅ 20 language support
 - ✅ Mobile-first design
-- ✅ Plans from $109/mo per student
-- ✅ Management plans starting at $149/mo
+- ✅ Plans from $224 per student
+- ✅ Management plans starting at $224 one-time
 
 ---
 
@@ -1520,7 +1520,7 @@ The biggest untapped revenue in car sales isn't on the lot. It's in your CRM.
 
 Every contact adds value. Never "just checking in."
 
-For a rep taking 20 ups at 15% close: 3 deals. With this follow-up: 6-7 deals. At $400 commission per, that's an extra $1,600/month. The fortune is in the follow-up.
+For a rep taking 20 ups at 15% close: 3 deals. With this follow-up: 6-7 deals. At $400 commission per, that's an extra $1,600 one-timenth. The fortune is in the follow-up.
 
 ---
 
@@ -1641,14 +1641,14 @@ Your entire team can train in their native language — including Spanish, Arabi
 We built our pricing around one principle: training should pay for itself in the first month.
 
 **Individual Plans:**
-- Basic ($149/mo) — Full video training, quizzes, objection handling
-- Plus ($169/mo) — Adds manager modules, scenario questions, task assignment
-- Premium ($189/mo) — Adds sales log, goal tracking, mobile access, priority support
+- Basic ($224 one-time) — Full video training, quizzes, objection handling
+- Plus ($244 one-time) — Adds manager modules, scenario questions, task assignment
+- Premium ($264 one-time) — Adds sales log, goal tracking, mobile access, priority support
 
 **Management Plans:**
-- Basic ($149/mo base) — Track team progress, add/remove salespeople
-- Plus ($169/mo base) — Assign tasks, private daily planner
-- Premium ($189/mo base) — Full sales log, daily planner, priority onboarding
+- Basic ($224 one-time) — Track team progress, add/remove salespeople
+- Plus ($244 one-time) — Assign tasks, private daily planner
+- Premium ($264 one-time) — Full sales log, daily planner, priority onboarding
 
 Add salespeople at the individual tier — or upgrade everyone to Premium for the full platform experience.
 
@@ -1793,7 +1793,7 @@ While salespeople train, managers get real-time visibility:
 | **Retention** | ~20-30% after 1 week | ~80%+ with spaced repetition |
 | **Completion** | 100% attend, 20% apply | 90%+ complete, 90%+ apply |
 | **Manager visibility** | None — "How'd it go?" is the best you get | Full dashboard with scores, gaps, and trends |
-| **Cost** | $2,000-5,000 per seminar (plus lost sales time) | $149-189/month per person |
+| **Cost** | $2,000-5,000 per seminar (plus lost sales time) | $224-264 one-timenth per person |
 | **Reinforcement** | None | Built-in quizzes, drills, and refresher modules |
 | **Language support** | English only (usually) | 20 languages |
 
@@ -1865,7 +1865,7 @@ A typical dealership training seminar looks like this:
 
 Champion Sales Training takes a fundamentally different approach:
 
-- **Cost:** $149-189 per person per month
+- **Cost:** $224-264 per person for a 90-day term
 - **Format:** 2-minute modules, anytime, any device
 - **Content:** 10 courses, 62 lessons, 153 quiz questions — all automotive-specific
 - **Follow-up:** Built-in — spaced repetition, skill drills, and manager assignments
@@ -1889,7 +1889,7 @@ Champion Sales Training takes a fundamentally different approach:
 
 | | Traditional Seminar | Champion Sales Training |
 |---|---|---|
-| **Initial cost** | $2,000-5,000 (one day) | $149-189/person/month |
+| **Initial cost** | $2,000-5,000 (one day) | $224-264/person one-timenth |
 | **Annual cost (10 reps)** | $2,000-5,000 (if done once) | $17,880-22,680 (continuous) |
 | **Training hours/year** | 6-8 hours (once) | ~52 hours (10 min/day) |
 | **Retention rate** | ~20-30% | ~80%+ |
@@ -2284,9 +2284,9 @@ Some dealerships offer a small base salary or a draw against commission, but the
 
 Earnings in car sales are not a single number — they're a range that depends almost entirely on you.
 
-**Entry level (0-6 months):** New salespeople who are learning the process typically sell 6-8 cars per month. At that volume, annual income is often in the $35,000-$50,000 range, depending on the brand and pay plan.
+**Entry level (0-6 months):** New salespeople who are learning the process typically sell 6-8 cars for a 90-day term. At that volume, annual income is often in the $35,000-$50,000 range, depending on the brand and pay plan.
 
-**Mid-level (1-3 years):** Once you've built a process and a repeat customer base, selling 12-15 cars per month is a reasonable target. This puts annual earnings in the $60,000-$90,000 range at most dealerships.
+**Mid-level (1-3 years):** Once you've built a process and a repeat customer base, selling 12-15 cars for a 90-day term is a reasonable target. This puts annual earnings in the $60,000-$90,000 range at most dealerships.
 
 **Top performers (3+ years):** Salespeople who have mastered their process and built a strong referral network can sell 20-30+ cars monthly. At this level, six-figure incomes are common, with top earners at high-volume or luxury dealerships reaching $150,000 or more.
 
@@ -2456,7 +2456,7 @@ When you understand their situation deeply, you can present vehicles that genuin
 
 In a down market, customers care less about the total price and more about the monthly payment. You need to be fluent in payment ranges.
 
-Before you present any vehicle, know approximately what it will cost per month at different terms and rates. When a customer says "that's too much," be ready to pivot to a different trim level or a certified pre-owned option that fits their budget.
+Before you present any vehicle, know approximately what it will cost for a 90-day term at different terms and rates. When a customer says "that's too much," be ready to pivot to a different trim level or a certified pre-owned option that fits their budget.
 
 **Key phrase:** "If we can get the payment to a number you're comfortable with, is this the vehicle you'd want?"
 
@@ -3521,7 +3521,7 @@ Key advantages to mention:
 
 Once you've explained both options, compare them side by side using the customer's actual situation:
 
-**"Based on what you've told me — you drive about 12,000 miles a year and you typically keep your cars about 4 years — here's how the numbers look. A lease would be about $X per month with $Y due at signing. Financing the same vehicle would be about $Z per month. The lease saves you about $[difference] per month, and in 3 years you'll have the option to get into a new vehicle. With financing, your payments are higher but in 5 years the vehicle is yours."**
+**"Based on what you've told me — you drive about 12,000 miles a year and you typically keep your cars about 4 years — here's how the numbers look. A lease would be about $X for a 90-day term with $Y due at signing. Financing the same vehicle would be about $Z for a 90-day term. The lease saves you about $[difference] for a 90-day term, and in 3 years you'll have the option to get into a new vehicle. With financing, your payments are higher but in 5 years the vehicle is yours."**
 
 Let them decide. Your job is to present the facts clearly, not to push one option.
 

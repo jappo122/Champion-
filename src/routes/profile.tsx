@@ -48,10 +48,10 @@ interface SubscriptionData {
 const TIER_FEATURES: Record<string, { label: string; price: number; features: string[] }> = {
   plus: {
     label: "Plus",
-    price: 169,
+    price: 244,
     features: [
       "Track team progress",
-      "Assign tasks/modules based on skill gaps",
+      "Assign tasks one-timedules based on skill gaps",
       "Add salespeople at per-person rates",
       "View team training completion",
       "Send messages to salespeople",
@@ -59,7 +59,7 @@ const TIER_FEATURES: Record<string, { label: string; price: number; features: st
   },
   premium: {
     label: "Premium",
-    price: 189,
+    price: 264,
     features: [
       "Everything in Plus",
       "Digital sales log",
@@ -266,7 +266,7 @@ function ProfileDashboard() {
       if (!token) return;
       const result = await changeTier({ data: { token, newTier } });
       if (result.success) {
-        setMessage({ type: "success", text: `Tier updated to ${result.newTier.charAt(0).toUpperCase() + result.newTier.slice(1)} ($${result.newPrice}/mo).` });
+        setMessage({ type: "success", text: `Tier updated to ${result.newTier.charAt(0).toUpperCase() + result.newTier.slice(1)} ($${result.newPrice} one-time).` });
         const subRes = await getUserSubscription({ data: { token } });
         if (subRes.success && subRes.subscription) {
           setSubscription(subRes.subscription);
@@ -296,9 +296,9 @@ function ProfileDashboard() {
       loadTeam(token);
       // Then redirect to Stripe for payment
       const STRIPE_LINKS: Record<string, string> = {
-        basic: "https://buy.stripe.com/cNibJ1bL02YI8zofMb8Vi0i",
-        plus: "https://buy.stripe.com/3cI7sL2aqbve7vkgQf8Vi0j",
-        premium: "https://buy.stripe.com/28E00j02ibveaHw43t8Vi0k",
+        basic: "https://buy.stripe.com/cNiaEX9CSbvebLAgQf8Vi0l",
+        plus: "https://buy.stripe.com/6oU00jdT8dDm3f443t8Vi0m",
+        premium: "https://buy.stripe.com/5kQ8wP6qG7eYcPE57x8Vi0n",
       };
       const stripeLink = STRIPE_LINKS[newTier] || STRIPE_LINKS.plus;
       const returnUrl = encodeURIComponent(`${window.location.origin}/profile`);
@@ -414,7 +414,7 @@ function ProfileDashboard() {
       <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6">
         <h2 className="text-lg font-bold text-white mb-4">Plan Features</h2>
         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#e63946]/10 px-4 py-1.5 text-sm font-medium text-[#e63946]">
-          {isDemo ? "Premium (Demo — All Access)" : `${tierInfo.label} — $${tierInfo.price}/mo`}
+          {isDemo ? "Premium (Demo — All Access)" : `${tierInfo.label} — $${tierInfo.price} one-time`}
         </div>
         <ul className="mt-4 space-y-3">
           {allFeatures.map((feat, i) => (
@@ -428,7 +428,7 @@ function ProfileDashboard() {
         </ul>
         {!isDemo && currentTier === "plus" && (
           <div className="mt-4 rounded-lg border border-[#f77f00]/30 bg-[#f77f00]/5 p-3 text-xs text-[#f77f00]">
-            Upgrade to Premium ($189/mo) to unlock sales log, daily planner, goal tracking, and full team calendar.
+            Upgrade to Premium ($264 one-time, 90 days) to unlock sales log, daily planner, goal tracking, and full team calendar.
           </div>
         )}
         {!isDemo && currentTier === "premium" && (
@@ -596,9 +596,9 @@ function ProfileDashboard() {
               <label className="block text-xs font-medium text-gray-400">Tier</label>
               <select value={newTier} onChange={(e) => setNewTier(e.target.value)}
                 className="mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-3 py-2 text-sm text-white outline-none focus:border-[#e63946]">
-                <option value="basic">Basic — $149/mo</option>
-                <option value="plus">Plus — $169/mo</option>
-                <option value="premium">Premium — $189/mo</option>
+                <option value="basic">Basic — $224 one-time</option>
+                <option value="plus">Plus — $244 one-time</option>
+                <option value="premium">Premium — $264 one-time</option>
               </select>
             </div>
             {addError && <div className="rounded-lg bg-[#e63946]/10 p-2 text-xs text-[#e63946]">{addError}</div>}
@@ -831,7 +831,7 @@ function ProfileDashboard() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-wider">Current Plan</p>
-                  <p className="text-lg font-bold text-white">{subscription.tierLabel} <span className="text-sm font-normal text-gray-400">(${subscription.price}/mo)</span></p>
+                  <p className="text-lg font-bold text-white">{subscription.tierLabel} <span className="text-sm font-normal text-gray-400">(${subscription.price} one-time)</span></p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-wider">Next Billing Date</p>
@@ -1037,30 +1037,30 @@ function ProfileDashboard() {
           {activeTab === "overview" && (
             <>
               <TierAbilities />
-              {/* Monthly Team Cost */}
+              {/* One-Time Team Cost */}
               {teamCost && (
                 <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-6">
-                  <h2 className="text-lg font-bold text-white mb-4">Monthly Team Cost</h2>
+                  <h2 className="text-lg font-bold text-white mb-4">One-Time Team Cost</h2>
                   <div className="space-y-3">
                     <div className="rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4">
                       <p className="text-sm font-medium text-white">Base Plan</p>
-                      <p className="text-xs text-gray-500 mt-1">${tier === "premium" ? "189" : "169"}/mo — {tier === "premium" ? "Premium" : "Plus"} Management Account</p>
+                      <p className="text-xs text-gray-500 mt-1">${tier === "premium" ? "264" : "244"} one-time — {tier === "premium" ? "Premium" : "Plus"} Management Account</p>
                     </div>
                     {Object.entries(teamCost.breakdown).map(([tierKey, info]) => (
                       <div key={tierKey} className="rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4">
                         <div className="flex items-center justify-between">
                           <div>
                             <p className="text-sm font-medium text-white capitalize">{info.count} Salesperson{info.count > 1 ? "s" : ""} — {tierKey.charAt(0).toUpperCase() + tierKey.slice(1)} Tier</p>
-                            <p className="text-xs text-gray-500 mt-1">${info.price}/mo each</p>
+                            <p className="text-xs text-gray-500 mt-1">${info.price} one-time each</p>
                           </div>
-                          <p className="text-sm font-bold text-white">${info.subtotal}/mo</p>
+                          <p className="text-sm font-bold text-white">${info.subtotal} one-time</p>
                         </div>
                       </div>
                     ))}
                     <div className="rounded-lg border border-[#e63946]/30 bg-[#e63946]/5 p-4">
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-bold text-white">Total Monthly Cost</p>
-                        <p className="text-lg font-bold text-[#e63946]">${(teamCost.total + (tier === "premium" ? 189 : 169))}/mo</p>
+                        <p className="text-sm font-bold text-white">One-Time Total</p>
+                        <p className="text-lg font-bold text-[#e63946]">${(teamCost.total + (tier === "premium" ? 264 : 244))} one-time</p>
                       </div>
                       <p className="text-xs text-gray-500 mt-1">{teamCost.count} salesperson{teamCost.count !== 1 ? "s" : ""} + base plan</p>
                     </div>
@@ -1103,7 +1103,7 @@ function ProfileDashboard() {
               <div className="space-y-4">
                 {!isDemo && subscription && (
                   <div className="rounded-lg border border-[#1a2d4a] bg-[#0a1628] p-4">
-                    <p className="text-sm font-medium text-white">Current Plan: {subscription.tierLabel} (${subscription.price}/mo)</p>
+                    <p className="text-sm font-medium text-white">Current Plan: {subscription.tierLabel} (${subscription.price} one-time)</p>
                     <p className="text-xs text-gray-500 mt-1">Next billing: {subscription.nextBillingDate ? new Date(subscription.nextBillingDate).toLocaleDateString() : "N/A"}</p>
                   </div>
                 )}

@@ -24,9 +24,9 @@ function verifyToken(token: string): Record<string, unknown> | null {
 // ── Tier info ─────────────────────────────────────
 
 const TIER_INFO: Record<string, { label: string; price: number; features: string[] }> = {
-  basic: { label: "Basic", price: 149, features: ["Complete training library", "2-min modules", "Objection handling", "Closing techniques", "Quizzes"] },
-  plus: { label: "Plus", price: 169, features: ["Everything in Basic", "Managers can assign modules on this tier and above", "Hundreds of scenario questions", "Task assignment"] },
-  premium: { label: "Premium", price: 189, features: ["You get everything from Basic and Plus", "Sales chart/log", "Goal tracking", "Gross tracking", "Manager dashboard", "Priority support"] },
+  basic: { label: "Basic", price: 224, features: ["Complete training library", "2-min modules", "Objection handling", "Closing techniques", "Quizzes"] },
+  plus: { label: "Plus", price: 244, features: ["Everything in Basic", "Managers can assign modules on this tier and above", "Hundreds of scenario questions", "Task assignment"] },
+  premium: { label: "Premium", price: 264, features: ["You get everything from Basic and Plus", "Sales chart/log", "Goal tracking", "Gross tracking", "Manager dashboard", "Priority support"] },
 };
 
 const TIER_ORDER = ["basic", "plus", "premium"];
@@ -178,7 +178,7 @@ export const changeTier = createServerFn({ method: "POST" }).handler(
         await sendEmail({
           to: [userInfo[0].email],
           subject: "Subscription Tier Updated",
-          body: `Hi ${userInfo[0].name || "there"},\n\nYour Champion Sales Training subscription has been updated to the ${TIER_INFO[data.newTier].label} tier ($${TIER_INFO[data.newTier].price}/mo). The new rate will apply on your next billing date.\n\n- Champion Sales Training Team`,
+          body: `Hi ${userInfo[0].name || "there"},\n\nYour Champion Sales Training subscription has been updated to the ${TIER_INFO[data.newTier].label} tier ($${TIER_INFO[data.newTier].price} one-time). The new rate will apply on your next billing date.\n\n- Champion Sales Training Team`,
         });
       } catch {}
     }
@@ -225,16 +225,16 @@ export const checkBillingDueSoon = createServerFn({ method: "POST" }).handler(
         
         // Get Stripe payment link based on tier
         const stripeLinks: Record<string, string> = {
-          basic: "https://buy.stripe.com/00wfZh2aq7eY02S7fF8Vi0c",
-          plus: "https://buy.stripe.com/fZudR95mC7eYbLAarR8Vi0d",
-          premium: "https://buy.stripe.com/8x2dR96qGdDm6rggQf8Vi0e",
+          basic: "https://buy.stripe.com/cNiaEX9CSbvebLAgQf8Vi0l",
+          plus: "https://buy.stripe.com/6oU00jdT8dDm3f443t8Vi0m",
+          premium: "https://buy.stripe.com/5kQ8wP6qG7eYcPE57x8Vi0n",
         };
         const paymentLink = stripeLinks[sub.tier] || stripeLinks.basic;
 
         await sendEmail({
           to: [sub.email],
           subject: `Your Champion Sales Training renewal is due soon — $${tierInfo.price}`,
-          body: `Hi ${sub.name || "there"},\n\nYour Champion Sales Training ${tierInfo.label} subscription ($${tierInfo.price}/mo) will renew on ${billingDate}.\n\nTo continue your access, please complete payment here:\n${paymentLink}\n\nIf you've already paid, please ignore this reminder.\n\n- Champion Sales Training Team`,
+          body: `Hi ${sub.name || "there"},\n\nYour Champion Sales Training ${tierInfo.label} subscription ($${tierInfo.price} one-time) will renew on ${billingDate}.\n\nTo continue your access, please complete payment here:\n${paymentLink}\n\nIf you've already paid, please ignore this reminder.\n\n- Champion Sales Training Team`,
         });
 
         // Mark reminder as sent
@@ -263,9 +263,9 @@ export const checkBillingDueSoon = createServerFn({ method: "POST" }).handler(
 export const getPaymentLink = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { tier: string } }) => {
     const stripeLinks: Record<string, string> = {
-      basic: "https://buy.stripe.com/00wfZh2aq7eY02S7fF8Vi0c",
-      plus: "https://buy.stripe.com/fZudR95mC7eYbLAarR8Vi0d",
-      premium: "https://buy.stripe.com/8x2dR96qGdDm6rggQf8Vi0e",
+      basic: "https://buy.stripe.com/cNiaEX9CSbvebLAgQf8Vi0l",
+      plus: "https://buy.stripe.com/6oU00jdT8dDm3f443t8Vi0m",
+      premium: "https://buy.stripe.com/5kQ8wP6qG7eYcPE57x8Vi0n",
     };
     return { link: stripeLinks[data.tier] || stripeLinks.basic };
   },
