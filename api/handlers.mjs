@@ -4,6 +4,20 @@
 // Each handler: async (data) => result — the wire format is POST {data: {...}},
 // matching the original createServerFn call sites (they sent { data: args }).
 import { createHash, randomBytes } from "node:crypto";
+// Single source of truth for pricing (src/lib/pricing.ts). Both API layers load
+// it too, so the price a customer reads is the price the server enforces.
+import {
+  TERM_DAYS,
+  TIER_PRICES,
+  TIER_LABELS,
+  STRIPE_LINKS,
+  PRICE_ID_TIERS,
+  AMOUNT_TIERS,
+  normalizeTier,
+  termEndsAt,
+  priceForTier,
+  stripeLinkForTier,
+} from "../src/lib/pricing.ts";
 
 const getSecret = () => process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
 
@@ -31,11 +45,16 @@ function verifyManager(token) {
 
 // ── Subscription gate ───────────────────────────────────────────────────────
 // Owner rule (2026-10): the blog is public to everyone; ALL training content
-// (courses, lessons, quizzes, Road to the Sale, progress) requires an ACTIVE
+// (courses, lessons, quizzes, Road to the Sale, progress) requires a LIVE
 // subscription. Login alone is not enough.
-// Source of truth: a row in `subscriptions` with status = 'active' for that
-// user. Demo/owner accounts bypass the row requirement so the owner can always
-// review the product.
+//
+// ACCESS MODEL (owner decision, 2026-10-30): ONE-TIME 90-DAY TERMS.
+// A row is live only when status = 'active' AND
+// (expires_at IS NULL OR expires_at > now()). Every purchase path writes an
+// explicit expires_at; a NULL expiry is reserved for the owner/demo accounts.
+// An expired row is unsubscribed: training locked, gated APIs 403.
+// Demo/owner accounts bypass both the row requirement and the expiry so the
+// owner can always review the product.
 export const DEMO_EMAILS = ["owner@champion.com", "jappo122@gmail.com", "floydsandersjr@yahoo.com"];
 export const DEMO_USER_IDS = [1];
 
@@ -48,20 +67,27 @@ export function isDemoAccount(user) {
 
 /**
  * Resolve a user's training entitlement from the database.
- * Returns { subscribed, tier, demo } — tier is the REAL tier from an active
- * subscription, or null when there is none (never a defaulted "basic").
+ * Returns { subscribed, tier, demo, expiresAt } — tier is the REAL tier from a
+ * live subscription, or null when there is none (never a defaulted "basic").
  */
 export async function getSubscriptionState(user) {
-  if (!user) return { subscribed: false, tier: null, demo: false };
-  if (isDemoAccount(user)) return { subscribed: true, tier: "premium", demo: true };
+  if (!user) return { subscribed: false, tier: null, demo: false, expiresAt: null };
+  if (isDemoAccount(user)) return { subscribed: true, tier: "premium", demo: true, expiresAt: null };
   const sql = db();
   const rows = await sql`
-    SELECT tier FROM subscriptions
-    WHERE user_id = ${Number(user.id ?? user.userId)} AND status = 'active'
+    SELECT tier, expires_at FROM subscriptions
+    WHERE user_id = ${Number(user.id ?? user.userId)}
+      AND status = 'active'
+      AND (expires_at IS NULL OR expires_at > NOW())
     ORDER BY id DESC LIMIT 1
   `;
-  if (rows.length === 0) return { subscribed: false, tier: null, demo: false };
-  return { subscribed: true, tier: rows[0].tier, demo: false };
+  if (rows.length === 0) return { subscribed: false, tier: null, demo: false, expiresAt: null };
+  return {
+    subscribed: true,
+    tier: rows[0].tier,
+    demo: false,
+    expiresAt: rows[0].expires_at ? new Date(rows[0].expires_at).toISOString() : null,
+  };
 }
 
 export const SUBSCRIPTION_REQUIRED_ERROR = "An active subscription is required to access training.";
@@ -124,7 +150,8 @@ export function httpStatusFor(result) {
 // to trusting a URL or a body field.
 
 const SIGNUP_TIERS = ["basic", "plus", "premium"];
-const AMOUNT_TIER_MAP = { 14900: "basic", 16900: "plus", 18900: "premium" };
+// One-time amounts ($224/$244/$264) and price ids come from src/lib/pricing.ts.
+const AMOUNT_TIER_MAP = AMOUNT_TIERS;
 const CHECKOUT_SESSION_ID_RE = /^cs_[A-Za-z0-9_]{4,255}$/;
 
 export const PAYMENT_NOT_CONFIGURED_ERROR =
@@ -226,10 +253,13 @@ async function fetchCheckoutSession(sessionId) {
   }
   let res;
   try {
-    res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${key}` },
-    });
+    res = await fetch(
+      `https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}?expand[]=line_items`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${key}` },
+      },
+    );
   } catch (err) {
     console.error("signup-complete: Stripe request failed:", err?.message);
     return { ok: false, status: 502, error: "Could not verify the payment with Stripe. Please try again." };
@@ -271,14 +301,23 @@ function resolvePlan(session) {
   const typeIsExplicit = rawType === "management" || rawType === "individual" || mgmtTier;
   const type = !typeIsExplicit ? null : rawType === "individual" ? "individual" : "management";
 
+  // 1) metadata.tier / metadata.plan on the session, 2) the Stripe price id of
+  // the line item, 3) the one-time amount_total. All three are Stripe's data —
+  // nothing here comes from the URL or the request body.
+  const priceId =
+    session?.line_items?.data?.[0]?.price?.id ??
+    session?.line_items?.data?.[0]?.price ??
+    session?.metadata?.price_id ??
+    null;
   const tierFromMeta = SIGNUP_TIERS.includes(rawTier.replace(/^mgmt-/, "")) ? rawTier.replace(/^mgmt-/, "") : null;
+  const tierFromPriceId = PRICE_ID_TIERS[String(priceId ?? "")] ?? null;
   const tierFromAmount = AMOUNT_TIER_MAP[Number(session?.amount_total)] ?? null;
-  let tier = tierFromMeta || tierFromAmount;
+  let tier = tierFromMeta || tierFromPriceId || tierFromAmount;
   if (!tier) {
     // A paying customer must never be left stranded: log loudly and grant the
     // entry tier. Support can raise it from the Stripe session id we store.
     console.error(
-      "signup-complete: could not determine the plan from the Stripe session (no metadata.tier, unknown amount_total).",
+      "signup-complete: could not determine the plan from the Stripe session (no metadata.tier, unknown price id, unknown amount_total).",
       "session:",
       session?.id,
       "amount_total:",
@@ -400,26 +439,28 @@ export async function signupComplete(rawBody, searchParams) {
   }
 
   const accountRole = user.role === "management" ? "management" : "individual";
-  const billingDay = new Date().getDate();
-  const nextBilling = new Date();
-  nextBilling.setDate(nextBilling.getDate() + 30);
+  // ONE-TIME 90-DAY TERM: the paid term ends exactly 90×24h after this moment.
+  const expiresAt = termEndsAt(new Date());
 
   const activeRows = await sql`
     SELECT id FROM subscriptions WHERE user_id = ${user.id} AND status = 'active' ORDER BY id DESC LIMIT 1
   `;
   if (activeRows.length > 0) {
+    // A returning customer buying a fresh term: this payment starts a new
+    // 90-day term from now. Replays never reach here — the idempotency check
+    // above returns the existing account for the same checkout session.
     await sql`
       UPDATE subscriptions
       SET plan = ${tier}, tier = ${tier}, status = 'active',
           stripe_subscription_id = ${idempotencyKey},
-          next_billing_date = ${nextBilling.toISOString()}, billing_day = ${billingDay},
+          expires_at = ${expiresAt.toISOString()}, started_at = NOW(),
           is_individual = ${accountRole !== "management"}
       WHERE id = ${activeRows[0].id}
     `;
   } else {
     await sql`
-      INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual, stripe_subscription_id)
-      VALUES (${user.id}, ${tier}, ${tier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, ${accountRole !== "management"}, ${idempotencyKey})
+      INSERT INTO subscriptions (user_id, plan, tier, status, expires_at, started_at, is_individual, stripe_subscription_id)
+      VALUES (${user.id}, ${tier}, ${tier}, 'active', ${expiresAt.toISOString()}, NOW(), ${accountRole !== "management"}, ${idempotencyKey})
     `;
   }
 
@@ -430,8 +471,9 @@ export async function signupComplete(rawBody, searchParams) {
     const tierLabel = tier.charAt(0).toUpperCase() + tier.slice(1);
     const accountType = accountRole === "management" ? "Management" : "Individual";
     const welcomeBody =
-      `Hi there,\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} subscription is active.\n\n` +
+      `Hi there,\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} account is active for ${TERM_DAYS} days.\n\n` +
       `─── Your Login ───\nSite: https://www.championsalestrainingandevents.com/login\nEmail: ${email}\nTemporary Password: ${tempPassword}\n\n` +
+      `Your one-time payment covers ${TERM_DAYS} days of access, ending ${expiresAt.toISOString().slice(0, 10)}. There is no automatic renewal and no monthly charge.\n\n` +
       `Please log in and change your password from your profile page.\n\n` +
       (accountRole === "management"
         ? "─── Next Steps ───\n- Add your sales team from your manager dashboard\n- Assign training modules based on skill gaps\n- Track team progress and sales performance\n\n"
@@ -455,6 +497,8 @@ export async function signupComplete(rawBody, searchParams) {
       token: tokenForUser(user, user.session_token),
       subscribed: true,
       tier,
+      termDays: TERM_DAYS,
+      expiresAt: expiresAt.toISOString(),
       passwordEmailed,
       user: { id: user.id, email: user.email, name: user.name, role: user.role },
     },
@@ -465,12 +509,11 @@ export async function signupComplete(rawBody, searchParams) {
 const TOTAL_LESSONS = 88;
 
 const TIER_INFO = {
-  basic: { label: "Basic", price: 149 },
-  plus: { label: "Plus", price: 169 },
-  premium: { label: "Premium", price: 189 },
+  basic: { label: TIER_LABELS.basic, price: TIER_PRICES.basic },
+  plus: { label: TIER_LABELS.plus, price: TIER_PRICES.plus },
+  premium: { label: TIER_LABELS.premium, price: TIER_PRICES.premium },
 };
 const TIER_ORDER = ["basic", "plus", "premium"];
-const TIER_PRICES = { basic: 149, plus: 169, premium: 189 };
 
 // Fail-open email send (Resend). Never blocks the caller; failures are logged.
 async function sendEmail({ to, subject, body }) {
@@ -588,6 +631,7 @@ export const apiImpl = {
     const session = verifyManager(token);
     if (!session) return { success: false, error: "Not authenticated" };
     const sql = db();
+    const seatTier = normalizeTier(tier) || "basic";
     const existing = await sql`SELECT id FROM users WHERE email = ${email}`;
     if (existing.length > 0) return { success: false, error: "Salesperson with this email already exists" };
     const tempPassword = randomBytes(12).toString("hex");
@@ -595,22 +639,22 @@ export const apiImpl = {
     const sessionToken = randomBytes(32).toString("hex");
     const result = await sql`INSERT INTO users (email, name, password_hash, role, session_token) VALUES (${email}, ${name}, ${passwordHash}, 'user', ${sessionToken}) RETURNING id`;
     const newUser = result[0];
-    const billingDay = new Date().getDate();
-    const nextBilling = new Date();
-    nextBilling.setDate(nextBilling.getDate() + 30);
-    await sql`INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual, manager_group_id) VALUES (${newUser.id}, ${tier}, ${tier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, FALSE, ${session.userId})`;
+    // A manager-added seat is a PAID SEAT on a one-time 90-day term, exactly
+    // like a self-serve purchase: status active + expires_at 90 days out.
+    const seatExpiresAt = termEndsAt(new Date());
+    await sql`INSERT INTO subscriptions (user_id, plan, tier, status, expires_at, started_at, is_individual, manager_group_id) VALUES (${newUser.id}, ${seatTier}, ${seatTier}, 'active', ${seatExpiresAt.toISOString()}, NOW(), FALSE, ${session.userId})`;
     const manager = await sql`SELECT email, name FROM users WHERE id = ${session.userId}`;
     const allSalespeople = await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`;
     const managerSub = await sql`SELECT tier FROM subscriptions WHERE user_id = ${session.userId} AND status = 'active'`;
-    const basePrice = managerSub[0]?.tier === "premium" ? 189 : 169;
-    const salespersonTotal = allSalespeople.reduce((sum, sp) => sum + (TIER_PRICES[sp.tier] || 169), 0);
-    const newSalespersonCost = TIER_PRICES[tier] || 169;
+    const basePrice = priceForTier(managerSub[0]?.tier === "premium" ? "premium" : "plus");
+    const salespersonTotal = allSalespeople.reduce((sum, sp) => sum + priceForTier(sp.tier), 0);
+    const newSalespersonCost = priceForTier(seatTier);
     const grandTotal = basePrice + salespersonTotal;
     if (manager.length > 0) {
       await sendEmail({
         to: [manager[0].email],
-        subject: "New Team Member Added — Updated Billing Summary",
-        body: `Hi ${manager[0].name || "there"},\n\nA new team member has been added to your Champion Sales Training account.\n\n─── Added ───\n${name || email} (${tier.charAt(0).toUpperCase() + tier.slice(1)} Tier) — ${newSalespersonCost}/mo\n\n─── Updated Monthly Cost ───\nBase Plan: ${basePrice}/mo\nSalespeople: ${salespersonTotal}/mo (${allSalespeople.length} total)\nNew Total: ${grandTotal}/mo\n\nYour next billing date remains unchanged. You can view full details on your profile page.\n\n- Champion Sales Training Team`,
+        subject: "New Team Member Added — Updated Cost Summary",
+        body: `Hi ${manager[0].name || "there"},\n\nA new team member has been added to your Champion Sales Training account.\n\n─── Added ───\n${name || email} (${seatTier.charAt(0).toUpperCase() + seatTier.slice(1)} Tier) — ${newSalespersonCost} one-time for ${TERM_DAYS} days\n\n─── Updated One-Time Cost ───\nBase Plan: ${basePrice} per ${TERM_DAYS} days\nSalespeople: ${salespersonTotal} per ${TERM_DAYS} days (${allSalespeople.length} total)\nNew Total: ${grandTotal} per ${TERM_DAYS} days\n\nThere is no recurring charge. Each seat is a one-time ${TERM_DAYS}-day term that ends on its own expiry date. You can view full details on your profile page.\n\n- Champion Sales Training Team`,
       });
     }
     await sendEmail({
@@ -626,25 +670,25 @@ export const apiImpl = {
     if (!session) return { success: false, error: "Not authenticated" };
     const sql = db();
     const sp = await sql`SELECT email, name, tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.id = ${userId}`;
-    const sub = await sql`SELECT next_billing_date FROM subscriptions WHERE user_id = ${userId} AND status = 'active'`;
-    const lastDay = sub[0]?.next_billing_date ? new Date(sub[0].next_billing_date).toLocaleDateString() : "the end of the current billing period";
+    const sub = await sql`SELECT expires_at FROM subscriptions WHERE user_id = ${userId} AND status = 'active'`;
+    const lastDay = sub[0]?.expires_at ? new Date(sub[0].expires_at).toLocaleDateString() : "the end of their paid term";
     await sql`UPDATE users SET role = 'inactive' WHERE id = ${userId}`;
-    await sql`UPDATE subscriptions SET status = 'cancelled', cancelled_at = NOW(), ends_at = ${sub[0]?.next_billing_date ? new Date(sub[0].next_billing_date).toISOString() : null} WHERE user_id = ${userId} AND status = 'active'`;
+    await sql`UPDATE subscriptions SET status = 'cancelled', cancelled_at = NOW(), ends_at = ${sub[0]?.expires_at ? new Date(sub[0].expires_at).toISOString() : null} WHERE user_id = ${userId} AND status = 'active'`;
     if (sp.length > 0) {
-      await sendEmail({ to: [sp[0].email], subject: "Your subscription has been cancelled", body: `Hi ${sp[0].name || "there"},\n\nYour Champion Sales Training subscription has been cancelled by your manager.\n\nYour access will continue until ${lastDay}.\n\n- Champion Sales Training Team` });
+      await sendEmail({ to: [sp[0].email], subject: "Your access has been removed", body: `Hi ${sp[0].name || "there"},\n\nYour Champion Sales Training access has been removed by your manager.\n\n- Champion Sales Training Team` });
     }
     const manager = await sql`SELECT email, name FROM users WHERE id = ${session.userId}`;
     if (manager.length > 0) {
       const remainingSalespeople = await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`;
       const managerSub = await sql`SELECT tier FROM subscriptions WHERE user_id = ${session.userId} AND status = 'active'`;
-      const basePrice = managerSub[0]?.tier === "premium" ? 189 : 169;
-      const salespersonTotal = remainingSalespeople.reduce((sum, x) => sum + (TIER_PRICES[x.tier] || 169), 0);
-      const removedCost = TIER_PRICES[sp[0]?.tier] || 169;
+      const basePrice = priceForTier(managerSub[0]?.tier === "premium" ? "premium" : "plus");
+      const salespersonTotal = remainingSalespeople.reduce((sum, x) => sum + priceForTier(x.tier), 0);
+      const removedCost = priceForTier(sp[0]?.tier);
       const grandTotal = basePrice + salespersonTotal;
       await sendEmail({
         to: [manager[0].email],
-        subject: "Team Member Removed — Updated Billing Summary",
-        body: `Hi ${manager[0].name || "there"},\n\nA team member has been removed from your Champion Sales Training account.\n\n─── Removed ───\n${sp[0]?.name || sp[0]?.email || "Unknown"} (${sp[0]?.tier ? sp[0].tier.charAt(0).toUpperCase() + sp[0].tier.slice(1) : ""} Tier) — saving ${removedCost}/mo\n\n─── Updated Monthly Cost ───\nBase Plan: ${basePrice}/mo\nSalespeople: ${salespersonTotal}/mo (${remainingSalespeople.length} total)\nNew Total: ${grandTotal}/mo\n\nYour next billing date remains unchanged. The removed member's access ends on ${lastDay}.\n\n- Champion Sales Training Team`,
+        subject: "Team Member Removed — Updated Cost Summary",
+        body: `Hi ${manager[0].name || "there"},\n\nA team member has been removed from your Champion Sales Training account.\n\n─── Removed ───\n${sp[0]?.name || sp[0]?.email || "Unknown"} (${sp[0]?.tier ? sp[0].tier.charAt(0).toUpperCase() + sp[0].tier.slice(1) : ""} Tier) — that seat's one-time term of ${removedCost} is no longer part of your team total\n\n─── Updated One-Time Cost ───\nBase Plan: ${basePrice} per ${TERM_DAYS} days\nSalespeople: ${salespersonTotal} per ${TERM_DAYS} days (${remainingSalespeople.length} total)\nNew Total: ${grandTotal} per ${TERM_DAYS} days\n\nThere is no recurring charge. The removed member's access ended on ${lastDay}.\n\n- Champion Sales Training Team`,
       });
     }
     return { success: true };
@@ -653,14 +697,19 @@ export const apiImpl = {
   async changeSalespersonTier({ token, userId, tier }) {
     const session = verifyManager(token);
     if (!session) return { success: false, error: "Not authenticated" };
-    if (!TIER_ORDER.includes(tier)) return { success: false, error: "Invalid tier" };
+    const newTier = normalizeTier(tier);
+    if (!newTier) return { success: false, error: "Invalid tier" };
     const sql = db();
-    await sql`UPDATE subscriptions SET tier = ${tier} WHERE user_id = ${userId} AND status = 'active'`;
+    // A tier change on a one-time model is a fresh 90-day term at the new tier
+    // (the higher tier is simply bought again for a new term), so the expiry is
+    // reset with the tier.
+    const newExpiry = termEndsAt(new Date());
+    await sql`UPDATE subscriptions SET tier = ${newTier}, plan = ${newTier}, expires_at = ${newExpiry.toISOString()}, started_at = NOW() WHERE user_id = ${userId} AND status = 'active'`;
     const user = await sql`SELECT email, name FROM users WHERE id = ${userId}`;
     if (user.length > 0) {
-      await sendEmail({ to: [user[0].email], subject: "Your subscription tier has been updated", body: `Hi ${user[0].name || "there"},\n\nYour Champion Sales Training subscription has been updated to the ${tier.charAt(0).toUpperCase() + tier.slice(1)} tier.\n\n- Champion Sales Training Team` });
+      await sendEmail({ to: [user[0].email], subject: "Your access tier has been updated", body: `Hi ${user[0].name || "there"},\n\nYour Champion Sales Training access has been updated to the ${newTier.charAt(0).toUpperCase() + newTier.slice(1)} tier for a new ${TERM_DAYS}-day term, ending ${newExpiry.toISOString().slice(0, 10)}.\n\n- Champion Sales Training Team` });
     }
-    return { success: true };
+    return { success: true, tier: newTier, expiresAt: newExpiry.toISOString() };
   },
 
   async getTeamCost({ token }) {
@@ -671,13 +720,13 @@ export const apiImpl = {
     const breakdown = {};
     let total = 0;
     for (const sp of activeSalespeople) {
-      const price = TIER_PRICES[sp.tier] || 169;
+      const price = priceForTier(sp.tier);
       if (!breakdown[sp.tier]) breakdown[sp.tier] = { count: 0, price, subtotal: 0 };
       breakdown[sp.tier].count++;
       breakdown[sp.tier].subtotal += price;
       total += price;
     }
-    return { success: true, breakdown, total, count: activeSalespeople.length };
+    return { success: true, breakdown, total, count: activeSalespeople.length, termDays: TERM_DAYS };
   },
 
   async getSalesLog({ token }) {
@@ -889,31 +938,34 @@ export const apiImpl = {
     return { success: true };
   },
 
-  // ── Billing (individual self-service) ────────────────────────────────────
+  // ── Billing / access term (individual self-service) ──────────────────────
   async getUserSubscription({ token }) {
     const payload = verifyToken(token);
     if (!payload) return { success: false, error: "Not authenticated" };
     const sql = db();
     const userId = payload.userId;
-    const subs = await sql`SELECT id, tier, status, next_billing_date, billing_day, is_individual, started_at, cancelled_at, ends_at, billing_email_sent FROM subscriptions WHERE user_id = ${userId} AND status = 'active' ORDER BY id DESC LIMIT 1`;
+    const subs = await sql`SELECT id, tier, status, expires_at, started_at, cancelled_at, ends_at FROM subscriptions WHERE user_id = ${userId} AND status = 'active' ORDER BY id DESC LIMIT 1`;
     if (subs.length === 0) return { success: true, subscription: null, message: "No active subscription" };
     const sub = subs[0];
     const tierInfo = TIER_INFO[sub.tier] || TIER_INFO.basic;
+    const expiresAt = sub.expires_at ? new Date(sub.expires_at) : null;
+    const live = !expiresAt || expiresAt.getTime() > Date.now();
     const canUpgrade = TIER_ORDER.indexOf(sub.tier) < TIER_ORDER.length - 1;
     const canDowngrade = TIER_ORDER.indexOf(sub.tier) > 0;
     return {
       success: true,
       subscription: {
         id: sub.id, tier: sub.tier, tierLabel: tierInfo.label, price: tierInfo.price, status: sub.status,
-        nextBillingDate: sub.next_billing_date ? String(sub.next_billing_date) : null,
-        billingDay: sub.billing_day, isIndividual: sub.is_individual !== false,
+        termDays: TERM_DAYS,
+        expiresAt: expiresAt ? expiresAt.toISOString() : null,
+        active: live,
         startedAt: sub.started_at ? String(sub.started_at) : null,
         cancelledAt: sub.cancelled_at ? String(sub.cancelled_at) : null,
         endsAt: sub.ends_at ? String(sub.ends_at) : null,
-        billingEmailSent: sub.billing_email_sent === true,
         canUpgrade, canDowngrade,
         availableUpgrades: canUpgrade ? TIER_ORDER.slice(TIER_ORDER.indexOf(sub.tier) + 1) : [],
         availableDowngrades: canDowngrade ? TIER_ORDER.slice(0, TIER_ORDER.indexOf(sub.tier)) : [],
+        upgradeLinks: Object.fromEntries(TIER_ORDER.map((t) => [t, stripeLinkForTier(t)])),
       },
     };
   },
@@ -929,19 +981,20 @@ export const apiImpl = {
     if (user.role === "management" || user.role === "user") {
       return { success: false, error: "Management accounts must be cancelled by the account owner" };
     }
-    const subResult = await sql`SELECT id, next_billing_date FROM subscriptions WHERE user_id = ${userId} AND status = 'active' ORDER BY id DESC LIMIT 1`;
+    const subResult = await sql`SELECT id, expires_at FROM subscriptions WHERE user_id = ${userId} AND status = 'active' ORDER BY id DESC LIMIT 1`;
     if (subResult.length === 0) return { success: false, error: "No active subscription" };
     const sub = subResult[0];
-    const lastDay = sub.next_billing_date ? new Date(sub.next_billing_date).toLocaleDateString() : "the end of the current billing period";
-    await sql`UPDATE subscriptions SET status = 'cancelled', cancelled_at = NOW(), cancelled_by = ${userId}, ends_at = ${sub.next_billing_date ? new Date(sub.next_billing_date).toISOString() : null} WHERE id = ${sub.id}`;
-    await sendEmail({ to: [user.email], subject: "Subscription Cancellation Confirmed", body: `Hi ${user.name || "there"},\n\nYour Champion Sales Training subscription has been cancelled.\n\nYour access will continue until ${lastDay}. No further charges will be made.\n\nThank you for being a customer.\n\n- Champion Sales Training Team` });
+    const lastDay = sub.expires_at ? new Date(sub.expires_at).toLocaleDateString() : "the end of your paid term";
+    await sql`UPDATE subscriptions SET status = 'cancelled', cancelled_at = NOW(), cancelled_by = ${userId}, ends_at = ${sub.expires_at ? new Date(sub.expires_at).toISOString() : null} WHERE id = ${sub.id}`;
+    await sendEmail({ to: [user.email], subject: "Access Cancellation Confirmed", body: `Hi ${user.name || "there"},\n\nYour Champion Sales Training access has been cancelled.\n\nThere is no recurring charge on your account, so nothing further will be billed. Your access ended ${lastDay}.\n\nThank you for being a customer.\n\n- Champion Sales Training Team` });
     return { success: true, lastDay };
   },
 
   async changeTier({ token, newTier }) {
     const payload = verifyToken(token);
     if (!payload) return { success: false, error: "Not authenticated" };
-    if (!TIER_INFO[newTier]) return { success: false, error: "Invalid tier" };
+    const tier = normalizeTier(newTier);
+    if (!tier) return { success: false, error: "Invalid tier" };
     const sql = db();
     const userId = payload.userId;
     const userResult = await sql`SELECT role FROM users WHERE id = ${userId}`;
@@ -949,14 +1002,20 @@ export const apiImpl = {
     if (userResult[0].role === "management" || userResult[0].role === "user") {
       return { success: false, error: "Contact your account manager to change tiers" };
     }
-    await sql`UPDATE subscriptions SET tier = ${newTier} WHERE user_id = ${userId} AND status = 'active'`;
+    // One-time terms: a tier change is a fresh 90-day term at the new tier.
+    const newExpiry = termEndsAt(new Date());
+    await sql`UPDATE subscriptions SET tier = ${tier}, plan = ${tier}, expires_at = ${newExpiry.toISOString()}, started_at = NOW() WHERE user_id = ${userId} AND status = 'active'`;
     const userInfo = await sql`SELECT email, name FROM users WHERE id = ${userId}`;
     if (userInfo.length > 0) {
-      await sendEmail({ to: [userInfo[0].email], subject: "Subscription Tier Updated", body: `Hi ${userInfo[0].name || "there"},\n\nYour Champion Sales Training subscription has been updated to the ${TIER_INFO[newTier].label} tier ($${TIER_INFO[newTier].price}/mo). The new rate will apply on your next billing date.\n\n- Champion Sales Training Team` });
+      await sendEmail({ to: [userInfo[0].email], subject: "Access Tier Updated", body: `Hi ${userInfo[0].name || "there"},\n\nYour Champion Sales Training access has been updated to the ${TIER_INFO[tier].label} tier — ${TIER_INFO[tier].price} one-time for a new ${TERM_DAYS}-day term, ending ${newExpiry.toISOString().slice(0, 10)}.\n\nThere is no recurring charge.\n\n- Champion Sales Training Team` });
     }
-    return { success: true, newTier, newPrice: TIER_INFO[newTier].price };
+    return { success: true, newTier: tier, newPrice: TIER_INFO[tier].price, expiresAt: newExpiry.toISOString() };
   },
 
+  /**
+   * Terms ending soon (replaces the old monthly renewal reminder). Looks at
+   * expires_at — the paid 90-day term — and emails a "buy a new term" link.
+   */
   async checkBillingDueSoon({ token, daysAhead }) {
     const payload = verifyToken(token || "");
     if (!payload) return { success: false, error: "Not authenticated" };
@@ -964,36 +1023,25 @@ export const apiImpl = {
     const sql = db();
     const now = new Date();
     const target = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
-    const dueSubs = await sql`SELECT s.id, s.user_id, s.tier, s.next_billing_date, s.billing_day, u.email, u.name FROM subscriptions s JOIN users u ON u.id = s.user_id WHERE s.status = 'active' AND s.next_billing_date IS NOT NULL AND s.next_billing_date <= ${target.toISOString()} AND s.next_billing_date > ${now.toISOString()} AND (s.billing_email_sent IS NULL OR s.billing_email_sent = FALSE)`;
+    const dueSubs = await sql`SELECT s.id, s.user_id, s.tier, s.expires_at, u.email, u.name FROM subscriptions s JOIN users u ON u.id = s.user_id WHERE s.status = 'active' AND s.expires_at IS NOT NULL AND s.expires_at <= ${target.toISOString()} AND s.expires_at > ${now.toISOString()} AND (s.billing_email_sent IS NULL OR s.billing_email_sent = FALSE)`;
     const remindersSent = [];
     for (const sub of dueSubs) {
       try {
         const tierInfo = TIER_INFO[sub.tier] || TIER_INFO.basic;
-        const billingDate = new Date(sub.next_billing_date).toLocaleDateString();
-        const stripeLinks = {
-          basic: "https://buy.stripe.com/00wfZh2aq7eY02S7fF8Vi0c",
-          plus: "https://buy.stripe.com/fZudR95mC7eYbLAarR8Vi0d",
-          premium: "https://buy.stripe.com/8x2dR96qGdDm6rggQf8Vi0e",
-        };
-        const paymentLink = stripeLinks[sub.tier] || stripeLinks.basic;
-        await sendEmail({ to: [sub.email], subject: `Your Champion Sales Training renewal is due soon — $${tierInfo.price}`, body: `Hi ${sub.name || "there"},\n\nYour Champion Sales Training ${tierInfo.label} subscription ($${tierInfo.price}/mo) will renew on ${billingDate}.\n\nTo continue your access, please complete payment here:\n${paymentLink}\n\nIf you've already paid, please ignore this reminder.\n\n- Champion Sales Training Team` });
+        const endDate = new Date(sub.expires_at).toLocaleDateString();
+        const paymentLink = stripeLinkForTier(sub.tier);
+        await sendEmail({ to: [sub.email], subject: `Your Champion Sales Training access ends ${endDate}`, body: `Hi ${sub.name || "there"},\n\nYour ${tierInfo.label} access term ends on ${endDate}. There is no automatic renewal — nothing will be charged.\n\nTo keep your training access, buy a new ${TERM_DAYS}-day term here:\n${paymentLink}\n\n- Champion Sales Training Team` });
         await sql`UPDATE subscriptions SET billing_email_sent = TRUE WHERE id = ${sub.id}`;
-        await sql`INSERT INTO billing_reminders (subscription_id, reminder_type, next_billing_date) VALUES (${sub.id}, '3day', ${sub.next_billing_date})`;
         remindersSent.push(sub.email);
       } catch (err) {
-        console.error(`[Billing] Failed to send reminder to ${sub.email}:`, err);
+        console.error(`[Terms] Failed to send reminder to ${sub.email}:`, err);
       }
     }
     return { success: true, count: remindersSent.length, sentTo: remindersSent };
   },
 
   async getPaymentLink({ tier }) {
-    const stripeLinks = {
-      basic: "https://buy.stripe.com/00wfZh2aq7eY02S7fF8Vi0c",
-      plus: "https://buy.stripe.com/fZudR95mC7eYbLAarR8Vi0d",
-      premium: "https://buy.stripe.com/8x2dR96qGdDm6rggQf8Vi0e",
-    };
-    return { link: stripeLinks[tier] || stripeLinks.basic };
+    return { link: stripeLinkForTier(tier), termDays: TERM_DAYS, price: priceForTier(tier) };
   },
 
   // ── Account ──────────────────────────────────────────────────────────────
@@ -1022,13 +1070,11 @@ export const apiImpl = {
       const userId = users[0].id;
       const existing = await sql`SELECT id FROM subscriptions WHERE user_id = ${userId} AND status = 'active'`;
       if (existing.length > 0) {
-        await sql`UPDATE subscriptions SET tier = 'premium' WHERE id = ${existing[0].id}`;
+        // Owner/demo accounts: premium tier, NULL expiry (no term limit).
+        await sql`UPDATE subscriptions SET tier = 'premium', expires_at = NULL WHERE id = ${existing[0].id}`;
         results.push(`${email}: upgraded to premium`);
       } else {
-        const billingDay = new Date().getDate();
-        const nextBilling = new Date();
-        nextBilling.setDate(nextBilling.getDate() + 30);
-        await sql`INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual) VALUES (${userId}, 'premium', 'premium', 'active', ${nextBilling.toISOString()}, ${billingDay}, TRUE)`;
+        await sql`INSERT INTO subscriptions (user_id, plan, tier, status, expires_at, is_individual) VALUES (${userId}, 'premium', 'premium', 'active', NULL, TRUE)`;
         results.push(`${email}: created premium subscription`);
       }
     }

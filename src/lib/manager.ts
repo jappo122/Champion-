@@ -370,7 +370,7 @@ export const addSalesperson = createServerFn({ method: "POST" }).handler(
     const manager = await db`SELECT email, name FROM users WHERE id = ${session.userId}` as Array<{ email: string; name: string | null }>;
     
     // Calculate new total cost
-    const tierPrices: Record<string, number> = { basic: 149, plus: 169, premium: 189 };
+    const tierPrices: Record<string, number> = { basic: 224, plus: 244, premium: 264 };
     const allSalespeople = await db`
       SELECT s.tier FROM users u
       JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active'
@@ -381,10 +381,10 @@ export const addSalesperson = createServerFn({ method: "POST" }).handler(
     const managerSub = await db`
       SELECT tier FROM subscriptions WHERE user_id = ${session.userId} AND status = 'active'
     ` as Array<{ tier: string }>;
-    const basePrice = managerSub[0]?.tier === "premium" ? 189 : 169;
+    const basePrice = managerSub[0]?.tier === "premium" ? 264 : 244;
     
-    const salespersonTotal = allSalespeople.reduce((sum, sp) => sum + (tierPrices[sp.tier] || 169), 0);
-    const newSalespersonCost = tierPrices[data.tier] || 169;
+    const salespersonTotal = allSalespeople.reduce((sum, sp) => sum + (tierPrices[sp.tier] || 244), 0);
+    const newSalespersonCost = tierPrices[data.tier] || 244;
     const grandTotal = basePrice + salespersonTotal;
 
     // Send invoice email to manager
@@ -394,7 +394,7 @@ export const addSalesperson = createServerFn({ method: "POST" }).handler(
         await sendEmail({
           to: [manager[0].email],
           subject: "New Team Member Added — Updated Billing Summary",
-          body: `Hi ${manager[0].name || "there"},\n\nA new team member has been added to your Champion Sales Training account.\n\n─── Added ───\n${data.name || data.email} (${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} Tier) — ${newSalespersonCost}/mo\n\n─── Updated Monthly Cost ───\nBase Plan: ${basePrice}/mo\nSalespeople: ${salespersonTotal}/mo (${allSalespeople.length} total)\nNew Total: ${grandTotal}/mo\n\nYour next billing date remains unchanged. You can view full details on your profile page.\n\n- Champion Sales Training Team`,
+          body: `Hi ${manager[0].name || "there"},\n\nA new team member has been added to your Champion Sales Training account.\n\n─── Added ───\n${data.name || data.email} (${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)} Tier) — ${newSalespersonCost} one-time\n\n─── Updated One-Time Cost ───\nBase Plan: ${basePrice} one-time\nSalespeople: ${salespersonTotal} one-time (${allSalespeople.length} total)\nNew Total: ${grandTotal} one-time\n\nYour next billing date remains unchanged. You can view full details on your profile page.\n\n- Champion Sales Training Team`,
         });
       } catch {}
     }
@@ -456,7 +456,7 @@ export const removeSalesperson = createServerFn({ method: "POST" }).handler(
     if (manager.length > 0) {
       try {
         // Calculate new total after removal
-        const tierPrices: Record<string, number> = { basic: 149, plus: 169, premium: 189 };
+        const tierPrices: Record<string, number> = { basic: 224, plus: 244, premium: 264 };
         const remainingSalespeople = await db`
           SELECT s.tier FROM users u
           JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active'
@@ -466,16 +466,16 @@ export const removeSalesperson = createServerFn({ method: "POST" }).handler(
         const managerSub = await db`
           SELECT tier FROM subscriptions WHERE user_id = ${session.userId} AND status = 'active'
         ` as Array<{ tier: string }>;
-        const basePrice = managerSub[0]?.tier === "premium" ? 189 : 169;
-        const salespersonTotal = remainingSalespeople.reduce((sum, sp) => sum + (tierPrices[sp.tier] || 169), 0);
-        const removedCost = tierPrices[sp[0]?.tier] || 169;
+        const basePrice = managerSub[0]?.tier === "premium" ? 264 : 244;
+        const salespersonTotal = remainingSalespeople.reduce((sum, sp) => sum + (tierPrices[sp.tier] || 244), 0);
+        const removedCost = tierPrices[sp[0]?.tier] || 244;
         const grandTotal = basePrice + salespersonTotal;
         
         const { sendEmail } = await import("~/lib/email");
         await sendEmail({
           to: [manager[0].email],
           subject: "Team Member Removed — Updated Billing Summary",
-          body: `Hi ${manager[0].name || "there"},\n\nA team member has been removed from your Champion Sales Training account.\n\n─── Removed ───\n${sp[0]?.name || sp[0]?.email || "Unknown"} (${sp[0]?.tier ? sp[0].tier.charAt(0).toUpperCase() + sp[0].tier.slice(1) : ""} Tier) — saving ${removedCost}/mo\n\n─── Updated Monthly Cost ───\nBase Plan: ${basePrice}/mo\nSalespeople: ${salespersonTotal}/mo (${remainingSalespeople.length} total)\nNew Total: ${grandTotal}/mo\n\nYour next billing date remains unchanged. The removed member's access ends on ${lastDay}.\n\n- Champion Sales Training Team`,
+          body: `Hi ${manager[0].name || "there"},\n\nA team member has been removed from your Champion Sales Training account.\n\n─── Removed ───\n${sp[0]?.name || sp[0]?.email || "Unknown"} (${sp[0]?.tier ? sp[0].tier.charAt(0).toUpperCase() + sp[0].tier.slice(1) : ""} Tier) — saving ${removedCost} one-time\n\n─── Updated One-Time Cost ───\nBase Plan: ${basePrice} one-time\nSalespeople: ${salespersonTotal} one-time (${remainingSalespeople.length} total)\nNew Total: ${grandTotal} one-time\n\nYour next billing date remains unchanged. The removed member's access ends on ${lastDay}.\n\n- Champion Sales Training Team`,
         });
       } catch {}
     }
@@ -527,12 +527,12 @@ export const getTeamCost = createServerFn({ method: "POST" }).handler(
       WHERE u.role = 'user'
     ` as Array<{ id: number; email: string; name: string | null; tier: string }>;
 
-    const tierPrices: Record<string, number> = { basic: 149, plus: 169, premium: 189 };
+    const tierPrices: Record<string, number> = { basic: 224, plus: 244, premium: 264 };
     const breakdown: Record<string, { count: number; price: number; subtotal: number }> = {};
     let total = 0;
 
     for (const sp of activeSalespeople) {
-      const price = tierPrices[sp.tier] || 169;
+      const price = tierPrices[sp.tier] || 244;
       if (!breakdown[sp.tier]) breakdown[sp.tier] = { count: 0, price, subtotal: 0 };
       breakdown[sp.tier].count++;
       breakdown[sp.tier].subtotal += price;

@@ -13,6 +13,7 @@ async function signupCall(data: { email: string; password: string; name: string;
 }
 import { SiteHeader } from "~/components/site-header";
 import { isTokenValid, decodeToken } from "~/lib/client-auth";
+import { TERM_DAYS, TIER_PRICES, stripeLinkForTier } from "~/lib/pricing";
 
 // Owner rule (2026-10-30): there is no free signup. Submitting this form creates
 // the account RECORD only — it carries no subscription and therefore no training
@@ -27,12 +28,8 @@ export const Route = createFileRoute("/signup/")({
   component: SignupPage,
 });
 
-// Per-tier Stripe payment links for individual signups
-const INDIVIDUAL_STRIPE_LINKS: Record<string, string> = {
-  basic: "https://buy.stripe.com/00wfZh2aq7eY02S7fF8Vi0c",
-  plus: "https://buy.stripe.com/fZudR95mC7eYbLAarR8Vi0d",
-  premium: "https://buy.stripe.com/8x2dR96qGdDm6rggQf8Vi0e",
-};
+// Per-tier Stripe payment links — ONE-TIME $224/$244/$264 for a 90-day term.
+// The links live in src/lib/pricing.ts (single source of truth).
 
 function SignupPage() {
   const { t } = useTranslation();
@@ -115,7 +112,7 @@ function SignupPage() {
 
     if (accountType === "individual") {
       // Individual flow: redirect to Stripe payment
-      const stripeLink = INDIVIDUAL_STRIPE_LINKS[selectedTier] || INDIVIDUAL_STRIPE_LINKS.basic;
+      const stripeLink = stripeLinkForTier(selectedTier);
       window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(emailClean)}&success_url=${successUrl}`;
     } else {
       // Management flow: redirect to checkout page with tier pre-selected
@@ -124,11 +121,11 @@ function SignupPage() {
     setLoading(false);
   };
 
-  // Tier prices for display
+  // Tier prices for display — one-time, 90-day term (src/lib/pricing.ts)
   const tierPrices: Record<string, string> = {
-    basic: "$149/mo",
-    plus: "$169/mo",
-    premium: "$189/mo",
+    basic: `${TIER_PRICES.basic}`,
+    plus: `${TIER_PRICES.plus}`,
+    premium: `${TIER_PRICES.premium}`,
   };
 
   return (
@@ -138,9 +135,9 @@ function SignupPage() {
       <div className="flex items-center justify-center px-6 pt-10 pb-12">
         <div className="w-full max-w-md">
         <div className="rounded-xl border border-[#1a2d4a] bg-[#0d1f35] p-8">
-          <h1 className="text-2xl font-bold text-white">Start Your Subscription</h1>
+          <h1 className="text-2xl font-bold text-white">Buy {TERM_DAYS}-Day Access</h1>
           <p className="mt-2 text-sm text-gray-400">
-            Create your account, then complete payment. Training access unlocks as soon as Stripe confirms your payment.
+            Create your account, then complete a one-time payment. Training access unlocks as soon as Stripe confirms your payment and runs for {TERM_DAYS} days.
           </p>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {/* Account Type */}
@@ -199,7 +196,7 @@ function SignupPage() {
                       }`}
                     >
                       <div className="capitalize">{tier}</div>
-                      <div className="text-[10px] opacity-70">{tierPrices[tier]}</div>
+                      <div className="text-[10px] opacity-70">{tierPrices[tier]} / {TERM_DAYS}d</div>
                     </button>
                   ))}
                 </div>
@@ -263,7 +260,7 @@ function SignupPage() {
             )}
             {accountType === "individual" && (
               <p className="text-xs text-gray-600">
-                You'll be redirected to Stripe to pay for your {selectedTier} plan ({tierPrices[selectedTier]}). Training access unlocks the moment Stripe confirms the payment — there is no free tier.
+                You'll be redirected to Stripe to pay {tierPrices[selectedTier]} one-time for {TERM_DAYS} days of {selectedTier} access. Training unlocks the moment Stripe confirms the payment — there is no free tier and nothing renews automatically.
               </p>
             )}
             <button
@@ -274,7 +271,7 @@ function SignupPage() {
               {loading
                 ? t('auth.creatingAccount')
                 : accountType === "individual"
-                  ? `Continue to Payment — ${tierPrices[selectedTier]}`
+                  ? `Continue to Payment — ${tierPrices[selectedTier]} One-Time`
                   : "Continue to Setup"}
             </button>
           </form>

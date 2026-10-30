@@ -34,9 +34,15 @@ async function main() {
     plan TEXT NOT NULL,
     stripe_subscription_id TEXT,
     status TEXT DEFAULT 'active',
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
+    expires_at TIMESTAMPTZ
   )`;
   console.log("✅ Created subscriptions table");
+
+  // One-time 90-day terms: the paid term ends at expires_at. NULL means "no
+  // expiry" and is reserved for the pre-existing owner/demo accounts.
+  await sql`ALTER TABLE subscriptions ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ`;
+  console.log("✅ Ensured subscriptions.expires_at column");
 
   // Verify tables
   const tables = await sql`SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'`;

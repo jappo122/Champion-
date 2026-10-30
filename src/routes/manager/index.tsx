@@ -98,11 +98,11 @@ function ManagerDashboard() {
   const [authCheck, setAuthCheck] = useState<"loading" | "management" | "redirect">("loading");
 
   // Per-tier pricing (matching business plan and Stripe links)
-  const TIER_PRICES: Record<string, number> = { basic: 149, plus: 169, premium: 189 };
+  const TIER_PRICES: Record<string, number> = { basic: 224, plus: 244, premium: 264 };
   const STRIPE_SP_LINKS: Record<string, string> = {
-    basic: "https://buy.stripe.com/cNibJ1bL02YI8zofMb8Vi0i",
-    plus: "https://buy.stripe.com/3cI7sL2aqbve7vkgQf8Vi0j",
-    premium: "https://buy.stripe.com/28E00j02ibveaHw43t8Vi0k",
+    basic: "https://buy.stripe.com/cNiaEX9CSbvebLAgQf8Vi0l",
+    plus: "https://buy.stripe.com/6oU00jdT8dDm3f443t8Vi0m",
+    premium: "https://buy.stripe.com/5kQ8wP6qG7eYcPE57x8Vi0n",
   };
 
   useEffect(() => {
@@ -234,7 +234,7 @@ function ManagerDashboard() {
   const handleAddSalesperson = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!token || !newEmail.trim()) return;
-    const price = TIER_PRICES[newTier] || 169;
+    const price = TIER_PRICES[newTier] || 244;
     // Show Stripe payment confirmation instead of directly creating account
     setStripeConfirmData({ email: newEmail.trim(), name: newName.trim(), tier: newTier, price });
     setShowStripeConfirm(true);
@@ -802,9 +802,9 @@ function ManagerDashboard() {
                       onChange={(e) => setNewTier(e.target.value)}
                       className="mt-1 w-full rounded-lg border border-[#1a2d4a] bg-[#0a1628] px-4 py-2.5 text-white outline-none focus:border-[#e63946]"
                     >
-                      <option value="basic">Basic - $149/mo</option>
-                      <option value="plus">Plus - $169/mo</option>
-                      <option value="premium">Premium - $189/mo</option>
+                      <option value="basic">Basic - $224 one-time</option>
+                      <option value="plus">Plus - $244 one-time</option>
+                      <option value="premium">Premium - $264 one-time</option>
                     </select>
                   </div>
                   {addError && (
@@ -839,19 +839,19 @@ function ManagerDashboard() {
                     <span className="text-white capitalize">{stripeConfirmData.tier}</span>
                   </div>
                   <div className="border-t border-[#1a2d4a] pt-3 flex justify-between">
-                    <span className="text-white font-semibold">Monthly Cost</span>
-                    <span className="text-[#e63946] text-xl font-extrabold">${stripeConfirmData.price}<span className="text-sm">/mo</span></span>
+                    <span className="text-white font-semibold">One-Time Cost</span>
+                    <span className="text-[#e63946] text-xl font-extrabold">${stripeConfirmData.price}<span className="text-sm"> one-time</span></span>
                   </div>
                 </div>
                 <p className="text-xs text-gray-600 mb-4">
-                  You'll be charged ${stripeConfirmData.price}/mo for this salesperson. They'll get full access to the {stripeConfirmData.tier} tier training. This is added to your existing monthly total.
+                  You'll be charged ${stripeConfirmData.price} one-time for this salesperson. They'll get full access to the {stripeConfirmData.tier} tier training. This is added to your existing one-time total.
                 </p>
                 <div className="flex gap-3">
                   <button
                     onClick={handleOpenStripePayment}
                     className="flex-1 rounded-lg bg-[#e63946] px-6 py-3 text-sm font-semibold text-white hover:bg-[#c1121f] transition shadow-lg shadow-[#e63946]/20"
                   >
-                    Complete Payment — ${stripeConfirmData.price}/mo
+                    Complete Payment — ${stripeConfirmData.price} one-time
                   </button>
                   <button
                     onClick={() => { setShowStripeConfirm(false); setStripeConfirmData(null); setShowAddForm(true); }}
