@@ -136,11 +136,13 @@ export const Route = createRootRoute({
     else if (p === "/sales-log") pageTitle = `Sales Log — ${SITE}`;
     // Auth-gated / transactional pages that are publicly linked (buy buttons,
     // Road → course links) must stay crawlable so Google sees the noindex tag
-    // instead of reporting them as "Blocked by robots.txt". /training/preview
-    // is the public sample and stays indexable.
+    // instead of reporting them as "Blocked by robots.txt".
+    // Owner rule (2026-10): EVERY training surface (/training, /training/*,
+    // /training/preview, /steps) now requires an ACTIVE subscription, so all of
+    // them carry noindex, follow. The blog stays fully indexable — it is public.
     const noindex =
       p === "/training" ||
-      (p.startsWith("/training/") && p !== "/training/preview") ||
+      p.startsWith("/training/") ||
       p === "/steps" ||
       p.startsWith("/checkout");
     return {

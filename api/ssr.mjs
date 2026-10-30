@@ -3,7 +3,12 @@ import { createRequire } from "module";
 globalThis.require = createRequire(import.meta.url);
 
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
-import { apiImpl } from "./handlers.mjs";
+import {
+  apiImpl,
+  getSubscriptionState,
+  requireTrainingAccess,
+  httpStatusFor,
+} from "./handlers.mjs";
 
 // ── Helpers ──
 function generateToken(payload) {
@@ -118,7 +123,12 @@ async function handleApiRequest(req) {
       const expected = createHash("sha256").update(`${header}.${bodyPart}.${secret}`).digest("hex");
       if (signature !== expected) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
       const payload = JSON.parse(Buffer.from(bodyPart, "base64url").toString());
-      const userId = payload.userId;
+      // Writing lesson progress / quiz results requires an active subscription.
+      const access = await requireTrainingAccess(token);
+      if (!access.ok) {
+        return new Response(JSON.stringify(access.response), { status: access.status, headers: { "Content-Type": "application/json" } });
+      }
+      const userId = access.userId;
       const { neon } = await import("@neondatabase/serverless");
       const sql = neon(process.env.DATABASE_URL);
       // Quiz threshold check: if lesson has quiz content, require score >= 80%
@@ -354,11 +364,15 @@ async function handleApiRequest(req) {
       const userResult = await sql`SELECT id, email, name, role, session_token FROM users WHERE id = ${payload.userId}`;
       if (userResult.length === 0) return new Response(JSON.stringify({ authenticated: false, user: null }), { headers: { "Content-Type": "application/json" } });
       const user = userResult[0];
-      const subResult = await sql`SELECT tier, status FROM subscriptions WHERE user_id = ${user.id} AND status = 'active' ORDER BY id DESC LIMIT 1`;
-      const tier = subResult.length > 0 ? subResult[0].tier : "basic";
-      const DEMO_EMAILS = ["owner@champion.com", "jappo122@gmail.com", "floydsandersjr@yahoo.com"];
-      const effectiveTier = (user.id === 1 || DEMO_EMAILS.includes(user.email.toLowerCase())) ? "premium" : tier;
-      return new Response(JSON.stringify({ authenticated: true, user: { id: user.id, email: user.email, name: user.name, role: user.role, tier: effectiveTier } }), { headers: { "Content-Type": "application/json" } });
+      // Subscription is the gate for training (owner rule). Report the truth:
+      // tier is the real tier from an ACTIVE subscription, or null when there is
+      // none — never a defaulted "basic". Demo/owner accounts always pass.
+      const sub = await getSubscriptionState(user);
+      return new Response(JSON.stringify({
+        authenticated: true,
+        subscribed: sub.subscribed,
+        user: { id: user.id, email: user.email, name: user.name, role: user.role, tier: sub.tier, subscribed: sub.subscribed },
+      }), { headers: { "Content-Type": "application/json" } });
     } catch (err) {
       console.error("API auth-info POST error:", err.message);
       return new Response(JSON.stringify({ authenticated: false, user: null }), { status: 500, headers: { "Content-Type": "application/json" } });
@@ -374,7 +388,9 @@ async function handleApiRequest(req) {
       try {
         const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
         const result = await apiImpl[name](body?.data ?? body);
-        return new Response(JSON.stringify(result), { headers: { "Content-Type": "application/json" } });
+        // Subscription-gated handlers return 403 so the gate holds for direct
+        // API calls (see httpStatusFor in api/handlers.mjs).
+        return new Response(JSON.stringify(result), { status: httpStatusFor(result), headers: { "Content-Type": "application/json" } });
       } catch (err) {
         console.error(`API ${name} error:`, err.message);
         return new Response(JSON.stringify({ success: false, error: "Server error" }), { status: 500, headers: { "Content-Type": "application/json" } });
@@ -394,7 +410,12 @@ async function handleApiRequest(req) {
       const expected = createHash("sha256").update(`${header}.${bodyPart}.${secret}`).digest("hex");
       if (signature !== expected) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
       const payload = JSON.parse(Buffer.from(bodyPart, "base64url").toString());
-      const userId = payload.userId;
+      // Training progress is subscription-gated (owner rule).
+      const access = await requireTrainingAccess(token);
+      if (!access.ok) {
+        return new Response(JSON.stringify(access.response), { status: access.status, headers: { "Content-Type": "application/json" } });
+      }
+      const userId = access.userId;
       const { neon } = await import("@neondatabase/serverless");
       const sql = neon(process.env.DATABASE_URL);
       const rows = await sql`SELECT course_id, lesson_id, completed_at FROM lesson_progress WHERE user_id = ${userId}`;

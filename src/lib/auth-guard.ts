@@ -40,27 +40,34 @@ export const getAuthInfo = createServerFn({ method: "POST" }).handler(
 
     // Session token check removed — JWT expiration (7 days) is sufficient
 
-    // Get subscription tier
+    // Subscription is the gate for training (owner rule, 2026-10): being logged
+    // in is NOT enough — a row in `subscriptions` with status = 'active' is the
+    // source of truth. `subscribed` is reported explicitly and `tier` is the
+    // REAL tier from that row, or null when the user has none. (Previously a
+    // user with no subscription was reported as tier "basic", which handed every
+    // signed-up user the whole training catalog.)
     const subResult = await db`
-      SELECT tier, status FROM subscriptions 
-      WHERE user_id = ${userId} AND status = 'active' 
+      SELECT tier, status FROM subscriptions
+      WHERE user_id = ${userId} AND status = 'active'
       ORDER BY id DESC LIMIT 1
     ` as Array<{ tier: string; status: string }>;
 
-    const tier = subResult.length > 0 ? subResult[0].tier : "basic";
-
     // Demo accounts always get premium tier for full platform access
     const DEMO_EMAILS = ["owner@champion.com", "jappo122@gmail.com", "floydsandersjr@yahoo.com"];
-    const effectiveTier = (user.id === 1 || DEMO_EMAILS.includes(user.email.toLowerCase())) ? "premium" : tier;
+    const isDemo = user.id === 1 || DEMO_EMAILS.includes(user.email.toLowerCase());
+    const subscribed = isDemo || subResult.length > 0;
+    const tier = isDemo ? "premium" : (subResult.length > 0 ? subResult[0].tier : null);
 
     return {
       authenticated: true,
+      subscribed,
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
         role: user.role,
-        tier: effectiveTier,
+        tier,
+        subscribed,
       },
     };
   },

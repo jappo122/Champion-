@@ -6,7 +6,8 @@ import { detailedSteps } from "~/content/steps-content";
 import type { DetailedStep } from "~/content/steps-content";
 import { QuizQuestion } from "~/components/quiz-question";
 import { SiteHeader } from "~/components/site-header";
-import { isTokenValid } from "~/lib/client-auth";
+import { useTrainingAccess } from "~/lib/use-training-access";
+import { TrainingGate } from "~/components/training-gate";
 
 export const Route = createFileRoute("/steps")({
   component: StepsPage,
@@ -14,52 +15,14 @@ export const Route = createFileRoute("/steps")({
 
 function StepsPage() {
   const { t } = useTranslation();
-  const [authState, setAuthState] = useState<"loading" | "authenticated" | "unauthenticated">("loading");
+  // Owner rule (2026-10): the Road to the Sale is training content — it needs an
+  // ACTIVE subscription, not just a login. Nothing renders until that check resolves.
+  const access = useTrainingAccess();
   const [activePart, setActivePart] = useState<1 | 2>(1);
-
-  useEffect(() => {
-    const token = localStorage.getItem("salesdrive_token");
-    if (!token || !isTokenValid(token)) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    setAuthState("authenticated");
-  }, []);
   // Get the Part 2 quiz course
   const quizCourse = courses.find((c) => c.id === "10-steps-part-2");
-  if (authState === "loading") {
-    return (
-      <div className="min-h-dvh bg-[#0a1628]">
-        <SiteHeader />
-        <div className="flex items-center justify-center pt-24">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
-        </div>
-      </div>
-    );
-  }
-  if (authState === "unauthenticated") {
-    return (
-      <div className="min-h-dvh bg-[#0a1628]">
-        <SiteHeader />
-        <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
-          <div className="text-center mb-10">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
-              <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />10-Step Sales Process
-            </span>
-            <h1 className="mt-4 text-4xl font-extrabold text-white sm:text-5xl">Road to the <span className="text-[#e63946]">Sale</span></h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">The Road to the Sale is part of the Champion Sales Training platform — sign in to access the full 10-step sales process with detailed guidance and interactive quizzes.</p>
-            <div className="mt-8 flex justify-center gap-4">
-              <a href="/signup" className="rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Start Free</a>
-              <a href="/login" className="rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>
-            </div>
-            <p className="mt-4 text-sm text-gray-500">
-              <a href="/training/preview" className="text-[#e63946] hover:underline">Try a sample quiz →</a>
-              {" "}No account required
-            </p>
-          </div>
-        </main>
-      </div>
-    );
+  if (access.state !== "subscribed") {
+    return <TrainingGate state={access.state} />;
   }
   return (
     <div className="min-h-dvh bg-[#0a1628]">

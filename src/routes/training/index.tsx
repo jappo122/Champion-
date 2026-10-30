@@ -3,9 +3,9 @@ import { useTranslation } from '../../i18n';
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { courses } from "~/content/courses";
-import { getAuthInfo } from "~/lib/api-client";
-import { getMyAssignments, getMyProgress } from "~/lib/api-client";
-import { isTokenValid, getTokenPayload } from "~/lib/client-auth";
+import { getMyAssignments } from "~/lib/api-client";
+import { useTrainingAccess } from "~/lib/use-training-access";
+import { TrainingGate } from "~/components/training-gate";
 import { SiteHeader } from "~/components/site-header";
 
 export const Route = createFileRoute("/training/")({
@@ -20,33 +20,19 @@ const levelColors: Record<string, string> = {
 
 function TrainingCatalog() {
   const { t } = useTranslation();
-  const [authState, setAuthState] = useState<"loading" | "authenticated" | "unauthenticated" | "no-subscription">("loading");
-  const [userTier, setUserTier] = useState<string | null>(null);
+  // Owner rule (2026-10): training requires an ACTIVE subscription, not just a
+  // login. useTrainingAccess asks the server and never grants access on its own;
+  // nothing below renders until that check resolves.
+  const access = useTrainingAccess();
+  const userTier = access.tier;
   const [assignedCourseIds, setAssignedCourseIds] = useState<Set<string>>(new Set());
-  const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
   const [completedPerCourse, setCompletedPerCourse] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
-    const token = localStorage.getItem("salesdrive_token");
-    if (!token) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    // Client-side JWT check first — no server call, never fails
-    if (!isTokenValid(token)) {
-      setAuthState("unauthenticated");
-      return;
-    }
-    const payload = getTokenPayload(token)!;
-    setAuthState("authenticated");
-    setUserTier(payload.role === "management" ? "premium" : "basic");
-    // Background: fetch tier + assignments + progress (non-blocking)
-    getAuthInfo({ data: { token } }).then((result) => {
-      if (result.authenticated && result.user) {
-        setUserTier(result.user.tier);
-      }
-    }).catch(() => {});
-    getMyAssignments({ data: { token } }).then((res) => {
+    if (access.state !== "subscribed" || !access.token) return;
+    const token = access.token;
+    // Background: fetch assignments + progress (non-blocking, subscribed only)
+    getMyAssignments({ data: { token } }).then((res: any) => {
       if (res.success) {
         const ids = new Set(res.assignments.filter((a: any) => !a.completed_at).map((a: any) => a.course_id));
         setAssignedCourseIds(ids);
@@ -59,60 +45,19 @@ function TrainingCatalog() {
       body: JSON.stringify({ token }),
     }).then(r => r.json()).then((data) => {
       if (data.success && data.completedLessons) {
-        const ids = new Set<string>();
         const perCourse = new Map<string, number>();
         for (const item of data.completedLessons) {
-          ids.add(item.lesson_id);
           perCourse.set(item.course_id, (perCourse.get(item.course_id) || 0) + 1);
         }
-        setCompletedLessons(ids);
         setCompletedPerCourse(perCourse);
       }
     }).catch(() => {});
-  }, []);
+  }, [access.state, access.token]);
 
-  // If not authenticated, show loading then redirect
-  if (authState === "loading") {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-[#0a1628]">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#1a2d4a] border-t-[#e63946]" />
-      </div>
-    );
-  }
-
-  if (authState === "unauthenticated") {
-    return (
-      <div className="min-h-dvh bg-[#0a1628]">
-        {/* Header */}
-        <SiteHeader />
-
-        <main className="mx-auto max-w-5xl px-6 pt-10 pb-12">
-          {/* Sign-in prompt — the training catalog is behind login */}
-          <div className="mb-12 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
-              <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />Professional Sales Training
-            </span>
-            <h1 className="mt-4 text-4xl font-extrabold text-white sm:text-5xl">Automotive Sales <span className="text-[#e63946]">Training</span></h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">The full training catalog — courses, lessons, and quizzes — is part of the Champion Sales Training platform. Sign in to access your training.</p>
-            <div className="mt-8 flex justify-center gap-4">
-              <a href="/signup" className="rounded-lg bg-[#e63946] px-8 py-3 text-base font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Start Free</a>
-              <a href="/login" className="rounded-lg border border-[#1a2d4a] px-8 py-3 text-base font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>
-            </div>
-            <p className="mt-4 text-sm text-gray-500">
-              <a href="/training/preview" className="text-[#e63946] hover:underline">Try a sample quiz →</a>
-              {" "}No account required
-            </p>
-          </div>
-        </main>
-
-        {/* Footer */}
-        <footer className="border-t border-[#1a2d4a]/50 bg-[#0a1628] py-8 mt-auto">
-          <div className="mx-auto max-w-5xl px-6 text-center">
-            <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]">Sign In to Access Training</a>
-          </div>
-        </footer>
-      </div>
-    );
+  // loading → spinner; signed out → sign-in prompt; signed in without an active
+  // subscription → subscribe-to-unlock. Course catalog renders only when subscribed.
+  if (access.state !== "subscribed") {
+    return <TrainingGate state={access.state} />;
   }
 
   return (
