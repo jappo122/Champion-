@@ -49,7 +49,7 @@ function PricingPage() {
       cta: "Buy 90-day access",
       href: "/signup?tier=basic&type=individual",
       featured: false,
-      upgradeNote: `Upgrade to Plus: ${TIER_PRICES.plus} for a new ${TERM_DAYS}-day term`,
+      upgradeNote: `Upgrade to Plus: $${TIER_PRICES.plus} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "individual-plus",
@@ -67,7 +67,7 @@ function PricingPage() {
       href: "/signup?tier=plus&type=individual",
       featured: true,
       badge: "Most Popular",
-      upgradeNote: `Upgrade to Premium: ${TIER_PRICES.premium} for a new ${TERM_DAYS}-day term`,
+      upgradeNote: `Upgrade to Premium: $${TIER_PRICES.premium} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "individual-premium",
@@ -105,7 +105,7 @@ function PricingPage() {
       cta: "Buy 90-day access",
       href: "/checkout?tier=mgmt-basic",
       featured: false,
-      upgradeNote: `Upgrade to Plus: ${TIER_PRICES.plus} for a new ${TERM_DAYS}-day term`,
+      upgradeNote: `Upgrade to Plus: $${TIER_PRICES.plus} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "mgmt-plus",
@@ -123,7 +123,7 @@ function PricingPage() {
       href: "/checkout?tier=mgmt-plus",
       featured: true,
       badge: "Most Popular",
-      upgradeNote: `Upgrade to Premium: ${TIER_PRICES.premium} for a new ${TERM_DAYS}-day term`,
+      upgradeNote: `Upgrade to Premium: $${TIER_PRICES.premium} for a new ${TERM_DAYS}-day term`,
     },
     {
       id: "mgmt-premium",

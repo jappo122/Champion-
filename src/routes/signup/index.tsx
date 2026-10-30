@@ -123,9 +123,9 @@ function SignupPage() {
 
   // Tier prices for display — one-time, 90-day term (src/lib/pricing.ts)
   const tierPrices: Record<string, string> = {
-    basic: `${TIER_PRICES.basic}`,
-    plus: `${TIER_PRICES.plus}`,
-    premium: `${TIER_PRICES.premium}`,
+    basic: `$${TIER_PRICES.basic}`,
+    plus: `$${TIER_PRICES.plus}`,
+    premium: `$${TIER_PRICES.premium}`,
   };
 
   return (
