@@ -4849,9 +4849,35 @@ function extractDate(markdown: string): string {
   return match ? match[1] : "July 2026";
 }
 
+const MONTH_INDEX: Record<string, number> = {
+  January: 0,
+  February: 1,
+  March: 2,
+  April: 3,
+  May: 4,
+  June: 5,
+  July: 6,
+  August: 7,
+  September: 8,
+  October: 9,
+  November: 10,
+  December: 11,
+};
+
+// Turns "August 2026" into a comparable number so posts can be ordered by date.
+function postSortKey(date: string): number {
+  const match = date.match(/([A-Z][a-z]+)\s+(\d{4})/);
+  if (!match) return 0;
+  const month = MONTH_INDEX[match[1]] ?? 0;
+  return parseInt(match[2], 10) * 12 + month;
+}
+
+// Newest first: ordered by date (newest month first), and within the same month
+// the most recently added entry comes first. Without this the blog index listed
+// posts in file order, which buried every new article on the last page.
 export function getBlogPosts(): BlogPost[] {
   const slugs = Object.keys(BLOG_CONTENT);
-  return slugs.map((slug) => {
+  const posts = slugs.map((slug) => {
     const content = BLOG_CONTENT[slug];
     return {
       id: slug,
@@ -4863,6 +4889,13 @@ export function getBlogPosts(): BlogPost[] {
       sections: parseMarkdown(content),
     };
   });
+  return posts
+    .map((post, addedOrder) => ({ post, addedOrder }))
+    .sort((a, b) => {
+      const byDate = postSortKey(b.post.date) - postSortKey(a.post.date);
+      return byDate !== 0 ? byDate : b.addedOrder - a.addedOrder;
+    })
+    .map((entry) => entry.post);
 }
 
 export function getBlogPost(slug: string): BlogPost | null {
