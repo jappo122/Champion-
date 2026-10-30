@@ -108,12 +108,12 @@ function TrainingPreview() {
         {/* Hero */}
         <div className="text-center mb-10">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#1a2d4a] bg-[#0d1f35] px-4 py-1.5 text-xs font-medium text-gray-400">
-            <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />Free Preview
+            <span className="flex h-2 w-2 rounded-full bg-[#e63946]" />Sample Preview
           </span>
           <h1 className="mt-4 text-4xl font-extrabold text-white sm:text-5xl">Try a Sample <span className="text-[#e63946]">Quiz</span></h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">Sample questions from our training catalog, plus a first look at two brand-new modules. See the quality and depth of our content — no account required.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">Sample questions from our training catalog, plus a first look at two brand-new modules. See the quality and depth of our content — included with a Champion Sales Training subscription.</p>
           <div className="mt-8 flex justify-center gap-4">
-            <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Account — Full Access</a>
+            <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors">Subscribe for Full Access</a>
             <a href="/training" className="rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">{t('nav.training')}</a>
           </div>
         </div>
@@ -157,9 +157,9 @@ function TrainingPreview() {
         {/* Bottom CTA */}
         <div className="mt-12 text-center rounded-xl border border-[#e63946]/20 bg-[#e63946]/5 p-8">
           <h2 className="text-xl font-bold text-white">Want all {courses.reduce((s, c) => s + c.lessons, 0)} lessons and {totalQuizQuestions} quiz questions?</h2>
-          <p className="mt-2 text-gray-400">Create an account to unlock the full training catalog — {courses.length} courses, detailed guides, interactive quizzes, and progress tracking.</p>
+          <p className="mt-2 text-gray-400">Subscribe to unlock the full training catalog — {courses.length} courses, detailed guides, interactive quizzes, and progress tracking.</p>
           <div className="mt-6 flex justify-center gap-4">
-            <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors">Create Free Account</a>
+            <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#c1121f] transition-colors">Choose a Plan</a>
             <a href="/login" className="rounded-lg border border-[#1a2d4a] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#1a2d4a]/50 transition-colors">Sign In</a>
           </div>
         </div>
@@ -168,7 +168,7 @@ function TrainingPreview() {
       {/* Footer */}
       <footer className="border-t border-[#1a2d4a]/50 bg-[#0a1628] py-8 mt-auto">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]">Sign Up for Full Access</a>
+          <a href="/signup" className="rounded-lg bg-[#e63946] px-6 py-2 text-sm font-medium text-white hover:bg-[#c1121f]">Subscribe for Full Access</a>
         </div>
       </footer>
     </div>

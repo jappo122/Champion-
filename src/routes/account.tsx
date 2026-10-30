@@ -147,7 +147,7 @@ function AccountPage() {
                 </div>
                 <div className="flex justify-between border-b border-[#1a2d4a] pb-2">
                   <span className="text-sm text-gray-400">{t('account.plan')}</span>
-                  <span className="text-sm text-white">Free (waitlist)</span>
+                  <span className="text-sm text-white">No active subscription</span>
                 </div>
                 <div className="flex justify-between pb-2">
                   <span className="text-sm text-gray-400">{t('account.userId')}</span>

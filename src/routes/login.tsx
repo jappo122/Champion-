@@ -101,9 +101,9 @@ function LoginPage() {
             </button>
           </form>
           <p className="mt-6 text-center text-sm text-gray-400">
-            {t('auth.noAccount')}{" "}
-            <a href="/signup" className="text-[#e63946] hover:underline">
-              {t('auth.signUp')}
+            No subscription yet?{" "}
+            <a href="/pricing" className="text-[#e63946] hover:underline">
+              Choose a plan
             </a>
           </p>
           <p className="mt-4 text-center text-xs text-gray-600">

@@ -15,9 +15,21 @@ import {
   getSubscriptionState,
   requireTrainingAccess,
   httpStatusFor,
+  signupStart,
+  signupComplete,
 } from "./api/handlers.mjs";
 
 // ── Direct API handlers (bypass broken TanStack server function manifest) ──
+function jsonResponse(payload: unknown, status = 200): Response {
+  return Response.json(payload, { status });
+}
+async function parseJsonBody(req: Request): Promise<any> {
+  try {
+    return await req.json();
+  } catch {
+    return {};
+  }
+}
 
 function hashPassword(password: string): string {
   const salt = randomBytes(16).toString("hex");
@@ -258,137 +270,35 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
     }
   }
 
-  // ── Signup (public POST — create account + subscription before payment) ──
+  // ── Signup (public POST) ──
+  // OWNER RULE (2026-10-30): there is no free signup. This creates an INERT
+  // account record only — NO subscriptions row — so the gate denies every
+  // training surface until a verified Stripe payment runs through
+  // /api/signup-complete below.
   if (url.pathname === "/api/signup" && req.method === "POST") {
     try {
-      const { email, password, name, role } = await req.json();
-      const cleanEmail = (email || "").trim().toLowerCase();
-      const cleanName = (name || "").trim().slice(0, 100);
-      if (!cleanEmail || !cleanEmail.includes("@") || cleanEmail.length > 254) {
-        return Response.json({ success: false, error: "Valid email is required" });
-      }
-      if (!password || password.length < 6 || password.length > 128) {
-        return Response.json({ success: false, error: "Password must be 6-128 characters" });
-      }
-      if (/[<>"'&]/.test(cleanName)) {
-        return Response.json({ success: false, error: "Name contains invalid characters" });
-      }
-      const { neon } = await import("@neondatabase/serverless");
-      const sql = neon(process.env.DATABASE_URL!);
-      const existing = await sql`SELECT id FROM users WHERE email = ${cleanEmail}`;
-      if (existing.length > 0) {
-        return Response.json({ success: false, error: "Email already registered" });
-      }
-      const passwordHash = hashPassword(password);
-      const sessionToken = randomBytes(32).toString("hex");
-      const cleanRole = role === "management" ? "management" : "individual";
-      const result = await sql`
-        INSERT INTO users (email, name, password_hash, role, session_token)
-        VALUES (${cleanEmail}, ${cleanName || null}, ${passwordHash}, ${cleanRole}, ${sessionToken})
-        RETURNING id, email, name, role
-      `;
-      const user = result[0] as { id: number; email: string; name: string | null; role: string };
-      const startTier = cleanRole === "management" ? "plus" : "basic";
-      const billingDay = new Date().getDate();
-      const nextBilling = new Date();
-      nextBilling.setDate(nextBilling.getDate() + 30);
-      await sql`
-        INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual)
-        VALUES (${user.id}, ${startTier}, ${startTier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, ${cleanRole !== "management"})
-      `;
-      const token = generateToken({ userId: user.id, email: user.email, sessionToken, role: user.role });
-      return Response.json({ success: true, token, user: { id: user.id, email: user.email, name: user.name, role: user.role } });
-    } catch (err: any) {
+      const body = await parseJsonBody(req);
+      const result = await signupStart(body);
+      return jsonResponse(result.body, result.status);
+    } catch (err) {
       console.error("API signup POST error:", err.message);
-      return Response.json({ success: false, error: "Server error" }, { status: 500 });
+      return jsonResponse({ success: false, error: "Server error" }, 500);
     }
   }
 
-  // ── Signup complete (public POST — create account AFTER Stripe payment) ──
+  // ── Signup complete (public POST) ──
+  // The ONLY path that activates an account. It requires a Stripe checkout
+  // session id and verifies it against Stripe server-side. Caller-supplied
+  // fields such as ?payment=success&tier=premium&email=… are IGNORED: they
+  // grant nothing. Missing STRIPE_SECRET_KEY fails closed (503).
   if (url.pathname === "/api/signup-complete" && req.method === "POST") {
     try {
-      const { email, name, tier, type } = await req.json();
-      if (!email || !tier) {
-        return Response.json({ success: false, error: "Email and tier are required" }, { status: 400 });
-      }
-      const { neon } = await import("@neondatabase/serverless");
-      const sql = neon(process.env.DATABASE_URL!);
-      const cleanEmail = String(email).trim().toLowerCase();
-
-      const existing = await sql`SELECT id FROM users WHERE email = ${cleanEmail}`;
-      if (existing.length > 0) {
-        return Response.json({ success: true, alreadyExists: true });
-      }
-
-      const tempPassword = randomBytes(12).toString("hex");
-      const passwordHash = hashPassword(tempPassword);
-      const sessionToken = randomBytes(32).toString("hex");
-      const role = type === "management" ? "management" : "individual";
-      const cleanName = (name || "").trim().slice(0, 100) || null;
-
-      const result = await sql`
-        INSERT INTO users (email, name, password_hash, role, session_token)
-        VALUES (${cleanEmail}, ${cleanName}, ${passwordHash}, ${role}, ${sessionToken})
-        RETURNING id, email, name, role
-      `;
-      const user = result[0] as { id: number; email: string; name: string | null; role: string };
-
-      const billingDay = new Date().getDate();
-      const nextBilling = new Date();
-      nextBilling.setDate(nextBilling.getDate() + 30);
-      await sql`
-        INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual)
-        VALUES (${user.id}, ${tier}, ${tier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, ${type !== "management"})
-      `;
-
-      // Verify login credentials work (read-only HTTP check, same path a customer uses)
-      let finalPassword = tempPassword;
-      try {
-        const loginRes = await fetch("http://localhost:3000/api/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: cleanEmail, password: tempPassword }),
-        });
-        const loginData = (await loginRes.json()) as any;
-        if (!loginData.success) {
-          console.error("API signup-complete: login verification FAILED for", cleanEmail);
-        }
-      } catch (err: any) {
-        console.error("API signup-complete: login verification error:", err.message);
-      }
-
-      // Send welcome email with verified login credentials
-      try {
-        const RESEND_API_KEY = process.env.RESEND_API_KEY;
-        if (RESEND_API_KEY) {
-          const tierLabel = String(tier).charAt(0).toUpperCase() + String(tier).slice(1);
-          const accountType = type === "management" ? "Management" : "Individual";
-          const welcomeBody =
-            `Hi ${cleanName || "there"},\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} account has been created.\n\n─── Your Login ───\nSite: https://www.championsalestrainingandevents.com/login\nEmail: ${cleanEmail}\nTemporary Password: ${finalPassword}\n\nPlease log in and change your password from your profile page.\n\n` +
-            (type === "management"
-              ? "─── Next Steps ───\n- Add your sales team from your manager dashboard\n- Assign training modules based on skill gaps\n- Track team progress and sales performance\n\n"
-              : "") +
-            `Get started now!\n\n- Champion Sales Training Team`;
-          await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${RESEND_API_KEY}` },
-            body: JSON.stringify({
-              from: "Sales@championsalestrainingandevents.com",
-              to: [cleanEmail],
-              subject: `Welcome to Champion Sales Training — Your ${accountType} Account is Ready`,
-              text: welcomeBody,
-            }),
-          });
-        }
-      } catch (err: any) {
-        console.error("API signup-complete: welcome email failed:", err.message);
-      }
-
-      const token = generateToken({ userId: user.id, email: user.email, sessionToken, role: user.role });
-      return Response.json({ success: true, token, user: { id: user.id, email: user.email, name: user.name, role: user.role } });
-    } catch (err: any) {
+      const body = await parseJsonBody(req);
+      const result = await signupComplete(body, url.searchParams);
+      return jsonResponse(result.body, result.status);
+    } catch (err) {
       console.error("API signup-complete POST error:", err.message);
-      return Response.json({ success: false, error: "Server error" }, { status: 500 });
+      return jsonResponse({ success: false, error: "Server error" }, 500);
     }
   }
 

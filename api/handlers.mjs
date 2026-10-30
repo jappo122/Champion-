@@ -102,6 +102,365 @@ export function httpStatusFor(result) {
   return 200;
 }
 
+// ── Signup + payment verification ───────────────────────────────────────────
+// OWNER RULE (2026-10-30): there is no free tier and no free signup. A paid,
+// active subscription is the only way to reach any course or training content.
+//
+//   POST /api/signup          → creates an INERT account record. It exists so
+//                               the customer does not lose the details they
+//                               typed, but it gets NO subscriptions row and the
+//                               gate therefore denies every training surface.
+//   POST /api/signup-complete → the ONLY path that activates an account. It
+//                               takes a Stripe checkout session id and asks
+//                               Stripe itself whether that session was paid.
+//                               Tier, email and account type come from the
+//                               VERIFIED session — never from the caller.
+//
+// Both API layers (serve.ts on cto.new, api/ssr.mjs on Vercel/www) call these
+// two functions, so the rule cannot drift between environments.
+//
+// If STRIPE_SECRET_KEY is not configured the endpoint FAILS CLOSED: nothing is
+// activated, nothing is created, and the caller gets a 503. It never falls back
+// to trusting a URL or a body field.
+
+const SIGNUP_TIERS = ["basic", "plus", "premium"];
+const AMOUNT_TIER_MAP = { 14900: "basic", 16900: "plus", 18900: "premium" };
+const CHECKOUT_SESSION_ID_RE = /^cs_[A-Za-z0-9_]{4,255}$/;
+
+export const PAYMENT_NOT_CONFIGURED_ERROR =
+  "Payment verification is not configured, so no account can be activated right now. Please contact support.";
+
+function cleanEmail(value) {
+  return String(value ?? "").trim().toLowerCase();
+}
+
+function isValidEmail(email) {
+  return !!email && email.includes("@") && email.length <= 254 && !/\s/.test(email);
+}
+
+function generateToken(payload) {
+  const header = Buffer.from(JSON.stringify({ alg: "HS256", typ: "JWT" })).toString("base64url");
+  const body = Buffer.from(
+    JSON.stringify({ ...payload, iat: Date.now(), exp: Date.now() + 7 * 24 * 60 * 60 * 1000 }),
+  ).toString("base64url");
+  const signature = createHash("sha256").update(`${header}.${body}.${getSecret()}`).digest("hex");
+  return `${header}.${body}.${signature}`;
+}
+
+function tokenForUser(user, sessionToken) {
+  return generateToken({ userId: user.id, email: user.email, sessionToken, role: user.role });
+}
+
+/** Normalize a wire body: accept both {data:{...}} and a flat object. */
+function wireBody(raw) {
+  const body = raw && typeof raw === "object" ? raw : {};
+  return { ...(body.data && typeof body.data === "object" ? body.data : {}), ...body };
+}
+
+// ── POST /api/signup ───────────────────────────────────────────────────────
+// Creates the account record only. Deliberately NO subscriptions row: an
+// unpaid signup must have zero training access.
+export async function signupStart(rawBody) {
+  const payload = wireBody(rawBody);
+  const email = cleanEmail(payload.email);
+  const password = String(payload.password ?? "");
+  const name = String(payload.name ?? "").trim().slice(0, 100);
+  const role = payload.role === "management" ? "management" : "individual";
+
+  if (!isValidEmail(email)) {
+    return { status: 400, body: { success: false, error: "Valid email is required" } };
+  }
+  if (password.length < 6 || password.length > 128) {
+    return { status: 400, body: { success: false, error: "Password must be 6-128 characters" } };
+  }
+  if (/[<>"'&]/.test(name)) {
+    return { status: 400, body: { success: false, error: "Name contains invalid characters" } };
+  }
+
+  const sql = db();
+  const existing = await sql`SELECT id FROM users WHERE LOWER(email) = ${email}`;
+  if (existing.length > 0) {
+    return {
+      status: 409,
+      body: {
+        success: false,
+        alreadyExists: true,
+        error: "An account with this email already exists. Sign in to continue.",
+      },
+    };
+  }
+
+  const passwordHash = await hashPassword(password);
+  const sessionToken = randomBytes(32).toString("hex");
+  const inserted = await sql`
+    INSERT INTO users (email, name, password_hash, role, session_token)
+    VALUES (${email}, ${name || null}, ${passwordHash}, ${role}, ${sessionToken})
+    RETURNING id, email, name, role
+  `;
+  const user = inserted[0];
+
+  // No subscriptions row on purpose — see the comment block above.
+  return {
+    status: 200,
+    body: {
+      success: true,
+      token: tokenForUser(user, sessionToken),
+      subscribed: false,
+      subscriptionActive: false,
+      user: { id: user.id, email: user.email, name: user.name, role: user.role },
+    },
+  };
+}
+
+// ── Stripe checkout-session verification ───────────────────────────────────
+async function fetchCheckoutSession(sessionId) {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    console.error(
+      "signup-complete: STRIPE_SECRET_KEY is not set — FAILING CLOSED. No account or subscription was activated.",
+    );
+    return { ok: false, status: 503, error: PAYMENT_NOT_CONFIGURED_ERROR };
+  }
+  if (!CHECKOUT_SESSION_ID_RE.test(sessionId)) {
+    return { ok: false, status: 400, error: "A valid Stripe checkout session id is required." };
+  }
+  let res;
+  try {
+    res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${key}` },
+    });
+  } catch (err) {
+    console.error("signup-complete: Stripe request failed:", err?.message);
+    return { ok: false, status: 502, error: "Could not verify the payment with Stripe. Please try again." };
+  }
+  if (res.status === 404) {
+    console.error("signup-complete: Stripe has no such checkout session:", sessionId);
+    return { ok: false, status: 400, error: "We could not find that payment. Please contact support." };
+  }
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    console.error("signup-complete: Stripe verification rejected:", res.status, detail.slice(0, 200));
+    return { ok: false, status: 502, error: "Could not verify the payment with Stripe. Please contact support." };
+  }
+  let session;
+  try {
+    session = await res.json();
+  } catch {
+    return { ok: false, status: 502, error: "Could not verify the payment with Stripe. Please contact support." };
+  }
+  return { ok: true, session };
+}
+
+/** A checkout session grants access only when Stripe says it is paid/complete. */
+function sessionGrantsAccess(session) {
+  if (!session || typeof session !== "object") return false;
+  if (session.status !== "complete") return false;
+  if (session.payment_status === "paid") return true;
+  const sub = session.subscription;
+  const hasSubscriptionId = typeof sub === "string" ? sub.startsWith("sub_") : !!sub?.id;
+  return hasSubscriptionId && session.payment_status !== "unpaid";
+}
+
+/** Plan + account type, read from the VERIFIED session only. */
+function resolvePlan(session) {
+  const meta = session?.metadata && typeof session.metadata === "object" ? session.metadata : {};
+  const rawTier = String(meta.tier ?? meta.plan ?? "").trim().toLowerCase();
+  const rawType = String(meta.type ?? meta.account_type ?? "").trim().toLowerCase();
+  const mgmtTier = /^mgmt/.test(rawTier);
+  const typeIsExplicit = rawType === "management" || rawType === "individual" || mgmtTier;
+  const type = !typeIsExplicit ? null : rawType === "individual" ? "individual" : "management";
+
+  const tierFromMeta = SIGNUP_TIERS.includes(rawTier.replace(/^mgmt-/, "")) ? rawTier.replace(/^mgmt-/, "") : null;
+  const tierFromAmount = AMOUNT_TIER_MAP[Number(session?.amount_total)] ?? null;
+  let tier = tierFromMeta || tierFromAmount;
+  if (!tier) {
+    // A paying customer must never be left stranded: log loudly and grant the
+    // entry tier. Support can raise it from the Stripe session id we store.
+    console.error(
+      "signup-complete: could not determine the plan from the Stripe session (no metadata.tier, unknown amount_total).",
+      "session:",
+      session?.id,
+      "amount_total:",
+      session?.amount_total,
+    );
+    tier = "basic";
+  }
+  return { tier, type, typeIsExplicit };
+}
+
+/** The customer email, taken from the verified session (never from the caller). */
+function sessionEmail(session) {
+  return cleanEmail(session?.customer_details?.email ?? session?.customer_email ?? "");
+}
+
+// ── POST /api/signup-complete ──────────────────────────────────────────────
+// Activates an account after a VERIFIED Stripe payment. Idempotent: replaying
+// the same checkout session never creates a second user or a second active
+// subscription.
+export async function signupComplete(rawBody, searchParams) {
+  const payload = wireBody(rawBody);
+  const fromBody = payload.session_id ?? payload.checkout_session_id;
+  const fromQuery = searchParams?.get?.("session_id") ?? searchParams?.get?.("checkout_session_id");
+  const sessionId = String(fromBody ?? fromQuery ?? "").trim();
+
+  if (!sessionId) {
+    return {
+      status: 400,
+      body: {
+        success: false,
+        error: "A Stripe checkout session id is required to activate an account.",
+      },
+    };
+  }
+
+  const verified = await fetchCheckoutSession(sessionId);
+  if (!verified.ok) return { status: verified.status, body: { success: false, error: verified.error } };
+
+  const session = verified.session;
+  if (!sessionGrantsAccess(session)) {
+    console.error(
+      "signup-complete: checkout session is not paid — nothing activated.",
+      "session:",
+      sessionId,
+      "status:",
+      session?.status,
+      "payment_status:",
+      session?.payment_status,
+    );
+    return {
+      status: 402,
+      body: { success: false, error: "That payment has not completed, so no account was activated." },
+    };
+  }
+
+  const email = sessionEmail(session);
+  if (!isValidEmail(email)) {
+    console.error("signup-complete: verified session has no customer email — nothing activated.", sessionId);
+    return {
+      status: 422,
+      body: {
+        success: false,
+        error: "That payment has no customer email attached. Please contact support to activate your account.",
+      },
+    };
+  }
+
+  const { tier, type, typeIsExplicit } = resolvePlan(session);
+  const subId = typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
+  // Idempotency key: the Stripe subscription id when there is one, else the
+  // checkout session id. Stored on the subscription row.
+  const idempotencyKey = subId || session.id || sessionId;
+
+  const sql = db();
+  const priorRows = await sql`
+    SELECT u.id, u.email, u.name, u.role, u.session_token
+    FROM subscriptions s
+    JOIN users u ON u.id = s.user_id
+    WHERE s.stripe_subscription_id = ${idempotencyKey}
+    LIMIT 1
+  `;
+  if (priorRows.length > 0) {
+    const u = priorRows[0];
+    return {
+      status: 200,
+      body: {
+        success: true,
+        alreadyProcessed: true,
+        token: tokenForUser(u, u.session_token),
+        user: { id: u.id, email: u.email, name: u.name, role: u.role },
+      },
+    };
+  }
+
+  const existingUser = await sql`
+    SELECT id, email, name, role, session_token FROM users WHERE LOWER(email) = ${email} LIMIT 1
+  `;
+
+  let user;
+  let tempPassword = null;
+  if (existingUser.length > 0) {
+    user = existingUser[0];
+    // Trust the paid session only when it names an account type explicitly.
+    if (typeIsExplicit && type && type !== user.role) {
+      await sql`UPDATE users SET role = ${type} WHERE id = ${user.id}`;
+      user.role = type;
+    }
+  } else {
+    tempPassword = randomBytes(12).toString("hex");
+    const passwordHash = await hashPassword(tempPassword);
+    const sessionToken = randomBytes(32).toString("hex");
+    const accountRole = type || "individual";
+    const inserted = await sql`
+      INSERT INTO users (email, name, password_hash, role, session_token)
+      VALUES (${email}, ${null}, ${passwordHash}, ${accountRole}, ${sessionToken})
+      RETURNING id, email, name, role, session_token
+    `;
+    user = inserted[0];
+  }
+
+  const accountRole = user.role === "management" ? "management" : "individual";
+  const billingDay = new Date().getDate();
+  const nextBilling = new Date();
+  nextBilling.setDate(nextBilling.getDate() + 30);
+
+  const activeRows = await sql`
+    SELECT id FROM subscriptions WHERE user_id = ${user.id} AND status = 'active' ORDER BY id DESC LIMIT 1
+  `;
+  if (activeRows.length > 0) {
+    await sql`
+      UPDATE subscriptions
+      SET plan = ${tier}, tier = ${tier}, status = 'active',
+          stripe_subscription_id = ${idempotencyKey},
+          next_billing_date = ${nextBilling.toISOString()}, billing_day = ${billingDay},
+          is_individual = ${accountRole !== "management"}
+      WHERE id = ${activeRows[0].id}
+    `;
+  } else {
+    await sql`
+      INSERT INTO subscriptions (user_id, plan, tier, status, next_billing_date, billing_day, is_individual, stripe_subscription_id)
+      VALUES (${user.id}, ${tier}, ${tier}, 'active', ${nextBilling.toISOString()}, ${billingDay}, ${accountRole !== "management"}, ${idempotencyKey})
+    `;
+  }
+
+  // Welcome email — only for accounts we just created (existing customers
+  // already know their password). Failure is logged, never fatal.
+  let passwordEmailed = false;
+  if (tempPassword) {
+    const tierLabel = tier.charAt(0).toUpperCase() + tier.slice(1);
+    const accountType = accountRole === "management" ? "Management" : "Individual";
+    const welcomeBody =
+      `Hi there,\n\nWelcome to Champion Sales Training & Events! Your ${tierLabel} ${accountType} subscription is active.\n\n` +
+      `─── Your Login ───\nSite: https://www.championsalestrainingandevents.com/login\nEmail: ${email}\nTemporary Password: ${tempPassword}\n\n` +
+      `Please log in and change your password from your profile page.\n\n` +
+      (accountRole === "management"
+        ? "─── Next Steps ───\n- Add your sales team from your manager dashboard\n- Assign training modules based on skill gaps\n- Track team progress and sales performance\n\n"
+        : "") +
+      `- Champion Sales Training Team`;
+    await sendEmail({
+      to: [email],
+      subject: `Welcome to Champion Sales Training — Your ${accountType} Account is Ready`,
+      body: welcomeBody,
+    });
+    passwordEmailed = !!process.env.RESEND_API_KEY;
+    if (!passwordEmailed) {
+      console.error("signup-complete: account created but no RESEND_API_KEY — temp password not emailed for", email);
+    }
+  }
+
+  return {
+    status: 200,
+    body: {
+      success: true,
+      token: tokenForUser(user, user.session_token),
+      subscribed: true,
+      tier,
+      passwordEmailed,
+      user: { id: user.id, email: user.email, name: user.name, role: user.role },
+    },
+  };
+}
+
 // Total lessons across the live catalog (10 courses, 62 lessons).
 const TOTAL_LESSONS = 88;
 

@@ -63,7 +63,7 @@ function BlogPostPage() {
               <h3 className="text-xl font-bold text-white">Ready to master the sales process?</h3>
               <p className="mt-2 text-gray-400">Join Champion Sales Training & Events and get access to our complete training library, interactive assessments, and manager coaching tools.</p>
               <div className="mt-6 flex gap-4">
-                <a href="/signup" className="btn-primary text-sm">Start Training</a>
+                <a href="/pricing" className="btn-primary text-sm">Subscribe to Start Training</a>
                 <a href="/#pricing" className="btn-secondary text-sm">View Plans</a>
               </div>
             </div>
@@ -90,8 +90,8 @@ function BlogPostPage() {
 
               <div className="mt-8 border-t border-[#1a2d4a] pt-6">
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Start Learning</h3>
-                <a href="/signup" className="btn-primary text-sm w-full text-center block">
-                  Get Started Free
+                <a href="/pricing" className="btn-primary text-sm w-full text-center block">
+                  Subscribe to Start Training
                 </a>
               </div>
             </div>

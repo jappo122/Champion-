@@ -126,7 +126,7 @@ export const Route = createRootRoute({
     else if (p === "/support") pageTitle = `Support — ${SITE}`;
     else if (p === "/contact") pageTitle = `Contact — ${SITE}`;
     else if (p === "/login") pageTitle = `Sign In — ${SITE}`;
-    else if (p === "/signup") pageTitle = `Create Account — ${SITE}`;
+    else if (p === "/signup") pageTitle = `Subscribe — ${SITE}`;
     else if (p === "/steps") pageTitle = `Road to the Sale — ${SITE}`;
     else if (p === "/training/preview") pageTitle = `Try a Sample Quiz — ${SITE}`;
     else if (p === "/training") pageTitle = `Training Courses — ${SITE}`;
