@@ -3,7 +3,7 @@
 // - api/ssr.mjs (www/Vercel): same import
 // Each handler: async (data) => result — the wire format is POST {data: {...}},
 // matching the original createServerFn call sites (they sent { data: args }).
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 // Single source of truth for pricing. The source lives in src/lib/pricing.ts;
 // api/pricing.mjs is that exact file transpiled to plain ESM by the build (see
 // vercel.json buildCommand), so the prices the customer reads and the prices the
@@ -1270,31 +1270,29 @@ export const apiImpl = {
   },
 
   /**
-   * Terms ending soon (replaces the old monthly renewal reminder). Looks at
-   * expires_at — the paid 90-day term — and emails a "buy a new term" link.
+   * RETIRED (2026-10-30) — superseded by the three-stage expiry reminder cron
+   * (/api/cron/expiry-reminders, see runExpiryReminders at the bottom of this
+   * file). This single-stage "3 days before the term ends" sender used the
+   * `billing_email_sent` flag and would duplicate the new "2 days left" email,
+   * so it no longer sends anything. It stays as a callable that reports the
+   * replacement rather than 404-ing an older client.
+   *
+   * DELIBERATE DECISION: the new system REPLACES this one. A customer must never
+   * receive two reminders for the same term end, and `billing_email_sent` is a
+   * one-shot boolean that cannot distinguish a renewal from the previous term —
+   * exactly the bug the new table (keyed on subscription + stage + term end)
+   * exists to avoid.
    */
-  async checkBillingDueSoon({ token, daysAhead }) {
+  async checkBillingDueSoon({ token }) {
     const payload = verifyToken(token || "");
     if (!payload) return { success: false, error: "Not authenticated" };
-    const days = daysAhead || 3;
-    const sql = db();
-    const now = new Date();
-    const target = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
-    const dueSubs = await sql`SELECT s.id, s.user_id, s.tier, s.expires_at, u.email, u.name FROM subscriptions s JOIN users u ON u.id = s.user_id WHERE s.status = 'active' AND s.expires_at IS NOT NULL AND s.expires_at <= ${target.toISOString()} AND s.expires_at > ${now.toISOString()} AND (s.billing_email_sent IS NULL OR s.billing_email_sent = FALSE)`;
-    const remindersSent = [];
-    for (const sub of dueSubs) {
-      try {
-        const tierInfo = TIER_INFO[sub.tier] || TIER_INFO.basic;
-        const endDate = new Date(sub.expires_at).toLocaleDateString();
-        const paymentLink = stripeLinkForTier(sub.tier);
-        await sendEmail({ to: [sub.email], subject: `Your Champion Sales Training access ends ${endDate}`, body: `Hi ${sub.name || "there"},\n\nYour ${tierInfo.label} access term ends on ${endDate}. There is no automatic renewal — nothing will be charged.\n\nTo keep your training access, buy a new ${TERM_DAYS}-day term here:\n${paymentLink}\n\n- Champion Sales Training Team` });
-        await sql`UPDATE subscriptions SET billing_email_sent = TRUE WHERE id = ${sub.id}`;
-        remindersSent.push(sub.email);
-      } catch (err) {
-        console.error(`[Terms] Failed to send reminder to ${sub.email}:`, err);
-      }
-    }
-    return { success: true, count: remindersSent.length, sentTo: remindersSent };
+    return {
+      success: true,
+      deprecated: true,
+      sent: 0,
+      message:
+        "Reminder emails are now sent by the daily expiry-reminder job at 20, 10 and 2 days before a term ends.",
+    };
   },
 
   async getPaymentLink({ tier }) {
@@ -1605,3 +1603,458 @@ export const apiImpl = {
     };
   },
 };
+
+// ════════════════════════════════════════════════════════════════════════════
+// EXPIRY REMINDER EMAILS — three stages, one-time 90-day terms
+// ════════════════════════════════════════════════════════════════════════════
+//
+// Owner requirement (2026-10-30): every customer gets exactly THREE emails
+// before a paid 90-day term ends — 20 days out, 10 days out, 2 days out.
+//
+//   • One shared implementation for both API layers: serve.ts (the Bun server
+//     behind the published site) and api/ssr.mjs (the Vercel function behind
+//     www) both call handleExpiryReminderCron below.
+//   • Vercel calls it once a day from the `crons` entry in vercel.json. The
+//     schedule sends GET with `Authorization: Bearer $CRON_SECRET`.
+//   • AUTH IS NOT OPTIONAL. Missing/wrong bearer → 401. No CRON_SECRET
+//     configured at all → 503 (fail closed; we never compare against "").
+//
+// ONE STAGE PER RUN, ALWAYS. The daily run can be missed, so the rule is "the
+// most urgent UNSENT stage that is already due", not "every stage that is due":
+// someone 5 days from expiry who was never reminded gets ONE 2-day-style email,
+// never three in a row.
+//
+// THE RENEWAL TRAP: the uniqueness key is
+//     (subscription_id, stage, term_ends_at)
+// NOT (subscription_id, stage). When a customer buys another 90 days the
+// expires_at moves, so the key changes and all three stages re-arm. A two-column
+// key would silently kill every reminder after the first renewal.
+//
+// Idempotent under retries AND concurrent runs: a stage is claimed in the
+// ledger with an atomic INSERT … ON CONFLICT DO UPDATE … WHERE (sent_at IS
+// NULL AND claim is stale) RETURNING id, and only the run that gets a row back
+// sends. A failed send DELETES the claim, so the next run retries it. Nothing
+// about email can 500 the endpoint.
+
+/** The three reminder stages, in days before the term end. */
+export const EXPIRY_REMINDER_STAGES = [20, 10, 2];
+
+/** Sender for customer reminders (Resend-verified domain). */
+export const REMINDER_FROM_ADDRESS = "Sales@championsalestrainingandevents.com";
+
+/** Sensible display name on the envelope: "Champion Sales Training & Events". */
+export const REMINDER_FROM = `Champion Sales Training & Events <${REMINDER_FROM_ADDRESS}>`;
+
+/** Public site, used in the email footer. */
+export const PUBLIC_SITE_URL = "https://www.championsalestrainingandevents.com";
+
+/** Where Resend lives. Overridable ONLY so tests can point at a local stub. */
+const resendEndpoint = () => process.env.RESEND_API_URL || "https://api.resend.com/emails";
+
+/** Ledger of every reminder actually delivered. One row per (sub, stage, term end). */
+export async function ensureExpiryReminderTable(sql) {
+  await sql`
+    CREATE TABLE IF NOT EXISTS expiry_reminders (
+      id SERIAL PRIMARY KEY,
+      subscription_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      stage TEXT NOT NULL,
+      term_ends_at TIMESTAMPTZ NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      claimed_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      sent_at TIMESTAMPTZ,
+      recipient TEXT,
+      resend_message_id TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      UNIQUE (subscription_id, stage, term_ends_at)
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_expiry_reminders_term ON expiry_reminders (term_ends_at)`;
+}
+
+/** ISO string for a timestamp, normalised to millisecond precision. */
+function isoMs(value) {
+  const d = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(d.getTime()) ? null : d.toISOString();
+}
+
+/**
+ * Which stage should this term get right now?
+ *
+ * `daysLeft` is whole days (ceil); `alreadySent` are the stages already
+ * delivered for THIS term end.
+ *
+ * The stage is the BAND the customer is in — the smallest threshold that still
+ * covers the days left (19 -> 20, 9 -> 10, 1 -> 2). Sending stops as soon as
+ * that band, or any more urgent band, has already gone out. That is what makes
+ * a missed run safe: someone 5 days out with nothing sent gets ONE email (the
+ * 10-day band, whose copy says "5 days left") and then the 2-day one at the
+ * very end — never three at once, and never a less urgent email after a more
+ * urgent one.
+ */
+export function pickReminderStage(daysLeft, alreadySent = []) {
+  if (!Number.isFinite(daysLeft) || daysLeft <= 0) return null;
+  const sent = new Set(alreadySent.map(String));
+  const ascending = [...EXPIRY_REMINDER_STAGES].sort((a, b) => a - b); // [2, 10, 20]
+  const band = ascending.find((s) => daysLeft <= s);
+  if (band === undefined) return null; // more than 20 days out — nothing due
+  // This band, or a more urgent one, is already delivered -> nothing to do.
+  if (ascending.some((s) => s <= band && sent.has(String(s)))) return null;
+  return band;
+}
+
+/** Resolve the real tier for a row: unknown/missing tiers fall back to basic. */
+function reminderTier(tier) {
+  return normalizeTier(tier) || "basic";
+}
+
+/**
+ * Build the three reminder emails. Plain, warm, specific: days left, the exact
+ * end date in words, their tier, the price for another 90 days, and the renewal
+ * link for THEIR tier. No invented discounts, no fake urgency, and no claims
+ * about what they have or have not used.
+ */
+export function buildExpiryReminderEmail({ stage, name, tier, expiresAt, daysLeft }) {
+  const t = reminderTier(tier);
+  const tierLabel = TIER_LABELS[t];
+  const price = priceForTier(t);
+  const link = stripeLinkForTier(t);
+  const endWords = formatDateWords(expiresAt);
+  const days = Math.max(1, Math.round(Number(daysLeft) || 1));
+  const dayWord = days === 1 ? "day" : "days";
+  const first = String(name || "").trim().split(/\s+/)[0] || "there";
+  const term = `${TERM_DAYS} days`;
+
+  let subject;
+  let opening;
+  let urgency;
+
+  if (String(stage) === "2") {
+    subject = `Last call — your ${tierLabel} access ends ${endWords}`;
+    opening =
+      `This is the last reminder we'll send: your ${tierLabel} access to Champion Sales Training ` +
+      `ends on ${endWords}, which is ${days} ${dayWord} from now.`;
+    urgency =
+      `After that date the training locks — the course library, the sales-step videos, the ` +
+      `quizzes and Road to the Sale all stop opening. There is nothing to cancel and nothing ` +
+      `recurring to stop: your term simply ends.`;
+  } else if (String(stage) === "10") {
+    subject = `${days} ${dayWord} left — your ${tierLabel} access ends ${endWords}`;
+    opening =
+      `A clear nudge: your ${tierLabel} access to Champion Sales Training ends on ${endWords}, ` +
+      `which is ${days} ${dayWord} from today.`;
+    urgency =
+      `Nothing renews automatically and nothing will be charged. If you want to keep your ` +
+      `training going without a break, start a new term before ${endWords}.`;
+  } else {
+    subject = `A heads-up: your ${tierLabel} access runs until ${endWords}`;
+    opening =
+      `Just a friendly heads-up — your ${tierLabel} access to Champion Sales Training runs until ` +
+      `${endWords}, which is ${days} ${dayWord} away.`;
+    urgency =
+      `Nothing renews automatically and nothing will be charged. If you'd like to carry on ` +
+      `without a gap, you can start a new term whenever it suits you.`;
+  }
+
+  const bodyLines = [
+    `Hi ${first},`,
+    "",
+    opening,
+    "",
+    urgency,
+    "",
+    `── Your next ${term} of access ──`,
+    `Tier:        ${tierLabel}`,
+    `Price:       $${price} one-time, ${term} of access`,
+    `Nothing recurring — a single payment for a single term.`,
+    `Start it here: ${link}`,
+    "",
+    `Your current term ends: ${endWords}`,
+    "",
+    `If you have any questions at all, just reply to this email and we'll help.`,
+    "",
+    `— The Champion Sales Training & Events team`,
+    PUBLIC_SITE_URL,
+  ];
+
+  const text = bodyLines.join("\n");
+  const html = buildReminderHtml({
+    first,
+    heading: subject,
+    paragraphs: [opening, urgency],
+    tierLabel,
+    price,
+    term,
+    link,
+    endWords,
+  });
+
+  return { subject, text, html };
+}
+
+/** Minimal, email-client-safe HTML: one column, inline styles, no images. */
+function buildReminderHtml({ first, heading, paragraphs, tierLabel, price, term, link, endWords }) {
+  const esc = (s) =>
+    String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  return `<!doctype html>
+<html><body style="margin:0;padding:0;background:#f5f5f4;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f4;padding:24px 12px;">
+<tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:12px;padding:28px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1c1917;">
+<tr><td>
+<p style="margin:0 0 18px;font-size:15px;line-height:22px;">Hi ${esc(first)},</p>
+<h1 style="margin:0 0 16px;font-size:19px;line-height:26px;color:#111827;">${esc(heading)}</h1>
+${paragraphs
+  .map((p) => `<p style="margin:0 0 16px;font-size:15px;line-height:23px;">${esc(p)}</p>`)
+  .join("\n")}
+<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;background:#fafaf9;border:1px solid #e7e5e4;border-radius:10px;margin:8px 0 20px;">
+<tr><td style="padding:16px;font-size:15px;line-height:23px;">
+<strong>${esc(tierLabel)} — $${esc(price)} one-time for ${esc(term)} of access</strong><br>
+Your current term ends on ${esc(endWords)}.<br>
+Nothing recurring: one payment, one term.
+</td></tr></table>
+<p style="margin:0 0 22px;">
+<a href="${esc(link)}" style="display:inline-block;background:#111827;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:8px;font-size:15px;font-weight:600;">Start a new ${esc(term)} term</a>
+</p>
+<p style="margin:0 0 8px;font-size:13px;line-height:20px;color:#57534e;">Or paste this into your browser:<br><a href="${esc(link)}" style="color:#1d4ed8;">${esc(link)}</a></p>
+<p style="margin:18px 0 0;font-size:14px;line-height:22px;">If you have any questions, just reply to this email and we'll help.</p>
+<p style="margin:22px 0 0;font-size:14px;line-height:22px;">— The Champion Sales Training &amp; Events team</p>
+<p style="margin:10px 0 0;font-size:12px;line-height:18px;color:#78716c;">Champion Sales Training &amp; Events · <a href="${esc(PUBLIC_SITE_URL)}" style="color:#78716c;">championsalestrainingandevents.com</a></p>
+</td></tr></table>
+</td></tr></table>
+</body></html>`;
+}
+
+/**
+ * Hand one reminder to Resend. Never throws: a failed email must not break the
+ * run or the site. Returns { ok, id, error }.
+ */
+export async function sendReminderEmail({ to, subject, html, text }) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.error("[expiry-reminder] RESEND_API_KEY is not set — reminder NOT sent to", to);
+    return { ok: false, id: null, error: "RESEND_API_KEY is not set" };
+  }
+  try {
+    const res = await fetch(resendEndpoint(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        from: REMINDER_FROM,
+        to: [to],
+        subject,
+        html,
+        text,
+        reply_to: REMINDER_FROM_ADDRESS,
+      }),
+    });
+    const raw = await res.text();
+    let parsed = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = null;
+    }
+    if (!res.ok) {
+      const msg = parsed?.message || raw.slice(0, 300) || `HTTP ${res.status}`;
+      console.error("[expiry-reminder] Resend rejected the reminder:", res.status, msg);
+      return { ok: false, id: null, error: msg };
+    }
+    return { ok: true, id: parsed?.id ?? null, error: null };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[expiry-reminder] Resend request failed:", message);
+    return { ok: false, id: null, error: message };
+  }
+}
+
+/** True for the owner/demo accounts, which never receive reminder emails. */
+function isExcludedReminderRecipient(user) {
+  const id = Number(user?.user_id ?? user?.id);
+  const email = String(user?.email || "").trim().toLowerCase();
+  if (Number.isFinite(id) && (DEMO_USER_IDS.includes(id) || OWNER_ACCOUNT_IDS.includes(id))) return true;
+  if (email && DEMO_EMAILS.includes(email)) return true;
+  return false;
+}
+
+/**
+ * The whole job. Returns the JSON body both API layers send back:
+ * { success, ranAt, considered, sentCount, failedCount, skippedCount, sent[], skipped[], failed[] }
+ *
+ * `sent[].resendId` is the Resend message id, also written to the ledger.
+ */
+export async function runExpiryReminders({ now = new Date() } = {}) {
+  const sql = db();
+  await ensureExpiryReminderTable(sql);
+
+  const candidates = await sql`
+    SELECT s.id AS subscription_id, s.user_id, s.tier, s.expires_at, u.email, u.name
+    FROM subscriptions s
+    JOIN users u ON u.id = s.user_id
+    WHERE s.status = 'active'
+      AND s.expires_at IS NOT NULL
+      AND s.expires_at > ${now.toISOString()}
+      AND s.expires_at <= ${new Date(now.getTime() + 20 * 24 * 60 * 60 * 1000).toISOString()}
+    ORDER BY s.expires_at ASC
+  `;
+
+  // Everything already delivered, keyed by subscription + stage + term end.
+  const deliveredRows = await sql`
+    SELECT subscription_id, stage, term_ends_at FROM expiry_reminders WHERE status = 'sent'
+  `;
+  const delivered = new Set(
+    deliveredRows.map((r) => `${r.subscription_id}|${r.stage}|${isoMs(r.term_ends_at)}`),
+  );
+
+  const sent = [];
+  const skipped = [];
+  const failed = [];
+
+  for (const row of candidates) {
+    const email = String(row.email || "").trim();
+    if (!email || !email.includes("@")) {
+      skipped.push({ email: email || null, reason: "missing-email" });
+      continue;
+    }
+    if (isExcludedReminderRecipient(row)) {
+      skipped.push({ email, reason: "owner-or-demo-account" });
+      continue;
+    }
+
+    const termEnd = isoMs(row.expires_at);
+    // Whole days left, measured against THIS run's clock (ceil), so the stage
+    // and the "N days left" the customer reads can never disagree.
+    const msLeft = termEnd ? new Date(termEnd).getTime() - now.getTime() : NaN;
+    const daysLeft = Number.isFinite(msLeft) ? (msLeft <= 0 ? 0 : Math.ceil(msLeft / 86400000)) : null;
+    if (!termEnd || daysLeft === null || daysLeft <= 0) {
+      skipped.push({ email, reason: "term-expired-or-missing" });
+      continue;
+    }
+
+    // Stages already sent FOR THIS TERM END. A renewal moves expires_at, so this
+    // list is empty again and all three stages re-arm.
+    const sentStages = EXPIRY_REMINDER_STAGES.filter((s) =>
+      delivered.has(`${row.subscription_id}|${s}|${termEnd}`),
+    );
+    const stage = pickReminderStage(daysLeft, sentStages);
+    if (stage === null) {
+      skipped.push({ email, reason: "no-due-unsent-stage", daysRemaining: daysLeft });
+      continue;
+    }
+
+    // Claim atomically. Only the winner of a race (or the only run) gets a row.
+    let claim;
+    try {
+      claim = await sql`
+        INSERT INTO expiry_reminders (subscription_id, user_id, stage, term_ends_at, status, claimed_at, recipient)
+        VALUES (${row.subscription_id}, ${row.user_id}, ${String(stage)}, ${termEnd}, 'pending', NOW(), ${email})
+        ON CONFLICT (subscription_id, stage, term_ends_at) DO UPDATE
+          SET status = 'pending', claimed_at = NOW(), recipient = EXCLUDED.recipient
+          WHERE expiry_reminders.status <> 'sent'
+            AND expiry_reminders.claimed_at < NOW() - INTERVAL '15 minutes'
+        RETURNING id
+      `;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.error("[expiry-reminder] claim failed for", email, message);
+      failed.push({ email, stage: String(stage), error: `claim failed: ${message}` });
+      continue;
+    }
+    if (!claim || claim.length === 0) {
+      skipped.push({ email, reason: "already-sent-or-in-flight", stage: String(stage) });
+      continue;
+    }
+    const claimId = claim[0].id;
+
+    const built = buildExpiryReminderEmail({
+      stage,
+      name: row.name,
+      tier: row.tier,
+      expiresAt: row.expires_at,
+      daysLeft,
+    });
+    const result = await sendReminderEmail({ to: email, ...built });
+
+    if (result.ok) {
+      await sql`
+        UPDATE expiry_reminders
+        SET status = 'sent', sent_at = NOW(), resend_message_id = ${result.id}, recipient = ${email}
+        WHERE id = ${claimId}
+      `;
+      delivered.add(`${row.subscription_id}|${stage}|${termEnd}`);
+      sent.push({
+        email,
+        stage: String(stage),
+        daysRemaining: daysLeft,
+        termEndsAt: termEnd,
+        resendId: result.id,
+      });
+      console.log(
+        `[expiry-reminder] sent stage ${stage} to ${email} (term ends ${termEnd}, ${daysLeft} days left) — Resend id ${result.id || "(none)"}`,
+      );
+    } else {
+      // Not sent ⇒ not marked sent. Release the claim so the next run retries.
+      await sql`DELETE FROM expiry_reminders WHERE id = ${claimId} AND status <> 'sent'`;
+      failed.push({ email, stage: String(stage), error: result.error });
+      console.error(`[expiry-reminder] send failed for ${email} stage ${stage}: ${result.error}`);
+    }
+  }
+
+  return {
+    success: true,
+    ranAt: now.toISOString(),
+    considered: candidates.length,
+    sentCount: sent.length,
+    failedCount: failed.length,
+    skippedCount: skipped.length,
+    sent,
+    skipped,
+    failed,
+  };
+}
+
+/**
+ * Endpoint entry point shared by BOTH API layers (serve.ts and api/ssr.mjs).
+ * Enforces the bearer token FIRST — before any database work — and fails closed.
+ *
+ *   401  no `Authorization: Bearer …` header, or the token does not match
+ *   503  CRON_SECRET is not configured (nothing to compare against ⇒ refuse)
+ *   200  job ran; the body reports what was sent, skipped and failed
+ *   500  the job itself blew up (database down) — never caused by email failure
+ */
+export async function handleExpiryReminderCron(headers) {
+  const secret = String(process.env.CRON_SECRET ?? "");
+  const raw = (() => {
+    if (!headers) return "";
+    if (typeof headers.get === "function") return String(headers.get("authorization") || "");
+    return String(headers.authorization || headers.Authorization || "");
+  })().trim();
+  const match = /^Bearer\s+(.+)$/i.exec(raw);
+
+  if (!secret) {
+    console.error("[expiry-reminder] CRON_SECRET is not configured — refusing to run");
+    return { status: 503, body: { success: false, error: "Cron is not configured" } };
+  }
+  if (!match) {
+    return { status: 401, body: { success: false, error: "Unauthorized" } };
+  }
+  const given = Buffer.from(match[1], "utf8");
+  const expected = Buffer.from(secret, "utf8");
+  const ok = given.length === expected.length && timingSafeEqual(given, expected);
+  if (!ok) {
+    return { status: 401, body: { success: false, error: "Unauthorized" } };
+  }
+
+  try {
+    const body = await runExpiryReminders();
+    return { status: 200, body };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[expiry-reminder] run failed:", message);
+    return { status: 500, body: { success: false, error: "Reminder run failed" } };
+  }
+}

@@ -17,6 +17,7 @@ import {
   httpStatusFor,
   signupStart,
   signupComplete,
+  handleExpiryReminderCron,
 } from "./api/handlers.mjs";
 
 // ── Direct API handlers (bypass broken TanStack server function manifest) ──
@@ -419,6 +420,19 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
       console.error("API mark-complete POST error:", err.message);
       return Response.json({ success: false, error: "Server error" }, { status: 500 });
     }
+  }
+
+  // ── Expiry reminders (cron) ──────────────────────────────────────────────
+  // Vercel's daily cron calls this path with `Authorization: Bearer
+  // $CRON_SECRET`. The bearer is checked inside handleExpiryReminderCron (shared
+  // with api/ssr.mjs) BEFORE any database work: 401 when missing/wrong, 503 when
+  // CRON_SECRET is not configured at all. GET (Vercel cron) and POST both work.
+  if (
+    (url.pathname === "/api/cron/expiry-reminders" || url.pathname === "/api/cron/expiry-reminders/") &&
+    (req.method === "GET" || req.method === "POST")
+  ) {
+    const result = await handleExpiryReminderCron(req.headers);
+    return jsonResponse(result.body, result.status);
   }
 
   // ── Shared handler dispatcher (api/handlers.mjs — same source as api/ssr.mjs) ──

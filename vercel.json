@@ -30,5 +30,11 @@
       "destination": "/$1",
       "statusCode": 301
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/expiry-reminders",
+      "schedule": "17 4 * * *"
+    }
   ]
 }
