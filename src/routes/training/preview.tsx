@@ -96,7 +96,7 @@ function TrainingPreview() {
   // requires an ACTIVE subscription (previously anyone could read it).
   const access = useTrainingAccess();
   if (access.state !== "subscribed") {
-    return <TrainingGate state={access.state} />;
+    return <TrainingGate state={access.state} tier={access.tier} expiresAt={access.expiresAt} />;
   }
 
   return (

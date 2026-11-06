@@ -5,6 +5,7 @@ globalThis.require = createRequire(import.meta.url);
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import {
   apiImpl,
+  authInfo,
   getSubscriptionState,
   requireTrainingAccess,
   httpStatusFor,
@@ -289,24 +290,16 @@ async function handleApiRequest(req) {
   }
 
   // ── Auth info (POST — validate token, return user + effective tier) ──
+  // ONE implementation: authInfo() in api/handlers.mjs, shared verbatim with
+  // serve.ts (Bun). Reports `subscribed` plus — for a customer whose 90-day term
+  // has ended — `expired`/`expiresAt`/`expiredTier`, so the gate can tell
+  // "term ended" apart from "never bought". Both API layers answer identically.
   if (url.pathname === "/api/auth-info" && req.method === "POST") {
     try {
-      const payload = authPayload(req);
-      if (!payload) return new Response(JSON.stringify({ authenticated: false, user: null }), { headers: { "Content-Type": "application/json" } });
-      const { neon } = await import("@neondatabase/serverless");
-      const sql = neon(process.env.DATABASE_URL);
-      const userResult = await sql`SELECT id, email, name, role, session_token FROM users WHERE id = ${payload.userId}`;
-      if (userResult.length === 0) return new Response(JSON.stringify({ authenticated: false, user: null }), { headers: { "Content-Type": "application/json" } });
-      const user = userResult[0];
-      // Subscription is the gate for training (owner rule). Report the truth:
-      // tier is the real tier from an ACTIVE subscription, or null when there is
-      // none — never a defaulted "basic". Demo/owner accounts always pass.
-      const sub = await getSubscriptionState(user);
-      return new Response(JSON.stringify({
-        authenticated: true,
-        subscribed: sub.subscribed,
-        user: { id: user.id, email: user.email, name: user.name, role: user.role, tier: sub.tier, subscribed: sub.subscribed },
-      }), { headers: { "Content-Type": "application/json" } });
+      const _b = typeof req.body === "string" ? JSON.parse(req.body) : (req.body || {});
+      const { token } = { ...(_b?.data ?? {}), ...(_b ?? {}) };
+      const result = await authInfo(token);
+      return new Response(JSON.stringify(result), { headers: { "Content-Type": "application/json" } });
     } catch (err) {
       console.error("API auth-info POST error:", err.message);
       return new Response(JSON.stringify({ authenticated: false, user: null }), { status: 500, headers: { "Content-Type": "application/json" } });
@@ -353,13 +346,20 @@ async function handleApiRequest(req) {
     try {
       const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
       const { token } = { ...(body?.data ?? {}), ...(body ?? {}) };
+      // Logged-out / bad token is a real 401 from this layer too (it used to
+      // collapse to HTTP 200 because the throw below swallowed it). Same body as
+      // serve.ts, so the two API layers are indistinguishable to a client.
+      if (!token) {
+        return new Response(JSON.stringify({ success: false, error: "Authentication required." }), { status: 401, headers: { "Content-Type": "application/json" } });
+      }
       const parts = token.split(".");
-      if (parts.length !== 3) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+      if (parts.length !== 3) return new Response(JSON.stringify({ success: false, error: "Invalid or expired token." }), { status: 401, headers: { "Content-Type": "application/json" } });
       const [header, bodyPart, signature] = parts;
       const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
       const expected = createHash("sha256").update(`${header}.${bodyPart}.${secret}`).digest("hex");
-      if (signature !== expected) return new Response(JSON.stringify({ success: false }), { headers: { "Content-Type": "application/json" } });
+      if (signature !== expected) return new Response(JSON.stringify({ success: false, error: "Invalid or expired token." }), { status: 401, headers: { "Content-Type": "application/json" } });
       const payload = JSON.parse(Buffer.from(bodyPart, "base64url").toString());
+      if (payload.exp && payload.exp < Date.now()) return new Response(JSON.stringify({ success: false, error: "Invalid or expired token." }), { status: 401, headers: { "Content-Type": "application/json" } });
       // Training progress is subscription-gated (owner rule).
       const access = await requireTrainingAccess(token);
       if (!access.ok) {

@@ -88,31 +88,77 @@ export function isDemoAccount(user) {
 }
 
 /**
+ * Statuses that entitle a user to training. `active` is written by every
+ * purchase path (Stripe-verified or owner manual activation) and by manager
+ * seats; `owner-demo` is ONLY ever written by an owner grant, so it is entitled
+ * too — but it is still subject to `expires_at`, so an owner-demo row with a
+ * past expiry grants nothing.
+ *
+ * DELIBERATE: this is fixed in the entitlement RULE, not by adding the manager
+ * demo address to DEMO_EMAILS. A DEMO_EMAILS entry means "always subscribed,
+ * never expires", which is not what an owner-granted row is, and it would leave
+ * every other owner-granted account (and any future one) locked out.
+ */
+export const ENTITLED_STATUSES = ["active", "owner-demo"];
+
+/**
  * Resolve a user's training entitlement from the database.
- * Returns { subscribed, tier, demo, expiresAt } — tier is the REAL tier from a
- * live subscription, or null when there is none (never a defaulted "basic").
+ * Returns { subscribed, tier, demo, expiresAt, expired, expiredTier }.
+ *   • tier is the REAL tier from a live subscription, or null when there is
+ *     none (never a defaulted "basic").
+ *   • expired/expiresAt/expiredTier tell the UI that a term RAN and ENDED —
+ *     a different story from "never bought", which needs different copy.
  */
 export async function getSubscriptionState(user) {
-  if (!user) return { subscribed: false, tier: null, demo: false, expiresAt: null };
-  if (isDemoAccount(user)) return { subscribed: true, tier: "premium", demo: true, expiresAt: null };
+  if (!user) return { subscribed: false, tier: null, demo: false, expiresAt: null, expired: false, expiredTier: null };
+  if (isDemoAccount(user)) return { subscribed: true, tier: "premium", demo: true, expiresAt: null, expired: false, expiredTier: null };
   const sql = db();
+  const userId = Number(user.id ?? user.userId);
   const rows = await sql`
     SELECT tier, expires_at FROM subscriptions
-    WHERE user_id = ${Number(user.id ?? user.userId)}
-      AND status = 'active'
+    WHERE user_id = ${userId}
+      AND status IN ('active', 'owner-demo')
       AND (expires_at IS NULL OR expires_at > NOW())
     ORDER BY id DESC LIMIT 1
   `;
-  if (rows.length === 0) return { subscribed: false, tier: null, demo: false, expiresAt: null };
-  return {
-    subscribed: true,
-    tier: rows[0].tier,
-    demo: false,
-    expiresAt: rows[0].expires_at ? new Date(rows[0].expires_at).toISOString() : null,
-  };
+  if (rows.length > 0) {
+    return {
+      subscribed: true,
+      tier: rows[0].tier,
+      demo: false,
+      expiresAt: rows[0].expires_at ? new Date(rows[0].expires_at).toISOString() : null,
+      expired: false,
+      expiredTier: null,
+    };
+  }
+  // Nothing live. Did a term ever run and end? Then this is an EXPIRED customer,
+  // not a brand-new account: the UI must be able to say so (and offer that
+  // tier's renewal link) instead of telling a paying customer they never
+  // subscribed.
+  const lapsed = await sql`
+    SELECT tier, expires_at FROM subscriptions
+    WHERE user_id = ${userId}
+      AND expires_at IS NOT NULL
+      AND expires_at <= NOW()
+    ORDER BY expires_at DESC LIMIT 1
+  `;
+  if (lapsed.length > 0) {
+    return {
+      subscribed: false,
+      tier: null,
+      demo: false,
+      expiresAt: new Date(lapsed[0].expires_at).toISOString(),
+      expired: true,
+      expiredTier: lapsed[0].tier ?? null,
+    };
+  }
+  return { subscribed: false, tier: null, demo: false, expiresAt: null, expired: false, expiredTier: null };
 }
 
 export const SUBSCRIPTION_REQUIRED_ERROR = "An active subscription is required to access training.";
+
+export const SUBSCRIPTION_EXPIRED_ERROR =
+  "Your 90-day access term has ended. Buy a new term to unlock training again.";
 
 /**
  * Server-side gate for any endpoint that serves training content or reads/
@@ -121,30 +167,62 @@ export const SUBSCRIPTION_REQUIRED_ERROR = "An active subscription is required t
  * `allowManager` lets management accounts act on their team (manager dashboard);
  * learners always need an active subscription.
  */
+/**
+ * Build the failure half of a gate result. ONE place decides the status AND the
+ * flags that go with it, so `httpStatusFor` can never disagree with the status
+ * the guard computed (the bug behind gated APIs answering HTTP 200 to a
+ * logged-out caller).
+ */
+export function gateFailure(status, body = {}) {
+  const flags = {};
+  if (status === 401) flags.notAuthenticated = true;
+  if (status === 403) {
+    flags.forbidden = true;
+    // 403 from the subscription gate is a missing/expired term, not an
+    // authorisation failure on a specific resource.
+    if (body.subscriptionRequired) delete flags.forbidden;
+  }
+  if (status === 404) flags.notFound = true;
+  return { ok: false, status, response: { ...body, ...flags, status } };
+}
+
 export async function requireTrainingAccess(token, { allowManager = false } = {}) {
   const payload = verifyToken(token);
-  if (!payload) return { ok: false, status: 401, response: { success: false, error: "Not authenticated" } };
+  if (!payload) return gateFailure(401, { success: false, error: "Not authenticated" });
   const sql = db();
   const rows = await sql`SELECT id, email, role FROM users WHERE id = ${Number(payload.userId)}`;
-  if (rows.length === 0) return { ok: false, status: 401, response: { success: false, error: "Not authenticated" } };
+  if (rows.length === 0) return gateFailure(401, { success: false, error: "Not authenticated" });
   const user = rows[0];
   if (allowManager && user.role === "management") {
     return { ok: true, userId: Number(user.id), tier: "management", demo: isDemoAccount(user) };
   }
   const sub = await getSubscriptionState(user);
   if (!sub.subscribed) {
-    return {
-      ok: false,
-      status: 403,
-      response: { success: false, error: SUBSCRIPTION_REQUIRED_ERROR, subscriptionRequired: true },
-    };
+    return gateFailure(403, {
+      success: false,
+      error: sub.expired ? SUBSCRIPTION_EXPIRED_ERROR : SUBSCRIPTION_REQUIRED_ERROR,
+      subscriptionRequired: true,
+      expired: sub.expired === true,
+      expiresAt: sub.expiresAt,
+      expiredTier: sub.expiredTier,
+    });
   }
-  return { ok: true, userId: Number(user.id), tier: sub.tier, demo: sub.demo };
+  return { ok: true, userId: Number(user.id), tier: sub.tier, demo: sub.demo, expiresAt: sub.expiresAt };
 }
 
-/** HTTP status for a shared-handler result (both API layers use this). */
+/**
+ * HTTP status for a shared-handler result (both API layers use this).
+ *
+ * The guard computes a status; this function must return it. It therefore
+ * honours `result.status` first whenever the body says the call failed, so a
+ * guard and the transport cannot drift apart again. The flag checks stay as the
+ * fallback for bodies that carry only flags (e.g. ownerGuard, older handlers).
+ */
+const HTTP_ERROR_STATUSES = new Set([400, 401, 402, 403, 404, 405, 409, 422, 429, 500, 502, 503]);
+
 export function httpStatusFor(result) {
   if (!result || typeof result !== "object") return 200;
+  if (result.success === false && HTTP_ERROR_STATUSES.has(result.status)) return result.status;
   if (result.subscriptionRequired) return 403;
   // Owner-only admin API (see ownerGuard below): a non-owner caller gets a real
   // 403 over HTTP, from BOTH API layers, not just a hidden button.
@@ -152,6 +230,86 @@ export function httpStatusFor(result) {
   if (result.notAuthenticated) return 401;
   if (result.notFound) return 404;
   return 200;
+}
+
+/**
+ * /api/auth-info — ONE implementation, used by BOTH API layers (serve.ts for the
+ * Bun server and api/ssr.mjs for Vercel). It used to be copy-pasted in each,
+ * which is how the expiry information went missing from one of them.
+ *
+ * The payload carries what the training gate needs to tell three cases apart:
+ *   • subscribed: true              → training is open
+ *   • subscribed: false, expired    → a paid term RAN and ENDED (say so, offer
+ *                                     that tier's renewal link)
+ *   • subscribed: false, !expired   → never bought (existing copy)
+ */
+export async function authInfo(token) {
+  const payload = verifyToken(token);
+  if (!payload) return { authenticated: false, user: null };
+  const sql = db();
+  const rows = await sql`SELECT id, email, name, role FROM users WHERE id = ${Number(payload.userId)}`;
+  if (rows.length === 0) return { authenticated: false, user: null };
+  const user = rows[0];
+  const sub = await getSubscriptionState(user);
+  const expired = sub.expired === true;
+  return {
+    authenticated: true,
+    subscribed: sub.subscribed,
+    expired,
+    expiresAt: sub.expiresAt,
+    expiredTier: sub.expiredTier,
+    user: {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      tier: sub.tier,
+      subscribed: sub.subscribed,
+      expired,
+      expiresAt: sub.expiresAt,
+      expiredTier: sub.expiredTier,
+    },
+  };
+}
+
+/**
+ * Authorise a target user id that arrived in the REQUEST BODY.
+ *
+ * The only ids a caller may act on are:
+ *   • their own (the id the verified token resolved to), or
+ *   • a seat their own management account bought — i.e. a subscription row for
+ *     that user whose `manager_group_id` is the caller, or
+ *   • any account, when the caller is an owner account.
+ *
+ * Anything else is a 403 and nothing is read or written. `requireExplicit`
+ * rejects a missing id (manager operations that only make sense with a target);
+ * without it a missing id means "me".
+ */
+async function resolveTargetUser(
+  callerId,
+  requestedUserId,
+  { requireExplicit = false, ignoreUnauthorised = false } = {},
+) {
+  const caller = Number(callerId);
+  const missing = requestedUserId === undefined || requestedUserId === null || requestedUserId === "";
+  const requested = Number(requestedUserId);
+  if (missing || !Number.isFinite(requested)) {
+    if (requireExplicit) return gateFailure(400, { success: false, error: "A target user id is required." });
+    return { ok: true, userId: caller, self: true };
+  }
+  if (requested === caller) return { ok: true, userId: caller, self: true };
+  const sql = db();
+  const owned = await sql`
+    SELECT 1 FROM subscriptions WHERE user_id = ${requested} AND manager_group_id = ${caller} LIMIT 1
+  `;
+  if (owned.length > 0) return { ok: true, userId: requested, self: false };
+  const callers = await sql`SELECT id, email FROM users WHERE id = ${caller}`;
+  if (callers.length > 0 && isOwnerAccount(callers[0])) return { ok: true, userId: requested, self: false };
+  // Write paths (mark/remove a completed lesson) IGNORE an id the caller has no
+  // claim to and act on the caller instead — the caller's own record is what the
+  // request was really about. Read paths refuse outright (403).
+  if (ignoreUnauthorised) return { ok: true, userId: caller, self: true, ignored: requested };
+  return gateFailure(403, { success: false, error: "Not authorised to act on that account." });
 }
 
 // ── Owner-only admin: manual activation ─────────────────────────────────────
@@ -833,14 +991,16 @@ export const apiImpl = {
 
   async getUserProgress({ token, userId }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    const target = await resolveTargetUser(session.userId, userId);
+    if (!target.ok) return target.response;
     const sql = db();
-    const userResult = await sql`SELECT id, email, name FROM users WHERE id = ${userId}`;
+    const userResult = await sql`SELECT id, email, name FROM users WHERE id = ${target.userId}`;
     if (userResult.length === 0) return { success: false, error: "User not found" };
     const user = userResult[0];
-    const completedLessons = await sql`SELECT course_id, lesson_id, completed_at FROM lesson_progress WHERE user_id = ${userId}`;
+    const completedLessons = await sql`SELECT course_id, lesson_id, completed_at FROM lesson_progress WHERE user_id = ${target.userId}`;
     const completedMap = Object.fromEntries(completedLessons.map((l) => [l.lesson_id, l.completed_at]));
-    const messages = await sql`SELECT m.id, m.message, m.is_read, m.created_at, u.name as from_name FROM manager_messages m JOIN users u ON u.id = m.from_user_id WHERE m.to_user_id = ${userId} ORDER BY m.created_at DESC LIMIT 50`;
+    const messages = await sql`SELECT m.id, m.message, m.is_read, m.created_at, u.name as from_name FROM manager_messages m JOIN users u ON u.id = m.from_user_id WHERE m.to_user_id = ${target.userId} ORDER BY m.created_at DESC LIMIT 50`;
     return {
       success: true,
       user: { id: user.id, email: user.email, name: user.name },
@@ -871,16 +1031,29 @@ export const apiImpl = {
   async markLessonComplete({ token, userId, courseId, lessonId }) {
     const access = await requireTrainingAccess(token, { allowManager: true });
     if (!access.ok) return access.response;
+    // The row is written for the id the VERIFIED TOKEN resolved to, never for a
+    // bare id off the wire. A manager may write for a seat their own account
+    // bought (resolveTargetUser proves that); for anyone else a client-supplied
+    // id that is not their own is IGNORED — the call still succeeds and touches
+    // only the caller's own record.
+    const target = await resolveTargetUser(access.userId, userId, { ignoreUnauthorised: true });
+    if (!target.ok) return target.response;
+    if (!courseId || !lessonId) {
+      return gateFailure(400, { success: false, error: "courseId and lessonId are required." });
+    }
     const sql = db();
-    await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
+    await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${target.userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
     return { success: true };
   },
 
   async removeLessonComplete({ token, userId, lessonId }) {
     const access = await requireTrainingAccess(token, { allowManager: true });
     if (!access.ok) return access.response;
+    const target = await resolveTargetUser(access.userId, userId, { ignoreUnauthorised: true });
+    if (!target.ok) return target.response;
+    if (!lessonId) return gateFailure(400, { success: false, error: "lessonId is required." });
     const sql = db();
-    await sql`DELETE FROM lesson_progress WHERE user_id = ${userId} AND lesson_id = ${lessonId}`;
+    await sql`DELETE FROM lesson_progress WHERE user_id = ${target.userId} AND lesson_id = ${lessonId}`;
     return { success: true };
   },
 
@@ -924,13 +1097,17 @@ export const apiImpl = {
 
   async removeSalesperson({ token, userId }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    // A manager may only remove a seat THEIR account bought (or an owner may
+    // remove any) — the target id from the body is not proof of anything.
+    const target = await resolveTargetUser(session.userId, userId, { requireExplicit: true });
+    if (!target.ok) return target.response;
     const sql = db();
-    const sp = await sql`SELECT email, name, tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.id = ${userId}`;
-    const sub = await sql`SELECT expires_at FROM subscriptions WHERE user_id = ${userId} AND status = 'active'`;
+    const sp = await sql`SELECT email, name, tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.id = ${target.userId}`;
+    const sub = await sql`SELECT expires_at FROM subscriptions WHERE user_id = ${target.userId} AND status = 'active'`;
     const lastDay = sub[0]?.expires_at ? new Date(sub[0].expires_at).toLocaleDateString() : "the end of their paid term";
-    await sql`UPDATE users SET role = 'inactive' WHERE id = ${userId}`;
-    await sql`UPDATE subscriptions SET status = 'cancelled', cancelled_at = NOW(), ends_at = ${sub[0]?.expires_at ? new Date(sub[0].expires_at).toISOString() : null} WHERE user_id = ${userId} AND status = 'active'`;
+    await sql`UPDATE users SET role = 'inactive' WHERE id = ${target.userId}`;
+    await sql`UPDATE subscriptions SET status = 'cancelled', cancelled_at = NOW(), ends_at = ${sub[0]?.expires_at ? new Date(sub[0].expires_at).toISOString() : null} WHERE user_id = ${target.userId} AND status = 'active'`;
     if (sp.length > 0) {
       await sendEmail({ to: [sp[0].email], subject: "Your access has been removed", body: `Hi ${sp[0].name || "there"},\n\nYour Champion Sales Training access has been removed by your manager.\n\n- Champion Sales Training Team` });
     }
@@ -953,7 +1130,9 @@ export const apiImpl = {
 
   async changeSalespersonTier({ token, userId, tier }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    const target = await resolveTargetUser(session.userId, userId, { requireExplicit: true });
+    if (!target.ok) return target.response;
     const newTier = normalizeTier(tier);
     if (!newTier) return { success: false, error: "Invalid tier" };
     const sql = db();
@@ -961,8 +1140,8 @@ export const apiImpl = {
     // (the higher tier is simply bought again for a new term), so the expiry is
     // reset with the tier.
     const newExpiry = termEndsAt(new Date());
-    await sql`UPDATE subscriptions SET tier = ${newTier}, plan = ${newTier}, expires_at = ${newExpiry.toISOString()}, started_at = NOW() WHERE user_id = ${userId} AND status = 'active'`;
-    const user = await sql`SELECT email, name FROM users WHERE id = ${userId}`;
+    await sql`UPDATE subscriptions SET tier = ${newTier}, plan = ${newTier}, expires_at = ${newExpiry.toISOString()}, started_at = NOW() WHERE user_id = ${target.userId} AND status = 'active'`;
+    const user = await sql`SELECT email, name FROM users WHERE id = ${target.userId}`;
     if (user.length > 0) {
       await sendEmail({ to: [user[0].email], subject: "Your access tier has been updated", body: `Hi ${user[0].name || "there"},\n\nYour Champion Sales Training access has been updated to the ${newTier.charAt(0).toUpperCase() + newTier.slice(1)} tier for a new ${TERM_DAYS}-day term, ending ${newExpiry.toISOString().slice(0, 10)}.\n\n- Champion Sales Training Team` });
     }
@@ -1012,10 +1191,13 @@ export const apiImpl = {
 
   async createAssignment({ token, salespersonId, courseId, lessonId }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    const target = await resolveTargetUser(session.userId, salespersonId, { requireExplicit: true });
+    if (!target.ok) return target.response;
+    const salesperson = target.userId;
     const sql = db();
-    await sql`INSERT INTO module_assignments (manager_id, salesperson_id, course_id, lesson_id) VALUES (${session.userId}, ${salespersonId}, ${courseId}, ${lessonId || null})`;
-    await sql`INSERT INTO manager_messages (from_user_id, to_user_id, message) VALUES (${session.userId}, ${salespersonId}, ${`New module assigned: ${courseId}${lessonId ? ` / ${lessonId}` : ""}. Please complete this training module.`})`;
+    await sql`INSERT INTO module_assignments (manager_id, salesperson_id, course_id, lesson_id) VALUES (${session.userId}, ${salesperson}, ${courseId}, ${lessonId || null})`;
+    await sql`INSERT INTO manager_messages (from_user_id, to_user_id, message) VALUES (${session.userId}, ${salesperson}, ${`New module assigned: ${courseId}${lessonId ? ` / ${lessonId}` : ""}. Please complete this training module.`})`;
     return { success: true };
   },
 
@@ -1110,10 +1292,12 @@ export const apiImpl = {
 
   async checkDailyLimit({ token, userId }) {
     const payload = verifyToken(token);
-    if (!payload) return { success: false, error: "Not authenticated" };
+    if (!payload) return gateFailure(401, { success: false, error: "Not authenticated" });
+    const target = await resolveTargetUser(payload.userId, userId);
+    if (!target.ok) return target.response;
     const sql = db();
     const today = new Date().toISOString().split("T")[0];
-    const result = await sql`SELECT COUNT(*) as count FROM lesson_progress WHERE user_id = ${userId} AND completed_at::date = ${today}::date`;
+    const result = await sql`SELECT COUNT(*) as count FROM lesson_progress WHERE user_id = ${target.userId} AND completed_at::date = ${today}::date`;
     const completedToday = result[0]?.count ?? 0;
     const maxDaily = 5;
     return { success: true, completedToday, maxDaily, limitReached: completedToday >= maxDaily };
@@ -1122,8 +1306,10 @@ export const apiImpl = {
   async getSkillGaps({ token, userId }) {
     const access = await requireTrainingAccess(token, { allowManager: true });
     if (!access.ok) return access.response;
+    const target = await resolveTargetUser(access.userId, userId);
+    if (!target.ok) return target.response;
     const sql = db();
-    const progress = await sql`SELECT course_id, COUNT(*) as completed FROM lesson_progress WHERE user_id = ${userId} GROUP BY course_id`;
+    const progress = await sql`SELECT course_id, COUNT(*) as completed FROM lesson_progress WHERE user_id = ${target.userId} GROUP BY course_id`;
     const courses = [
       { id: "10-steps-part-1", name: "Road to the Sale", total: 10 },
       { id: "10-steps-part-2", name: "10 Steps Part 2 (Quiz)", total: 10 },
@@ -1156,20 +1342,25 @@ export const apiImpl = {
 
   async resetUserProgress({ token, userId }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    const target = await resolveTargetUser(session.userId, userId, { requireExplicit: true });
+    if (!target.ok) return target.response;
     const sql = db();
-    await sql`DELETE FROM lesson_progress WHERE user_id = ${userId}`;
+    await sql`DELETE FROM lesson_progress WHERE user_id = ${target.userId}`;
     return { success: true };
   },
 
   // ── Planner ──────────────────────────────────────────────────────────────
   async getAppointments({ token, userId, date }) {
     const payload = verifyToken(token);
-    if (!payload) return { success: false, error: "Not authenticated" };
+    if (!payload) return gateFailure(401, { success: false, error: "Not authenticated" });
     const sql = db();
     let appointments;
     if (userId) {
-      appointments = await sql`SELECT a.*, u.name as manager_name FROM appointments a JOIN users u ON u.id = a.manager_id WHERE a.salesperson_id = ${userId} ${date ? sql`AND a.appointment_time::date = ${date}::date` : sql``} ORDER BY a.appointment_time ASC`;
+      // Reading another person's planner requires the caller to own that seat.
+      const target = await resolveTargetUser(payload.userId, userId);
+      if (!target.ok) return target.response;
+      appointments = await sql`SELECT a.*, u.name as manager_name FROM appointments a JOIN users u ON u.id = a.manager_id WHERE a.salesperson_id = ${target.userId} ${date ? sql`AND a.appointment_time::date = ${date}::date` : sql``} ORDER BY a.appointment_time ASC`;
     } else {
       appointments = await sql`SELECT a.*, u.name as salesperson_name, u.email as salesperson_email FROM appointments a JOIN users u ON u.id = a.salesperson_id WHERE a.manager_id = ${payload.userId} ${date ? sql`AND a.appointment_time::date = ${date}::date` : sql``} ORDER BY a.appointment_time ASC`;
     }

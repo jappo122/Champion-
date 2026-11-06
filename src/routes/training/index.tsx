@@ -57,7 +57,7 @@ function TrainingCatalog() {
   // loading → spinner; signed out → sign-in prompt; signed in without an active
   // subscription → subscribe-to-unlock. Course catalog renders only when subscribed.
   if (access.state !== "subscribed") {
-    return <TrainingGate state={access.state} />;
+    return <TrainingGate state={access.state} tier={access.tier} expiresAt={access.expiresAt} />;
   }
 
   return (

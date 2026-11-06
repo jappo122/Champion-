@@ -57,10 +57,18 @@ export const POST = createAPIFileRoute("/api/auth-info")({
       }
       const user = users[0];
       const sub = await getSubscriptionState(user);
+      // `subscribed` plus — when a paid 90-day term RAN and ENDED —
+      // `expired`/`expiresAt`/`expiredTier`. Without them the gate cannot tell a
+      // lapsed customer from one who never bought — and told paying customers
+      // they had never subscribed. Same payload as the other two API layers.
+      const expired = sub.expired === true;
       return new Response(
         JSON.stringify({
           authenticated: true,
           subscribed: sub.subscribed,
+          expired,
+          expiresAt: sub.expiresAt,
+          expiredTier: sub.expiredTier,
           user: {
             id: user.id,
             email: user.email,
@@ -68,6 +76,9 @@ export const POST = createAPIFileRoute("/api/auth-info")({
             role: user.role,
             tier: sub.tier,
             subscribed: sub.subscribed,
+            expired,
+            expiresAt: sub.expiresAt,
+            expiredTier: sub.expiredTier,
           },
         }),
         { headers: { "Content-Type": "application/json" } },

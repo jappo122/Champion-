@@ -22,7 +22,7 @@ function StepsPage() {
   // Get the Part 2 quiz course
   const quizCourse = courses.find((c) => c.id === "10-steps-part-2");
   if (access.state !== "subscribed") {
-    return <TrainingGate state={access.state} />;
+    return <TrainingGate state={access.state} tier={access.tier} expiresAt={access.expiresAt} />;
   }
   return (
     <div className="min-h-dvh bg-[#0a1628]">
