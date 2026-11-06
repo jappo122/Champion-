@@ -10,6 +10,7 @@ import {
   httpStatusFor,
   signupStart,
   signupComplete,
+  handleExpiryReminderCron,
 } from "./handlers.mjs";
 
 // ── Helpers ──
@@ -310,6 +311,22 @@ async function handleApiRequest(req) {
       console.error("API auth-info POST error:", err.message);
       return new Response(JSON.stringify({ authenticated: false, user: null }), { status: 500, headers: { "Content-Type": "application/json" } });
     }
+  }
+
+  // ── Expiry reminders (Vercel cron) ────────────────────────────────────────
+  // Vercel's daily cron (see `crons` in vercel.json) GETs this path with
+  // `Authorization: Bearer $CRON_SECRET`. The bearer is verified inside
+  // handleExpiryReminderCron — shared with serve.ts — before any database work:
+  // 401 when the header is missing or wrong, 503 when CRON_SECRET is unset.
+  if (
+    (url.pathname === "/api/cron/expiry-reminders" || url.pathname === "/api/cron/expiry-reminders/") &&
+    (req.method === "GET" || req.method === "POST")
+  ) {
+    const result = await handleExpiryReminderCron(req.headers);
+    return new Response(JSON.stringify(result.body), {
+      status: result.status,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   // ── Shared handler dispatcher (api/handlers.mjs — same source as serve.ts) ──
