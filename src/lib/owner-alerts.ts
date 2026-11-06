@@ -182,37 +182,39 @@ export function buildUnverifiedCheckoutAlert(d: UnverifiedCheckoutDetails): {
   const tierLine = d.tierLabel
     ? `${d.tierLabel}${d.amountCents ? ` ($${(d.amountCents / 100).toFixed(2)} one-time / 90 days)` : ""}`
     : "tier unknown — not recorded before checkout";
-  const subject = `Payment to confirm — ${who} — ${d.tierLabel || "tier unknown"}`;
+  const subject = `Payment to confirm: ${who}${d.tierLabel ? ` (${d.tierLabel})` : ""}`;
   const body = [
-    "A customer came back from Stripe to the site just now.",
+    "Hello,",
     "",
-    "*** UNVERIFIED — PLEASE CONFIRM THE PAYMENT IN STRIPE BEFORE ACTIVATING ***",
-    "This is a notification that a checkout completed, NOT proof that money arrived.",
-    "The site cannot ask Stripe whether this checkout was paid (no API key and no",
-    "webhook are configured), so nothing was activated automatically and the",
-    "customer's account is untouched.",
+    "A customer returned to the site from Stripe a moment ago. This is a notice",
+    "that a checkout completed. It is not proof that the payment succeeded.",
     "",
-    "── What we know ──",
-    `Customer email: ${d.customerEmail || "UNKNOWN — no pending checkout record matched this session"}`,
-    `Tier:           ${tierLine}`,
-    `Amount:         ${d.amountCents ? `$${(d.amountCents / 100).toFixed(2)} (recorded when they left for Stripe)` : "unknown"}`,
-    `Checkout id:    ${d.sessionId}`,
-    `Returned at:    ${formatTimestampUtc(d.receivedAt)}`,
+    "The site has no Stripe API key or webhook configured, so it cannot ask Stripe",
+    "whether this checkout was paid. Nothing was activated automatically and the",
+    "customer's account is unchanged.",
+    "",
+    "Details we recorded",
+    `  Customer email: ${d.customerEmail || "not recorded — no pending checkout matched this session"}`,
+    `  Tier:           ${tierLine}`,
+    `  Amount:         ${d.amountCents ? `$${(d.amountCents / 100).toFixed(2)} (recorded when they left for Stripe)` : "unknown"}`,
+    `  Checkout id:    ${d.sessionId}`,
+    `  Returned at:    ${formatTimestampUtc(d.receivedAt)}`,
     d.matchedPending && d.pendingRecordedAt
-      ? `Matched to the pending checkout record created ${formatTimestampUtc(d.pendingRecordedAt)}.`
-      : "No pending checkout record matched this session id — treat the email/tier above as unconfirmed.",
+      ? `  Matched to the pending checkout record created ${formatTimestampUtc(d.pendingRecordedAt)}.`
+      : "  No pending checkout record matched this session id, so the email and tier above are unconfirmed.",
     "",
-    "── What to do ──",
-    "1. Open Stripe and confirm the payment for the checkout id above.",
-    "2. If it is paid, sign in as the owner and open /admin/activate on the site,",
-    "   enter the customer's email, choose the tier, and press Activate.",
-    "   That grants exactly 90 days of access and marks the row as a manual",
-    "   activation so it is always distinguishable from a Stripe-verified one.",
-    "3. If it is not paid, do nothing — no access was granted.",
+    "What to do next",
+    "  1. Open Stripe and confirm the payment for the checkout id above.",
+    "  2. If it is paid, sign in as the owner, open /admin/activate, enter the",
+    "     customer's email, choose the tier and press Activate. That grants",
+    "     exactly 90 days of access and marks the row as a manual activation, so",
+    "     it stays distinguishable from a Stripe-verified purchase.",
+    "  3. If it is not paid, nothing needs doing. No access was granted.",
     "",
     `Site: ${d.siteUrl}`,
     "",
-    "— Champion Sales Training & Events (automated payment notification)",
+    "Champion Sales Training & Events",
+    "Automated payment notification",
   ].join("\n");
   return { subject, body };
 }
@@ -236,30 +238,34 @@ export function buildManualActivationAlert(d: ManualActivationDetails): {
   body: string;
 } {
   const until = formatDateWords(d.expiresAt);
-  const subject = `Access activated manually — ${d.customerEmail} — ${d.tierLabel} until ${until}`;
+  const subject = `Access activated: ${d.customerEmail} (${d.tierLabel}) until ${until}`;
   const previous = d.previousExpiresAt
     ? `Previous term ended ${formatDateWords(d.previousExpiresAt)} — extended from the later of now and that date, so no access was lost.`
     : "The account had no live term before this — this is their first 90-day term.";
   const body = [
+    "Hello,",
+    "",
     "You switched on a paid term by hand from /admin/activate.",
     "",
-    "── What was switched on ──",
-    `Customer:  ${d.customerEmail}`,
-    `Tier:      ${d.tierLabel} ($${d.price} one-time / ${d.termDays} days)`,
-    `Access until: ${until}`,
+    "Details",
+    `  Customer:     ${d.customerEmail}`,
+    `  Tier:         ${d.tierLabel} ($${d.price} one-time / ${d.termDays} days)`,
+    `  Access until: ${until}`,
+    "",
     previous,
     "",
-    `Marked as: MANUAL ACTIVATION (source = manual-owner-activation)`,
-    `Activated by: ${d.activatedByEmail}`,
-    `Activated at: ${formatTimestampUtc(d.activatedAt)}`,
+    `  Marked as:    manual activation (source = manual-owner-activation)`,
+    `  Activated by: ${d.activatedByEmail}`,
+    `  Activated at: ${formatTimestampUtc(d.activatedAt)}`,
     "",
-    "This email is your record of the switch-on. Rows created this way are always",
-    "distinguishable from Stripe-verified purchases, which are marked source =",
-    "stripe-verified.",
+    "This email is your record of the switch-on. Rows created this way stay",
+    "distinguishable from Stripe-verified purchases, which are marked",
+    "source = stripe-verified.",
     "",
     `Site: ${d.siteUrl}`,
     "",
-    "— Champion Sales Training & Events (automated activation notice)",
+    "Champion Sales Training & Events",
+    "Automated activation notice",
   ].join("\n");
   return { subject, body };
 }
