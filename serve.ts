@@ -12,6 +12,7 @@ import handler from "./dist/server/server.js";
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import {
   apiImpl,
+  authInfo,
   getSubscriptionState,
   requireTrainingAccess,
   httpStatusFor,
@@ -304,41 +305,14 @@ async function handleApiRequest(req: Request): Promise<Response | null> {
   }
 
   // ── Auth info (POST — validate token, return user + effective tier) ──
+  // ONE implementation: authInfo() in api/handlers.mjs, shared verbatim with
+  // api/ssr.mjs (Vercel). It reports `subscribed`, and — for a customer whose
+  // 90-day term has ended — `expired`/`expiresAt`/`expiredTier`, so the gate can
+  // tell "term ended" apart from "never bought".
   if (url.pathname === "/api/auth-info" && req.method === "POST") {
     try {
       const _b = await req.json(); const { token } = { ...(_b?.data ?? {}), ...(_b ?? {}) };
-      if (!token) return Response.json({ authenticated: false, user: null });
-      const parts = token.split(".");
-      if (parts.length !== 3) return Response.json({ authenticated: false, user: null });
-      const [headerB64, bodyB64, signature] = parts;
-      const secret = process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
-      const expected = createHash("sha256").update(`${headerB64}.${bodyB64}.${secret}`).digest("hex");
-      if (signature !== expected) return Response.json({ authenticated: false, user: null });
-      const payload = JSON.parse(Buffer.from(bodyB64, "base64url").toString());
-      if (payload.exp && payload.exp < Date.now()) return Response.json({ authenticated: false, user: null });
-      const { neon } = await import("@neondatabase/serverless");
-      const sql = neon(process.env.DATABASE_URL!);
-      const userResult = await sql`
-        SELECT id, email, name, role, session_token FROM users WHERE id = ${payload.userId as number}
-      ` as Array<{ id: number; email: string; name: string | null; role: string; session_token: string }>;
-      if (userResult.length === 0) return Response.json({ authenticated: false, user: null });
-      const user = userResult[0];
-      // Subscription is the gate for training (owner rule). Report the truth:
-      // tier is the real tier from an ACTIVE subscription, or null when the user
-      // has none — never a defaulted "basic". Demo/owner accounts always pass.
-      const sub = await getSubscriptionState(user);
-      return Response.json({
-        authenticated: true,
-        subscribed: sub.subscribed,
-        user: {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
-          tier: sub.tier,
-          subscribed: sub.subscribed,
-        },
-      });
+      return Response.json(await authInfo(token));
     } catch (err: any) {
       console.error("API auth-info POST error:", err.message);
       return Response.json({ authenticated: false, user: null }, { status: 500 });

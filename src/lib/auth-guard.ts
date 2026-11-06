@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { sql } from "~/db";
 import { createHash } from "node:crypto";
+import { getSubscriptionState } from "~/lib/subscription-server";
 
 const getSecret = () => process.env.SESSION_SECRET || "salesdrive-dev-secret-change-in-prod";
 
@@ -41,33 +42,29 @@ export const getAuthInfo = createServerFn({ method: "POST" }).handler(
     // Session token check removed — JWT expiration (7 days) is sufficient
 
     // Subscription is the gate for training (owner rule, 2026-10): being logged
-    // in is NOT enough — a row in `subscriptions` with status = 'active' is the
-    // source of truth. `subscribed` is reported explicitly and `tier` is the
-    // REAL tier from that row, or null when the user has none. (Previously a
-    // user with no subscription was reported as tier "basic", which handed every
-    // signed-up user the whole training catalog.)
-    const subResult = await db`
-      SELECT tier, status FROM subscriptions
-      WHERE user_id = ${userId} AND status = 'active'
-      ORDER BY id DESC LIMIT 1
-    ` as Array<{ tier: string; status: string }>;
-
-    // Demo accounts always get premium tier for full platform access
-    const DEMO_EMAILS = ["owner@champion.com", "jappo122@gmail.com", "floydsandersjr@yahoo.com"];
-    const isDemo = user.id === 1 || DEMO_EMAILS.includes(user.email.toLowerCase());
-    const subscribed = isDemo || subResult.length > 0;
-    const tier = isDemo ? "premium" : (subResult.length > 0 ? subResult[0].tier : null);
+    // in is NOT enough. ONE entitlement rule for the whole app — this used to
+    // re-implement it here (status = 'active' only, no expiry), which locked the
+    // owner's `owner-demo` manager account out of training and reported nothing
+    // about a term that had ended. getSubscriptionState is the source of truth
+    // (same rule as api/handlers.mjs).
+    const sub = await getSubscriptionState(user);
 
     return {
       authenticated: true,
-      subscribed,
+      subscribed: sub.subscribed,
+      expired: sub.expired,
+      expiresAt: sub.expiresAt,
+      expiredTier: sub.expiredTier,
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
         role: user.role,
-        tier,
-        subscribed,
+        tier: sub.tier,
+        subscribed: sub.subscribed,
+        expired: sub.expired,
+        expiresAt: sub.expiresAt,
+        expiredTier: sub.expiredTier,
       },
     };
   },

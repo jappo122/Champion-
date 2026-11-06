@@ -9,13 +9,20 @@
 import { useEffect, useState } from "react";
 import { isTokenValid, decodeToken } from "~/lib/client-auth";
 
-export type TrainingAccessState = "loading" | "anon" | "unsubscribed" | "subscribed";
+//   expired → a paid 90-day term RAN and ENDED (factual notice + renewal link)
+export type TrainingAccessState = "loading" | "anon" | "unsubscribed" | "expired" | "subscribed";
 
 export interface TrainingAccess {
   state: TrainingAccessState;
-  /** Real tier from an ACTIVE subscription (or "premium" for demo accounts). Null when not subscribed. */
+  /**
+   * Real tier from an ACTIVE subscription (or "premium" for demo accounts).
+   * When the term has ended this is the tier of the LAPSED term, so the gate can
+   * offer that tier's renewal link. Null when the account never bought.
+   */
   tier: string | null;
   token: string | null;
+  /** ISO timestamp the paid term ended, when state === "expired". */
+  expiresAt: string | null;
 }
 
 // Demo/owner accounts the server always grants access to (see api/handlers.mjs
@@ -35,6 +42,7 @@ export function useTrainingAccess(): TrainingAccess {
   const [state, setState] = useState<TrainingAccessState>("loading");
   const [tier, setTier] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [expiresAt, setExpiresAt] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -62,8 +70,23 @@ export function useTrainingAccess(): TrainingAccess {
             return;
           }
           const subscribed = data.subscribed === true || data.user.subscribed === true;
-          setTier(data.user.tier ?? null);
-          setState(subscribed ? "subscribed" : "unsubscribed");
+          // "Term ended" is NOT "never subscribed": the server tells them apart
+          // with expired/expiresAt/expiredTier, and each gets its own copy.
+          const expired = data.expired === true || data.user.expired === true;
+          const termEndedAt = data.expiresAt ?? data.user.expiresAt ?? null;
+          if (subscribed) {
+            setTier(data.user.tier ?? null);
+            setExpiresAt(termEndedAt);
+            setState("subscribed");
+          } else if (expired) {
+            setTier(data.expiredTier ?? data.user.expiredTier ?? null);
+            setExpiresAt(termEndedAt);
+            setState("expired");
+          } else {
+            setTier(null);
+            setExpiresAt(null);
+            setState("unsubscribed");
+          }
           return;
         } catch {
           if (attempt === 0) {
@@ -92,5 +115,5 @@ export function useTrainingAccess(): TrainingAccess {
     };
   }, []);
 
-  return { state, tier, token };
+  return { state, tier, token, expiresAt };
 }

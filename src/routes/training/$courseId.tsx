@@ -91,7 +91,7 @@ function CourseDetail() {
   // Subscription gate: loading → spinner, signed out → sign-in prompt,
   // signed in without an active subscription → subscribe-to-unlock.
   if (access.state !== "subscribed") {
-    return <TrainingGate state={access.state} />;
+    return <TrainingGate state={access.state} tier={access.tier} expiresAt={access.expiresAt} />;
   }
   if (!course) {
     return (

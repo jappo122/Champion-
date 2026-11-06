@@ -37,7 +37,25 @@ export interface SubscriptionState {
   demo: boolean;
   /** ISO timestamp the paid term ends, or null for a no-expiry (demo) account. */
   expiresAt: string | null;
+  /**
+   * True when this account HAD a paid term that has since ended. A lapsed
+   * customer is told their term ended (and offered their tier's renewal link);
+   * an account that never bought keeps the "no subscription yet" copy.
+   */
+  expired: boolean;
+  /** The tier of the lapsed term, for the renewal link. Null when not expired. */
+  expiredTier: string | null;
 }
+
+/**
+ * Statuses that entitle a user to training. `active` is written by every
+ * purchase path; `owner-demo` is ONLY ever written by an owner grant, so it is
+ * entitled too — but it is still subject to `expires_at`, so an owner-demo row
+ * with a past expiry grants nothing. (Fixed here rather than by adding the
+ * manager demo address to DEMO_EMAILS: a DEMO_EMAILS entry means "always
+ * subscribed, never expires", which is not what an owner-granted row is.)
+ */
+export const ENTITLED_STATUSES = ["active", "owner-demo"];
 
 /**
  * Real entitlement for a user: `subscribed` is explicit and `tier` is the tier
@@ -51,21 +69,44 @@ export async function getSubscriptionState(user: {
   id?: number | string | null;
   email?: string | null;
 } | null): Promise<SubscriptionState> {
-  if (!user) return { subscribed: false, tier: null, demo: false, expiresAt: null };
+  const none: SubscriptionState = { subscribed: false, tier: null, demo: false, expiresAt: null, expired: false, expiredTier: null };
+  if (!user) return none;
   if (isDemoAccount(user)) {
-    return { subscribed: true, tier: "premium", demo: true, expiresAt: null };
+    return { subscribed: true, tier: "premium", demo: true, expiresAt: null, expired: false, expiredTier: null };
   }
   const db = sql();
+  const userId = Number(user.id);
   const rows = (await db`
     SELECT tier, expires_at FROM subscriptions
-    WHERE user_id = ${Number(user.id)}
-      AND status = 'active'
+    WHERE user_id = ${userId}
+      AND status IN ('active', 'owner-demo')
       AND (expires_at IS NULL OR expires_at > NOW())
     ORDER BY id DESC LIMIT 1
   `) as Array<{ tier: string; expires_at: string | Date | null }>;
-  if (rows.length === 0) return { subscribed: false, tier: null, demo: false, expiresAt: null };
-  const expiresAt = rows[0].expires_at ? new Date(rows[0].expires_at).toISOString() : null;
-  return { subscribed: true, tier: rows[0].tier, demo: false, expiresAt };
+  if (rows.length > 0) {
+    const expiresAt = rows[0].expires_at ? new Date(rows[0].expires_at).toISOString() : null;
+    return { subscribed: true, tier: rows[0].tier, demo: false, expiresAt, expired: false, expiredTier: null };
+  }
+  // Nothing live. Did a term ever run and end? Then this is an EXPIRED customer,
+  // not a brand-new account — the two get different copy in the gate.
+  const lapsed = (await db`
+    SELECT tier, expires_at FROM subscriptions
+    WHERE user_id = ${userId}
+      AND expires_at IS NOT NULL
+      AND expires_at <= NOW()
+    ORDER BY expires_at DESC LIMIT 1
+  `) as Array<{ tier: string; expires_at: string | Date }>;
+  if (lapsed.length > 0) {
+    return {
+      subscribed: false,
+      tier: null,
+      demo: false,
+      expiresAt: new Date(lapsed[0].expires_at).toISOString(),
+      expired: true,
+      expiredTier: lapsed[0].tier ?? null,
+    };
+  }
+  return none;
 }
 
 export const SUBSCRIPTION_REQUIRED_ERROR =
