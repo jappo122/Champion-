@@ -173,7 +173,7 @@ export const SUBSCRIPTION_EXPIRED_ERROR =
  * the guard computed (the bug behind gated APIs answering HTTP 200 to a
  * logged-out caller).
  */
-export function gateFailure(status, body = {}) {
+export function failureBody(status, body = {}) {
   const flags = {};
   if (status === 401) flags.notAuthenticated = true;
   if (status === 403) {
@@ -183,7 +183,19 @@ export function gateFailure(status, body = {}) {
     if (body.subscriptionRequired) delete flags.forbidden;
   }
   if (status === 404) flags.notFound = true;
-  return { ok: false, status, response: { ...body, ...flags, status } };
+  return { ...body, ...flags, status };
+}
+
+/**
+ * A guard's refusal: `{ ok:false, status, response }`. Guards return this so a
+ * caller can branch on `ok`; the WIRE body is `.response` (see failureBody).
+ * A handler that has no `ok` contract to honour returns `failureBody(...)`
+ * directly — returning the wrapper is the bug that answered HTTP 200 with
+ * `{ok:false,status:401,response:{…}}` to a logged-out caller, because
+ * `httpStatusFor` reads the body's flags, not the wrapper's.
+ */
+export function gateFailure(status, body = {}) {
+  return { ok: false, status, response: failureBody(status, body) };
 }
 
 export async function requireTrainingAccess(token, { allowManager = false } = {}) {
@@ -222,6 +234,12 @@ const HTTP_ERROR_STATUSES = new Set([400, 401, 402, 403, 404, 405, 409, 422, 429
 
 export function httpStatusFor(result) {
   if (!result || typeof result !== "object") return 200;
+  // Defence in depth: a guard result (`{ ok:false, status, response }`) that a
+  // handler forgot to unwrap must still produce the right status instead of a
+  // silent 200. Read the refusal body, not the wrapper.
+  if (result.ok === false && result.response && typeof result.response === "object") {
+    return httpStatusFor(result.response);
+  }
   if (result.success === false && HTTP_ERROR_STATUSES.has(result.status)) return result.status;
   if (result.subscriptionRequired) return 403;
   // Owner-only admin API (see ownerGuard below): a non-owner caller gets a real
@@ -960,13 +978,60 @@ const db = () => {
   return neon(process.env.DATABASE_URL);
 };
 
+/** Is this user id an owner account? (full-platform view is owner-only) */
+async function callerIsOwner(userId) {
+  const sql = db();
+  const rows = await sql`SELECT id, email FROM users WHERE id = ${Number(userId)}`;
+  return rows.length > 0 && isOwnerAccount(rows[0]);
+}
+
+/**
+ * Who may message whom — enforced server-side for BOTH API layers.
+ *
+ * Allowed recipients:
+ *   • yourself;
+ *   • a seat YOUR management account bought (`subscriptions.manager_group_id`
+ *     on the recipient's row = you) — manager → own salesperson;
+ *   • YOUR manager, i.e. the owner of the seat you occupy (the
+ *     `manager_group_id` on your own subscription row) — salesperson → manager
+ *     replies keep working;
+ *   • any owner account (support).
+ * Everything else is a 403. The recipient id arrives in the request body and is
+ * never proof of anything on its own.
+ *
+ * INDIVIDUAL ACCOUNTS (a person who bought their own term and occupies no
+ * seat) have no manager, so they may message themselves and the owner/support
+ * accounts only — they cannot message other customers.
+ */
+async function canMessage(fromUserId, toUserId) {
+  const from = Number(fromUserId);
+  const to = Number(toUserId);
+  if (!Number.isFinite(from) || !Number.isFinite(to)) return false;
+  if (from === to) return true;
+  const sql = db();
+  const ownedSeat = await sql`SELECT 1 FROM subscriptions WHERE user_id = ${to} AND manager_group_id = ${from} LIMIT 1`;
+  if (ownedSeat.length > 0) return true;
+  const myManager = await sql`SELECT 1 FROM subscriptions WHERE user_id = ${from} AND manager_group_id = ${to} LIMIT 1`;
+  if (myManager.length > 0) return true;
+  const recipient = await sql`SELECT id, email FROM users WHERE id = ${to}`;
+  if (recipient.length > 0 && isOwnerAccount(recipient[0])) return true;
+  return false;
+}
+
 export const apiImpl = {
   // ── Manager dashboard ────────────────────────────────────────────────────
   async getTeamProgress({ token }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     const sql = db();
-    const salespeople = await sql`SELECT id, email, name, created_at FROM users WHERE role = 'user' ORDER BY name ASC, email ASC`;
+    // A manager sees ONLY the seats their own management account bought
+    // (`subscriptions.manager_group_id` = caller — the same ownership rule
+    // resolveTargetUser enforces). Owner accounts keep the full-platform view,
+    // which is the only place a platform-wide list is legitimate.
+    const owner = await callerIsOwner(session.userId);
+    const salespeople = owner
+      ? await sql`SELECT id, email, name, created_at FROM users WHERE role = 'user' ORDER BY name ASC, email ASC`
+      : await sql`SELECT u.id, u.email, u.name, u.created_at FROM users u WHERE u.role = 'user' AND EXISTS (SELECT 1 FROM subscriptions s WHERE s.user_id = u.id AND s.manager_group_id = ${session.userId}) ORDER BY u.name ASC, u.email ASC`;
     const team = await Promise.all(
       salespeople.map(async (sp) => {
         const progress = await sql`SELECT course_id, COUNT(*) as completed FROM lesson_progress WHERE user_id = ${sp.id} GROUP BY course_id`;
@@ -991,7 +1056,7 @@ export const apiImpl = {
 
   async getUserProgress({ token, userId }) {
     const session = verifyManager(token);
-    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     const target = await resolveTargetUser(session.userId, userId);
     if (!target.ok) return target.response;
     const sql = db();
@@ -1012,11 +1077,23 @@ export const apiImpl = {
 
   async sendMessage({ token, toUserId, message, responseTo }) {
     const payload = verifyToken(token);
-    if (!payload) return { success: false, error: "Not authenticated" };
-    const fromUserId = payload.userId;
-    if (!message.trim()) return { success: false, error: "Message cannot be empty" };
+    if (!payload) return failureBody(401, { success: false, error: "Not authenticated" });
+    const fromUserId = Number(payload.userId);
+    if (!message || !String(message).trim()) return failureBody(400, { success: false, error: "Message cannot be empty" });
+    // A bare id off the wire is not a permission. Only the caller's own manager,
+    // the caller's own seats and owner/support accounts may be messaged (see
+    // canMessage above); anything else is refused here, for both API layers.
+    if (!(await canMessage(fromUserId, toUserId))) {
+      return failureBody(403, { success: false, error: "Not authorised to message that account." });
+    }
     const sql = db();
-    await sql`INSERT INTO manager_messages (from_user_id, to_user_id, message, response_to) VALUES (${fromUserId}, ${toUserId}, ${message.trim()}, ${responseTo || null})`;
+    // NOTE: `manager_messages` has no `response_to` column (checked against the
+    // live schema), so every send used to fail with a 500 before the permission
+    // check above could even matter. `responseTo` is still accepted on the wire
+    // for compatibility but is not persisted — no caller sends it, and nothing
+    // reads it. If reply threading is wanted later, add the column first and put
+    // it back here.
+    await sql`INSERT INTO manager_messages (from_user_id, to_user_id, message) VALUES (${fromUserId}, ${Number(toUserId)}, ${String(message).trim()})`;
     return { success: true };
   },
 
@@ -1039,7 +1116,7 @@ export const apiImpl = {
     const target = await resolveTargetUser(access.userId, userId, { ignoreUnauthorised: true });
     if (!target.ok) return target.response;
     if (!courseId || !lessonId) {
-      return gateFailure(400, { success: false, error: "courseId and lessonId are required." });
+      return failureBody(400, { success: false, error: "courseId and lessonId are required." });
     }
     const sql = db();
     await sql`INSERT INTO lesson_progress (user_id, course_id, lesson_id) VALUES (${target.userId}, ${courseId}, ${lessonId}) ON CONFLICT (user_id, lesson_id) DO NOTHING`;
@@ -1051,7 +1128,7 @@ export const apiImpl = {
     if (!access.ok) return access.response;
     const target = await resolveTargetUser(access.userId, userId, { ignoreUnauthorised: true });
     if (!target.ok) return target.response;
-    if (!lessonId) return gateFailure(400, { success: false, error: "lessonId is required." });
+    if (!lessonId) return failureBody(400, { success: false, error: "lessonId is required." });
     const sql = db();
     await sql`DELETE FROM lesson_progress WHERE user_id = ${target.userId} AND lesson_id = ${lessonId}`;
     return { success: true };
@@ -1074,7 +1151,12 @@ export const apiImpl = {
     const seatExpiresAt = termEndsAt(new Date());
     await sql`INSERT INTO subscriptions (user_id, plan, tier, status, expires_at, started_at, is_individual, manager_group_id) VALUES (${newUser.id}, ${seatTier}, ${seatTier}, 'active', ${seatExpiresAt.toISOString()}, NOW(), FALSE, ${session.userId})`;
     const manager = await sql`SELECT email, name FROM users WHERE id = ${session.userId}`;
-    const allSalespeople = await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`;
+    // The cost summary in this email is about THIS manager's team, so it is
+    // scoped to their own seats (owner accounts keep the platform view).
+    const owner = await callerIsOwner(session.userId);
+    const allSalespeople = owner
+      ? await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`
+      : await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' AND s.manager_group_id = ${session.userId} WHERE u.role = 'user'`;
     const managerSub = await sql`SELECT tier FROM subscriptions WHERE user_id = ${session.userId} AND status = 'active'`;
     const basePrice = priceForTier(managerSub[0]?.tier === "premium" ? "premium" : "plus");
     const salespersonTotal = allSalespeople.reduce((sum, sp) => sum + priceForTier(sp.tier), 0);
@@ -1097,7 +1179,7 @@ export const apiImpl = {
 
   async removeSalesperson({ token, userId }) {
     const session = verifyManager(token);
-    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     // A manager may only remove a seat THEIR account bought (or an owner may
     // remove any) — the target id from the body is not proof of anything.
     const target = await resolveTargetUser(session.userId, userId, { requireExplicit: true });
@@ -1113,7 +1195,10 @@ export const apiImpl = {
     }
     const manager = await sql`SELECT email, name FROM users WHERE id = ${session.userId}`;
     if (manager.length > 0) {
-      const remainingSalespeople = await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`;
+      const owner = await callerIsOwner(session.userId);
+      const remainingSalespeople = owner
+        ? await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`
+        : await sql`SELECT s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' AND s.manager_group_id = ${session.userId} WHERE u.role = 'user'`;
       const managerSub = await sql`SELECT tier FROM subscriptions WHERE user_id = ${session.userId} AND status = 'active'`;
       const basePrice = priceForTier(managerSub[0]?.tier === "premium" ? "premium" : "plus");
       const salespersonTotal = remainingSalespeople.reduce((sum, x) => sum + priceForTier(x.tier), 0);
@@ -1130,7 +1215,7 @@ export const apiImpl = {
 
   async changeSalespersonTier({ token, userId, tier }) {
     const session = verifyManager(token);
-    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     const target = await resolveTargetUser(session.userId, userId, { requireExplicit: true });
     if (!target.ok) return target.response;
     const newTier = normalizeTier(tier);
@@ -1150,9 +1235,15 @@ export const apiImpl = {
 
   async getTeamCost({ token }) {
     const session = verifyManager(token);
-    if (!session) return { success: false, error: "Not authenticated" };
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     const sql = db();
-    const activeSalespeople = await sql`SELECT u.id, u.email, u.name, s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`;
+    // Same ownership rule as getTeamProgress: a manager is quoted for the seats
+    // THEIR account bought, so a manager with no seats gets an empty breakdown
+    // and a $0 total instead of everyone else's team.
+    const owner = await callerIsOwner(session.userId);
+    const activeSalespeople = owner
+      ? await sql`SELECT u.id, u.email, u.name, s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' WHERE u.role = 'user'`
+      : await sql`SELECT u.id, u.email, u.name, s.tier FROM users u JOIN subscriptions s ON s.user_id = u.id AND s.status = 'active' AND s.manager_group_id = ${session.userId} WHERE u.role = 'user'`;
     const breakdown = {};
     let total = 0;
     for (const sp of activeSalespeople) {
@@ -1191,7 +1282,7 @@ export const apiImpl = {
 
   async createAssignment({ token, salespersonId, courseId, lessonId }) {
     const session = verifyManager(token);
-    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     const target = await resolveTargetUser(session.userId, salespersonId, { requireExplicit: true });
     if (!target.ok) return target.response;
     const salesperson = target.userId;
@@ -1292,7 +1383,7 @@ export const apiImpl = {
 
   async checkDailyLimit({ token, userId }) {
     const payload = verifyToken(token);
-    if (!payload) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!payload) return failureBody(401, { success: false, error: "Not authenticated" });
     const target = await resolveTargetUser(payload.userId, userId);
     if (!target.ok) return target.response;
     const sql = db();
@@ -1342,7 +1433,7 @@ export const apiImpl = {
 
   async resetUserProgress({ token, userId }) {
     const session = verifyManager(token);
-    if (!session) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!session) return failureBody(401, { success: false, error: "Not authenticated" });
     const target = await resolveTargetUser(session.userId, userId, { requireExplicit: true });
     if (!target.ok) return target.response;
     const sql = db();
@@ -1353,7 +1444,7 @@ export const apiImpl = {
   // ── Planner ──────────────────────────────────────────────────────────────
   async getAppointments({ token, userId, date }) {
     const payload = verifyToken(token);
-    if (!payload) return gateFailure(401, { success: false, error: "Not authenticated" });
+    if (!payload) return failureBody(401, { success: false, error: "Not authenticated" });
     const sql = db();
     let appointments;
     if (userId) {
